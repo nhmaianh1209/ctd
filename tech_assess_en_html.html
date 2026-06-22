@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Coteccons – Technical Competency Assessment Report</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F2F4F7;color:#1F2937;min-height:100vh}
+:root{--N:#1B3A6B;--T:#00A99D;--O:#E8862A;--R:#DC2626;--A:#D97706;--G:#059669}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#0F2447 0%,#1B3A6B 55%,#2A4F8A 100%);color:white;padding:24px 32px;position:relative;overflow:hidden}
+.header::after{content:'';position:absolute;top:-50px;right:-30px;width:260px;height:260px;border-radius:50%;background:rgba(0,169,157,.13);pointer-events:none}
+.header-inner{position:relative;display:flex;justify-content:space-between;align-items:flex-start}
+.header-badge{display:inline-block;background:#00A99D;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:10px}
+.header h1{font-size:22px;font-weight:700;margin:0 0 5px;line-height:1.3}
+.header p{font-size:12px;color:rgba(255,255,255,.72)}
+.header-date{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:8px 16px;border-radius:8px;font-size:12px;white-space:nowrap;flex-shrink:0}
+
+/* NAV */
+.nav{background:white;border-bottom:1px solid #E5E7EB;padding:0 32px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.nav-inner{display:flex;max-width:1200px;margin:0 auto}
+.nav-btn{padding:14px 20px;cursor:pointer;font-size:13px;font-weight:400;color:#6B7280;font-family:inherit;background:none;border:none;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.nav-btn.active{font-weight:600;color:#1B3A6B;border-bottom-color:#00A99D}
+
+/* CONTENT */
+.content{padding:28px 32px 48px;max-width:1200px;margin:0 auto}
+.section{display:none}
+.section.active{display:block}
+
+/* KPI CARDS */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.kpi-card{background:white;border-radius:12px;padding:18px 20px;border:1px solid #E5E7EB}
+.kpi-label{font-size:11px;font-weight:600;color:#6B7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.kpi-val{font-size:28px;font-weight:700;line-height:1;margin-bottom:4px}
+.kpi-note{font-size:12px;color:#9CA3AF}
+
+/* TABLES */
+.table-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.table-box{background:white;border-radius:12px;border:1px solid #E5E7EB;overflow:hidden}
+.table-title{padding:14px 16px 10px;font-size:13px;font-weight:600;color:#1B3A6B;border-bottom:1px solid #F3F4F6}
+table{width:100%;border-collapse:collapse}
+th{background:#1B3A6B;color:white;padding:9px 14px;font-size:11px;text-align:left;font-weight:600}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #F3F4F6}
+tr:last-child td{font-weight:600;background:#F9FAFB}
+
+/* HBAR CHART */
+.chart-box{background:white;border-radius:12px;border:1px solid #E5E7EB;padding:22px 24px}
+.chart-title{font-size:14px;font-weight:600;color:#1B3A6B;margin-bottom:16px}
+.chart-tabs{display:flex;gap:8px;margin-bottom:20px}
+.chart-tab-btn{padding:8px 16px;border-radius:8px;border:1px solid;font-family:inherit;cursor:pointer;font-size:12px;transition:all .2s}
+.hbar-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.hbar-label{width:260px;font-size:11px;color:#374151;text-align:right;flex-shrink:0;line-height:1.3}
+.hbar-track{flex:1;height:20px;background:#F3F4F6;border-radius:3px;position:relative;overflow:hidden}
+.hbar-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px 3px 3px 2px;transition:width .4s}
+.hbar-num{width:40px;font-size:11px;color:#6B7280;flex-shrink:0;font-weight:500}
+
+/* SMART SCALE */
+.scale-box{background:white;border:1px solid #E5E7EB;border-radius:12px;padding:18px 20px;margin-bottom:20px}
+.scale-header{font-size:11px;font-weight:700;color:#1B3A6B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+.scale-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.scale-card{border-radius:8px;padding:12px 10px}
+.scale-card-top{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.scale-num{width:22px;height:22px;border-radius:50%;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.scale-name{font-size:11px;font-weight:700;line-height:1.2}
+.scale-bar{height:3px;border-radius:2px;margin-bottom:8px}
+.scale-desc{font-size:11px;color:#6B7280;line-height:1.5}
+.scale-legend{margin-top:10px;font-size:11px;color:#6B7280;background:#F9FAFB;padding:6px 12px;border-radius:6px}
+
+/* FILTER PILLS */
+.filter-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.filter-btn{padding:7px 16px;border-radius:20px;font-family:inherit;cursor:pointer;font-size:12px;font-weight:400;border:1px solid #D1D5DB;background:white;color:#4B5563;transition:all .2s}
+.filter-btn.active{font-weight:600;background:#1B3A6B;color:white;border-color:#1B3A6B}
+
+/* ROLE CARDS */
+.role-card{background:white;border-radius:12px;border:1px solid #E5E7EB;overflow:hidden;cursor:pointer;margin-bottom:10px;border-left-width:4px;border-left-style:solid;transition:box-shadow .2s}
+.role-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.role-card-header{padding:14px 20px 0;display:flex;align-items:center;gap:12px}
+.role-name{flex:1;font-size:14px;font-weight:700;color:#1B3A6B}
+.role-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.tag-xd{background:#EEF2FF;color:#3730A3}
+.tag-me{background:#FFF7ED;color:#92400E}
+.role-stats{padding:10px 20px 12px;display:flex;gap:24px;border-bottom:1px solid #F3F4F6}
+.stat-val{font-size:22px;font-weight:700;line-height:1}
+.stat-lbl{font-size:10px;color:#9CA3AF;text-transform:uppercase}
+.role-footer{padding:8px 20px;display:flex;justify-content:space-between;align-items:center}
+.role-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px}
+.chevron{color:#9CA3AF;font-size:14px;transition:transform .3s;display:inline-block}
+.role-detail{padding:14px 20px;background:#F9FAFB;border-top:1px solid #E5E7EB;display:none}
+.role-detail.open{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.skill-item{margin-bottom:4px}
+.skill-row{display:flex;justify-content:space-between;margin-bottom:4px;align-items:flex-start;gap:8px}
+.skill-text{font-size:11px;color:#374151;flex:1;line-height:1.5}
+.skill-score{font-size:12px;font-weight:700;flex-shrink:0}
+.skill-bar-track{height:4px;background:#E5E7EB;border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;border-radius:2px}
+.detail-note{font-size:11px;color:#D97706;margin-bottom:8px}
+
+/* SUMMARY */
+.summary-hero{background:linear-gradient(135deg,#0F2447,#2A4F8A);color:white;border-radius:14px;padding:26px 30px;margin-bottom:24px}
+.summary-hero h2{font-size:16px;font-weight:700;margin-bottom:10px}
+.summary-hero p{font-size:13px;line-height:1.9;color:rgba(255,255,255,.82);margin:0 0 18px}
+.summary-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.summary-kpi{background:rgba(255,255,255,.1);border-radius:10px;padding:12px 14px}
+.summary-kpi-l{font-size:11px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.summary-kpi-v{font-size:20px;font-weight:700;color:#00C4B7}
+
+.priority-table-box{background:white;border-radius:12px;border:1px solid #E5E7EB;overflow:hidden;margin-bottom:24px}
+.priority-table-title{background:#1B3A6B;color:white;padding:14px 18px;font-size:14px;font-weight:600}
+.tag-xd2{background:#EEF2FF;color:#3730A3;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px}
+.tag-me2{background:#FFF7ED;color:#92400E;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px}
+.skill-chip{display:inline-block;background:#F3F4F6;color:#374151;font-size:11px;padding:2px 8px;border-radius:6px;margin:2px 2px 2px 0}
+
+.dev-section-title{font-size:17px;font-weight:700;color:#1B3A6B;margin-bottom:14px}
+.dev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.dev-card{background:white;border-radius:12px;border:1px solid #E5E7EB;padding:20px}
+.dev-label{display:inline-block;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;margin-bottom:10px}
+.dev-target{font-size:12px;font-weight:600;color:#374151;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #F3F4F6}
+.dev-list{list-style:none;padding:0}
+.dev-list li{font-size:12px;color:#4B5563;padding:3px 0 3px 14px;position:relative;line-height:1.5}
+.dev-list li::before{content:'•';position:absolute;left:0;color:#00A99D;font-weight:bold}
+
+/* FOOTER */
+.footer{text-align:center;padding:20px;color:#9CA3AF;font-size:12px}
+
+.section-heading{font-size:19px;font-weight:700;color:#1B3A6B;margin-bottom:4px}
+.section-sub{font-size:13px;color:#6B7280;margin-bottom:24px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <div class="header-badge">Coteccons Group</div>
+      <h1>Technical Competency Assessment Report</h1>
+      <p>Site Personnel — Construction &amp; MEP · Human Capital Dept.</p>
+    </div>
+    <div class="header-date">📅 Updated: May 2026</div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="switchTab('s1',this)">Part 1 · Overview</button>
+    <button class="nav-btn" onclick="switchTab('s2',this)">Part 2 · By Role</button>
+    <button class="nav-btn" onclick="switchTab('s3',this)">Part 3 · Summary</button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- SECTION 1 -->
+<div id="s1" class="section active">
+  <p class="section-heading">Survey Data Overview</p>
+  <p class="section-sub">Self-assessment survey on technical competencies — As of April 13, 2026</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card" style="border-top:3px solid #1B3A6B">
+      <div class="kpi-label">Total Coteccons Headcount</div>
+      <div class="kpi-val" style="color:#1B3A6B">2,966</div>
+      <div class="kpi-note">As of 13 Apr 2026</div>
+    </div>
+    <div class="kpi-card" style="border-top:3px solid #00A99D">
+      <div class="kpi-label">Completed Survey</div>
+      <div class="kpi-val" style="color:#00A99D">2,356</div>
+      <div class="kpi-note">Participation rate: 79.4%</div>
+    </div>
+    <div class="kpi-card" style="border-top:3px solid #E8862A">
+      <div class="kpi-label">Total Valid Responses</div>
+      <div class="kpi-val" style="color:#E8862A">3,746</div>
+      <div class="kpi-note">After duplicate removal</div>
+    </div>
+    <div class="kpi-card" style="border-top:3px solid #D97706">
+      <div class="kpi-label">Multi-role Staff</div>
+      <div class="kpi-val" style="color:#1B3A6B">57.7%</div>
+      <div class="kpi-note">1,372 / 2,356 respondents</div>
+    </div>
+  </div>
+
+  <div class="table-grid">
+    <div class="table-box">
+      <div class="table-title">1.2 · Single-role vs. Multi-role Breakdown</div>
+      <table>
+        <thead><tr><th>Group</th><th>Total</th><th>Single-role</th><th>Multi-role</th></tr></thead>
+        <tbody>
+          <tr><td>Construction (XD)</td><td>1,818</td><td>784 (43.1%)</td><td>1,034 (56.9%)</td></tr>
+          <tr><td>MEP</td><td>551</td><td>213 (38.7%)</td><td>338 (61.3%)</td></tr>
+          <tr><td>Total</td><td>2,356</td><td>997 (42.3%)</td><td>1,372 (57.7%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-box">
+      <div class="table-title">1.3 · Total Responses Collected</div>
+      <table>
+        <thead><tr><th>Group</th><th>Total Resp.</th><th>Block A</th><th>Block B</th></tr></thead>
+        <tbody>
+          <tr><td>Construction (XD)</td><td>2,857</td><td>1,821</td><td>1,036</td></tr>
+          <tr><td>MEP</td><td>889</td><td>551</td><td>338</td></tr>
+          <tr><td>Grand Total</td><td>3,746</td><td>2,372</td><td>1,374</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">1.4 · Responses by Role (After Duplicate Removal)</div>
+    <div class="chart-tabs">
+      <button class="chart-tab-btn active" id="btnXD" onclick="switchChart('xd')"
+        style="background:#1B3A6B;color:white;border-color:#1B3A6B">
+        🏗 Construction Group (XD) — 2,857 responses
+      </button>
+      <button class="chart-tab-btn" id="btnME" onclick="switchChart('me')"
+        style="background:#F9FAFB;color:#4B5563;border-color:#D1D5DB">
+        ⚡ MEP Group — 889 responses
+      </button>
+    </div>
+    <div id="chartArea"></div>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div id="s2" class="section">
+  <p class="section-heading">Detailed Analysis by Role</p>
+  <p class="section-sub" style="margin-bottom:16px">Click a role card to view skill-level detail · Passing threshold: Level 3 and above</p>
+
+  <div class="scale-box">
+    <div class="scale-header">SMART Scale — 5 Proficiency Levels</div>
+    <div class="scale-grid" id="scaleGrid"></div>
+    <div class="scale-legend"><strong style="color:#374151">Legend:</strong> ⚠ Avg &lt; 3.0 = Needs Improvement · ▲ Avg 3.0–3.3 = Needs Attention · ✓ Meeting Requirements from Level 3 onward</div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterRoles('all',this)">All Roles</button>
+    <button class="filter-btn" onclick="filterRoles('xd',this)">🏗 Construction Group</button>
+    <button class="filter-btn" onclick="filterRoles('me',this)">⚡ MEP Group</button>
+    <button class="filter-btn" onclick="filterRoles('critical',this)">⚠ Needs Improvement</button>
+  </div>
+
+  <div id="roleCards"></div>
+</div>
+
+<!-- SECTION 3 -->
+<div id="s3" class="section">
+  <p class="section-heading">Summary &amp; Development Recommendations</p>
+  <p class="section-sub">Based on 3,746 valid responses · May 2026</p>
+
+  <div class="summary-hero">
+    <h2>Overall Conclusion</h2>
+    <p>The majority of roles score 3.5 and above, indicating that Coteccons site personnel are operating at a competent-to-proficient level. Senior positions (Project Manager, Project Director, QS Team Leader) consistently score 3.6+. Priority investment areas are execution-level engineers — particularly QS and QA/QC in MEP — with gaps in cost control, system acceptance and BIM application.</p>
+    <div class="summary-kpi-grid">
+      <div class="summary-kpi"><div class="summary-kpi-l">Participation Rate</div><div class="summary-kpi-v">79.4%</div></div>
+      <div class="summary-kpi"><div class="summary-kpi-l">Roles with skill &lt; 3.0</div><div class="summary-kpi-v">5 roles</div></div>
+      <div class="summary-kpi"><div class="summary-kpi-l">Highest Avg Score</div><div class="summary-kpi-v">4.00</div></div>
+      <div class="summary-kpi"><div class="summary-kpi-l">Lowest Avg Score</div><div class="summary-kpi-v">3.01</div></div>
+    </div>
+  </div>
+
+  <div class="priority-table-box">
+    <div class="priority-table-title">3.2 · Priority Roles for Improvement</div>
+    <table>
+      <thead><tr>
+        <th>Role</th><th>Group</th><th>Responses</th><th>Avg Score</th><th>Skills &lt;3.0</th><th>Skills Needing Improvement</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600">QS Engineer</td>
+          <td><span class="tag-xd2">Construction</span></td>
+          <td>331</td><td style="font-weight:600;color:#D97706">3.02</td>
+          <td><span style="background:#FEE2E2;color:#DC2626;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">3/6</span></td>
+          <td><span class="skill-chip">Resource planning (2.81)</span><span class="skill-chip">Output &amp; budget update (2.82)</span><span class="skill-chip">Resource tracking (2.76)</span></td>
+        </tr>
+        <tr style="background:#FAFAFA">
+          <td style="font-weight:600">QA/QC Engineer</td>
+          <td><span class="tag-me2">MEP</span></td>
+          <td>75</td><td style="font-weight:600;color:#D97706">3.01</td>
+          <td><span style="background:#FEE2E2;color:#DC2626;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">3/6</span></td>
+          <td><span class="skill-chip">Plumbing acceptance (2.93)</span><span class="skill-chip">HVAC acceptance (2.96)</span><span class="skill-chip">Gov. acceptance (2.96)</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">QS Engineer</td>
+          <td><span class="tag-me2">MEP</span></td>
+          <td>78</td><td style="font-weight:600;color:#00A99D">3.05</td>
+          <td><span style="background:#FEF9C3;color:#D97706;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">2/5</span></td>
+          <td><span class="skill-chip">Site financial reporting (2.78)</span><span class="skill-chip">Budget &amp; cost control (2.92)</span></td>
+        </tr>
+        <tr style="background:#FAFAFA">
+          <td style="font-weight:600">Shop Drawing Team Leader</td>
+          <td><span class="tag-xd2">Construction</span></td>
+          <td>59</td><td style="font-weight:600;color:#00A99D">3.79</td>
+          <td><span style="background:#FEF9C3;color:#D97706;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">1/4</span></td>
+          <td><span class="skill-chip">BIM application (2.90)</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">Shop Drawing Engineer</td>
+          <td><span class="tag-me2">MEP</span></td>
+          <td>45</td><td style="font-weight:600;color:#00A99D">3.14</td>
+          <td><span style="background:#FEF9C3;color:#D97706;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">1/6</span></td>
+          <td><span class="skill-chip">Navisworks clash detection (2.82)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="dev-section-title">3.4 · Development Plan by Priority Group</p>
+  <div class="dev-grid">
+    <div class="dev-card">
+      <div class="dev-label" style="background:#FEE2E2;color:#DC2626">🔴 Priority 1 — Urgent</div>
+      <div class="dev-target">QS Engineer (Construction &amp; MEP) · QA/QC Engineer (MEP)</div>
+      <ul class="dev-list">
+        <li>Training on cost management &amp; resource planning</li>
+        <li>Hands-on MEP system acceptance (Plumbing, HVAC)</li>
+        <li>Coordination with government acceptance authorities</li>
+        <li>Workshop on budget control and financial reporting</li>
+      </ul>
+    </div>
+    <div class="dev-card">
+      <div class="dev-label" style="background:#FEF9C3;color:#D97706">🟡 Priority 2 — Important</div>
+      <div class="dev-target">Shop Drawing Team Leader (Construction) · Shop Drawing Engineer (MEP)</div>
+      <ul class="dev-list">
+        <li>BIM training — Revit &amp; Navisworks</li>
+        <li>Clash detection and resolution workshop</li>
+        <li>Multi-discipline coordination practice: Construction–MEP</li>
+      </ul>
+    </div>
+    <div class="dev-card">
+      <div class="dev-label" style="background:#D1FAE5;color:#059669">🟢 Priority 3 — Sustain &amp; Advance</div>
+      <div class="dev-target">All remaining roles</div>
+      <ul class="dev-list">
+        <li>Internal mentoring program by role</li>
+        <li>Project rotation to broaden experience</li>
+        <li>Competency re-assessment after 6 months</li>
+        <li>Regular ITP and quality standards refresh</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<div class="footer">Coteccons Group · Human Capital Dept. · Technical Competency Assessment Report 2026 · Updated May 2026</div>
+
+<script>
+const N="#1B3A6B",T="#00A99D",O="#E8862A",R="#DC2626",A="#D97706",G="#059669";
+const sc=s=>s>=4?G:s>=3.5?T:s>=3?A:R;
+const sb=s=>s>=4?"#D1FAE5":s>=3.5?"#E6F7F6":s>=3?"#FFFBEB":"#FEE2E2";
+const pt=(s,c)=>c>0?`⚠ ${c} skill(s) need improvement`:s>=4?"✓ Proficient":s>=3.5?"✓ Performing Well":"▲ Meeting Requirements";
+
+const XD_D=[
+  {l:"Site Engineer",v:1051},{l:"Site Supervisor",v:343},{l:"QS Engineer",v:331},{l:"QA/QC Engineer",v:259},
+  {l:"Shop Drawing Engineer",v:244},{l:"Deputy PM – Site",v:208},{l:"QS Team Leader",v:106},
+  {l:"Project Manager",v:95},{l:"Deputy PM – Office",v:90},{l:"Shop Drawing Team Leader",v:59},
+  {l:"QA/QC Team Leader",v:51},{l:"Project Director",v:20},
+];
+const ME_D=[
+  {l:"MEP Supervisor",v:404},{l:"Team Leader / Lead Supervisor",v:113},{l:"Deputy PM",v:87},
+  {l:"QS Engineer",v:78},{l:"QA/QC Engineer",v:75},{l:"Shop Drawing Engineer",v:45},
+  {l:"Project Manager",v:39},{l:"QS Team Leader",v:35},{l:"Project Director",v:11},{l:"QA/QC Team Leader",v:2},
+];
+
+const ROLES=[
+  {name:"Site Engineer",group:"xd",res:1051,avg:3.32,crit:0,skills:[
+    {t:"Apply construction methods suitable for site conditions without major errors.",s:3.36},
+    {t:"Control surveying accurately, ensuring alignment and elevation within allowable tolerances.",s:3.27},
+    {t:"Supervise construction to ensure quality, safety and acceptance per plan.",s:3.51},
+    {t:"Coordinate labor, subcontractors and equipment — no disruption within a work shift.",s:3.48},
+    {t:"Control quantities and payment records, completing confirmations by reporting cycle.",s:3.12},
+    {t:"Control material input and finishing to standard, reducing rework rate.",s:3.20},
+  ]},
+  {name:"Site Supervisor",group:"xd",res:343,avg:3.73,crit:0,skills:[
+    {t:"Plan schedule and allocate resources, achieving weekly/monthly milestones per project plan.",s:3.69},
+    {t:"Coordinate construction between Construction and MEP, reducing interface conflicts.",s:3.74},
+    {t:"Control quality system, construction methods and safety conditions.",s:3.87},
+    {t:"Manage resources and subcontractors, ensuring productivity and minimizing wait time.",s:3.80},
+    {t:"Control quality records, inspections and permits to meet acceptance requirements.",s:3.65},
+    {t:"Control quantity confirmations, variations and final account documentation.",s:3.62},
+    {t:"Identify risks and design conflicts, propose timely solutions.",s:3.71},
+  ]},
+  {name:"QA/QC Engineer",group:"xd",res:259,avg:3.21,crit:0,skills:[
+    {t:"Develop and implement a practical, comprehensive ITP.",s:3.12},
+    {t:"Supervise construction, accept materials and maintain quality records.",s:3.41},
+    {t:"Submit materials complying with technical specs and meeting approval schedule.",s:3.22},
+    {t:"Control inspection records, certificates, operating permits and as-built documents.",s:3.14},
+    {t:"Identify non-conformances, monitor corrective actions and reduce recurrence.",s:3.18},
+  ]},
+  {name:"Shop Drawing Engineer",group:"xd",res:244,avg:3.38,crit:0,skills:[
+    {t:"Produce accurate shop drawings from design documents.",s:3.50},
+    {t:"Review structural/finishing/MEP conflicts before drawing release.",s:3.20},
+    {t:"Manage drawing register and approval status with correct revision control.",s:3.53},
+    {t:"Update as-built records accurately reflecting site conditions.",s:3.27},
+  ]},
+  {name:"QS Engineer",group:"xd",res:331,avg:3.02,crit:3,skills:[
+    {t:"Take off quantities accurately from drawings and site conditions.",s:3.40},
+    {t:"Plan site resource utilization. ⚠",s:2.81},
+    {t:"Process payment and final account quantities on time and per contract terms.",s:3.21},
+    {t:"Manage advance payments, subcontractor payments and variation records.",s:3.13},
+    {t:"Update production output and budget periodically, flag cost overruns. ⚠",s:2.82},
+    {t:"Track resources and propose adjustments when schedule changes. ⚠",s:2.76},
+  ]},
+  {name:"QA/QC Team Leader",group:"xd",res:51,avg:3.72,crit:0,skills:[
+    {t:"Establish a quality control system aligned with company standards.",s:3.76},
+    {t:"Organize and supervise QA/QC processes consistently on site.",s:3.67},
+    {t:"Control compliance with technical standards, drawings and construction methods.",s:3.57},
+    {t:"Manage NCRs, perform root cause analysis and corrective actions.",s:3.57},
+    {t:"Control quality records, as-built documents and acceptance documentation.",s:3.96},
+    {t:"Organize internal audits and drive continuous improvement of the quality system.",s:3.47},
+    {t:"Manage acceptance, inspection and material testing per plan.",s:4.04},
+  ]},
+  {name:"Shop Drawing Team Leader",group:"xd",res:59,avg:3.79,crit:1,skills:[
+    {t:"Apply and control drawing quality standards for construction.",s:4.17},
+    {t:"Manage as-built drawing updates accurately and on time for handover.",s:4.07},
+    {t:"Apply BIM to optimize construction methods and clash detection. ⚠",s:2.90},
+    {t:"Coordinate team to produce drawings meeting release schedule.",s:4.03},
+  ]},
+  {name:"QS Team Leader",group:"xd",res:106,avg:3.80,crit:0,skills:[
+    {t:"Establish data systems for quantities, unit rates and material wastage.",s:3.80},
+    {t:"Manage subcontract agreements within terms and budget limits.",s:3.93},
+    {t:"Execute QS workflows on ERP per procedure and on schedule.",s:3.79},
+    {t:"Organize subcontractor acceptance and payment accurately and on time.",s:3.99},
+    {t:"Prepare budget and control costs within approved limits.",s:3.78},
+    {t:"Provide complete site financial reports on schedule.",s:3.69},
+    {t:"Manage contract variations, EOT, VO and protect project interests.",s:3.64},
+  ]},
+  {name:"Deputy PM – Site",group:"xd",res:208,avg:3.77,crit:0,skills:[
+    {t:"Develop and adjust the overall construction plan, ensuring committed milestones.",s:3.80},
+    {t:"Coordinate Construction-MEP-finishing resources to improve site productivity.",s:3.75},
+    {t:"Monitor master and detailed schedule, proactively adjust when deviations arise.",s:3.85},
+    {t:"Develop safety, fire prevention, equipment operation plans and ensure compliance.",s:3.63},
+    {t:"Establish ITP for critical work items.",s:3.71},
+    {t:"Manage subcontractor shop drawings and control compliance during construction.",s:3.77},
+    {t:"Manage subcontractor schedule, quality and quantities against KPIs.",s:3.88},
+    {t:"Assess productivity, identify waste and implement improvement solutions.",s:3.76},
+  ]},
+  {name:"Deputy PM – Office",group:"xd",res:90,avg:3.61,crit:0,skills:[
+    {t:"Manage owner contracts and payment/final account documentation.",s:3.62},
+    {t:"Analyze financial data, review budget and flag variances.",s:3.53},
+    {t:"Evaluate and recommend suitable subcontractors and suppliers.",s:3.73},
+    {t:"Approve, monitor and assess overall progress against committed milestones.",s:3.53},
+    {t:"Establish information systems, reporting and effective coordination.",s:3.70},
+    {t:"Coordinate, guide and evaluate the supervision team against objectives.",s:3.57},
+  ]},
+  {name:"Project Manager",group:"xd",res:95,avg:3.66,crit:0,skills:[
+    {t:"Establish and control the project-wide quality standards system.",s:3.69},
+    {t:"Establish communication and reporting procedures between all parties.",s:3.75},
+    {t:"Implement safety, quality and schedule measures on site.",s:3.86},
+    {t:"Control cash flow, optimize costs and minimize out-of-budget variations.",s:3.62},
+    {t:"Evaluate and decide on subcontractor/supplier selection.",s:3.76},
+    {t:"Manage technical/commercial contracts and negotiate with the owner.",s:3.47},
+    {t:"Manage changes, risks and variations throughout the project lifecycle.",s:3.49},
+  ]},
+  {name:"Project Director",group:"xd",res:20,avg:3.82,crit:0,skills:[
+    {t:"Scope management",s:4.00},{t:"Schedule management",s:3.95},{t:"Cost management",s:4.00},
+    {t:"Quality management",s:3.85},{t:"Resource management",s:3.70},{t:"Communication management",s:3.60},
+    {t:"Risk management",s:3.65},{t:"Procurement management",s:3.75},{t:"Stakeholder management",s:3.75},{t:"Integration management",s:3.95},
+  ]},
+  {name:"MEP Supervisor",group:"me",res:404,avg:3.32,crit:0,skills:[
+    {t:"Apply basic QA/QC on site, ensuring compliance with quality procedures.",s:3.07},
+    {t:"Coordinate effectively between MEP and Construction, minimizing schedule conflicts.",s:3.49},
+    {t:"Apply correct survey benchmarks, ensuring installation positions match design.",s:3.42},
+    {t:"Establish safe temporary power and water systems meeting construction needs.",s:3.30},
+    {t:"Control schedule and quality of Plumbing system construction.",s:3.37},
+    {t:"Control schedule and quality of Electrical/ELV system construction.",s:3.31},
+    {t:"Control schedule and quality of HVAC system construction.",s:3.31},
+  ]},
+  {name:"QA/QC Engineer",group:"me",res:75,avg:3.01,crit:3,skills:[
+    {t:"Process technical submittals, equipment and material samples on schedule.",s:3.05},
+    {t:"Inspect incoming materials and conduct MEP material testing per procedure.",s:3.13},
+    {t:"Evaluate and accept Plumbing systems to standard. ⚠",s:2.93},
+    {t:"Evaluate and accept Electrical/ELV systems to requirements.",s:3.01},
+    {t:"Evaluate and accept HVAC systems to performance and standard. ⚠",s:2.96},
+    {t:"Coordinate acceptance with Project Manager and government authorities. ⚠",s:2.96},
+  ]},
+  {name:"Shop Drawing Engineer",group:"me",res:45,avg:3.14,crit:1,skills:[
+    {t:"Apply Plumbing system technical requirements in drawings and construction.",s:3.27},
+    {t:"Apply Electrical/ELV system technical requirements in drawings.",s:3.07},
+    {t:"Apply HVAC system technical requirements in drawings and construction.",s:3.18},
+    {t:"Produce accurate shop drawings and update changes in a timely manner.",s:3.38},
+    {t:"Extract BIM data to support quantity take-off.",s:3.13},
+    {t:"Use Navisworks to detect technical clashes before construction. ⚠",s:2.82},
+  ]},
+  {name:"QS Engineer",group:"me",res:78,avg:3.05,crit:2,skills:[
+    {t:"Establish quantity management spreadsheets covering unit rates and material wastage.",s:3.18},
+    {t:"Execute QS workflows on SAP/ERP per procedure and on schedule.",s:3.17},
+    {t:"Control contract terms for suppliers and subcontractors.",s:3.19},
+    {t:"Prepare and control site financial reports on schedule. ⚠",s:2.78},
+    {t:"Prepare budget and control variation costs within approved limits. ⚠",s:2.92},
+  ]},
+  {name:"QA/QC Team Leader",group:"me",res:2,avg:4.00,crit:0,note:"Small sample n=2",skills:[
+    {t:"Establish MEP quality management procedures aligned with company standards.",s:4.00},
+    {t:"Control and complete as-built documentation (CLDA) by handover deadline.",s:4.00},
+  ]},
+  {name:"QS Team Leader",group:"me",res:35,avg:3.81,crit:0,skills:[
+    {t:"Manage owner contracts and process EOT claims per contract terms.",s:3.80},
+    {t:"Use advanced Excel to build cost management and forecasting models.",s:3.71},
+    {t:"Control project data and financial reporting accurately and on time.",s:4.00},
+    {t:"Apply financial accounting practices to support QS work.",s:3.74},
+  ]},
+  {name:"Team Leader / Lead Supervisor",group:"me",res:113,avg:3.75,crit:0,skills:[
+    {t:"Control system defects and maintain MEP construction technical standards.",s:3.77},
+    {t:"Organize energization acceptance, fire safety and T&C per plan.",s:3.62},
+    {t:"Resolve technical conflicts between Construction and MEP in a timely manner.",s:3.89},
+    {t:"Plan and control detailed MEP construction schedule.",s:3.73},
+    {t:"Coordinate work areas between Structure, Finishing and MEP.",s:3.75},
+  ]},
+  {name:"Deputy PM",group:"me",res:87,avg:3.94,crit:0,skills:[
+    {t:"Control all MEP systems, ensuring compliance with approved technical standards.",s:3.94},
+    {t:"Manage and coordinate MEP construction schedule, ensuring committed milestones.",s:3.94},
+  ]},
+  {name:"Project Manager",group:"me",res:39,avg:3.93,crit:0,skills:[
+    {t:"Establish and control the project-wide quality standards system.",s:3.97},
+    {t:"Establish communication procedures between all stakeholders.",s:3.92},
+    {t:"Implement safety, quality and schedule measures on site.",s:4.05},
+    {t:"Control cash flow, optimize costs and minimize out-of-budget variations.",s:3.82},
+    {t:"Evaluate and decide on subcontractor/supplier selection.",s:4.10},
+    {t:"Manage technical/commercial contracts and negotiate with the owner.",s:3.82},
+    {t:"Manage changes, risks and variations throughout the project lifecycle.",s:3.82},
+  ]},
+  {name:"Project Director",group:"me",res:11,avg:4.00,crit:0,skills:[
+    {t:"Scope management",s:3.91},{t:"Schedule management",s:4.18},{t:"Cost management",s:4.00},
+    {t:"Quality management",s:4.09},{t:"Resource management",s:4.18},{t:"Communication management",s:3.91},
+    {t:"Risk management",s:4.00},{t:"Procurement management",s:4.00},{t:"Stakeholder management",s:3.82},{t:"Integration management",s:3.91},
+  ]},
+];
+
+// TAB SWITCHING
+function switchTab(id, btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// CHART
+let currentChart='xd';
+function switchChart(type){
+  currentChart=type;
+  const isXD=type==='xd';
+  const btnXD=document.getElementById('btnXD');
+  const btnME=document.getElementById('btnME');
+  btnXD.style.background=isXD?N:'#F9FAFB';
+  btnXD.style.color=isXD?'white':'#4B5563';
+  btnXD.style.borderColor=isXD?N:'#D1D5DB';
+  btnME.style.background=!isXD?O:'#F9FAFB';
+  btnME.style.color=!isXD?'white':'#4B5563';
+  btnME.style.borderColor=!isXD?O:'#D1D5DB';
+  renderChart(type==='xd'?XD_D:ME_D, isXD?N:O);
+}
+function renderChart(data,color){
+  const max=Math.max(...data.map(d=>d.v));
+  const area=document.getElementById('chartArea');
+  area.innerHTML=data.map(d=>`
+    <div class="hbar-row">
+      <div class="hbar-label">${d.l}</div>
+      <div class="hbar-track">
+        <div class="hbar-fill" style="width:${Math.max(d.v/max*100,1)}%;background:${color}"></div>
+      </div>
+      <div class="hbar-num">${d.v.toLocaleString()}</div>
+    </div>`).join('');
+}
+renderChart(XD_D,N);
+
+// SMART SCALE
+const levels=[
+  {n:1,name:"Novice",desc:"Newly introduced; requires detailed guidance and frequent supervision.",bg:"#F1F5F9",c:"#64748B",bar:"#94A3B8"},
+  {n:2,name:"Beginner",desc:"Performs simple tasks in familiar conditions; needs support in new situations.",bg:"#EFF6FF",c:"#2563EB",bar:"#60A5FA"},
+  {n:3,name:"Competent ✓",desc:"Works independently on routine tasks; delivers stable, acceptable results.",bg:"#FFFBEB",c:"#D97706",bar:"#F59E0B"},
+  {n:4,name:"Proficient",desc:"Applies skill across varied contexts; consistently delivers strong outcomes.",bg:"#F0FDFA",c:"#0F766E",bar:T},
+  {n:5,name:"Expert",desc:"Demonstrates mastery; handles complex situations, coaches others, leads improvement.",bg:"#F0FDF4",c:"#059669",bar:G},
+];
+document.getElementById('scaleGrid').innerHTML=levels.map(l=>`
+  <div class="scale-card" style="background:${l.bg}">
+    <div class="scale-card-top">
+      <div class="scale-num" style="background:${l.bar}">${l.n}</div>
+      <div class="scale-name" style="color:${l.c}">${l.name}</div>
+    </div>
+    <div class="scale-bar" style="background:${l.bar};width:${l.n*20}%"></div>
+    <div class="scale-desc">${l.desc}</div>
+  </div>`).join('');
+
+// ROLE CARDS
+let currentFilter='all';
+function filterRoles(f, btn){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRoles();
+}
+function renderRoles(){
+  const filtered=currentFilter==='all'?ROLES
+    :currentFilter==='critical'?ROLES.filter(r=>r.crit>0)
+    :ROLES.filter(r=>r.group===currentFilter);
+  const container=document.getElementById('roleCards');
+  container.innerHTML=filtered.map((r,i)=>{
+    const bc=r.crit>0?R:r.avg>=4?G:r.avg>=3.5?T:A;
+    const uid=`role_${r.group}_${i}`;
+    return `
+    <div class="role-card" style="border-left-color:${bc}" onclick="toggleRole('${uid}')">
+      <div class="role-card-header">
+        <div class="role-name">${r.name}</div>
+        <span class="role-tag ${r.group==='xd'?'tag-xd':'tag-me'}">${r.group==='xd'?'Construction':'MEP'}</span>
+      </div>
+      <div class="role-stats">
+        <div><div class="stat-val" style="color:${sc(r.avg)}">${r.avg.toFixed(2)}</div><div class="stat-lbl">Avg Score</div></div>
+        <div><div class="stat-val" style="color:${N}">${r.res.toLocaleString()}</div><div class="stat-lbl">Responses</div></div>
+        <div><div class="stat-val" style="color:${T}">${r.skills.length}</div><div class="stat-lbl">Criteria</div></div>
+      </div>
+      <div class="role-footer">
+        <span class="role-badge" style="background:${sb(r.avg)};color:${sc(r.avg)}">${pt(r.avg,r.crit)}</span>
+        <span class="chevron" id="chev_${uid}">▼</span>
+      </div>
+      <div class="role-detail" id="${uid}">
+        ${r.note?`<div class="detail-note">⚠ ${r.note}</div>`:''}
+        <div class="detail-grid">
+          ${r.skills.map(sk=>`
+          <div class="skill-item">
+            <div class="skill-row">
+              <span class="skill-text">${sk.t}</span>
+              <span class="skill-score" style="color:${sc(sk.s)}">${sk.s.toFixed(2)}</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width:${sk.s/5*100}%;background:${sc(sk.s)}"></div>
+            </div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function toggleRole(uid){
+  const detail=document.getElementById(uid);
+  const chev=document.getElementById('chev_'+uid);
+  const isOpen=detail.classList.toggle('open');
+  chev.style.transform=isOpen?'rotate(180deg)':'rotate(0deg)';
+}
+renderRoles();
+</script>
+</body>
+</html>
