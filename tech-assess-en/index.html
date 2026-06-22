@@ -130,7 +130,27 @@ tr:last-child td{font-weight:600;background:#F9FAFB}
 </style>
 </head>
 <body>
-
+<script>
+(function(){
+  const PASSWORD = "CTD#Tech2026";
+  if(sessionStorage.getItem("unlock_techen") === "1") return;
+  
+  let ok = false;
+  while(!ok){
+    const input = prompt("🔒 Enter password to access Tech Assessment EN:");
+    if(input === null){
+      window.location.href = "../";
+      return;
+    }
+    if(input === PASSWORD){
+      sessionStorage.setItem("unlock_techen","1");
+      ok = true;
+    } else {
+      alert("❌ Wrong password");
+    }
+  }
+})();
+</script>
 <div class="header">
   <div class="header-inner">
     <div>
