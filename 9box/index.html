@@ -150,7 +150,27 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 </style>
 </head>
 <body>
-
+<script>
+(function(){
+  const PASSWORD = "236/6";
+  if(sessionStorage.getItem("unlock_9box") === "1") return;
+  
+  let ok = false;
+  while(!ok){
+    const input = prompt("🔒 Nhập mật khẩu để truy cập 9 Box:\n(Enter password to access 9 Box)");
+    if(input === null){
+      window.location.href = "../";
+      return;
+    }
+    if(input === PASSWORD){
+      sessionStorage.setItem("unlock_9box","1");
+      ok = true;
+    } else {
+      alert("❌ Sai mật khẩu / Wrong password");
+    }
+  }
+})();
+</script>
 <div class="topbar">
   <div class="topbar-left">
     <div class="logo">C</div>
