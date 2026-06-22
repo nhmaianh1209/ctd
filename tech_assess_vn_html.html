@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Báo Cáo Đánh Giá Kỹ Năng Chuyên Môn — Coteccons</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F2F4F7;color:#1F2937;min-height:100vh}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 14px;font-size:13px;text-align:left;border-bottom:1px solid #F3F4F6}
+th{background:#1B3A6B;color:white;font-size:11px;font-weight:600}
+
+.header{background:linear-gradient(135deg,#0F2447 0%,#1B3A6B 55%,#2A4F8A 100%);color:white;padding:24px 32px;position:relative;overflow:hidden}
+.header::after{content:'';position:absolute;top:-50px;right:-30px;width:260px;height:260px;border-radius:50%;background:rgba(0,169,157,0.13);pointer-events:none}
+.header-inner{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.header-tag{display:inline-block;background:#00A99D;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:10px}
+.header h1{font-size:22px;font-weight:700;margin:0 0 5px;line-height:1.3}
+.header-sub{font-size:12px;color:rgba(255,255,255,0.72)}
+.header-date{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);padding:8px 16px;border-radius:8px;font-size:12px;white-space:nowrap;flex-shrink:0}
+
+.nav{background:white;border-bottom:1px solid #E5E7EB;padding:0 32px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.nav-inner{display:flex;max-width:1200px;margin:0 auto}
+.nav-btn{padding:14px 20px;font-size:13px;font-weight:400;color:#6B7280;background:none;border:none;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.nav-btn.active{font-weight:600;color:#1B3A6B;border-bottom-color:#00A99D}
+
+.content{padding:28px 32px 48px;max-width:1200px;margin:0 auto}
+.section{display:none}.section.active{display:block}
+.section-title{font-size:19px;font-weight:700;color:#1B3A6B;margin-bottom:4px}
+.section-sub{font-size:13px;color:#6B7280;margin-bottom:20px}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.kpi-card{background:white;border-radius:12px;padding:18px 20px;border:1px solid #E5E7EB}
+.kpi-label{font-size:11px;font-weight:600;color:#6B7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.kpi-val{font-size:28px;font-weight:700;line-height:1;margin-bottom:4px}
+.kpi-note{font-size:12px;color:#9CA3AF}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.card{background:white;border-radius:12px;border:1px solid #E5E7EB;overflow:hidden}
+.card-head{padding:14px 16px 10px;font-size:13px;font-weight:600;color:#1B3A6B;border-bottom:1px solid #F3F4F6}
+
+.chart-filters{display:flex;gap:8px;margin-bottom:20px}
+.chart-filter-btn{padding:8px 16px;border-radius:8px;border:1px solid;font-size:12px;transition:all .2s}
+
+.hbar-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.hbar-label{width:240px;font-size:11px;color:#374151;text-align:right;flex-shrink:0;line-height:1.3}
+.hbar-track{flex:1;height:20px;background:#F3F4F6;border-radius:3px;position:relative;overflow:hidden}
+.hbar-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px;transition:width .4s}
+.hbar-val{width:40px;font-size:11px;color:#6B7280;flex-shrink:0;font-weight:500}
+
+/* Smart Scale */
+.scale-box{background:white;border:1px solid #E5E7EB;border-radius:12px;padding:18px 20px;margin-bottom:20px}
+.scale-title{font-size:11px;font-weight:700;color:#1B3A6B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+.scale-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.scale-item{border-radius:8px;padding:12px 10px}
+.scale-dot{width:22px;height:22px;border-radius:50%;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.scale-item-head{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.scale-bar{height:3px;border-radius:2px;margin-bottom:8px}
+.scale-desc{font-size:11px;color:#6B7280;line-height:1.5}
+.scale-legend{margin-top:10px;font-size:11px;color:#6B7280;background:#F9FAFB;padding:6px 12px;border-radius:6px}
+
+/* Filter chips */
+.filter-chips{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.chip{padding:7px 16px;border-radius:20px;font-size:12px;border:1px solid;transition:all .2s}
+
+/* Role card */
+.role-card{background:white;border-radius:12px;border:1px solid #E5E7EB;border-left:4px solid;overflow:hidden;margin-bottom:10px}
+.role-card-header{padding:14px 20px 0;display:flex;align-items:center;gap:12px}
+.role-name{flex:1;font-size:14px;font-weight:700;color:#1B3A6B}
+.group-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.role-stats{padding:10px 20px 12px;display:flex;gap:24px;border-bottom:1px solid #F3F4F6;cursor:pointer}
+.stat-val{font-size:22px;font-weight:700;line-height:1}
+.stat-lbl{font-size:10px;color:#9CA3AF;text-transform:uppercase}
+.role-footer{padding:8px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.status-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px}
+.chevron{color:#9CA3AF;font-size:14px;transition:transform .3s;display:inline-block}
+.role-detail{padding:14px 20px;background:#F9FAFB;border-top:1px solid #E5E7EB;display:none}
+.role-detail.open{display:block}
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.skill-row{margin-bottom:2px}
+.skill-header{display:flex;justify-content:space-between;margin-bottom:4px;align-items:flex-start}
+.skill-text{font-size:11px;color:#374151;flex:1;line-height:1.5;margin-right:10px}
+.skill-score{font-size:12px;font-weight:700;flex-shrink:0}
+.skill-bar{height:4px;background:#E5E7EB;border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;border-radius:2px}
+
+/* Summary */
+.summary-hero{background:linear-gradient(135deg,#0F2447,#2A4F8A);color:white;border-radius:14px;padding:26px 30px;margin-bottom:24px}
+.summary-hero h3{font-size:16px;font-weight:700;margin-bottom:10px}
+.summary-hero p{font-size:13px;line-height:1.9;color:rgba(255,255,255,.82);margin-bottom:18px}
+.hero-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.hero-kpi{background:rgba(255,255,255,.1);border-radius:10px;padding:12px 14px}
+.hero-kpi-lbl{font-size:11px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.hero-kpi-val{font-size:20px;font-weight:700;color:#00C4B7}
+
+.priority-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.priority-card{background:white;border-radius:12px;border:1px solid #E5E7EB;padding:20px}
+.priority-label{display:inline-block;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;margin-bottom:10px}
+.priority-targets{font-size:12px;font-weight:600;color:#374151;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #F3F4F6}
+.priority-list{list-style:none}
+.priority-list li{font-size:12px;color:#4B5563;padding:3px 0 3px 14px;position:relative;line-height:1.5}
+.priority-list li::before{content:'•';position:absolute;left:0;color:#00A99D;font-weight:bold}
+
+.footer{text-align:center;padding:20px;color:#9CA3AF;font-size:12px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <span class="header-tag">Coteccons Group</span>
+      <h1>Báo Cáo Đánh Giá Kỹ Năng Chuyên Môn</h1>
+      <p class="header-sub">Nhân sự công trường mảng Xây dựng và Cơ điện · Phòng Quản trị nguồn nhân lực</p>
+    </div>
+    <div class="header-date">📅 Cập nhật: Tháng 5 / 2026</div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showTab('s1',this)">Phần 1 · Tổng Quan</button>
+    <button class="nav-btn" onclick="showTab('s2',this)">Phần 2 · Theo Vai Trò</button>
+    <button class="nav-btn" onclick="showTab('s3',this)">Phần 3 · Tổng Kết</button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- SECTION 1 -->
+<div id="s1" class="section active">
+  <div class="section-title">Tổng Quan Dữ Liệu Khảo Sát</div>
+  <div class="section-sub">Đợt khảo sát tự đánh giá kỹ năng chuyên môn — Tính đến 13 tháng 4 năm 2026</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card" style="border-top:3px solid #1B3A6B">
+      <div class="kpi-label">Tổng nhân sự Coteccons</div>
+      <div class="kpi-val" style="color:#1B3A6B">2,966</div>
+      <div class="kpi-note">Tính đến 13/4/2026</div>
+    </div>
+    <div class="kpi-card" style="border-top:3px solid #00A99D">
+      <div class="kpi-label">Đã hoàn thành khảo sát</div>
+      <div class="kpi-val" style="color:#00A99D">2,356</div>
+      <div class="kpi-note">Tỉ lệ tham gia: 79.4%</div>
+    </div>
+    <div class="kpi-card" style="border-top:3px solid #E8862A">
+      <div class="kpi-label">Tổng phản hồi hợp lệ</div>
+      <div class="kpi-val" style="color:#E8862A">3,746</div>
+      <div class="kpi-note">Sau loại bỏ trùng lặp</div>
+    </div>
+    <div class="kpi-card" style="border-top:3px solid #D97706">
+      <div class="kpi-label">Nhân sự kiêm nhiệm</div>
+      <div class="kpi-val" style="color:#D97706">57.7%</div>
+      <div class="kpi-note">1,372 / 2,356 người</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-head">1.2 · Phân Tách Đơn Nhiệm & Kiêm Nhiệm</div>
+      <table>
+        <thead><tr><th>Nhóm</th><th>Tổng</th><th>Đơn nhiệm</th><th>Kiêm nhiệm</th></tr></thead>
+        <tbody>
+          <tr><td>Xây dựng (XD)</td><td>1,818</td><td>784 (43.1%)</td><td>1,034 (56.9%)</td></tr>
+          <tr><td>Cơ điện (ME)</td><td>551</td><td>213 (38.7%)</td><td>338 (61.3%)</td></tr>
+          <tr style="background:#F9FAFB"><td style="font-weight:600">Tổng</td><td style="font-weight:600">2,356</td><td style="font-weight:600">997 (42.3%)</td><td style="font-weight:600">1,372 (57.7%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-head">1.3 · Tổng Số Phản Hồi Thu Được</div>
+      <table>
+        <thead><tr><th>Nhóm</th><th>Tổng PH</th><th>Block A</th><th>Block B</th></tr></thead>
+        <tbody>
+          <tr><td>Xây dựng (XD)</td><td>2,857</td><td>1,821</td><td>1,036</td></tr>
+          <tr><td>Cơ điện (ME)</td><td>889</td><td>551</td><td>338</td></tr>
+          <tr style="background:#F9FAFB"><td style="font-weight:600">Tổng cộng</td><td style="font-weight:600">3,746</td><td style="font-weight:600">2,372</td><td style="font-weight:600">1,374</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="padding:22px 24px">
+    <div style="font-size:14px;font-weight:600;color:#1B3A6B;margin-bottom:16px">1.4 · Số Lượng Phản Hồi Theo Từng Vai Trò (Đã Loại Bỏ Trùng Lặp)</div>
+    <div class="chart-filters">
+      <button id="btn-xd" class="chart-filter-btn" onclick="switchChart('xd')"
+        style="background:#1B3A6B;color:white;border-color:#1B3A6B;font-weight:600">🏗 Nhóm Xây Dựng (XD) — 2,857 phản hồi</button>
+      <button id="btn-me" class="chart-filter-btn" onclick="switchChart('me')"
+        style="background:#F9FAFB;color:#4B5563;border-color:#D1D5DB;font-weight:400">⚡ Nhóm Cơ Điện (ME) — 889 phản hồi</button>
+    </div>
+    <div id="chart-xd"></div>
+    <div id="chart-me" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div id="s2" class="section">
+  <div class="section-title">Phân Tích Chi Tiết Theo Vai Trò</div>
+  <div class="section-sub">Nhấn vào thẻ vai trò để xem chi tiết từng tiêu chí kỹ năng · Ngưỡng đạt yêu cầu: Mức 3 trở lên</div>
+
+  <div class="scale-box">
+    <div class="scale-title">Thang Đo SMART Scale — 5 Mức Độ Thành Thạo</div>
+    <div class="scale-grid">
+      <div class="scale-item" style="background:#F1F5F9">
+        <div class="scale-item-head"><div class="scale-dot" style="background:#94A3B8">1</div><div style="font-size:11px;font-weight:700;color:#64748B;line-height:1.2">Mới bắt đầu</div></div>
+        <div class="scale-bar" style="background:#94A3B8;width:20%"></div>
+        <div class="scale-desc">Mới làm quen với kỹ năng, cần được hướng dẫn chi tiết và giám sát thường xuyên.</div>
+      </div>
+      <div class="scale-item" style="background:#EFF6FF">
+        <div class="scale-item-head"><div class="scale-dot" style="background:#60A5FA">2</div><div style="font-size:11px;font-weight:700;color:#2563EB;line-height:1.2">Nhập môn</div></div>
+        <div class="scale-bar" style="background:#60A5FA;width:40%"></div>
+        <div class="scale-desc">Có thể thực hiện các nhiệm vụ đơn giản trong điều kiện quen thuộc, cần hỗ trợ ở tình huống mới.</div>
+      </div>
+      <div class="scale-item" style="background:#FFFBEB">
+        <div class="scale-item-head"><div class="scale-dot" style="background:#F59E0B">3</div><div style="font-size:11px;font-weight:700;color:#D97706;line-height:1.2">Có năng lực ✓</div></div>
+        <div class="scale-bar" style="background:#F59E0B;width:60%"></div>
+        <div class="scale-desc">Thực hiện độc lập phần lớn công việc thông thường và các tình huống phổ biến, đạt yêu cầu ổn định.</div>
+      </div>
+      <div class="scale-item" style="background:#F0FDFA">
+        <div class="scale-item-head"><div class="scale-dot" style="background:#00A99D">4</div><div style="font-size:11px;font-weight:700;color:#0F766E;line-height:1.2">Thành thạo</div></div>
+        <div class="scale-bar" style="background:#00A99D;width:80%"></div>
+        <div class="scale-desc">Vận dụng kỹ năng hiệu quả trong nhiều bối cảnh, tối ưu cách làm và tạo kết quả tốt.</div>
+      </div>
+      <div class="scale-item" style="background:#F0FDF4">
+        <div class="scale-item-head"><div class="scale-dot" style="background:#059669">5</div><div style="font-size:11px;font-weight:700;color:#059669;line-height:1.2">Tinh thông</div></div>
+        <div class="scale-bar" style="background:#059669;width:100%"></div>
+        <div class="scale-desc">Sở hữu kỹ năng ở mức cao, xử lý tốt tình huống phức tạp, hướng dẫn người khác và dẫn dắt những thay đổi.</div>
+      </div>
+    </div>
+    <div class="scale-legend"><strong style="color:#374151">Ký hiệu:</strong> ⚠ Điểm TB &lt; 3.0 = Cần cải thiện &nbsp;·&nbsp; ▲ Điểm TB 3.0–3.3 = Cần chú ý &nbsp;·&nbsp; ✓ Đạt yêu cầu từ Mức 3 trở lên</div>
+  </div>
+
+  <div class="filter-chips">
+    <button class="chip active-chip" onclick="filterRoles('all',this)" style="background:#1B3A6B;color:white;border-color:#1B3A6B">Tất cả</button>
+    <button class="chip" onclick="filterRoles('xd',this)" style="background:white;color:#4B5563;border-color:#D1D5DB">🏗 Nhóm Xây Dựng</button>
+    <button class="chip" onclick="filterRoles('me',this)" style="background:white;color:#4B5563;border-color:#D1D5DB">⚡ Nhóm Cơ Điện</button>
+    <button class="chip" onclick="filterRoles('critical',this)" style="background:white;color:#4B5563;border-color:#D1D5DB">⚠ Cần cải thiện</button>
+  </div>
+
+  <div id="roles-container"></div>
+</div>
+
+<!-- SECTION 3 -->
+<div id="s3" class="section">
+  <div class="section-title">Tổng Kết & Đề Xuất Phát Triển</div>
+  <div class="section-sub">Dựa trên 3,746 phản hồi hợp lệ · Tháng 5/2026</div>
+
+  <div class="summary-hero">
+    <h3>Kết Luận Tổng Thể</h3>
+    <p>Đa số vai trò có điểm trung bình từ 3.5 trở lên, cho thấy nhân sự công trường Coteccons đang hoạt động ở mức có năng lực đến thành thạo. Điểm mạnh ở các vị trí cấp cao (Chỉ huy trưởng, Giám đốc dự án, Trưởng nhóm QS) từ 3.6+. Khu vực cần đầu tư ưu tiên: kỹ sư thực thi — đặc biệt QS và QA/QC ME — với kỹ năng kiểm soát chi phí, nghiệm thu hệ thống và ứng dụng BIM.</p>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><div class="hero-kpi-lbl">Tỉ lệ tham gia</div><div class="hero-kpi-val">79.4%</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-lbl">Vai trò có KN &lt; 3.0</div><div class="hero-kpi-val">5 vai trò</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-lbl">Điểm TB cao nhất</div><div class="hero-kpi-val">4.00</div></div>
+      <div class="hero-kpi"><div class="hero-kpi-lbl">Điểm TB thấp nhất</div><div class="hero-kpi-val">3.01</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px">
+    <div style="background:#1B3A6B;color:white;padding:14px 18px;font-size:14px;font-weight:600">3.2 · Các Vai Trò Ưu Tiên Cải Thiện</div>
+    <table>
+      <thead><tr><th>Vai Trò</th><th>Nhóm</th><th>Phản Hồi</th><th>Điểm TB</th><th>KN &lt;3.0</th><th>Kỹ Năng Cần Cải Thiện</th></tr></thead>
+      <tbody id="priority-table"></tbody>
+    </table>
+  </div>
+
+  <div style="font-size:17px;font-weight:700;color:#1B3A6B;margin-bottom:14px">3.4 · Kế Hoạch Phát Triển Theo Nhóm Ưu Tiên</div>
+  <div class="priority-grid">
+    <div class="priority-card">
+      <div class="priority-label" style="background:#FEE2E2;color:#DC2626">🔴 Ưu Tiên 1 — Cấp Bách</div>
+      <div class="priority-targets">Kỹ sư QS (XD & ME) · Kỹ sư QA/QC (ME)</div>
+      <ul class="priority-list">
+        <li>Đào tạo quản lý chi phí & hoạch định nguồn lực</li>
+        <li>Thực hành nghiệm thu hệ thống MEP (Plumbing, HVAC)</li>
+        <li>Phối hợp nghiệm thu với cơ quan nhà nước</li>
+        <li>Workshop kiểm soát ngân sách và báo cáo tài chính</li>
+      </ul>
+    </div>
+    <div class="priority-card">
+      <div class="priority-label" style="background:#FEF9C3;color:#D97706">🟡 Ưu Tiên 2 — Quan Trọng</div>
+      <div class="priority-targets">Trưởng nhóm Shopdrawing (XD) · Kỹ sư Shopdrawing (ME)</div>
+      <ul class="priority-list">
+        <li>Đào tạo BIM — Revit & Navisworks</li>
+        <li>Workshop phát hiện và giải quyết va chạm kỹ thuật</li>
+        <li>Thực hành phối hợp liên bộ môn XD–MEP</li>
+      </ul>
+    </div>
+    <div class="priority-card">
+      <div class="priority-label" style="background:#D1FAE5;color:#059669">🟢 Ưu Tiên 3 — Duy Trì & Nâng Cao</div>
+      <div class="priority-targets">Tất cả vai trò còn lại</div>
+      <ul class="priority-list">
+        <li>Chương trình mentoring nội bộ theo vai trò</li>
+        <li>Luân chuyển dự án mở rộng kinh nghiệm</li>
+        <li>Đánh giá lại năng lực sau 6 tháng</li>
+        <li>Cập nhật ITP và tiêu chuẩn chất lượng định kỳ</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<div class="footer">Coteccons Group · Phòng Quản trị nguồn nhân lực · Báo cáo Đánh giá Kỹ năng Chuyên môn 2026 · Cập nhật Tháng 5/2026</div>
+
+<script>
+const N="#1B3A6B",T="#00A99D",O="#E8862A",R="#DC2626",A="#D97706",G="#059669";
+const sc=s=>s>=4?G:s>=3.5?T:s>=3?N:R;
+const sb=s=>s>=4?"#D1FAE5":s>=3.5?"#E6F7F6":s>=3?"#EEF2FF":"#FEE2E2";
+
+const XD_D=[
+  {l:"Giám sát thi công/kỹ thuật/hiện trường",v:1051},
+  {l:"Giám sát chính",v:343},{l:"Kỹ sư QS",v:331},{l:"Kỹ sư QA/QC",v:259},
+  {l:"Kỹ sư Shopdrawing",v:244},{l:"Chỉ huy phó hiện trường",v:208},
+  {l:"Trưởng nhóm QS",v:106},{l:"Chỉ huy trưởng",v:95},
+  {l:"Chỉ huy phó văn phòng",v:90},{l:"Trưởng nhóm Shopdrawing",v:59},
+  {l:"Trưởng nhóm QA/QC",v:51},{l:"Giám đốc dự án",v:20},
+];
+const ME_D=[
+  {l:"Giám sát ME",v:404},{l:"Trưởng nhóm / Giám sát chính",v:113},
+  {l:"Chỉ huy phó",v:87},{l:"Kỹ sư QS",v:78},{l:"Kỹ sư QA/QC",v:75},
+  {l:"Kỹ sư Shopdrawing",v:45},{l:"Chỉ huy trưởng",v:39},
+  {l:"Trưởng nhóm QS",v:35},{l:"Giám đốc dự án",v:11},{l:"Trưởng nhóm QA/QC",v:2},
+];
+
+const ROLES=[
+  {name:"Giám sát thi công / kỹ thuật / hiện trường",group:"xd",res:1051,avg:3.32,crit:0,skills:[
+    {t:"Triển khai biện pháp thi công phù hợp điều kiện hiện trường, không phát sinh lỗi lớn.",s:3.36},
+    {t:"Kiểm soát trắc đạc chính xác, đảm bảo tim trục, cao độ trong sai số cho phép.",s:3.27},
+    {t:"Giám sát thi công đảm bảo chất lượng, an toàn và nghiệm thu đúng kế hoạch.",s:3.51},
+    {t:"Điều phối nhân công, thầu phụ, máy móc — không gián đoạn thi công trong ca làm việc.",s:3.48},
+    {t:"Kiểm soát khối lượng và hồ sơ thanh toán, hoàn thành xác nhận đúng kỳ báo cáo.",s:3.12},
+    {t:"Kiểm soát vật liệu đầu vào và hoàn thiện đúng tiêu chuẩn, giảm tỷ lệ rework.",s:3.20},
+  ]},
+  {name:"Giám sát chính",group:"xd",res:343,avg:3.73,crit:0,skills:[
+    {t:"Lập kế hoạch tiến độ và phân bổ nguồn lực, đạt mốc tuần/tháng theo kế hoạch dự án.",s:3.69},
+    {t:"Điều phối thi công giữa Xây dựng và MEP, giảm xung đột giao diện.",s:3.74},
+    {t:"Kiểm soát hệ thống chất lượng, biện pháp thi công và điều kiện an toàn.",s:3.87},
+    {t:"Quản lý nguồn lực và nhà thầu phụ, đảm bảo năng suất và hạn chế thời gian chờ.",s:3.80},
+    {t:"Kiểm soát hồ sơ chất lượng, kiểm định, cấp phép đáp ứng yêu cầu nghiệm thu.",s:3.65},
+    {t:"Kiểm soát xác nhận khối lượng, phát sinh và hồ sơ thanh quyết toán.",s:3.62},
+    {t:"Nhận diện rủi ro, xung đột thiết kế và đề xuất giải pháp xử lý kịp thời.",s:3.71},
+  ]},
+  {name:"Kỹ sư QA/QC",group:"xd",res:259,avg:3.21,crit:0,skills:[
+    {t:"Lập và triển khai kế hoạch kiểm soát chất lượng (ITP) đầy đủ, khả thi.",s:3.12},
+    {t:"Giám sát thi công, nghiệm thu vật liệu và hồ sơ chất lượng.",s:3.41},
+    {t:"Đề trình vật tư phù hợp yêu cầu kỹ thuật và đáp ứng tiến độ phê duyệt.",s:3.22},
+    {t:"Kiểm soát hồ sơ kiểm định, chứng chỉ, giấy phép vận hành và hoàn công.",s:3.14},
+    {t:"Phát hiện lỗi không phù hợp, theo dõi khắc phục và giảm tái diễn.",s:3.18},
+  ]},
+  {name:"Kỹ sư Shopdrawing",group:"xd",res:244,avg:3.38,crit:0,skills:[
+    {t:"Triển khai bản vẽ shopdrawing chính xác từ hồ sơ thiết kế.",s:3.50},
+    {t:"Rà soát xung đột kết cấu/hoàn thiện/MEP trước phát hành bản vẽ.",s:3.20},
+    {t:"Quản lý danh mục bản vẽ và trạng thái phê duyệt đúng phiên bản.",s:3.53},
+    {t:"Cập nhật hồ sơ hoàn công phản ánh đúng hiện trạng.",s:3.27},
+  ]},
+  {name:"Kỹ sư QS",group:"xd",res:331,avg:3.02,crit:3,skills:[
+    {t:"Bóc tách khối lượng chính xác theo bản vẽ và hiện trường.",s:3.40},
+    {t:"Lập kế hoạch sử dụng nguồn lực công trường. ⚠",s:2.81},
+    {t:"Thực hiện thanh toán/quyết toán khối lượng đúng hạn, đúng điều khoản.",s:3.21},
+    {t:"Quản lý tạm ứng, thanh toán nhà thầu phụ và hồ sơ phát sinh.",s:3.13},
+    {t:"Cập nhật sản lượng và ngân sách định kỳ, cảnh báo vượt chi phí. ⚠",s:2.82},
+    {t:"Theo dõi nguồn lực và đề xuất điều chỉnh khi tiến độ thay đổi. ⚠",s:2.76},
+  ]},
+  {name:"Trưởng nhóm QA/QC",group:"xd",res:51,avg:3.72,crit:0,skills:[
+    {t:"Thiết lập hệ thống kiểm soát chất lượng phù hợp tiêu chuẩn công ty.",s:3.76},
+    {t:"Tổ chức, giám sát quy trình QA/QC tại hiện trường đồng bộ.",s:3.67},
+    {t:"Kiểm soát tuân thủ kỹ thuật, tiêu chuẩn, bản vẽ và biện pháp thi công.",s:3.57},
+    {t:"Quản lý NCR, phân tích nguyên nhân gốc rễ và hành động khắc phục.",s:3.57},
+    {t:"Kiểm soát hồ sơ chất lượng, hoàn công và tài liệu nghiệm thu.",s:3.96},
+    {t:"Tổ chức đánh giá nội bộ và cải tiến liên tục hệ thống chất lượng.",s:3.47},
+    {t:"Quản lý nghiệm thu, kiểm tra và thí nghiệm vật liệu đúng kế hoạch.",s:4.04},
+  ]},
+  {name:"Trưởng nhóm Shopdrawing",group:"xd",res:59,avg:3.79,crit:1,skills:[
+    {t:"Áp dụng và kiểm soát tiêu chuẩn chất lượng bản vẽ thi công.",s:4.17},
+    {t:"Quản lý cập nhật bản vẽ hoàn công đúng hiện trạng và đúng hạn bàn giao.",s:4.07},
+    {t:"Ứng dụng BIM để tối ưu biện pháp thi công và kiểm soát va chạm. ⚠",s:2.90},
+    {t:"Điều phối nhóm triển khai bản vẽ đáp ứng tiến độ phát hành.",s:4.03},
+  ]},
+  {name:"Trưởng nhóm QS",group:"xd",res:106,avg:3.80,crit:0,skills:[
+    {t:"Thiết lập hệ thống dữ liệu khối lượng, đơn giá, hao hụt vật tư.",s:3.80},
+    {t:"Quản lý hợp đồng thầu phụ đúng điều khoản và hạn mức.",s:3.93},
+    {t:"Vận hành nghiệp vụ QS trên ERP đúng quy trình và đúng thời hạn.",s:3.79},
+    {t:"Tổ chức nghiệm thu, thanh toán nhà thầu phụ chính xác, đúng kỳ hạn.",s:3.99},
+    {t:"Lập ngân sách và kiểm soát chi phí trong giới hạn phê duyệt.",s:3.78},
+    {t:"Cung cấp báo cáo tài chính công trường đầy đủ và đúng chu kỳ.",s:3.69},
+    {t:"Quản lý phát sinh hợp đồng, EOT, VO và bảo vệ lợi ích dự án.",s:3.64},
+  ]},
+  {name:"Chỉ huy phó hiện trường",group:"xd",res:208,avg:3.77,crit:0,skills:[
+    {t:"Lập và điều chỉnh kế hoạch thi công tổng thể, đảm bảo mốc cam kết.",s:3.80},
+    {t:"Điều phối nguồn lực XD-MEP-hoàn thiện, nâng cao năng suất công trường.",s:3.75},
+    {t:"Kiểm soát tiến độ tổng và chi tiết, chủ động điều chỉnh khi sai lệch.",s:3.85},
+    {t:"Lập kế hoạch ATLĐ, PCCC, vận hành thiết bị và đảm bảo tuân thủ.",s:3.63},
+    {t:"Thiết lập kế hoạch kiểm soát chất lượng (ITP) cho hạng mục trọng yếu.",s:3.71},
+    {t:"Quản lý shopdrawing nhà thầu phụ và kiểm soát tuân thủ khi thi công.",s:3.77},
+    {t:"Quản lý tiến độ, chất lượng, khối lượng nhà thầu phụ theo KPI.",s:3.88},
+    {t:"Đánh giá năng suất, nhận diện lãng phí và triển khai giải pháp cải thiện.",s:3.76},
+  ]},
+  {name:"Chỉ huy phó văn phòng",group:"xd",res:90,avg:3.61,crit:0,skills:[
+    {t:"Quản lý hợp đồng chủ đầu tư và hồ sơ thanh toán/quyết toán.",s:3.62},
+    {t:"Phân tích dữ liệu tài chính, kiểm tra ngân sách và cảnh báo sai lệch.",s:3.53},
+    {t:"Thẩm định và đề xuất nhà thầu phụ/nhà cung cấp phù hợp.",s:3.73},
+    {t:"Phê duyệt, giám sát và đánh giá tiến độ tổng thể theo mốc cam kết.",s:3.53},
+    {t:"Thiết lập hệ thống thông tin, báo cáo và phối hợp hiệu quả.",s:3.70},
+    {t:"Điều phối, hướng dẫn và đánh giá đội ngũ giám sát theo mục tiêu.",s:3.57},
+  ]},
+  {name:"Chỉ huy trưởng",group:"xd",res:95,avg:3.66,crit:0,skills:[
+    {t:"Thiết lập và kiểm soát hệ thống tiêu chuẩn chất lượng toàn dự án.",s:3.69},
+    {t:"Thiết lập quy trình trao đổi thông tin và báo cáo giữa các bên.",s:3.75},
+    {t:"Triển khai các biện pháp ATLĐ, chất lượng và tiến độ trên công trường.",s:3.86},
+    {t:"Kiểm soát dòng tiền, tối ưu chi phí và hạn chế phát sinh ngoài ngân sách.",s:3.62},
+    {t:"Đánh giá và quyết định lựa chọn nhà thầu phụ/nhà cung cấp phù hợp.",s:3.76},
+    {t:"Quản lý hợp đồng kỹ thuật/thương mại và đàm phán với chủ đầu tư.",s:3.47},
+    {t:"Quản trị thay đổi, rủi ro và các phát sinh trong vòng đời dự án.",s:3.49},
+  ]},
+  {name:"Giám đốc dự án",group:"xd",res:20,avg:3.82,crit:0,skills:[
+    {t:"Quản lý phạm vi (scope)",s:4.00},{t:"Quản lý tiến độ (schedule)",s:3.95},
+    {t:"Quản lý chi phí (cost)",s:4.00},{t:"Quản lý chất lượng (quality)",s:3.85},
+    {t:"Quản lý nguồn lực (resources)",s:3.70},{t:"Quản lý truyền thông (communication)",s:3.60},
+    {t:"Quản lý rủi ro (risk)",s:3.65},{t:"Quản lý mua hàng (procurement)",s:3.75},
+    {t:"Quản lý các bên liên quan (stakeholder)",s:3.75},{t:"Quản lý tích hợp (integration)",s:3.95},
+  ]},
+  {name:"Giám sát ME",group:"me",res:404,avg:3.32,crit:0,skills:[
+    {t:"Áp dụng QA/QC cơ bản tại công trường, đảm bảo tuân thủ quy trình chất lượng.",s:3.07},
+    {t:"Phối hợp hiệu quả giữa Cơ điện và Xây dựng, hạn chế xung đột tiến độ.",s:3.49},
+    {t:"Áp dụng đúng mốc trắc đạc, đảm bảo vị trí lắp đặt chính xác theo thiết kế.",s:3.42},
+    {t:"Thiết lập hệ thống điện, nước tạm an toàn và đáp ứng nhu cầu thi công.",s:3.30},
+    {t:"Kiểm soát tiến độ và chất lượng thi công hệ thống Plumbing.",s:3.37},
+    {t:"Kiểm soát tiến độ và chất lượng thi công hệ thống Điện/Điện nhẹ.",s:3.31},
+    {t:"Kiểm soát tiến độ và chất lượng thi công hệ thống HVAC.",s:3.31},
+  ]},
+  {name:"Kỹ sư QA/QC",group:"me",res:75,avg:3.01,crit:3,skills:[
+    {t:"Thực hiện trình duyệt kỹ thuật, mẫu thiết bị và vật tư đúng tiến độ.",s:3.05},
+    {t:"Kiểm tra đầu vào và lấy mẫu thí nghiệm vật tư MEP đúng quy trình.",s:3.13},
+    {t:"Đánh giá và nghiệm thu hệ thống Plumbing đúng tiêu chuẩn. ⚠",s:2.93},
+    {t:"Đánh giá và nghiệm thu hệ thống Điện/Điện nhẹ đúng yêu cầu.",s:3.01},
+    {t:"Đánh giá và nghiệm thu hệ thống HVAC đúng hiệu suất và tiêu chuẩn. ⚠",s:2.96},
+    {t:"Phối hợp nghiệm thu với Chỉ huy trưởng và cơ quan nhà nước. ⚠",s:2.96},
+  ]},
+  {name:"Kỹ sư Shopdrawing",group:"me",res:45,avg:3.14,crit:1,skills:[
+    {t:"Áp dụng yêu cầu kỹ thuật hệ thống Plumbing trong bản vẽ và thi công.",s:3.27},
+    {t:"Áp dụng yêu cầu kỹ thuật hệ thống Điện/Điện nhẹ trong bản vẽ.",s:3.07},
+    {t:"Áp dụng yêu cầu kỹ thuật hệ thống HVAC trong bản vẽ và thi công.",s:3.18},
+    {t:"Triển khai bản vẽ shopdrawing chính xác và cập nhật thay đổi kịp thời.",s:3.38},
+    {t:"Khai thác dữ liệu BIM phục vụ bóc tách khối lượng.",s:3.13},
+    {t:"Sử dụng Navisworks phát hiện va chạm kỹ thuật trước thi công. ⚠",s:2.82},
+  ]},
+  {name:"Kỹ sư QS",group:"me",res:78,avg:3.05,crit:2,skills:[
+    {t:"Thiết lập bảng tính quản lý khối lượng, đơn giá và hao hụt vật tư.",s:3.18},
+    {t:"Thực hiện nghiệp vụ QS trên SAP/ERP đúng quy trình và đúng thời hạn.",s:3.17},
+    {t:"Kiểm soát điều khoản hợp đồng nhà cung cấp/nhà thầu phụ.",s:3.19},
+    {t:"Lập và kiểm soát báo cáo tài chính công trường đúng chu kỳ. ⚠",s:2.78},
+    {t:"Lập ngân sách và kiểm soát chi phí phát sinh trong giới hạn phê duyệt. ⚠",s:2.92},
+  ]},
+  {name:"Trưởng nhóm QA/QC",group:"me",res:2,avg:4.00,crit:0,note:"Mẫu nhỏ n=2",skills:[
+    {t:"Thiết lập quy trình quản lý chất lượng MEP phù hợp tiêu chuẩn công ty.",s:4.00},
+    {t:"Kiểm soát và hoàn thành hồ sơ hoàn công (CLDA) đúng thời hạn bàn giao.",s:4.00},
+  ]},
+  {name:"Trưởng nhóm QS",group:"me",res:35,avg:3.81,crit:0,skills:[
+    {t:"Quản lý hợp đồng Chủ đầu tư và xử lý hồ sơ EOT đúng điều khoản.",s:3.80},
+    {t:"Sử dụng Excel nâng cao xây dựng mô hình quản lý chi phí và dự báo.",s:3.71},
+    {t:"Kiểm soát dữ liệu và báo cáo tài chính dự án chính xác, kịp thời.",s:4.00},
+    {t:"Thực hiện nghiệp vụ kế toán tài chính phục vụ QS đúng chuẩn.",s:3.74},
+  ]},
+  {name:"Trưởng nhóm / Giám sát chính",group:"me",res:113,avg:3.75,crit:0,skills:[
+    {t:"Kiểm soát lỗi hệ thống và duy trì tiêu chuẩn kỹ thuật thi công MEP.",s:3.77},
+    {t:"Tổ chức nghiệm thu đóng điện, PCCC và chạy thử (T&C) đúng kế hoạch.",s:3.62},
+    {t:"Giải quyết xung đột kỹ thuật giữa Xây dựng và MEP kịp thời.",s:3.89},
+    {t:"Lập kế hoạch và kiểm soát tiến độ thi công MEP chi tiết.",s:3.73},
+    {t:"Điều phối mặt bằng thi công giữa Kết cấu, Hoàn thiện và MEP.",s:3.75},
+  ]},
+  {name:"Chỉ huy phó",group:"me",res:87,avg:3.94,crit:0,skills:[
+    {t:"Kiểm soát toàn bộ hệ thống MEP, tuân thủ tiêu chuẩn kỹ thuật đã phê duyệt.",s:3.94},
+    {t:"Quản lý và điều phối tiến độ thi công MEP, đảm bảo mốc cam kết.",s:3.94},
+  ]},
+  {name:"Chỉ huy trưởng",group:"me",res:39,avg:3.93,crit:0,skills:[
+    {t:"Thiết lập và kiểm soát hệ thống tiêu chuẩn chất lượng toàn dự án.",s:3.97},
+    {t:"Thiết lập quy trình trao đổi thông tin giữa các bên liên quan.",s:3.92},
+    {t:"Triển khai biện pháp ATLĐ, chất lượng và tiến độ trên công trường.",s:4.05},
+    {t:"Kiểm soát dòng tiền, tối ưu chi phí và hạn chế phát sinh ngoài ngân sách.",s:3.82},
+    {t:"Đánh giá và quyết định lựa chọn nhà thầu phụ/nhà cung cấp.",s:4.10},
+    {t:"Quản lý hợp đồng kỹ thuật/thương mại và đàm phán với chủ đầu tư.",s:3.82},
+    {t:"Quản trị thay đổi, rủi ro và phát sinh trong vòng đời dự án.",s:3.82},
+  ]},
+  {name:"Giám đốc dự án",group:"me",res:11,avg:4.00,crit:0,skills:[
+    {t:"Quản lý phạm vi (scope)",s:3.91},{t:"Quản lý tiến độ (schedule)",s:4.18},
+    {t:"Quản lý chi phí (cost)",s:4.00},{t:"Quản lý chất lượng (quality)",s:4.09},
+    {t:"Quản lý nguồn lực (resources)",s:4.18},{t:"Quản lý truyền thông (communication)",s:3.91},
+    {t:"Quản lý rủi ro (risk)",s:4.00},{t:"Quản lý mua hàng (procurement)",s:4.00},
+    {t:"Quản lý các bên liên quan (stakeholder)",s:3.82},{t:"Quản lý tích hợp (integration)",s:3.91},
+  ]},
+];
+
+let currentFilter='all';
+const expanded=new Set();
+
+function showTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function switchChart(g){
+  const isXD=g==='xd';
+  document.getElementById('chart-xd').style.display=isXD?'block':'none';
+  document.getElementById('chart-me').style.display=isXD?'none':'block';
+  const bxd=document.getElementById('btn-xd'),bme=document.getElementById('btn-me');
+  bxd.style.background=isXD?N:'#F9FAFB'; bxd.style.color=isXD?'white':'#4B5563';
+  bxd.style.borderColor=isXD?N:'#D1D5DB'; bxd.style.fontWeight=isXD?600:400;
+  bme.style.background=!isXD?O:'#F9FAFB'; bme.style.color=!isXD?'white':'#4B5563';
+  bme.style.borderColor=!isXD?O:'#D1D5DB'; bme.style.fontWeight=!isXD?600:400;
+}
+
+function buildHBar(data,color,containerId){
+  const max=Math.max(...data.map(d=>d.v));
+  const el=document.getElementById(containerId);
+  el.innerHTML=data.map(d=>`
+    <div class="hbar-row">
+      <div class="hbar-label">${d.l}</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${Math.max(d.v/max*100,1)}%;background:${color}"></div></div>
+      <div class="hbar-val">${d.v.toLocaleString()}</div>
+    </div>`).join('');
+}
+
+function statusTag(avg,crit){
+  if(crit>0)return`<span class="status-tag" style="background:#FEE2E2;color:#DC2626">⚠ ${crit} kỹ năng cần cải thiện</span>`;
+  if(avg>=4)return`<span class="status-tag" style="background:#D1FAE5;color:#059669">✓ Thành thạo</span>`;
+  if(avg>=3.5)return`<span class="status-tag" style="background:#E6F7F6;color:#0F766E">✓ Đạt tốt</span>`;
+  return`<span class="status-tag" style="background:#EEF2FF;color:#1B3A6B">▲ Đạt yêu cầu</span>`;
+}
+
+function buildRoles(filter){
+  const roles=filter==='all'?ROLES:filter==='critical'?ROLES.filter(r=>r.crit>0):ROLES.filter(r=>r.group===filter);
+  const container=document.getElementById('roles-container');
+  container.innerHTML=roles.map(r=>{
+    const bc=r.crit>0?R:r.avg>=4?G:r.avg>=3.5?T:A;
+    const gtag=r.group==='xd'
+      ?`<span class="group-tag" style="background:#EEF2FF;color:#3730A3">XD</span>`
+      :`<span class="group-tag" style="background:#FFF7ED;color:#92400E">ME</span>`;
+    const key=r.name+r.group;
+    const isOpen=expanded.has(key);
+    const skills=r.skills.map(sk=>`
+      <div class="skill-row">
+        <div class="skill-header">
+          <span class="skill-text">${sk.t}</span>
+          <span class="skill-score" style="color:${sc(sk.s)}">${sk.s.toFixed(2)}</span>
+        </div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:${sk.s/5*100}%;background:${sc(sk.s)}"></div></div>
+      </div>`).join('');
+    return`<div class="role-card" style="border-left-color:${bc}">
+      <div class="role-card-header"><div class="role-name">${r.name}</div>${gtag}</div>
+      <div class="role-stats" onclick="toggleRole('${key}')">
+        <div><div class="stat-val" style="color:${sc(r.avg)}">${r.avg.toFixed(2)}</div><div class="stat-lbl">Điểm TB</div></div>
+        <div><div class="stat-val" style="color:#1B3A6B">${r.res.toLocaleString()}</div><div class="stat-lbl">Phản hồi</div></div>
+        <div><div class="stat-val" style="color:${r.crit>0?R:T}">${r.skills.length}</div><div class="stat-lbl">Tiêu chí</div></div>
+      </div>
+      <div class="role-footer" onclick="toggleRole('${key}')">
+        ${statusTag(r.avg,r.crit)}
+        <span class="chevron" id="chev-${key.replace(/[^a-z0-9]/gi,'_')}" style="transform:${isOpen?'rotate(180deg)':'rotate(0deg)'}">▼</span>
+      </div>
+      <div class="role-detail${isOpen?' open':''}" id="detail-${key.replace(/[^a-z0-9]/gi,'_')}">
+        ${r.note?`<div style="font-size:11px;color:#D97706;margin-bottom:8px">⚠ ${r.note}</div>`:''}
+        <div class="skill-grid">${skills}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleRole(key){
+  const safeKey=key.replace(/[^a-z0-9]/gi,'_');
+  const detail=document.getElementById('detail-'+safeKey);
+  const chev=document.getElementById('chev-'+safeKey);
+  if(expanded.has(key)){expanded.delete(key);detail.classList.remove('open');chev.style.transform='rotate(0deg)';}
+  else{expanded.add(key);detail.classList.add('open');chev.style.transform='rotate(180deg)';}
+}
+
+function filterRoles(filter,btn){
+  currentFilter=filter;
+  document.querySelectorAll('.chip').forEach(c=>{
+    c.style.background='white';c.style.color='#4B5563';c.style.borderColor='#D1D5DB';c.style.fontWeight=400;
+  });
+  btn.style.background=N;btn.style.color='white';btn.style.borderColor=N;btn.style.fontWeight=600;
+  buildRoles(filter);
+}
+
+function buildPriorityTable(){
+  const rows=[
+    {role:"Kỹ sư QS",g:"xd",res:331,avg:3.02,kn:"3/6",skills:["Lập KH nguồn lực (2.81)","Cập nhật sản lượng/ngân sách (2.82)","Theo dõi nguồn lực (2.76)"]},
+    {role:"Kỹ sư QA/QC",g:"me",res:75,avg:3.01,kn:"3/6",skills:["Nghiệm thu Plumbing (2.93)","Nghiệm thu HVAC (2.96)","Phối hợp nghiệm thu nhà nước (2.96)"]},
+    {role:"Kỹ sư QS",g:"me",res:78,avg:3.05,kn:"2/5",skills:["Báo cáo tài chính (2.78)","Lập ngân sách / kiểm soát chi phí (2.92)"]},
+    {role:"Trưởng nhóm Shopdrawing",g:"xd",res:59,avg:3.79,kn:"1/4",skills:["Ứng dụng BIM (2.90)"]},
+    {role:"Kỹ sư Shopdrawing",g:"me",res:45,avg:3.14,kn:"1/6",skills:["Sử dụng Navisworks (2.82)"]},
+  ];
+  document.getElementById('priority-table').innerHTML=rows.map((r,i)=>`
+    <tr style="background:${i%2===0?'white':'#FAFAFA'}">
+      <td style="font-weight:600">${r.role}</td>
+      <td><span class="group-tag" style="background:${r.g==='xd'?'#EEF2FF':'#FFF7ED'};color:${r.g==='xd'?'#3730A3':'#92400E'}">${r.g.toUpperCase()}</span></td>
+      <td style="text-align:right">${r.res}</td>
+      <td style="text-align:right;font-weight:600;color:${r.avg<3.1?A:T}">${r.avg.toFixed(2)}</td>
+      <td style="text-align:right"><span style="background:${r.kn[0]==='3'?'#FEE2E2':'#FEF9C3'};color:${r.kn[0]==='3'?R:A};font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">${r.kn}</span></td>
+      <td>${r.skills.map(s=>`<span style="display:inline-block;background:#F3F4F6;color:#374151;font-size:11px;padding:2px 8px;border-radius:6px;margin:2px 2px 2px 0">${s}</span>`).join('')}</td>
+    </tr>`).join('');
+}
+
+// Init
+buildHBar(XD_D,N,'chart-xd');
+buildHBar(ME_D,O,'chart-me');
+buildRoles('all');
+buildPriorityTable();
+</script>
+</body>
+</html>
