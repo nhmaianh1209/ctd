@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coteccons Leadership & AOP Summit 2026 - Participant Lookup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16315E;--navy-soft:#1f4179;
+  --teal:#5FD1C1;--teal-soft:#a8e5dc;--teal-dark:#2fa893;
+  --gray:#434447;
+  --bg:#f5f7fa;--card:#fff;--text:#434447;--muted:#6b7480;--border:#e1e6ec;
+  --radius:14px;--shadow:0 4px 14px rgba(22,49,94,.08);--shadow-hover:0 10px 24px rgba(22,49,94,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Lexend Deca',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;touch-action:manipulation}
+a{color:inherit;text-decoration:none}
+input{font-family:inherit}
+button{cursor:pointer;border:none;background:none;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:rgba(95,209,193,.3);touch-action:manipulation;font-family:inherit;color:inherit}
+header{background:linear-gradient(135deg,var(--navy),var(--navy-soft));color:#fff;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand .title{font-weight:600;font-size:15px;letter-spacing:.3px}
+.brand .sub{font-weight:300;font-size:11px;opacity:.85}
+.lang-toggle{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;color:#fff;font-size:13px;font-weight:500;transition:all .2s}
+.container{max-width:1140px;margin:0 auto;padding:20px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-size:14px;font-weight:500;margin-bottom:16px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--border);transition:all .2s}
+.welcome h1{font-size:26px;font-weight:600;color:var(--navy);margin-bottom:8px;line-height:1.3}
+.welcome p.lead{color:var(--muted);font-size:14px;margin-bottom:24px;max-width:760px;line-height:1.6}
+.trip-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.trip-chip{background:#fff;border:1px solid var(--teal-soft);box-shadow:var(--shadow);border-radius:999px;padding:10px 16px;font-size:13px;color:var(--navy);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.menu-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:720px){.menu-grid{grid-template-columns:repeat(3,1fr)}}
+.menu-card{background:var(--card);border-radius:var(--radius);padding:24px 20px;box-shadow:var(--shadow);border:1px solid var(--border);cursor:pointer;transition:all .25s;text-align:left;display:flex;flex-direction:column;gap:10px}
+.menu-card .icon{font-size:30px}
+.menu-card h3{font-size:17px;font-weight:600;color:var(--navy)}
+.menu-card p{font-size:13px;color:var(--muted);line-height:1.5}
+.section-title{font-size:22px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.section-title .sub{font-weight:400;font-size:14px;color:var(--muted);margin-left:8px}
+.section-desc{color:var(--muted);font-size:13px;margin-bottom:20px;line-height:1.6}
+.s1-level1{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:720px){.s1-level1{grid-template-columns:repeat(2,1fr)}}
+.s1-opt{background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:var(--radius);padding:24px;cursor:pointer;transition:all .25s;text-align:left;display:flex;align-items:center;gap:16px;width:100%}
+.s1-opt .ic{font-size:34px}
+.s1-opt .tx h3{font-size:17px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.s1-opt .tx p{font-size:12px;color:var(--muted)}
+.group-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.group-card{background:#fff;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);border:1px solid var(--border);cursor:pointer;transition:all .2s;text-align:left;width:100%}
+.group-card .name{font-weight:600;color:var(--navy);font-size:15px;margin-bottom:4px}
+.group-card .count{font-size:12px;color:var(--muted)}
+.group-card .time{font-size:12px;color:var(--teal-dark);font-weight:700;margin-top:6px}
+.detail-header{background:linear-gradient(135deg,var(--navy),var(--navy-soft));color:#fff;border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
+.detail-header .label{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.detail-header .lead-name{font-size:17px;font-weight:600}
+.detail-header .subline,.detail-header .lead-phone{font-size:13px;opacity:.95;margin-top:2px}
+.detail-header .lead-phone .ph-copy{color:#fff;text-decoration:underline}
+.detail-header .time-chip{display:inline-block;background:rgba(95,209,193,.18);border:1px solid rgba(95,209,193,.45);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;margin-top:8px}
+.note-box{background:#effaf7;border:1px solid #c6ebe3;border-left:4px solid var(--teal-dark);padding:12px 14px;border-radius:12px;color:var(--navy);font-size:13px;line-height:1.55;margin-bottom:14px}
+.room-block{margin-bottom:16px}
+.room-block .room-title{font-size:13px;font-weight:600;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;padding-left:8px;border-left:3px solid var(--teal-dark)}
+.person-list{display:flex;flex-direction:column;gap:8px}
+.person-card{background:#fff;border-radius:12px;padding:12px 14px;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;gap:12px;align-items:flex-start}
+.person-card .stt-badge{background:var(--navy);color:#fff;border-radius:8px;min-width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.person-card .pbody{flex:1;display:flex;flex-direction:column;gap:6px}
+.person-card .row1{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.person-card .pname{font-weight:600;color:var(--navy);font-size:15px}
+.person-card .pbu{font-size:12px;color:var(--muted);background:#eef3f8;padding:2px 8px;border-radius:999px}
+.person-card .row2{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px;line-height:1.5}
+.person-card .row2 span{display:inline-flex;align-items:center;gap:4px}
+.badge-key{background:#effaf7;color:var(--teal-dark);padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
+.ph-copy{cursor:pointer;color:var(--navy);text-decoration:underline;font-weight:500}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:500;box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;transition:all .3s;z-index:9999;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.search-wrap{position:relative;margin-bottom:20px}
+.search-input{width:100%;padding:14px 18px;border-radius:var(--radius);border:1px solid var(--border);font-size:15px;background:#fff;box-shadow:var(--shadow);transition:all .2s}
+.search-input:focus{outline:none;border-color:var(--teal-dark);box-shadow:0 0 0 3px rgba(95,209,193,.25)}
+.suggestions{position:absolute;top:100%;left:0;right:0;margin-top:6px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-hover);border:1px solid var(--border);max-height:320px;overflow-y:auto;z-index:20;display:none}
+.suggestions.show{display:block}
+.suggestion-item{padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.suggestion-item:last-child{border-bottom:none}
+.suggestion-item .sname{font-weight:500;color:var(--navy);font-size:14px}
+.suggestion-item .sbu{font-size:12px;color:var(--muted)}
+.info-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:900px){.info-grid{grid-template-columns:1fr 1fr}}
+.info-block{background:#fff;border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.info-block.full-span{grid-column:1/-1}
+.info-block h4{font-size:13px;font-weight:600;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.info-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);font-size:14px}
+.info-row:last-child{border-bottom:none}
+.info-row .k{color:var(--muted);font-size:13px}
+.info-row .v{color:var(--text);font-weight:500;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.info-row .v.none{color:#9aa6b2;font-style:italic;font-weight:400}
+.btc-group{margin-bottom:24px}
+.btc-group h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:12px;padding-left:10px;border-left:4px solid var(--teal-dark)}
+.btc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.btc-card{background:#fff;border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.btc-card .role{font-size:11px;color:var(--teal-dark);text-transform:uppercase;font-weight:600;letter-spacing:.5px;margin-bottom:4px}
+.btc-card .name{font-weight:600;color:var(--navy);font-size:15px;margin-bottom:4px}
+.btc-card .phone{font-size:13px;color:var(--muted);margin-bottom:4px}
+.btc-card .bu{font-size:12px;color:var(--muted);background:#eef3f8;padding:3px 10px;border-radius:999px;display:inline-block;margin-top:4px}
+footer{margin-top:40px;padding:20px;text-align:center;color:var(--muted);font-size:11px;line-height:1.6;border-top:1px solid var(--border);background:#fff}
+.hidden{display:none !important}
+/* === HOVER only for desktop (prevent iOS sticky hover) === */
+@media(hover:hover){
+  .menu-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--teal-soft)}
+  .s1-opt:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--teal-soft)}
+  .group-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);border-color:var(--teal-soft)}
+  .back-btn:hover{background:var(--navy);color:#fff}
+  .lang-toggle:hover{background:rgba(255,255,255,.22)}
+  .ph-copy:hover{color:var(--teal-dark)}
+  .detail-header .lead-phone .ph-copy:hover{color:var(--teal)}
+  .suggestion-item:hover{background:#f4f7fb}
+}
+/* === Mobile tap feedback === */
+.menu-card,.s1-opt,.group-card,.back-btn,.lang-toggle,.suggestion-item,.ph-copy{touch-action:manipulation;-webkit-tap-highlight-color:rgba(95,209,193,.3)}
+.menu-card:active,.s1-opt:active,.group-card:active,.back-btn:active{transform:scale(.98);transition:transform .1s}
+.menu-card:active,.s1-opt:active,.group-card:active{border-color:var(--teal)}
+button:active{opacity:.92}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="title">Coteccons Leadership & AOP Summit 2026</div>
+    <div class="sub" data-i18n="header_sub">Human Capital team (Phòng QTNNL)</div>
+  </div>
+  <button class="lang-toggle" id="langToggle">EN</button>
+</header>
+<div class="container">
+  <section id="welcome" class="welcome">
+    <h1 data-i18n="welcome_title">Chào mừng bạn đến với Summit 2026</h1>
+    <p class="lead" data-i18n="welcome_desc">Tra cứu thông tin chuyến đi, chỗ ở và xe của bạn cho chương trình Coteccons Leadership &amp; AOP Summit 2026.</p>
+    <div class="trip-row" id="tripRow"></div>
+    <div class="menu-grid">
+      <button class="menu-card" onclick="openSection('section1')"><div class="icon">📋</div><h3 data-i18n="menu1_title">Danh sách theo nhóm</h3><p data-i18n="menu1_desc">Xem danh sách theo chỗ ở, xe đón sân bay, xe đi và xe về.</p></button>
+      <button class="menu-card" onclick="openSection('section2')"><div class="icon">🔍</div><h3 data-i18n="menu2_title">Tra cứu cá nhân</h3><p data-i18n="menu2_desc">Tìm thông tin chuyến đi của bạn bằng tên hoặc BU.</p></button>
+      <button class="menu-card" onclick="openSection('section3')"><div class="icon">📞</div><h3 data-i18n="menu3_title">Liên hệ BTC</h3><p data-i18n="menu3_desc">Danh sách Core team, HRBP và lead xe.</p></button>
+    </div>
+  </section>
+  <section id="section1" class="hidden">
+    <button class="back-btn" id="s1Back" onclick="s1Back()">← <span data-i18n="back">Quay lại</span></button>
+    <h2 class="section-title" id="s1Title">Danh sách theo nhóm</h2>
+    <p class="section-desc" id="s1Desc"></p>
+    <div id="s1Content"></div>
+  </section>
+  <section id="section2" class="hidden">
+    <button class="back-btn" onclick="openSection('welcome')">← <span data-i18n="back">Quay lại</span></button>
+    <h2 class="section-title" data-i18n="s2_title">Tra cứu cá nhân</h2>
+    <p class="section-desc" data-i18n="s2_desc">Nhập tên hoặc BU để xem thông tin đầy đủ của bạn.</p>
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="searchInput" data-i18n-placeholder="search_ph" placeholder="Nhập tên hoặc BU..." autocomplete="off"/>
+      <div class="suggestions" id="suggestions"></div>
+    </div>
+    <div id="personDetail"></div>
+  </section>
+  <section id="section3" class="hidden">
+    <button class="back-btn" onclick="openSection('welcome')">← <span data-i18n="back">Quay lại</span></button>
+    <h2 class="section-title" data-i18n="s3_title">Liên hệ Ban tổ chức</h2>
+    <p class="section-desc" data-i18n="s3_desc">Thông tin Core team và HRBP được lấy từ sheet BTC.</p>
+    <div id="btcContent"></div>
+  </section>
+</div>
+<footer>
+  <div data-i18n="footer_text">Coteccons Leadership &amp; AOP Summit 2026 · Confidential &amp; Proprietary</div>
+</footer>
+<div id="toast" class="toast"></div>
+<script>
+const I18N = {
+  vi:{
+    header_sub:"Human Capital team (Phòng QTNNL)",
+    welcome_title:"Chào mừng bạn đến với Summit 2026",
+    welcome_desc:"Tra cứu thông tin chuyến đi, chỗ ở và xe của bạn cho chương trình Coteccons Leadership & AOP Summit 2026.",
+    menu1_title:"Danh sách theo nhóm", menu1_desc:"Xem danh sách theo chỗ ở, xe đón sân bay, xe đi và xe về.",
+    menu2_title:"Tra cứu cá nhân", menu2_desc:"Tìm thông tin chuyến đi của bạn bằng tên hoặc BU.",
+    menu3_title:"Liên hệ BTC", menu3_desc:"Danh sách Core team, HRBP và lead xe.",
+    back:"Quay lại",
+    s1_title:"Danh sách theo nhóm", s1_desc:"Chọn một mục bên dưới để xem danh sách chi tiết.",
+    s2_title:"Tra cứu cá nhân", s2_desc:"Nhập tên hoặc BU để xem thông tin đầy đủ của bạn.",
+    s3_title:"Liên hệ Ban tổ chức", s3_desc:"Thông tin Core team và HRBP được lấy từ sheet BTC.",
+    search_ph:"Nhập tên hoặc BU...",
+    opt_accom_title:"Chỗ ở", opt_accom_desc:"Khách Xá Bái Đính & Thung Ui",
+    opt_pickup_title:"Xe đón sân bay 16/06", opt_pickup_desc:"Đón từ sân bay Nội Bài",
+    opt_depart_title:"Xe đi Bái Đính 16/06", opt_depart_desc:"Khởi hành đến Bái Đính",
+    opt_return_title:"Xe về Hà Nội 20/06", opt_return_desc:"Trở về Hà Nội",
+    lbl_bus_lead:"Lead xe", lbl_hotel:"Khách sạn - Phòng", lbl_roommate:"Bạn cùng phòng",
+    lbl_keykeeper:"Giữ chìa khóa phòng ngày check-in",
+    lbl_personal:"Thông tin cá nhân", lbl_name:"Họ tên", lbl_bu:"BU", lbl_phone:"Số điện thoại",
+    lbl_hrbp:"HRBP phụ trách",
+    lbl_bus_no:"Nhóm xe", lbl_bu_in_charge:"Phụ trách",
+    lbl_depart_time:"Giờ xuất phát", lbl_destination:"Điểm đến",
+    block_personal:"Thông tin cá nhân", block_accom:"Lưu trú", block_pickup:"Xe đón sân bay",
+    block_departure:"Xe đi", block_return:"Xe về",
+    none:"Chưa có thông tin", people:"người", room:"Phòng",
+    key_yes:"\uD83D\uDD11 Giữ chìa khóa",
+    val_yes:"Có", val_no:"Không",
+    btc_core:"Core Project Team", btc_hrbp:"HRBP",
+    no_result:"Không tìm thấy người phù hợp.", unknown_lead:"Chưa cấu hình lead xe cho nhóm này",
+    note_thung_ui:"\uD83D\uDCCD Thung Ui cách Khách Xá Bái Đính khoảng 10 phút di chuyển bằng xe điện.",
+    accom_bd:"Khách Xá Bái Đính", accom_tu:"Thung Ui",
+    departs:"Xuất phát",
+    toast_copied:"\u2713 Đã copy",
+    trip_date:"\uD83D\uDCC5 16 \u2013 20/06/2026",
+    trip_location:"\uD83D\uDCCD Ninh Bình",
+    trip_audience:"\uD83D\uDC65 Top 100 Lãnh đạo",
+    footer_text:"Coteccons Leadership & AOP Summit 2026 \u00b7 Confidential & Proprietary"
+  },
+  en:{
+    header_sub:"Human Capital team (Phòng QTNNL)",
+    welcome_title:"Welcome to Summit 2026",
+    welcome_desc:"Look up your trip, accommodation and transport info for Coteccons Leadership & AOP Summit 2026.",
+    menu1_title:"Group Lists", menu1_desc:"View lists by accommodation, airport pickup, departure and return buses.",
+    menu2_title:"Personal Lookup", menu2_desc:"Find your own information by name or BU.",
+    menu3_title:"Organizer Contact", menu3_desc:"Core team, HRBP and bus leads.",
+    back:"Back",
+    s1_title:"Group Lists", s1_desc:"Select an option below to view its details.",
+    s2_title:"Personal Lookup", s2_desc:"Type your name or BU to see full information.",
+    s3_title:"Organizer Contact", s3_desc:"Core team and HRBP contacts are taken from the BTC sheet.",
+    search_ph:"Type a name or BU...",
+    opt_accom_title:"Accommodation", opt_accom_desc:"Khách Xá Bái Đính & Thung Ui",
+    opt_pickup_title:"Airport Pickup 16/06", opt_pickup_desc:"From Noi Bai Airport",
+    opt_depart_title:"Bus to Bái Đính 16/06", opt_depart_desc:"Departure to Bái Đính",
+    opt_return_title:"Return to Hanoi 20/06", opt_return_desc:"Return to Hanoi",
+    lbl_bus_lead:"Bus lead", lbl_hotel:"Hotel - Room", lbl_roommate:"Roommate",
+    lbl_keykeeper:"Holds room key on check-in",
+    lbl_personal:"Personal Info", lbl_name:"Name", lbl_bu:"BU", lbl_phone:"Phone",
+    lbl_hrbp:"HRBP in charge",
+    lbl_bus_no:"Transport group", lbl_bu_in_charge:"In charge",
+    lbl_depart_time:"Departure time", lbl_destination:"Destination",
+    block_personal:"Personal Info", block_accom:"Accommodation", block_pickup:"Airport Pickup",
+    block_departure:"Departure Bus", block_return:"Return Bus",
+    none:"none", people:"people", room:"Room",
+    key_yes:"\uD83D\uDD11 Key keeper",
+    val_yes:"Yes", val_no:"No",
+    btc_core:"Core Project Team", btc_hrbp:"HRBP",
+    no_result:"No matching person found.", unknown_lead:"No bus lead configured for this group",
+    note_thung_ui:"\uD83D\uDCCD Thung Ui is about 10 minutes by electric shuttle from Khách Xá Bái Đính.",
+    accom_bd:"Khách Xá Bái Đính", accom_tu:"Thung Ui",
+    departs:"Departs",
+    toast_copied:"\u2713 Copied",
+    trip_date:"\uD83D\uDCC5 16 \u2013 20 June 2026",
+    trip_location:"\uD83D\uDCCD Ninh Bình",
+    trip_audience:"\uD83D\uDC65 Top 100 Leaders",
+    footer_text:"Coteccons Leadership & AOP Summit 2026 \u00b7 Confidential & Proprietary"
+  }
+};
+const PARTICIPANTS = [{"stt": 1, "company": "CTD", "bu": "BLĐ", "employeeId": "004210", "name": "Bolat Duisenov", "title": "Chủ tịch Hội đồng Quản trị", "department": "Hội đồng quản trị", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "bduisenov@coteccons.vn", "phone": "0982346999", "isFemale": false, "pic": "Vũ Hoàng (PA)", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "208", "keyKeeper": true, "roommate": null}, {"stt": 2, "company": "CTD", "bu": "BLĐ", "employeeId": "000130", "name": "Võ Hoàng Lâm", "title": "Tổng Giám đốc Coteccons Business Unit 01", "department": "Ban Tổng giám đốc", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "lamvh@coteccons.vn", "phone": "0982484156", "isFemale": false, "pic": "Hằng", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "210", "keyKeeper": true, "roommate": "Nguyễn Tấn Tiến"}, {"stt": 3, "company": "CTD", "bu": "BLĐ", "employeeId": "000141", "name": "Nguyễn Tấn Tiến", "title": "Giám đốc Điều hành, MEP", "department": "Ban Tổng giám đốc", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "tiennt@coteccons.vn", "phone": "0903802470", "isFemale": false, "pic": "Hằng", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "TBU", "returnDate": "20/06/2026", "returnTime": "To HCM 20:00 - 22:10 Vietnam Airlines", "hotel": "THUNG UI", "room": "210", "keyKeeper": false, "roommate": "Võ Hoàng Lâm"}, {"stt": 4, "company": "CTD", "bu": "BLĐ", "employeeId": "000294", "name": "Nguyễn Chí Thiện", "title": "Tổng Giám đốc Coteccons Business Unit 02", "department": "Ban Tổng giám đốc", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "thiennc@coteccons.vn", "phone": "0985254219", "isFemale": false, "pic": "Hằng", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "211", "keyKeeper": true, "roommate": "Trần Ngọc Hải"}, {"stt": 5, "company": "CTD", "bu": "BLĐ", "employeeId": "004536", "name": "Nguyễn Trình Thùy Trang", "title": "Phó Tổng Giám đốc, Vận hành", "department": "Ban Tổng giám đốc", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "trangntt@coteccons.vn", "phone": "0903366517", "isFemale": true, "pic": "Hằng", "tripDate": "14/06/2026", "tripTime": "11:00 - 14:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "209", "keyKeeper": false, "roommate": "Nguyễn Phi Nhu"}, {"stt": 6, "company": "CTD", "bu": "BLĐ", "employeeId": "005393", "name": "Trần Ngọc Hải", "title": "Phó Tổng Giám đốc, Thương mại", "department": "Ban Tổng giám đốc", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "haitn@coteccons.vn", "phone": "0909352378", "isFemale": false, "pic": "Hằng", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "211", "keyKeeper": false, "roommate": "Nguyễn Chí Thiện"}, {"stt": 7, "company": "CTD", "bu": "BLĐ", "employeeId": "007870", "name": "Trần Xuân Ngọc", "title": "Chief Corporate Strategy Officer", "department": "Ban Tổng giám đốc", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "ngoctx@coteccons.vn", "phone": "0934774337", "isFemale": false, "pic": "Hằng", "tripDate": "14/06/2026", "tripTime": "10:00 - 12:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "212", "keyKeeper": false, "roommate": "Nguyễn Trí Thông"}, {"stt": 8, "company": "CTD", "bu": "BU1", "employeeId": "005419", "name": "Nguyễn Ngọc Tài", "title": "Quản lý vận hành", "department": "Aeon Mall Central Đà Nẵng", "region": "Miền Trung", "location": "Đà Nẵng", "email": "tainn01@coteccons.vn", "phone": "0979375888", "isFemale": false, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To Danang 14:35 - 16:00 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "226", "keyKeeper": true, "roommate": "Nguyễn Văn Kỳ Trân"}, {"stt": 9, "company": "CTD", "bu": "BU1", "employeeId": "000533", "name": "Nguyễn Văn Kỳ Trân", "title": "Giám đốc dự án", "department": "Khối BU1", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "trannvk@coteccons.vn", "phone": "0979566434", "isFemale": false, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "226", "keyKeeper": false, "roommate": "Nguyễn Ngọc Tài"}, {"stt": 10, "company": "CTD", "bu": "BU1", "employeeId": "001105", "name": "Phạm Ngọc Bình", "title": "Giám đốc dự án", "department": "Khối BU1", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "phamngocbinh@coteccons.vn", "phone": "0986803130", "isFemale": false, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "102", "keyKeeper": true, "roommate": "Lê Vũ Hoàng Duy"}, {"stt": 11, "company": "CTD", "bu": "BU1", "employeeId": "002987", "name": "Lê Vũ Hoàng Duy", "title": "Quyền Chỉ huy trưởng xây dựng", "department": "Lancaster Lincoln", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "duylvh@coteccons.vn", "phone": "0906228278", "isFemale": false, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "102", "keyKeeper": false, "roommate": "Phạm Ngọc Bình"}, {"stt": 12, "company": "CTD", "bu": "BU2", "employeeId": "005407", "name": "Văn Vi Thiện", "title": "Giám đốc Điều hành Coteccons Business Unit 02", "department": "Khối BU2", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "thienvanvi@coteccons.vn", "phone": "0989693986", "isFemale": false, "pic": "Đức", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "224", "keyKeeper": true, "roommate": null}, {"stt": 13, "company": "CTD", "bu": "BU2", "employeeId": "000298", "name": "Vũ Hoàng Pháp", "title": "Giám đốc dự án", "department": "Khối BU2", "region": "Miền Nam", "location": "Phú Quốc", "email": "phapvh@coteccons.vn", "phone": "0989000250", "isFemale": false, "pic": "Đức", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "103", "keyKeeper": true, "roommate": "Dương Xuân Tốt"}, {"stt": 14, "company": "CTD", "bu": "BU2", "employeeId": "000475", "name": "Dương Xuân Tốt", "title": "Giám đốc dự án", "department": "Khối BU2", "region": "Miền Bắc", "location": "Hà Nội", "email": "totdx@coteccons.vn", "phone": "0903958503", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "103", "keyKeeper": false, "roommate": "Vũ Hoàng Pháp"}, {"stt": 15, "company": "CTD", "bu": "BU2", "employeeId": "001344", "name": "Hoàng Quốc Vinh", "title": "Giám đốc dự án", "department": "Khối BU2", "region": "Miền Bắc", "location": "Hà Nội", "email": "vinhhq@coteccons.vn", "phone": "0914629009", "isFemale": false, "pic": "Đức", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "106", "keyKeeper": false, "roommate": "Hồ Đức Vinh"}, {"stt": 16, "company": "CTD", "bu": "BU2", "employeeId": "001702", "name": "Hồ Đức Vinh", "title": "Giám đốc dự án", "department": "Khối BU2", "region": "Miền Bắc", "location": "Hà Nội", "email": "vinhhd@coteccons.vn", "phone": "0963637674", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 5", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "106", "keyKeeper": true, "roommate": "Hoàng Quốc Vinh"}, {"stt": 17, "company": "CTD", "bu": "BU2", "employeeId": "001766", "name": "Lê Minh Hoàng", "title": "Giám đốc dự án", "department": "Khối BU2", "region": "Miền Bắc", "location": "Hà Nội", "email": "hoanglm@coteccons.vn", "phone": "0985415699", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 5", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "113", "keyKeeper": true, "roommate": "Trương Quang Trọng"}, {"stt": 18, "company": "CTD", "bu": "BU2", "employeeId": "002042", "name": "Trương Quang Trọng", "title": "Giám đốc dự án", "department": "Khối BU2", "region": "Miền Bắc", "location": "Hà Nội", "email": "trongtq@coteccons.vn", "phone": "0988878185", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "113", "keyKeeper": false, "roommate": "Lê Minh Hoàng"}, {"stt": 19, "company": "CTD", "bu": "BU2", "employeeId": "001111", "name": "Hoàng Thanh Bình", "title": "Giám đốc dự án", "department": "Khối BU2", "region": "Miền Nam", "location": "Phú Quốc", "email": "binhht@coteccons.vn", "phone": "0979843103", "isFemale": false, "pic": "Đức", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 2", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To Danang 14:35 - 16:00 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "114", "keyKeeper": true, "roommate": "Nguyễn Hoàng Lâm"}, {"stt": 20, "company": "CTD", "bu": "BU6", "employeeId": "005410", "name": "Nguyễn Hoàng Lâm", "title": "Quyền Giám đốc dự án", "department": "Đảo Âm Nhạc", "region": "Miền Bắc", "location": "Hà Nội", "email": "lamnh@coteccons.vn", "phone": "0913799998", "isFemale": false, "pic": "Toàn", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "114", "keyKeeper": false, "roommate": "Hoàng Thanh Bình"}, {"stt": 21, "company": "CTD", "bu": "BU2", "employeeId": "000195", "name": "Chu Minh Thành", "title": "Quyền Giám đốc dự án", "department": "HSR_Hà Nội Quảng Ninh", "region": "Miền Bắc", "location": "Quảng Ninh", "email": "thanhcm@coteccons.vn", "phone": "0903383518", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "115", "keyKeeper": true, "roommate": "Lê Doãn Thành"}, {"stt": 23, "company": "CTD", "bu": "BU2", "employeeId": "002332", "name": "Ngô Xuân Lực", "title": "Quyền Giám đốc dự án", "department": "Khối BU2", "region": "Miền Bắc", "location": "Hà Nội", "email": "lucnx@coteccons.vn", "phone": "0367862682", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "127", "keyKeeper": true, "roommate": "Phạm Ngọc Thành"}, {"stt": 24, "company": "CTD", "bu": "BU2", "employeeId": "006739", "name": "Phạm Ngọc Thành", "title": "Quyền Giám đốc dự án", "department": "HSR_Hà Nội Quảng Ninh", "region": "Miền Bắc", "location": "Quảng Ninh", "email": "thanhpn@coteccons.vn", "phone": "0919078268", "isFemale": false, "pic": "Đức", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 2", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "127", "keyKeeper": false, "roommate": "Ngô Xuân Lực"}, {"stt": 25, "company": "CTD", "bu": "BU2", "employeeId": "002008", "name": "Phùng Văn Biển", "title": "Quyền Giám đốc dự án", "department": "Khối BU2", "region": "Miền Nam", "location": "Phú Quốc", "email": "bienpv@coteccons.vn", "phone": "0902284298", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "128", "keyKeeper": false, "roommate": "Đoàn Thành An"}, {"stt": 26, "company": "CTD", "bu": "BU2", "employeeId": "002290", "name": "Đoàn Thành An", "title": "Quyền Giám đốc dự án", "department": "Khối BU2", "region": "Miền Nam", "location": "Phú Quốc", "email": "andt01@coteccons.vn", "phone": "0938456397", "isFemale": false, "pic": "Đức", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "128", "keyKeeper": true, "roommate": "Phùng Văn Biển"}, {"stt": 27, "company": "CTD", "bu": "BU2", "employeeId": "005984", "name": "Vũ Hoàng", "title": "Chỉ huy trưởng cấp cao", "department": "Bà Nà Hills_Phần thân", "region": "Miền Trung", "location": "Đà Nẵng", "email": "hoangv01@coteccons.vn", "phone": "0983941985", "isFemale": false, "pic": "Đức", "tripDate": "16/06/2026", "tripTime": "Đà Nẵng - Hà Nội 8:50 - 10:15 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To Danang 14:35 - 16:00 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "202", "keyKeeper": true, "roommate": "Nguyễn Duy Cảnh"}, {"stt": 28, "company": "CTD", "bu": "BU2", "employeeId": "002126", "name": "Đinh Văn Hợp", "title": "Quyền Chỉ huy trưởng xây dựng", "department": "Số 2 Lê Thạch", "region": "Miền Bắc", "location": "Hà Nội", "email": "hopdv@coteccons.vn", "phone": "0961469169", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "205", "keyKeeper": true, "roommate": "Vũ Hoàng (PA)"}, {"stt": 29, "company": "CTD", "bu": "BU2", "employeeId": "005782", "name": "Vũ Hoàng (PA)", "title": "Trợ lý Tổng Giám đốc BU2", "department": "Ban Trợ lý TGĐ", "region": "Miền Bắc", "location": "Hà Nội", "email": "hoangv@coteccons.vn", "phone": "0356994651", "isFemale": false, "pic": "Đức", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "205", "keyKeeper": false, "roommate": "Đinh Văn Hợp"}, {"stt": 30, "company": "UNC", "bu": "BU3", "employeeId": "102979", "name": "Vũ Thanh Hà", "title": "TGĐ", "department": "VP-BGÐ", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "ha.vu@unicons.vn", "phone": "0906673388", "isFemale": false, "pic": "Toàn", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 19:00 - 21:10 Vietnam Airlines", "hotel": "THUNG UI", "room": "206", "keyKeeper": false, "roommate": "Hồ Văn Chí Thành"}, {"stt": 31, "company": "UNC", "bu": "BU3", "employeeId": "100734", "name": "Hồ Văn Chí Thành", "title": "PTGĐ", "department": "Ban Tổng Giám đốc", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "thanh.ho@unicons.vn", "phone": "0909455565", "isFemale": false, "pic": "Toàn", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 19:00 - 21:10 Vietnam Airlines", "hotel": "THUNG UI", "room": "206", "keyKeeper": true, "roommate": "Vũ Thanh Hà"}, {"stt": 32, "company": "UNC", "bu": "BU3", "employeeId": "101675", "name": "Nguyễn Duy Cảnh", "title": "GĐDA ME", "department": "GĐDA - MEP", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "canh.nd@unicons.vn", "phone": "0909043598", "isFemale": false, "pic": "Toàn", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 2", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "202", "keyKeeper": false, "roommate": "Vũ Hoàng"}, {"stt": 33, "company": "UNC", "bu": "BU3", "employeeId": "102745", "name": "Phạm Đức Quang", "title": "GĐDA ME", "department": "GÐDA - MEP", "region": "Miền Bắc", "location": "Hà Nội", "email": "Quang.pd@unicons.vn", "phone": "0976011080", "isFemale": false, "pic": "Toàn", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 5", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "203", "keyKeeper": false, "roommate": "Võ Quốc Thanh"}, {"stt": 34, "company": "UNC", "bu": "BU3", "employeeId": "100347", "name": "Võ Quốc Thanh", "title": "Q. GĐDA", "department": "CELADON CAMPUS", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "thanh.voquoc@unicons.vn", "phone": "0936678004", "isFemale": false, "pic": "Toàn", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "203", "keyKeeper": true, "roommate": "Phạm Đức Quang"}, {"stt": 35, "company": "UNC", "bu": "BU3", "employeeId": "006296", "name": "Nguyễn Quang Minh", "title": "GĐDA", "department": null, "region": "Miền Nam", "location": "Phú Quốc", "email": "minh.nguyen@unicons.vn", "phone": "0977862698", "isFemale": false, "pic": "Toàn", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 3", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "204", "keyKeeper": true, "roommate": "Nguyễn Văn Sa"}, {"stt": 36, "company": "UNC", "bu": "BU3", "employeeId": "100291", "name": "Nguyễn Văn Ngọc", "title": "CHT", "department": "CAO XÀ LÁ", "region": "Miền Bắc", "location": "Hà Nội", "email": "ngoc.nguyenvan@unicons.vn", "phone": "0985379410", "isFemale": false, "pic": "Toàn", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "211", "keyKeeper": true, "roommate": "Mai Thanh Toàn"}, {"stt": 37, "company": "CTD", "bu": "BU4", "employeeId": "000401", "name": "Nguyễn Văn Sa", "title": "Giám đốc dự án cơ điện", "department": "Khối BU4", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "sanv@coteccons.vn", "phone": "0918343797", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "204", "keyKeeper": false, "roommate": "Nguyễn Quang Minh"}, {"stt": 38, "company": "CTD", "bu": "BU4", "employeeId": "001753", "name": "Lê Doãn Thành", "title": "Giám đốc dự án cơ điện", "department": "Khối BU4", "region": "Miền Bắc", "location": "Hà Nội", "email": "thanhld@coteccons.vn", "phone": "0988374968", "isFemale": false, "pic": "Ngân", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 3", "busReturn": "Xe 5", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "115", "keyKeeper": false, "roommate": "Chu Minh Thành"}, {"stt": 40, "company": "CTD", "bu": "BU4", "employeeId": "005480", "name": "Huỳnh Tấn Mạnh", "title": "Giám đốc dự án cơ điện", "department": "Khối BU4", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "manhht01@coteccons.vn", "phone": "0981325329", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 3", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "105", "keyKeeper": true, "roommate": "Nguyễn Văn Hiếu, Nguyễn Quốc Hữu"}, {"stt": 41, "company": "CTD", "bu": "BU4", "employeeId": "005848", "name": "Nguyễn Văn Hiếu", "title": "Giám đốc đấu thầu cơ điện", "department": "Phòng Kỹ thuật Đấu thầu Cơ điện", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "hieunv02@coteccons.vn", "phone": "0948532639", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "105", "keyKeeper": false, "roommate": "Huỳnh Tấn Mạnh, Nguyễn Quốc Hữu"}, {"stt": 42, "company": "CTD", "bu": "BU4", "employeeId": "000409", "name": "Nguyễn Quốc Hữu", "title": "Quyền Giám đốc dự án cơ điện", "department": "Khối BU4", "region": "Miền Nam", "location": "Phú Quốc", "email": "huunq@coteccons.vn", "phone": "0933837247", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "Phú Quốc - Hà Nội 8:10 - 10:15 Vietjet Air", "airportPickup": "Xe 1", "busDeparture": "Xe 2", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:25 - 14:35 Sun Airways", "hotel": "BÁI ĐÍNH", "room": "105", "keyKeeper": false, "roommate": "Huỳnh Tấn Mạnh, Nguyễn Văn Hiếu"}, {"stt": 43, "company": "CTD", "bu": "BU4", "employeeId": "002073", "name": "Vũ Văn Hanh", "title": "Quyền Giám đốc dự án cơ điện", "department": "Khối BU4", "region": "Miền Bắc", "location": "Hà Nội", "email": "hanhvv@coteccons.vn", "phone": "0985366620", "isFemale": false, "pic": "Ngân", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 3", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "112", "keyKeeper": true, "roommate": "Đào Đức Linh, Nguyễn Toàn Thắng"}, {"stt": 44, "company": "CTD", "bu": "BU4", "employeeId": "003454", "name": "Đào Đức Linh", "title": "Quyền Giám đốc dự án cơ điện", "department": "Khối BU4", "region": "Miền Bắc", "location": "Hà Nội", "email": "linhdd@coteccons.vn", "phone": "0942025187", "isFemale": false, "pic": "Ngân", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 3", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "112", "keyKeeper": false, "roommate": "Vũ Văn Hanh, Nguyễn Toàn Thắng"}, {"stt": 45, "company": "CTD", "bu": "BU4", "employeeId": "005466", "name": "Haj Qasem Ehab", "title": "Giám đốc dự án cơ điện", "department": "Khối BU4", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "ehab@coteccons.vn", "phone": "0906752232", "isFemale": false, "pic": "Ngân", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": null, "busReturn": "Xe 5", "returnDate": null, "returnTime": null, "hotel": "TỰ TÚC", "room": "TỰ TÚC", "keyKeeper": false, "roommate": null}, {"stt": 46, "company": "CTD", "bu": "BU4", "employeeId": "001595", "name": "Nguyễn Toàn Thắng", "title": "Quyền Giám đốc dự án cơ điện", "department": "Sân bay Quốc tế Gia Bình", "region": "Miền Bắc", "location": "Bắc Ninh", "email": "nguyentoanthang@coteccons.vn", "phone": "0905531121", "isFemale": false, "pic": "Ngân", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 3", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "112", "keyKeeper": false, "roommate": "Vũ Văn Hanh, Đào Đức Linh"}, {"stt": 47, "company": "CTD", "bu": "BU4", "employeeId": "003818", "name": "Mai Thanh Toàn", "title": "Chỉ huy phó cơ điện", "department": "Sân bay Quốc tế Gia Bình", "region": "Miền Bắc", "location": "Bắc Ninh", "email": "toanmt@coteccons.vn", "phone": "0963254407", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "211", "keyKeeper": false, "roommate": "Nguyễn Văn Ngọc"}, {"stt": 48, "company": "CTD", "bu": "BU5", "employeeId": "006310", "name": "Nguyễn Trí Thông", "title": "GTM Director", "department": "CTD Global", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "thongnt@coteccons.vn", "phone": "0945798023", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 1", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:25 - 14:35 Sun Airways", "hotel": "THUNG UI", "room": "212", "keyKeeper": true, "roommate": "Trần Xuân Ngọc"}, {"stt": 49, "company": "CTD", "bu": "BU6", "employeeId": "004518", "name": "Lê Minh Tiến", "title": "Giám đốc dự án", "department": "Khối BU1", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "tienlm@coteccons.vn", "phone": "0918838689", "isFemale": false, "pic": "Toàn", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "125", "keyKeeper": false, "roommate": "Lâm Phan Nghĩa Thi, Nguyễn Văn Phong"}, {"stt": 50, "company": "CTD", "bu": "BU6", "employeeId": "001341", "name": "Lâm Phan Nghĩa Thi", "title": "Quyền Giám đốc dự án", "department": "Sân bay Quốc tế Gia Bình", "region": "Miền Bắc", "location": "Bắc Ninh", "email": "thilpn@coteccons.vn", "phone": "0906794888", "isFemale": false, "pic": "Toàn", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "125", "keyKeeper": false, "roommate": "Lê Minh Tiến, Nguyễn Văn Phong"}, {"stt": 51, "company": "CTD", "bu": "BU6", "employeeId": "001858", "name": "Nguyễn Văn Phong", "title": "Quyền Giám đốc dự án", "department": "Sân bay Quốc tế Gia Bình", "region": "Miền Bắc", "location": "Bắc Ninh", "email": "phongnv@coteccons.vn", "phone": "0906829257", "isFemale": false, "pic": "Toàn", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "125", "keyKeeper": true, "roommate": "Lê Minh Tiến, Lâm Phan Nghĩa Thi"}, {"stt": 52, "company": "CTD", "bu": "BU6", "employeeId": "006718", "name": "Trần Như Vĩnh", "title": "Chỉ huy trưởng cấp cao", "department": "Sân bay Quốc tế Gia Bình", "region": "Miền Bắc", "location": "Bắc Ninh", "email": "vinhtn@coteccons.vn", "phone": "0913651165", "isFemale": false, "pic": "Toàn", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "206", "keyKeeper": true, "roommate": "Lê Duy Tuấn, Bùi Văn Sơn"}, {"stt": 53, "company": "CTD", "bu": "BU6", "employeeId": "002109", "name": "Lê Duy Tuấn", "title": "Quyền Giám đốc dự án", "department": "Khối BU1", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "tuanld@coteccons.vn", "phone": "0984426205", "isFemale": false, "pic": "Toàn", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "206", "keyKeeper": false, "roommate": "Trần Như Vĩnh, Bùi Văn Sơn"}, {"stt": 54, "company": "CTD", "bu": "GEO", "employeeId": "007534", "name": "Nguyễn Xuân Phúc", "title": "Giám đốc Kỹ thuật & Thiết kế", "department": "GEO Foundations", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "phucnx01@coteccons.vn", "phone": "0989576582", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:25 - 14:35 Sun Airways", "hotel": "BÁI ĐÍNH", "room": "213", "keyKeeper": false, "roommate": "Nguyễn Minh Tự Bằng, Huỳnh Xuân Vinh"}, {"stt": 55, "company": "CTD", "bu": "GEO", "employeeId": "007533", "name": "Nguyễn Minh Tự Bằng", "title": "Giám đốc Thiết bị", "department": "GEO Foundations", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "bangnmt@coteccons.vn", "phone": "0983583560", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "213", "keyKeeper": false, "roommate": "Nguyễn Xuân Phúc, Huỳnh Xuân Vinh"}, {"stt": 56, "company": "CTD", "bu": "GEO", "employeeId": "007819", "name": "Huỳnh Xuân Vinh", "title": "Giám đốc Dự án", "department": "GEO Foundations", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "vinhhx@coteccons.vn", "phone": "0907467369", "isFemale": false, "pic": "Ngân", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "213", "keyKeeper": true, "roommate": "Nguyễn Xuân Phúc, Nguyễn Minh Tự Bằng"}, {"stt": 57, "company": "Sinh Nam", "bu": "SN", "employeeId": null, "name": "Trần Duy Thanh", "title": "Sinh Nam CEO", "department": null, "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "duythanh@sinhnammetal.com", "phone": "0903968068", "isFemale": false, "pic": "Toàn", "tripDate": "15/06/2026", "tripTime": null, "airportPickup": null, "busDeparture": "Xe 1", "busReturn": "Xe 1", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "205", "keyKeeper": false, "roommate": "Khương Chí Hằng"}, {"stt": 58, "company": "Sinh Nam", "bu": "SN", "employeeId": null, "name": "Vương Lý Hoàng Lan", "title": "HR Head Sinh Nam", "department": null, "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "lanvlh@coteccons.vn", "phone": "0903205008", "isFemale": true, "pic": "Toàn", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 1", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "212", "keyKeeper": true, "roommate": "Phạm Thị Ánh Nguyệt"}, {"stt": 58, "company": "Sinh Nam", "bu": "SN", "employeeId": null, "name": "Nguyễn Văn Đính", "title": "BD Head Sinh Nam", "department": null, "region": "Miền Bắc", "location": "Hà Nội", "email": "nguyendinh@sinhnammetal.com", "phone": "0973980332", "isFemale": false, "pic": "Toàn", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 1", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "124", "keyKeeper": false, "roommate": "Phan Chí Khánh"}, {"stt": 60, "company": "CTD", "bu": "Thương mại", "employeeId": "005991", "name": "Đinh Minh Đoan Trinh", "title": "Giám đốc Chuỗi Cung ứng", "department": "Chuỗi cung ứng", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "trinhdmd@coteccons.vn", "phone": "0908137945", "isFemale": true, "pic": "Nga", "tripDate": "14/06/2026", "tripTime": "10:00 - 12:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": null, "returnTime": "To HCM 19:00 - 21:10 Vietnam Airlines", "hotel": "THUNG UI", "room": "213", "keyKeeper": true, "roommate": "Nguyễn Thị Việt Nga"}, {"stt": 61, "company": "CTD", "bu": "Thương mại", "employeeId": "007607", "name": "Bùi Văn Sơn", "title": "Trưởng Phòng Quản lý Ngân sách và Hợp đồng", "department": "Phòng Quản lý Ngân sách & Hợp đồng Chủ đầu tư", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "sonbv@coteccons.vn", "phone": "0972923529", "isFemale": false, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "206", "keyKeeper": false, "roommate": "Trần Như Vĩnh, Lê Duy Tuấn"}, {"stt": 62, "company": "CTD", "bu": "Thương Mại", "employeeId": "006210", "name": "Lê Ngọc Khánh Diên", "title": "Trưởng Bộ phận Mua hàng", "department": "Bộ phận Mua hàng Vật tư Xây dựng", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "dienlnk@coteccons.vn", "phone": "0941690439", "isFemale": true, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 2", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "218", "keyKeeper": false, "roommate": "Đỗ Thị Ngân"}, {"stt": 63, "company": "CTD", "bu": "Thương mại", "employeeId": "006470", "name": "Mykhaylyk Kostyantyn", "title": "Giám đốc HSE", "department": "Phòng HSE", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "kmykhaylyk@coteccons.vn", "phone": "0904247175", "isFemale": false, "pic": "Nga", "tripDate": "15/06/2026", "tripTime": "14:00 - 16:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe 1", "busReturn": "Xe 3", "returnDate": "21/06/2026", "returnTime": "To HCM 10:00 - 12:10 Vietnam Airlines", "hotel": "THUNG UI", "room": "202", "keyKeeper": false, "roommate": "Đoàn Hải Nam"}, {"stt": 64, "company": "CTD", "bu": "Thương mại", "employeeId": "005253", "name": "Võ Đại Trí", "title": "Trưởng Phòng đấu thầu", "department": "Phòng Đấu thầu", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "trivodai@coteccons.vn", "phone": "0902368641", "isFemale": false, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "222", "keyKeeper": false, "roommate": "Ngô Quang Huy, Đặng Quốc Hùng"}, {"stt": 65, "company": "CTD", "bu": "Thương Mại", "employeeId": "002406", "name": "Ngô Quang Huy", "title": "Phó phòng Đấu thầu Miền Bắc", "department": "Phòng Đấu thầu", "region": "Miền Bắc", "location": "Hà Nội", "email": "huynq01@coteccons.vn", "phone": "0961393683", "isFemale": false, "pic": "Nga", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 1", "busReturn": "Xe 5", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "222", "keyKeeper": true, "roommate": "Võ Đại Trí, Đặng Quốc Hùng"}, {"stt": 66, "company": "CTD", "bu": "Thương Mại", "employeeId": "005608", "name": "Lê Danh Duyên", "title": "Phó Phòng Kỹ thuật thi công", "department": "Phòng Kỹ thuật thi công", "region": "Miền Bắc", "location": "Hà Nội", "email": "duyenld@coteccons.vn", "phone": "0916060249", "isFemale": false, "pic": "Nga", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 1", "busReturn": "Xe 5", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "123", "keyKeeper": true, "roommate": "Vương Dũng Trí"}, {"stt": 67, "company": "CTD", "bu": "Thương Mại", "employeeId": "000301", "name": "Vương Dũng Trí", "title": "Trưởng nhóm An ninh", "department": "Ban An ninh", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "trivd@coteccons.vn", "phone": "0983988401", "isFemale": false, "pic": "Nga", "tripDate": "14/06/2026", "tripTime": "19:00 - 21:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe 1", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "123", "keyKeeper": false, "roommate": "Lê Danh Duyên"}, {"stt": 68, "company": "CTD", "bu": "Thương Mại", "employeeId": "008120", "name": "Lưu Vệ Quang", "title": "Procurement Manager", "department": "Bộ phận Mua hàng Vật tư Xây dựng", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "quanglv01@coteccons.vn", "phone": "0903601263", "isFemale": false, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 2", "busReturn": "Xe 1", "returnDate": "24/06/2026", "returnTime": "To HCM 10:00 - 12:10 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "207", "keyKeeper": true, "roommate": "Lại Văn Hoàng"}, {"stt": 69, "company": "CTD", "bu": "Thương Mại", "employeeId": "008130", "name": "Lại Văn Hoàng", "title": "Logistics Manager", "department": null, "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "hoanglv01@coteccons.vn", "phone": "0979339898", "isFemale": false, "pic": "Nga", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": "24/06/2026", "returnTime": "To HCM 10:00 - 12:10 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "207", "keyKeeper": false, "roommate": "Lưu Vệ Quang"}, {"stt": 70, "company": "CTD", "bu": "Tài chính", "employeeId": "007630", "name": "Giang Văn Doanh", "title": "Phó Giám đốc Tài chính", "department": "Phòng Tài chính kế toán", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "doanhgv@coteccons.vn", "phone": "0907756171", "isFemale": false, "pic": "Nguyệt", "tripDate": "14/06/2026", "tripTime": "10:00 - 12:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe IR", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 19:00 - 21:10 Vietnam Airlines", "hotel": "THUNG UI", "room": "203", "keyKeeper": true, "roommate": "Nguyễn Hồng Sơn"}, {"stt": 71, "company": "CTD", "bu": "Tài chính", "employeeId": "006264", "name": "Nguyễn Hồng Sơn", "title": "Trợ lý Điều hành Giám đốc Tài chính", "department": "Phòng Tài chính kế toán", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "sonnh06@coteccons.vn", "phone": "0903663609", "isFemale": false, "pic": "Nguyệt", "tripDate": "11/06/2026", "tripTime": "21:00 - 23:10 Vietnam Airlines", "airportPickup": null, "busDeparture": null, "busReturn": "TBU", "returnDate": "21/06/2026", "returnTime": "To HCM 20:30 - 22:45 Vietnam Airlines", "hotel": "THUNG UI", "room": "203", "keyKeeper": false, "roommate": "Giang Văn Doanh"}, {"stt": 72, "company": "CTD", "bu": "Tài chính", "employeeId": "005833", "name": "Đinh Tiến Dũng", "title": "BUs - Finance Partner Manager", "department": "Phòng Tài chính kế toán", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "dungdt03@coteccons.vn", "phone": "0938182000", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 5", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "126", "keyKeeper": false, "roommate": "Phan Hồng Thanh"}, {"stt": 73, "company": "CTD", "bu": "Tài chính", "employeeId": "007026", "name": "Đỗ Thị Ngân", "title": "BUs - Finance Partner Manager", "department": "Phòng Tài chính kế toán", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "ngandt@coteccons.vn", "phone": "0966240651", "isFemale": true, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 5", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "218", "keyKeeper": true, "roommate": "Lê Ngọc Khánh Diên"}, {"stt": 74, "company": "CTD", "bu": "Tài chính", "employeeId": "007629", "name": "Phan Chí Khánh", "title": "Trưởng phòng Quản lý Chi phí", "department": "Bộ phận Kiểm soát Chi phí", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "khanhpc@coteccons.vn", "phone": "0908968689", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "124", "keyKeeper": true, "roommate": "Nguyễn Văn Đính"}, {"stt": 75, "company": "CTD", "bu": "Tài chính", "employeeId": "003634", "name": "Phan Hồng Thanh", "title": "Trưởng nhóm Ngân quỹ", "department": "Phòng Tài chính kế toán", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "thanhph@coteccons.vn", "phone": "0916855667", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "126", "keyKeeper": true, "roommate": "Đinh Tiến Dũng"}, {"stt": 77, "company": "CTD", "bu": "Nội chính", "employeeId": "005792", "name": "Nguyễn Thị Thanh Hương", "title": "Giám đốc Quản trị Nguồn nhân lực", "department": "Phòng QTNNL", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "huongntt@coteccons.vn", "phone": "0908079733", "isFemale": true, "pic": "Nguyệt", "tripDate": "14/06/2026", "tripTime": "10:00 - 12:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": "20/06/2026", "returnTime": "To HCM 19:00 - 21:10 Vietnam Airlines", "hotel": "THUNG UI", "room": "214", "keyKeeper": true, "roommate": "Đinh Thị Hồng Thắm"}, {"stt": 78, "company": "CTD", "bu": "Nội chính", "employeeId": "007820", "name": "Đặng Quốc Hùng", "title": "Trưởng phòng Marketing", "department": "MarComs", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "hungdq@coteccons.vn", "phone": "0938837187", "isFemale": false, "pic": "Nguyệt", "tripDate": "11/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "222", "keyKeeper": false, "roommate": "Võ Đại Trí, Ngô Quang Huy"}, {"stt": 79, "company": "CTD", "bu": "Nội chính", "employeeId": "005498", "name": "Vũ Hoàng Nam", "title": "Trưởng ban Kiểm toán nội bộ, Kiểm soát tuân thủ & Hệ thống", "department": "Ban Kiểm toán nội bộ, kiểm soát tuân thủ & Hệ thống", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "namvh02@coteccons.vn", "phone": "0988999151", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 1", "busReturn": "Xe 1", "returnDate": "21/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "225", "keyKeeper": false, "roommate": "Phạm Thanh Sang"}, {"stt": 80, "company": "CTD", "bu": "Nội chính", "employeeId": "007103", "name": "Đoàn Hải Nam", "title": "IT Director", "department": "Phòng CNTT", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "namdh02@coteccons.vn", "phone": "0909000175", "isFemale": false, "pic": "Nguyệt", "tripDate": "15/06/2026", "tripTime": "6:00 - 8:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe 1", "busReturn": "Xe 5", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "THUNG UI", "room": "202", "keyKeeper": false, "roommate": "Mykhaylyk Kostyantyn"}, {"stt": 81, "company": "CTD", "bu": "Nội chính", "employeeId": "007510", "name": "Đào Duy Thoại", "title": "Head of IT", "department": "Bộ phận Giải pháp Xây dựng Thông minh (Smart Construction)", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "thoaidd@coteccons.vn", "phone": "0984444254", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "223", "keyKeeper": true, "roommate": "Đoàn Nhật Duẩn"}, {"stt": 82, "company": "VSOL", "bu": "VSOL", "employeeId": null, "name": "Đoàn Nhật Duẩn", "title": "Chief Innovation Officer", "department": null, "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "duandn@vsol.vn", "phone": "0938738746", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "223", "keyKeeper": false, "roommate": "Đào Duy Thoại"}, {"stt": 83, "company": "CTD", "bu": "Nội chính", "employeeId": "004374", "name": "Trần Minh Khoa", "title": "Nhân viên tuyển dụng", "department": "Phòng QTNNL", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "khoatm@coteccons.vn", "phone": "0787736544", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "210", "keyKeeper": true, "roommate": "Nguyễn Thanh Tùng"}, {"stt": 84, "company": "CTD", "bu": "Chairman office", "employeeId": "007119", "name": "Nguyễn Phi Nhu", "title": "Giám đốc Chiến lược & Mở rộng thị trường", "department": "Ban Chiến lược & Kế hoạch", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "nhunp@coteccons.vn", "phone": "0903398098", "isFemale": true, "pic": "Nguyệt", "tripDate": "14/06/2026", "tripTime": "10:00 - 12:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "209", "keyKeeper": true, "roommate": "Nguyễn Trình Thùy Trang"}, {"stt": 85, "company": "CTD", "bu": "Chairman office", "employeeId": "006597", "name": "Nguyễn Hồng Phúc", "title": "Trưởng Bộ phận Chiến lược Thương hiệu", "department": "Ban Chiến lược Doanh nghiệp", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "phucnh@coteccons.vn", "phone": "0907066677", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "201", "keyKeeper": true, "roommate": "Phạm Quang Dũng"}, {"stt": 86, "company": "CTD", "bu": "Chairman office", "employeeId": "005507", "name": "Đinh Thị Hồng Thắm", "title": "Giám đốc Quản trị Đối ngoại", "department": "Ban Thư ký Hội đồng Quản trị", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "thamdth@coteccons.vn", "phone": "0902387889", "isFemale": true, "pic": "Nguyệt", "tripDate": "14/06/2026", "tripTime": "21:00 - 23:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "THUNG UI", "room": "214", "keyKeeper": false, "roommate": "Nguyễn Thị Thanh Hương"}, {"stt": 87, "company": "CTD", "bu": "Chairman office", "employeeId": "005395", "name": "Trần Trí Cương", "title": "Quản lý Cải tiến Vận hành", "department": "Văn phòng Chủ tịch Hội đồng Quản trị", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "cuongtt01@coteccons.vn", "phone": "0367475644", "isFemale": false, "pic": "Nguyệt", "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "221", "keyKeeper": true, "roommate": null}, {"stt": 88, "company": "CTD", "bu": "Nội chính", "employeeId": "007052", "name": "Võ Kế Châu", "title": "Trưởng nhóm Phát triển bền vững", "department": "Ban Môi trường, Xã hội và Quản trị (ESG)", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "chauvk01@coteccons.vn", "phone": "0966224449", "isFemale": false, "pic": "Nguyệt", "tripDate": "11/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": null, "busDeparture": null, "busReturn": "Xe 2", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "208", "keyKeeper": true, "roommate": "Nguyễn Việt Thắng"}, {"stt": 89, "company": "CTD", "bu": "Nội chính", "employeeId": "003964", "name": "Nguyễn Thu Hiền", "title": "Chuyên viên Quan hệ Nhà Đầu tư", "department": "Ban Quan hệ Nhà Đầu tư (IR) và Truyền thông", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "hiennt01@coteccons.vn", "phone": "0964422836", "isFemale": true, "pic": "Nguyệt", "tripDate": "11/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": null, "busDeparture": null, "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "217", "keyKeeper": false, "roommate": "Nguyễn Kim Ngân, Nguyễn Hoàng Mai Anh"}, {"stt": 90, "company": "CTD", "bu": "Nội chính", "employeeId": "008153", "name": "Nguyễn Việt Thắng", "title": "Corporate Governance Manager", "department": "Ban Quan hệ Chính phủ và Cơ quan Quản lý", "region": "Miền Bắc", "location": "Hà Nội", "email": "thangnv02@coteccons.vn", "phone": "0965965361", "isFemale": false, "pic": "Nguyệt", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 3", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "208", "keyKeeper": false, "roommate": "Võ Kế Châu"}, {"stt": 91, "company": "CTD", "bu": "Nội chính", "employeeId": "007335", "name": "Phạm Thị Ánh Nguyệt", "title": "Trưởng phòng Chính sách, Lương thưởng và Phúc lợi", "department": "Phòng QTNNL", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "nguyetpta@coteccons.vn", "phone": "0933130985", "isFemale": true, "pic": null, "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 4", "returnDate": "21/06/2026", "returnTime": "To HCM 21:00 - 23:10  Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "212", "keyKeeper": false, "roommate": "Vương Lý Hoàng Lan"}, {"stt": 92, "company": "CTD", "bu": "Nội chính", "employeeId": "005753", "name": "Nguyễn Thị Việt Nga", "title": "Trưởng phòng Tuyển dụng kiêm Quản lý Đối tác nhân sự BU1", "department": "Phòng QTNNL", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "ngantv@coteccons.vn", "phone": "0909932954", "isFemale": true, "pic": null, "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "THUNG UI", "room": "213", "keyKeeper": false, "roommate": "Đinh Minh Đoan Trinh"}, {"stt": 93, "company": "CTD", "bu": "Nội chính", "employeeId": "003778", "name": "Phạm Trung Đức", "title": "Quyền Quản lý Đối tác nhân sự BU2", "department": "Phòng QTNNL", "region": "Miền Bắc", "location": "Hồ Chí Minh", "email": "ducpt@coteccons.vn", "phone": "0987094000", "isFemale": false, "pic": null, "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": "Xe 3", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "209", "keyKeeper": false, "roommate": "Phan Minh Toàn"}, {"stt": 94, "company": "CTD", "bu": "Nội chính", "employeeId": "001590", "name": "Phan Minh Toàn", "title": "Quản lý Đối tác nhân sự BU3", "department": "Phòng QTNNL", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "toanpm@coteccons.vn", "phone": "0933886853", "isFemale": false, "pic": null, "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 2", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "209", "keyKeeper": true, "roommate": "Phạm Trung Đức"}, {"stt": 95, "company": "CTD", "bu": "Nội chính", "employeeId": "004223", "name": "Nguyễn Kim Ngân", "title": "Quyền Quản lý Đối tác nhân sự BU4 & BU5 kiêm Quản lý Phúc lợi Tổng hợp (Total Rewards Manager)", "department": "Phòng QTNNL", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "ngannk@coteccons.vn", "phone": "0906962634", "isFemale": true, "pic": null, "tripDate": "16/06/2026", "tripTime": "9:00 - 11:10 Vietnam Airlines", "airportPickup": "Xe 3", "busDeparture": "Xe 3", "busReturn": "Xe 3", "returnDate": "21/06/2026", "returnTime": "To HCM 15:00 - 17:10 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "217", "keyKeeper": false, "roommate": "Nguyễn Thu Hiền, Nguyễn Hoàng Mai Anh"}, {"stt": 96, "company": "CTD", "bu": "Nội chính", "employeeId": "005849", "name": "Phạm Thanh Sang", "title": "Trưởng phòng Đào tạo và Phát triển", "department": "Phòng Đào tạo và Phát triển Tổ chức", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "sangpt@coteccons.vn", "phone": "0977396693", "isFemale": false, "pic": null, "tripDate": "15/06/2026", "tripTime": "13:00 - 15:10 Vietnam Airlines", "airportPickup": "Xe công vụ", "busDeparture": "Xe công vụ", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:25 - 14:35 Sun Airways", "hotel": "BÁI ĐÍNH", "room": "225", "keyKeeper": true, "roommate": "Vũ Hoàng Nam"}, {"stt": 97, "company": "CTD", "bu": "Nội chính", "employeeId": "006328", "name": "Phạm Quang Dũng", "title": "Trưởng phòng Hành chính", "department": "Phòng Hành chính", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "dungpq@coteccons.vn", "phone": "0904204400", "isFemale": false, "pic": null, "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 2", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "201", "keyKeeper": false, "roommate": "Nguyễn Hồng Phúc"}, {"stt": 98, "company": "CTD", "bu": "Nội chính", "employeeId": "006549", "name": "Nguyễn Hoàng Mai Anh", "title": "Trưởng nhóm Đào tạo và phát triển", "department": "Phòng Đào tạo và Phát triển Tổ chức", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "anhnhm@coteccons.vn", "phone": "0938791209", "isFemale": true, "pic": null, "tripDate": "15/06/2026", "tripTime": "13:00 - 15:10 Vietnam Airlines", "airportPickup": "Xe công vụ", "busDeparture": "Xe công vụ", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam airlines", "hotel": "BÁI ĐÍNH", "room": "217", "keyKeeper": true, "roommate": "Nguyễn Thu Hiền, Nguyễn Kim Ngân"}, {"stt": 99, "company": "CTD", "bu": "Nội chính", "employeeId": "005406", "name": "Nguyễn Thanh Tùng", "title": "Chuyên viên Hoạch định Kế hoạch hoạt động", "department": "Ban Chiến lược Doanh nghiệp", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "tungnguyen@coteccons.vn", "phone": "0987117171", "isFemale": false, "pic": null, "tripDate": "14/06/2026", "tripTime": "10:00 - 12:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe 1", "busReturn": "TBU", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "210", "keyKeeper": false, "roommate": "Trần Minh Khoa"}, {"stt": 101, "company": "CTD", "bu": "Nội chính", "employeeId": "006122", "name": "Khương Chí Hằng", "title": "Trợ lý Phó Tổng Giám đốc", "department": "Ban Trợ lý TGĐ", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "hangkc@coteccons.vn", "phone": "0829992899", "isFemale": false, "pic": null, "tripDate": "14/06/2026", "tripTime": "11:00 - 14:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "TBU", "returnDate": "22/06/2026", "returnTime": "HN - HCM| 17:00 - 19:10 Vietnam Airlines", "hotel": "THUNG UI", "room": "205", "keyKeeper": true, "roommate": "Trần Duy Thanh"}, {"stt": 102, "company": "CTD", "bu": "Nội chính", "employeeId": "005234", "name": "Đoàn Lê Mỹ Nhiên", "title": "Trưởng nhóm Quản trị Thương hiệu", "department": "MarComs", "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "nhiendlm@coteccons.vn", "phone": "0792800570", "isFemale": true, "pic": null, "tripDate": "14/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe IR", "busReturn": "Xe 1", "returnDate": "20/06/2026", "returnTime": "To HCM 12:30 - 14:40 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "110", "keyKeeper": true, "roommate": "Châu Anh Thư"}, {"stt": 103, "company": "AnPR", "bu": "AnPR", "employeeId": null, "name": "Mai Thị Thúy Hồng", "title": null, "department": null, "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "hong@anpr.com.vn", "phone": null, "isFemale": true, "pic": null, "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "TỰ TÚC", "room": "TỰ TÚC", "keyKeeper": false, "roommate": null}, {"stt": 104, "company": "AnPR", "bu": "AnPR", "employeeId": null, "name": "Trần Mẫn Lân", "title": null, "department": null, "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "lan@anpr.com.vn", "phone": null, "isFemale": false, "pic": null, "tripDate": "15/06/2026", "tripTime": null, "airportPickup": null, "busDeparture": null, "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "TỰ TÚC", "room": "TỰ TÚC", "keyKeeper": false, "roommate": null}, {"stt": 105, "company": "AnPR", "bu": "AnPR", "employeeId": null, "name": "Hoàng Khánh Linh", "title": null, "department": null, "region": "Miền Nam", "location": "Hồ Chí Minh", "email": "khanhlinh@anpr.com.vn", "phone": null, "isFemale": true, "pic": null, "tripDate": "16/06/2026", "tripTime": "8:00 - 10:10 Vietnam Airlines", "airportPickup": "Xe 1", "busDeparture": "Xe 1", "busReturn": "Xe 4", "returnDate": "20/06/2026", "returnTime": "To HCM 17:30 - 19:45 Vietnam Airlines", "hotel": "TỰ TÚC", "room": "TỰ TÚC", "keyKeeper": false, "roommate": null}, {"stt": 106, "company": "Guest", "bu": "Koru", "employeeId": null, "name": "Nguyễn Thị Thu Hằng", "title": null, "department": null, "region": null, "location": null, "email": "hang@koru.capital", "phone": null, "isFemale": true, "pic": "Hằng", "tripDate": "15/06/2026", "tripTime": "8:00 - 10:00 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe riêng", "busReturn": "Xe riêng", "returnDate": "18/06/2026", "returnTime": "HN - HCM| 22:00 - 00:10 Vietnam Airlines", "hotel": "đang chốt", "room": null, "keyKeeper": false, "roommate": null}, {"stt": 107, "company": "Guest", "bu": "Koru", "employeeId": null, "name": "Lê Thế Anh", "title": null, "department": null, "region": null, "location": null, "email": "anh@koru.capital", "phone": null, "isFemale": false, "pic": "Hằng", "tripDate": "15/06/2026", "tripTime": "8:00 - 10:00 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe riêng", "busReturn": "Xe riêng", "returnDate": "18/06/2026", "returnTime": "HN - HCM| 22:00 - 00:10 Vietnam Airlines", "hotel": "đang chốt", "room": null, "keyKeeper": false, "roommate": null}, {"stt": 108, "company": "Guest", "bu": "Koru", "employeeId": null, "name": "Nguyễn Như Phương Anh", "title": null, "department": null, "region": null, "location": null, "email": "ann.nguyen@koru.capital", "phone": null, "isFemale": true, "pic": "Hằng", "tripDate": "15/06/2026", "tripTime": "8:00 - 10:00 Vietnam Airlines", "airportPickup": null, "busDeparture": "Xe riêng", "busReturn": "Xe riêng", "returnDate": null, "returnTime": null, "hotel": "đang chốt", "room": null, "keyKeeper": false, "roommate": null}, {"stt": 109, "company": "Guest", "bu": "Guest", "employeeId": null, "name": "Ablakhat Kebirov", "title": null, "department": null, "region": null, "location": null, "email": "k.ablakhat@gmail.com", "phone": null, "isFemale": false, "pic": "Vũ Hoàng (PA)", "tripDate": "15/06/2026", "tripTime": "Arrive BĐ 3PM", "airportPickup": "Xe riêng", "busDeparture": "Xe riêng", "busReturn": "Xe riêng", "returnDate": "19/06/2026", "returnTime": "23:30 bay", "hotel": "THUNG UI", "room": "201", "keyKeeper": true, "roommate": null}, {"stt": 110, "company": "Guest", "bu": "Guest", "employeeId": null, "name": "Mikhail Treyvish", "title": null, "department": null, "region": null, "location": null, "email": "tre_mi@omnigrade.com", "phone": null, "isFemale": false, "pic": "Vũ Hoàng (PA)", "tripDate": "16/06/2026", "tripTime": "Arrive HN 3:40PM", "airportPickup": "Xe riêng", "busDeparture": "Xe riêng", "busReturn": "Xe riêng", "returnDate": "20/06/2026", "returnTime": null, "hotel": "THUNG UI", "room": "207", "keyKeeper": true, "roommate": null}, {"stt": 111, "company": "Guest", "bu": "Kusto", "employeeId": null, "name": "Dinara Zhakupzhanova", "title": null, "department": null, "region": null, "location": null, "email": "dinara.zhakupzhanova@coteccons.vn", "phone": null, "isFemale": true, "pic": "Vũ Hoàng (PA)", "tripDate": "16/06/2026", "tripTime": "Arrive HN 3PM", "airportPickup": "Xe riêng", "busDeparture": "Xe riêng", "busReturn": "Xe riêng", "returnDate": "20/06/2026", "returnTime": "To HCM 15:00 - 17:10 Vietnam Airlines", "hotel": "BÁI ĐÍNH", "room": "220", "keyKeeper": true, "roommate": null}, {"stt": 112, "company": "Vendor", "bu": "Adizes", "employeeId": null, "name": "Shoham Adizes", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Sang", "tripDate": "15/06/2026", "tripTime": "Arrive HN 3:40PM", "airportPickup": "Xe riêng", "busDeparture": "Xe 1", "busReturn": "Xe riêng", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "104", "keyKeeper": true, "roommate": null}, {"stt": 113, "company": "Vendor", "bu": "Zen", "employeeId": null, "name": "Lê Bá Thông", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Mai Anh", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 16C", "busReturn": null, "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "107", "keyKeeper": true, "roommate": "Phan Duy Hiếu"}, {"stt": 114, "company": "Vendor", "bu": "Zen", "employeeId": null, "name": "Phan Duy Hiếu", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Mai Anh", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 16C", "busReturn": null, "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "107", "keyKeeper": false, "roommate": "Lê Bá Thông"}, {"stt": 115, "company": "Vendor", "bu": "Zen", "employeeId": null, "name": "Nguyễn Thị Thanh Hương", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Mai Anh", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 16C", "busReturn": null, "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "108", "keyKeeper": true, "roommate": "Nguyễn Bùi Bảo Trâm"}, {"stt": 116, "company": "Vendor", "bu": "Zen", "employeeId": null, "name": "Nguyễn Bùi Bảo Trâm", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Mai Anh", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 16C", "busReturn": "Xe 4", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "108", "keyKeeper": false, "roommate": "Nguyễn Thị Thanh Hương"}, {"stt": 117, "company": "Vendor", "bu": "Zen", "employeeId": null, "name": "Trần Thùy Mỹ Hạnh", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Mai Anh", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 16C", "busReturn": "Xe 4", "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "109", "keyKeeper": true, "roommate": "Yến"}, {"stt": 118, "company": "Vendor", "bu": "Zen", "employeeId": null, "name": "Yến", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Mai Anh", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 16C", "busReturn": null, "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "109", "keyKeeper": false, "roommate": "Trần Thùy Mỹ Hạnh"}, {"stt": 119, "company": "Vendor", "bu": "Zen", "employeeId": null, "name": "Châu Anh Thư", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Mai Anh", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 16C", "busReturn": null, "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "110", "keyKeeper": false, "roommate": "Đoàn Lê Mỹ Nhiên"}, {"stt": 120, "company": "Vendor", "bu": "Phiên dịch", "employeeId": null, "name": "Phiên dịch 1 - Chị Châu", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Lân", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": null, "busReturn": null, "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "111", "keyKeeper": true, "roommate": "Phiên dịch 2 - Chị Thủy"}, {"stt": 121, "company": "Vendor", "bu": "Phiên dịch", "employeeId": null, "name": "Phiên dịch 2 - Chị Thủy", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": false, "pic": "Lân", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": null, "busReturn": null, "returnDate": null, "returnTime": null, "hotel": "BÁI ĐÍNH", "room": "111", "keyKeeper": false, "roommate": "Phiên dịch 1 - Chị Châu"}, {"stt": 122, "company": "Guest", "bu": "Guest", "employeeId": null, "name": "Mạc Thị Lệ Thủy", "title": null, "department": null, "region": null, "location": null, "email": null, "phone": null, "isFemale": true, "pic": "Hằng", "tripDate": null, "tripTime": null, "airportPickup": null, "busDeparture": "Xe 2", "busReturn": null, "returnDate": null, "returnTime": null, "hotel": null, "room": null, "keyKeeper": false, "roommate": null}];
+const BTC_CORE = [{"name": "Phạm Thanh Sang", "role": "Core Project team", "phone": "0977396693", "buInCharge": null}, {"name": "Nguyễn Hoàng Mai Anh", "role": "Core Project team", "phone": "0938791209", "buInCharge": null}, {"name": "Phạm Quang Dũng", "role": "Core Project team", "phone": "0904204400", "buInCharge": null}, {"name": "Trần Mẫn Lân", "role": "Core Project team", "phone": "0931335210", "buInCharge": null}, {"name": "Hoàng Khánh Linh", "role": "Core Project team", "phone": "0782312275", "buInCharge": null}];
+const BTC_HRBP = [{"name": "Phạm Thị Ánh Nguyệt", "role": "HRBP", "phone": "0933130985", "buInCharge": "K. Tài chính + K. Nội chính"}, {"name": "Nguyễn Thị Việt Nga", "role": "HRBP", "phone": "0909932954", "buInCharge": "BU1 + K. Thương Mại"}, {"name": "Phạm Trung Đức", "role": "HRBP", "phone": "0987094000", "buInCharge": "BU2"}, {"name": "Phan Minh Toàn", "role": "HRBP", "phone": "0933886853", "buInCharge": "BU3 + BU6 + SN"}, {"name": "Nguyễn Kim Ngân", "role": "HRBP", "phone": "0906962634", "buInCharge": "BU4 + BU5 + GEO"}, {"name": "Khương Chí Hằng", "role": "HRBP", "phone": "0829992899", "buInCharge": "BLĐ + Guest"}, {"name": "Vũ Hoàng (PA)", "role": "HRBP", "phone": "0356994651", "buInCharge": "BLĐ + Guest"}];
+const BUS_LEADS = {"pickup": {"Xe 3": {"name": "Nguyễn Thị Việt Nga", "phone": "0909932954"}, "Xe 1": {"name": "Phan Minh Toàn", "phone": "0933886853"}}, "departure": {"Xe 3": {"name": "Nguyễn Thị Việt Nga", "phone": "0909932954"}, "Xe 2": {"name": "Phạm Trung Đức", "phone": "0987094000"}, "Xe 1": {"name": "Phan Minh Toàn", "phone": "0933886853"}}, "return": {"Xe 1": {"name": "Phạm Thanh Sang", "phone": "0977396693"}, "Xe 4": {"name": "Nguyễn Hoàng Mai Anh", "phone": "0938791209"}, "Xe 3": {"name": "Phạm Trung Đức", "phone": "0987094000"}, "Xe 2": {"name": "Phan Minh Toàn", "phone": "0933886853"}}};
+const BTC_LOOKUP = [{"name": "Phạm Thanh Sang", "phone": "0977396693"}, {"name": "Nguyễn Hoàng Mai Anh", "phone": "0938791209"}, {"name": "Phạm Quang Dũng", "phone": "0904204400"}, {"name": "Trần Mẫn Lân", "phone": "0931335210"}, {"name": "Hoàng Khánh Linh", "phone": "0782312275"}, {"name": "Phạm Thị Ánh Nguyệt", "phone": "0933130985"}, {"name": "Nguyễn Thị Việt Nga", "phone": "0909932954"}, {"name": "Phạm Trung Đức", "phone": "0987094000"}, {"name": "Phan Minh Toàn", "phone": "0933886853"}, {"name": "Nguyễn Kim Ngân", "phone": "0906962634"}, {"name": "Khương Chí Hằng", "phone": "0829992899"}, {"name": "Vũ Hoàng (PA)", "phone": "0356994651"}];
+const BUS_TIMES = {
+  pickup: { "Xe 1":"10:45", "Xe 3":"11:45" },
+  departure: { "Xe 1":"12:30", "Xe 2":"13:00", "Xe 3":"13:30" },
+  return: { "Xe 1":"08:00", "Xe 2":"08:00", "Xe 3":"08:00", "Xe 4":"13:00", "Xe 5":"13:00" }
+};
+const BUS_DEST_RETURN = { "Xe 1":"Sân bay Nội Bài", "Xe 2":"Sân bay Nội Bài", "Xe 3":"VP Hà Nội", "Xe 4":"Sân bay Nội Bài", "Xe 5":"VP Hà Nội" };
+let currentLang = localStorage.getItem('lang') || 'vi';
+let s1Level = 1, s1Category = null, s1Group = null;
+let currentSelectedPerson = null;
+const ACCOM_GROUPS = [
+  { key:"BÁI ĐÍNH", labelKey:"accom_bd" },
+  { key:"THUNG UI", labelKey:"accom_tu" }
+];
+function t(k){return (I18N[currentLang] && I18N[currentLang][k]) || k;}
+function isOfficialBus(v){ return /^Xe \d+$/.test(v); }
+function phEl(phone){
+  if(!phone) return '';
+  return '<span class="ph-copy" data-phone="'+phone+'">\uD83D\uDCCB '+phone+'</span>';
+}
+function copyPhone(phone){
+  if(!phone) return;
+  const done = ()=>showToast(t('toast_copied')+' '+phone);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(phone).then(done).catch(()=>fallbackCopy(phone,done));
+  } else { fallbackCopy(phone, done); }
+}
+function fallbackCopy(text, cb){
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position='fixed'; ta.style.left='-9999px';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); cb && cb(); } catch(e){}
+  document.body.removeChild(ta);
+}
+let toastTimer=null;
+function showToast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 2000);
+}
+document.body.addEventListener('click', e=>{
+  const el = e.target.closest('.ph-copy');
+  if(el){ e.preventDefault(); e.stopPropagation(); copyPhone(el.dataset.phone); }
+});
+function resolvePic(picRaw){
+  if(!picRaw) return null;
+  const q = picRaw.trim().toLowerCase();
+  let m = BTC_LOOKUP.find(x => (x.name||'').trim().toLowerCase() === q);
+  if(m) return m;
+  m = BTC_LOOKUP.find(x => (x.name||'').trim().toLowerCase().endsWith(' '+q));
+  if(m) return m;
+  m = BTC_LOOKUP.find(x => (x.name||'').trim().toLowerCase().includes(q));
+  if(m) return m;
+  return null;
+}
+function applyI18n(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent = t(el.getAttribute('data-i18n'));});
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));});
+  document.getElementById('langToggle').textContent = currentLang==='vi' ? 'EN' : 'VI';
+  document.documentElement.lang = currentLang;
+  renderTripChips();
+}
+document.getElementById('langToggle').addEventListener('click', ()=>{
+  currentLang = currentLang==='vi'?'en':'vi';
+  localStorage.setItem('lang', currentLang);
+  applyI18n();
+  renderSection1();
+  renderBTC();
+  if(currentSelectedPerson) showPerson(currentSelectedPerson);
+});
+function renderTripChips(){
+  const chips = [t('trip_date'), t('trip_location'), t('trip_audience')];
+  document.getElementById('tripRow').innerHTML = chips.map(x=>'<div class="trip-chip">'+x+'</div>').join('');
+}
+function openSection(id){
+  ['welcome','section1','section2','section3'].forEach(s=>document.getElementById(s).classList.toggle('hidden', s!==id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='section1'){ s1Level=1; s1Category=null; s1Group=null; renderSection1(); }
+  if(id==='section3') renderBTC();
+}
+function s1Back(){
+  if(s1Level===3){ s1Level=2; s1Group=null; renderSection1(); return; }
+  if(s1Level===2){ s1Level=1; s1Category=null; renderSection1(); return; }
+  openSection('welcome');
+}
+function categoryTitleKey(cat){
+  if(cat==='accommodation') return 'opt_accom_title';
+  if(cat==='pickup') return 'opt_pickup_title';
+  if(cat==='departure') return 'opt_depart_title';
+  if(cat==='return') return 'opt_return_title';
+  return 's1_title';
+}
+function categoryValue(p, key){
+  if(key==='accommodation') return p.hotel;
+  if(key==='pickup') return p.airportPickup;
+  if(key==='departure') return p.busDeparture;
+  if(key==='return') return p.busReturn;
+  return null;
+}
+function getGroupValues(catKey){
+  if(catKey==='accommodation') return ACCOM_GROUPS.map(g=>g.key);
+  const vals = [...new Set(PARTICIPANTS.map(p=>categoryValue(p,catKey)).filter(v=>v && isOfficialBus(v)))];
+  return vals.sort((a,b)=>{
+    const na = parseInt(a.replace('Xe ',''),10);
+    const nb = parseInt(b.replace('Xe ',''),10);
+    if(!isNaN(na) && !isNaN(nb)) return na-nb;
+    return String(a).localeCompare(String(b),'vi');
+  });
+}
+function getParticipantsInGroup(catKey, value){
+  return PARTICIPANTS.filter(p=>categoryValue(p,catKey)===value);
+}
+function getLead(catKey, value){
+  if(catKey==='accommodation') return null;
+  return (BUS_LEADS[catKey]||{})[value] || null;
+}
+function getBusTime(catKey, value){
+  if(catKey==='accommodation') return null;
+  return (BUS_TIMES[catKey]||{})[value] || null;
+}
+function groupLabel(catKey, value){
+  if(catKey==='accommodation'){
+    const g = ACCOM_GROUPS.find(x=>x.key===value);
+    return g ? t(g.labelKey) : value;
+  }
+  return value;
+}
+function setS1Title(){
+  const titleEl = document.getElementById('s1Title');
+  const descEl = document.getElementById('s1Desc');
+  if(s1Level===1){
+    titleEl.textContent = t('s1_title');
+    descEl.textContent = t('s1_desc');
+    descEl.style.display='block';
+  } else if(s1Level===2){
+    titleEl.textContent = t(categoryTitleKey(s1Category));
+    descEl.textContent = '';
+    descEl.style.display='none';
+  } else {
+    titleEl.innerHTML = t(categoryTitleKey(s1Category)) + ' <span class="sub">\u2022 ' + groupLabel(s1Category, s1Group) + '</span>';
+    descEl.textContent = '';
+    descEl.style.display='none';
+  }
+}
+function renderSection1(){
+  const content = document.getElementById('s1Content');
+  const back = document.getElementById('s1Back');
+  back.style.display = 'inline-flex';
+  setS1Title();
+  if(s1Level===1){
+    content.innerHTML = `
+      <div class="s1-level1">
+        <button class="s1-opt" onclick="s1PickCategory('accommodation')">
+          <div class="ic">\uD83C\uDFE8</div>
+          <div class="tx"><h3>${t('opt_accom_title')}</h3><p>${t('opt_accom_desc')}</p></div>
+        </button>
+        <button class="s1-opt" onclick="s1PickCategory('pickup')">
+          <div class="ic">\u2708\uFE0F</div>
+          <div class="tx"><h3>${t('opt_pickup_title')}</h3><p>${t('opt_pickup_desc')}</p></div>
+        </button>
+        <button class="s1-opt" onclick="s1PickCategory('departure')">
+          <div class="ic">\uD83D\uDE8C</div>
+          <div class="tx"><h3>${t('opt_depart_title')}</h3><p>${t('opt_depart_desc')}</p></div>
+        </button>
+        <button class="s1-opt" onclick="s1PickCategory('return')">
+          <div class="ic">\uD83C\uDFE0</div>
+          <div class="tx"><h3>${t('opt_return_title')}</h3><p>${t('opt_return_desc')}</p></div>
+        </button>
+      </div>`;
+    return;
+  }
+  if(s1Level===2){
+    const vals = getGroupValues(s1Category);
+    content.innerHTML = `
+      <div class="group-grid">
+        ${vals.map(v=>{
+          const count = getParticipantsInGroup(s1Category, v).length;
+          const label = groupLabel(s1Category, v);
+          const safe = String(v).replace(/'/g, "\\'");
+          const time = getBusTime(s1Category, v);
+          const timeLine = time ? `<div class="time">\uD83D\uDD50 ${t('departs')} ${time}</div>` : '';
+          const destLine = (s1Category==='return' && BUS_DEST_RETURN[v]) ? `<div class="time" style="color:var(--navy)">\uD83D\uDCCD ${BUS_DEST_RETURN[v]}</div>` : '';
+          return `<button class="group-card" onclick="s1PickGroup('${safe}')">
+            <div class="name">${label}</div>
+            <div class="count">${count} ${t('people')}</div>
+            ${timeLine}
+            ${destLine}
+          </button>`;
+        }).join('')}
+      </div>`;
+    return;
+  }
+  if(s1Level===3){
+    const value = s1Group;
+    const people = getParticipantsInGroup(s1Category, value);
+    const lead = getLead(s1Category, value);
+    const time = getBusTime(s1Category, value);
+    let header='';
+    if(s1Category==='accommodation'){
+      header = `<div class="detail-header">
+        <div class="label">${t('opt_accom_title')}</div>
+        <div class="lead-name">${groupLabel(s1Category, value)}</div>
+        <div class="subline">${people.length} ${t('people')}</div>
+      </div>`;
+    } else {
+      const timeChip = time ? `<div class="time-chip">\uD83D\uDD50 ${t('departs')} ${time}</div>` : '';
+      const destChip = (s1Category==='return' && BUS_DEST_RETURN[value]) ? `<div class="time-chip" style="background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35);margin-left:6px">\uD83D\uDCCD ${BUS_DEST_RETURN[value]}</div>` : '';
+      header = `<div class="detail-header">
+        <div class="label">${t('lbl_bus_lead')} \u2022 ${value}</div>
+        <div class="lead-name">${lead ? lead.name : value}</div>
+        <div class="lead-phone">${lead && lead.phone ? phEl(lead.phone) : t('unknown_lead')}</div>
+        <div class="subline">${people.length} ${t('people')}</div>
+        ${timeChip}${destChip}
+      </div>`;
+    }
+    let body = '';
+    if(s1Category==='accommodation'){
+      const note = value==='THUNG UI' ? `<div class="note-box">${t('note_thung_ui')}</div>` : '';
+      const byRoom = {};
+      people.forEach(p=>{ const r = p.room || '\u2014'; if(!byRoom[r]) byRoom[r]=[]; byRoom[r].push(p); });
+      const rooms = Object.keys(byRoom).sort((a,b)=>{
+        const na = parseInt(a,10), nb = parseInt(b,10);
+        if(!isNaN(na) && !isNaN(nb)) return na-nb;
+        return String(a).localeCompare(String(b),'vi');
+      });
+      body = note + rooms.map(r=>{
+        const list = byRoom[r].sort((a,b)=>a.name.localeCompare(b.name,'vi'));
+        return `<div class="room-block">
+          <div class="room-title">${t('room')} ${r}</div>
+          <div class="person-list">
+            ${list.map(p=>{
+              const keyBadge = p.keyKeeper ? `<span class="badge-key">${t('key_yes')}</span>` : '';
+              const row2Acc = p.keyKeeper ? `<div class="row2">${keyBadge}</div>` : '';
+              return `<div class="person-card">
+                <div class="pbody">
+                  <div class="row1"><span class="pname">${p.name}</span><span class="pbu">${p.bu||'-'}</span></div>
+                  ${row2Acc}
+                </div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>`;
+      }).join('');
+    } else {
+      const sorted = people.slice().sort((a,b)=>a.name.localeCompare(b.name,'vi'));
+      body = `<div class="person-list">${sorted.map((p,i)=>renderPersonRow(p, s1Category, i+1)).join('')}</div>`;
+    }
+    content.innerHTML = header + body;
+  }
+}
+function s1PickCategory(cat){ s1Category=cat; s1Level=2; s1Group=null; renderSection1(); window.scrollTo({top:0,behavior:'smooth'}); }
+function s1PickGroup(val){ s1Group=val; s1Level=3; renderSection1(); window.scrollTo({top:0,behavior:'smooth'}); }
+function renderPersonRow(p, catKey, idx){
+  const keyBadge = p.keyKeeper ? `<span class="badge-key">${t('key_yes')}</span>` : '';
+  const stt = idx ? `<div class="stt-badge">${idx}</div>` : '';
+  let row2 = '';
+  if(catKey==='departure'){
+    row2 = `<div class="row2">
+      <span>\uD83C\uDFE8 ${p.hotel||'-'} - ${p.room||'-'}</span>
+      ${keyBadge}
+    </div>`;
+  }
+  return `<div class="person-card">
+    ${stt}
+    <div class="pbody">
+      <div class="row1"><span class="pname">${p.name}</span><span class="pbu">${p.bu||'-'}</span></div>
+      ${row2}
+    </div>
+  </div>`;
+}
+const searchInput = document.getElementById('searchInput');
+const suggestionsEl = document.getElementById('suggestions');
+searchInput.addEventListener('input', e=>{
+  const q = e.target.value.trim().toLowerCase();
+  if(!q){ suggestionsEl.classList.remove('show'); return; }
+  const matches = PARTICIPANTS.filter(p=>
+    (p.name||'').toLowerCase().includes(q) ||
+    (p.bu||'').toLowerCase().includes(q) ||
+    (p.company||'').toLowerCase().includes(q)
+  ).slice(0,15);
+  suggestionsEl.innerHTML = matches.length
+    ? matches.map(p=>`<div class="suggestion-item" onclick="pickPerson(${p.stt})">
+        <div class="sname">${p.name}</div>
+        <div class="sbu">${[p.company,p.bu].filter(Boolean).join(' \u2022 ')}</div>
+      </div>`).join('')
+    : `<div class="suggestion-item"><div class="sname">${t('no_result')}</div></div>`;
+  suggestionsEl.classList.add('show');
+});
+document.addEventListener('click', e=>{ if(!e.target.closest('.search-wrap')) suggestionsEl.classList.remove('show'); });
+function pickPerson(stt){
+  const p = PARTICIPANTS.find(x=>x.stt===stt);
+  if(!p) return;
+  currentSelectedPerson = p;
+  searchInput.value = p.name;
+  suggestionsEl.classList.remove('show');
+  showPerson(p);
+}
+function noneSpan(){ return `<span class="v none">${t('none')}</span>`; }
+function valSpan(v){ return v ? `<span class="v">${v}</span>` : noneSpan(); }
+function phoneSpan(v){ return v ? `<span class="v">${phEl(v)}</span>` : noneSpan(); }
+function leadBlock(kind, value){
+  const showTime = (kind==='pickup' || kind==='departure' || kind==='return');
+  const showDest = (kind==='return');
+  if(!value) return `
+    <div class="info-row"><span class="k">${t('lbl_bus_no')}</span>${noneSpan()}</div>
+    <div class="info-row"><span class="k">${t('lbl_bus_lead')}</span>${noneSpan()}</div>
+    <div class="info-row"><span class="k">${t('lbl_phone')}</span>${noneSpan()}</div>
+    ${showTime ? `<div class="info-row"><span class="k">${t('lbl_depart_time')}</span>${noneSpan()}</div>` : ''}
+    ${showDest ? `<div class="info-row"><span class="k">${t('lbl_destination')}</span>${noneSpan()}</div>` : ''}`;
+  const lead = (BUS_LEADS[kind] || {})[value];
+  const time = (BUS_TIMES[kind] || {})[value];
+  const timeRow = showTime
+    ? `<div class="info-row"><span class="k">${t('lbl_depart_time')}</span>${time?`<span class="v">${time}</span>`:noneSpan()}</div>`
+    : '';
+  const dest = (kind==='return' && BUS_DEST_RETURN[value]) ? BUS_DEST_RETURN[value] : null;
+  const destRow = showDest
+    ? `<div class="info-row"><span class="k">${t('lbl_destination')}</span>${dest?`<span class="v">${dest}</span>`:noneSpan()}</div>`
+    : '';
+  return `
+    <div class="info-row"><span class="k">${t('lbl_bus_no')}</span><span class="v">${value}</span></div>
+    <div class="info-row"><span class="k">${t('lbl_bus_lead')}</span>${lead?`<span class="v">${lead.name}</span>`:noneSpan()}</div>
+    <div class="info-row"><span class="k">${t('lbl_phone')}</span>${lead && lead.phone ? phoneSpan(lead.phone) : noneSpan()}</div>
+    ${timeRow}${destRow}`;
+}
+function showPerson(p){
+  const detail = document.getElementById('personDetail');
+  const pic = resolvePic(p.pic);
+  let hrbpCell;
+  if(pic){
+    hrbpCell = `<span class="v">${pic.name}${pic.phone?'<br/>'+phEl(pic.phone):''}</span>`;
+  } else if(p.pic){
+    hrbpCell = `<span class="v">${p.pic}<br/><span class="none">${t('none')}</span></span>`;
+  } else {
+    hrbpCell = noneSpan();
+  }
+  const keyVal = p.keyKeeper
+    ? `<span class="v">${t('val_yes')} \uD83D\uDD11</span>`
+    : `<span class="v">${t('val_no')}</span>`;
+  detail.innerHTML = `<div class="info-grid">
+    <div class="info-block full-span">
+      <h4>${t('block_personal')}</h4>
+      <div class="info-row"><span class="k">${t('lbl_name')}</span><span class="v">${p.name}</span></div>
+      <div class="info-row"><span class="k">${t('lbl_bu')}</span>${valSpan(p.bu)}</div>
+      <div class="info-row"><span class="k">${t('lbl_hrbp')}</span>${hrbpCell}</div>
+    </div>
+    <div class="info-block">
+      <h4>${t('block_accom')}</h4>
+      <div class="info-row"><span class="k">${t('lbl_hotel')}</span>${valSpan(p.hotel?`${p.hotel} - ${p.room||'-'}`:null)}</div>
+      <div class="info-row"><span class="k">${t('lbl_roommate')}</span>${valSpan(p.roommate)}</div>
+      <div class="info-row"><span class="k">${t('lbl_keykeeper')}</span>${keyVal}</div>
+    </div>
+    <div class="info-block"><h4>${t('block_pickup')}</h4>${leadBlock('pickup',p.airportPickup)}</div>
+    <div class="info-block"><h4>${t('block_departure')}</h4>${leadBlock('departure',p.busDeparture)}</div>
+    <div class="info-block"><h4>${t('block_return')}</h4>${leadBlock('return',p.busReturn)}</div>
+  </div>`;
+}
+function renderBTC(){
+  document.getElementById('btcContent').innerHTML = `
+    <div class="btc-group"><h3>${t('btc_core')}</h3><div class="btc-grid">
+      ${BTC_CORE.map(m=>`<div class="btc-card">
+        <div class="role">${m.role}</div>
+        <div class="name">${m.name}</div>
+        <div class="phone">${m.phone?phEl(m.phone):t('none')}</div>
+      </div>`).join('')}
+    </div></div>
+    <div class="btc-group"><h3>${t('btc_hrbp')}</h3><div class="btc-grid">
+      ${BTC_HRBP.map(m=>`<div class="btc-card">
+        <div class="role">HRBP</div>
+        <div class="name">${m.name}</div>
+        <div class="phone">${m.phone?phEl(m.phone):t('none')}</div>
+        <div class="bu">${t('lbl_bu_in_charge')}: ${m.buInCharge||t('none')}</div>
+      </div>`).join('')}
+    </div></div>`;
+}
+applyI18n();
+renderBTC();
+</script>
+</body></html>
