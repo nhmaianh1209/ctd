@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng ký xe về - Coteccons Leadership &amp; AOP Summit 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0B2545;
+    --navy-light: #13315C;
+    --teal: #0D9488;
+    --teal-bright: #14B8A6;
+    --teal-soft: #5EEAD4;
+    --teal-tint: #E6FFFB;
+    --teal-tint-2: #CFFAF4;
+    --bg: #F4F8FA;
+    --text: #1A2A40;
+    --muted: #6B7A90;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(11,37,69,0.08);
+    --shadow-hover: 0 18px 45px rgba(11,37,69,0.18);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 70px 24px 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(20,184,166,0.28) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -100px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(94,234,212,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(20,184,166,0.18);
+    color: var(--teal-soft);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border: 1px solid rgba(20,184,166,0.4);
+    position: relative; z-index: 2;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    position: relative; z-index: 2;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--teal-bright) 0%, var(--teal-soft) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .date {
+    font-size: clamp(18px, 2.5vw, 22px);
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 14px;
+    position: relative; z-index: 2;
+  }
+  .hero .subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.72);
+    max-width: 640px;
+    margin: 0 auto 18px;
+    position: relative; z-index: 2;
+  }
+  .hero .program-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(94,234,212,0.35);
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-size: 13.5px;
+    color: var(--teal-soft);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    position: relative; z-index: 2;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1180px;
+    margin: -50px auto 0;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .section-title h2 {
+    font-size: clamp(26px, 3.5vw, 34px);
+    color: var(--navy);
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+  .section-title .line {
+    width: 60px; height: 4px;
+    background: linear-gradient(90deg, var(--teal) 0%, var(--teal-bright) 100%);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  /* ===== BUS CARDS ===== */
+  .buses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .bus-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 28px 26px;
+    box-shadow: var(--shadow);
+    transition: all 0.35s cubic-bezier(.2,.8,.2,1);
+    border-top: 5px solid var(--teal);
+    position: relative;
+    overflow: hidden;
+  }
+  .bus-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+  }
+  .bus-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .bus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .bus-number {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .bus-icon {
+    font-size: 28px;
+    background: linear-gradient(135deg, var(--teal-tint) 0%, var(--teal-tint-2) 100%);
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 14px;
+  }
+  .bus-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 18px;
+  }
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px dashed #E3E8EF;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    min-width: 110px;
+  }
+  .info-value {
+    flex: 1;
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .time-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  .flight-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--teal-bright) 0%, var(--teal) 100%);
+    color: var(--white);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(13,148,136,0.35);
+  }
+  .meal-badge {
+    display: inline-block;
+    background: var(--teal-tint);
+    color: var(--navy);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid var(--teal-tint-2);
+  }
+  .stops {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .stops li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .stops li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 8px; height: 8px;
+    background: var(--teal-bright);
+    border-radius: 50%;
+  }
+  .stops li:last-child { margin-bottom: 0; }
+  .stops .stop-num {
+    background: var(--navy);
+    color: var(--white);
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-right: 6px;
+    font-weight: 700;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    border-radius: 24px;
+    padding: 50px 30px;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(20,184,166,0.16) 0%, transparent 60%);
+    border-radius: 50%;
+  }
+  .cta-section h2 {
+    font-size: clamp(24px, 3.2vw, 32px);
+    margin-bottom: 12px;
+    position: relative; z-index: 2;
+  }
+  .cta-section p {
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 22px;
+    font-size: 15px;
+    max-width: 560px;
+    margin-left: auto; margin-right: auto;
+    position: relative; z-index: 2;
+  }
+  .deadline-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(94,234,212,0.15);
+    color: var(--teal-soft);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 14.5px;
+    border: 1.5px solid rgba(94,234,212,0.5);
+    margin-bottom: 28px;
+    position: relative; z-index: 2;
+    letter-spacing: 0.3px;
+  }
+  .cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--teal-bright) 0%, var(--teal) 100%);
+    color: var(--white);
+    padding: 18px 48px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 17px;
+    text-decoration: none;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    box-shadow: 0 12px 30px rgba(13,148,136,0.45);
+    transition: all 0.3s ease;
+    position: relative; z-index: 2;
+  }
+  .cta-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 18px 40px rgba(13,148,136,0.6);
+  }
+  .cta-button::after { content: ' →'; }
+
+  /* ===== NOTE ===== */
+  .note-section {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 28px 30px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--teal-bright);
+  }
+  .note-section h3 {
+    color: var(--navy);
+    font-size: 18px;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .note-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  .note-section li {
+    padding: 10px 0;
+    border-bottom: 1px dashed #E3E8EF;
+    font-size: 14.5px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .note-section li:last-child { border-bottom: none; }
+  .note-section li strong { color: var(--navy); }
+  .note-section .pic-pill {
+    display: inline-block;
+    background: var(--teal-tint);
+    color: var(--navy);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 13px;
+    margin-left: 4px;
+    border: 1px solid var(--teal-tint-2);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid #E3E8EF;
+    background: var(--white);
+  }
+  footer strong { color: var(--navy); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 50px 20px 80px; }
+    .note-section { padding: 24px 20px; }
+    .bus-card { padding: 24px 20px; }
+    .info-label { min-width: 95px; font-size: 11px; }
+    .cta-button { padding: 16px 32px; font-size: 15px; }
+    .deadline-badge { font-size: 13px; padding: 9px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <span class="hero-badge">🚌 Thông báo lịch trình</span>
+  <h1>Đăng ký <span class="accent">Xe Về</span></h1>
+  <p class="date">📅 Ngày 20/06/2026</p>
+  <p class="subtitle">Vui lòng chọn chuyến xe phù hợp với điểm đến &amp; giờ bay của bạn, sau đó hoàn tất form đăng ký bên dưới.</p>
+  <span class="program-tag">✨ Coteccons Leadership &amp; AOP Summit 2026</span>
+</section>
+
+<!-- ===== CONTAINER ===== -->
+<div class="container">
+
+  <!-- ===== SECTION TITLE ===== -->
+  <div class="section-title">
+    <h2>Chi tiết các chuyến xe</h2>
+    <div class="line"></div>
+  </div>
+
+  <!-- ===== BUS CARDS ===== -->
+  <div class="buses">
+
+    <!-- XE 1 -->
+    <div class="bus-card">
+      <div class="bus-header">
+        <span class="bus-number">Chuyến số 01</span>
+        <div class="bus-icon">✈️</div>
+      </div>
+      <h3 class="bus-title">Xe 1 – Sân bay Nội Bài</h3>
+      <div class="info-row">
+        <div class="info-label">Khởi hành</div>
+        <div class="info-value"><span class="time-badge">08:00</span></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Điểm đến</div>
+        <div class="info-value">Sân bay Nội Bài</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Giờ bay KN</div>
+        <div class="info-value"><span class="flight-badge">12:30 trở đi</span></div>
+      </div>
+    </div>
+
+    <!-- XE 2 -->
+    <div class="bus-card">
+      <div class="bus-header">
+        <span class="bus-number">Chuyến số 02</span>
+        <div class="bus-icon">🏢</div>
+      </div>
+      <h3 class="bus-title">Xe 2 – Văn phòng Hà Nội</h3>
+      <div class="info-row">
+        <div class="info-label">Khởi hành</div>
+        <div class="info-value"><span class="time-badge">08:00</span></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Điểm đến</div>
+        <div class="info-value">Văn phòng Hà Nội</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Ghi chú</div>
+        <div class="info-value" style="color: var(--muted); font-weight: 500;">Dành cho CBNV về thẳng VPHN</div>
+      </div>
+    </div>
+
+    <!-- XE 3 -->
+    <div class="bus-card">
+      <div class="bus-header">
+        <span class="bus-number">Chuyến số 03</span>
+        <div class="bus-icon">🚐</div>
+      </div>
+      <h3 class="bus-title">Xe 3 – Lộ trình 2 điểm trả</h3>
+      <div class="info-row">
+        <div class="info-label">Khởi hành</div>
+        <div class="info-value"><span class="time-badge">10:00</span></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Lộ trình</div>
+        <div class="info-value">
+          <ul class="stops">
+            <li><span class="stop-num">1</span>Hà Nội (VPHN / Go Thăng Long)</li>
+            <li><span class="stop-num">2</span>Sân bay Nội Bài</li>
+          </ul>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Giờ bay KN</div>
+        <div class="info-value"><span class="flight-badge">15:00 trở đi</span></div>
+      </div>
+    </div>
+
+    <!-- XE 4 -->
+    <div class="bus-card">
+      <div class="bus-header">
+        <span class="bus-number">Chuyến số 04</span>
+        <div class="bus-icon">✈️</div>
+      </div>
+      <h3 class="bus-title">Xe 4 – Sân bay Nội Bài</h3>
+      <div class="info-row">
+        <div class="info-label">Khởi hành</div>
+        <div class="info-value"><span class="time-badge">13:00</span></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Điểm đến</div>
+        <div class="info-value">Sân bay Nội Bài</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Giờ bay KN</div>
+        <div class="info-value"><span class="flight-badge">17:30 trở đi</span></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Bữa trưa</div>
+        <div class="info-value"><span class="meal-badge">🍽️ Ăn trưa tại NH Cát Tường</span></div>
+      </div>
+    </div>
+
+    <!-- XE 5 -->
+    <div class="bus-card">
+      <div class="bus-header">
+        <span class="bus-number">Chuyến số 05</span>
+        <div class="bus-icon">🏢</div>
+      </div>
+      <h3 class="bus-title">Xe 5 – Văn phòng Hà Nội</h3>
+      <div class="info-row">
+        <div class="info-label">Khởi hành</div>
+        <div class="info-value"><span class="time-badge">13:00</span></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Điểm đến</div>
+        <div class="info-value">Văn phòng Hà Nội</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Bữa trưa</div>
+        <div class="info-value"><span class="meal-badge">🍽️ Ăn trưa tại NH Cát Tường</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <h2>Sẵn sàng đăng ký?</h2>
+    <p>Hãy chọn chuyến xe phù hợp và hoàn tất form đăng ký để Ban Tổ chức sắp xếp chỗ ngồi tốt nhất cho bạn.</p>
+    <div><span class="deadline-badge">⏰ Hạn chót đăng ký: 13:00 ngày 19/06/2026</span></div>
+    <a href="https://forms.office.com/r/qxSxMky9M8" target="_blank" rel="noopener" class="cta-button">Đăng ký xe ngay</a>
+  </div>
+
+  <!-- ===== NOTE ===== -->
+  <div class="note-section">
+    <h3>📌 Lưu ý quan trọng</h3>
+    <ul>
+      <li>✅ <span><strong>Vui lòng có mặt trước giờ khởi hành 10 phút</strong> để xe xuất phát đúng giờ.</span></li>
+      <li>🛫 <span><strong>Giờ bay khuyến nghị</strong> đã tính dự phòng thời gian di chuyển + check-in. Vui lòng đối chiếu vé bay của bạn để chọn xe phù hợp.</span></li>
+      <li>📞 <span><strong>PIC hỗ trợ đổi vé máy bay:</strong> <span class="pic-pill">Mai Thi – P. Hành Chính</span></span></li>
+      <li>📝 <span>Mọi thay đổi sau khi đăng ký vui lòng liên hệ trực tiếp PIC để được hỗ trợ kịp thời.</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  © 2026 <strong>Coteccons Academy</strong> · Coteccons Leadership &amp; AOP Summit 2026 · Lịch trình xe về 20/06/2026
+</footer>
+
+</body>
+</html>
