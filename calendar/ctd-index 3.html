@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Lịch đào tạo · Coteccons Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A2540; --navy-2:#143A5C;
+    --teal:#14B8A6; --teal-dark:#0F8C7E; --teal-light:#CCFBF1;
+    --gray-50:#F8FAFC; --gray-100:#F1F5F9; --gray-200:#E2E8F0;
+    --gray-300:#CBD5E1; --gray-500:#64748B; --gray-700:#334155;
+    --cat-tech-bg:#DBEAFE; --cat-tech-text:#1E40AF; --cat-tech-dot:#3B82F6;
+    --cat-mand-bg:#FED7AA; --cat-mand-text:#9A3412; --cat-mand-dot:#EA580C;
+    --cat-lang-bg:#D1FAE5; --cat-lang-text:#065F46; --cat-lang-dot:#10B981;
+    --cat-soft-bg:#CFFAFE; --cat-soft-text:#155E75; --cat-soft-dot:#06B6D4;
+    --shadow-sm:0 1px 2px rgba(10,37,64,.06);
+    --shadow:0 4px 16px rgba(10,37,64,.08);
+    --shadow-lg:0 12px 32px rgba(10,37,64,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{font-family:'Lexend Deca',system-ui,sans-serif;color:var(--navy);background:var(--gray-50);min-height:100vh;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  a{color:var(--teal-dark);}
+
+  header.hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);
+    color:#fff;padding:40px 24px 32px;text-align:center;
+  }
+  header.hero .badge{
+    display:inline-block;background:rgba(20,184,166,.2);color:var(--teal-light);
+    padding:5px 14px;border-radius:20px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:12px;
+  }
+  header.hero h1{font-size:28px;font-weight:600;margin-bottom:6px;}
+  header.hero p{color:var(--gray-300);font-size:14px;font-weight:300;}
+
+  main{max-width:1280px;margin:-20px auto 40px;padding:0 24px;}
+  .panel{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:22px;margin-bottom:24px;}
+  .panel h2.section-title{font-size:18px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+  .panel h2.section-title::before{content:"";width:4px;height:18px;background:var(--teal);border-radius:2px;}
+
+  .toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:18px;}
+  .month-nav{display:flex;align-items:center;gap:12px;}
+  .month-nav h2{font-size:20px;font-weight:600;min-width:170px;text-align:center;}
+  .nav-btn{background:var(--gray-100);width:36px;height:36px;border-radius:8px;font-size:16px;color:var(--navy);transition:.2s;}
+  .nav-btn:hover{background:var(--gray-200);}
+
+  .calendar{border-radius:12px;overflow:hidden;border:1px solid var(--gray-200);}
+  .cal-head,.cal-body{display:grid;grid-template-columns:repeat(7,1fr);}
+  .cal-head>div{padding:11px 8px;text-align:center;font-size:12px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:.5px;background:var(--gray-50);border-bottom:1px solid var(--gray-200);}
+  .cal-head>div.weekend{color:var(--teal);}
+  .day{
+    min-height:108px;padding:8px;border-right:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);
+    cursor:pointer;transition:.15s;position:relative;display:flex;flex-direction:column;gap:4px;
+  }
+  .day:hover{background:var(--gray-50);}
+  .day:nth-child(7n){border-right:none;}
+  .day.other-month{background:#FAFBFC;cursor:default;}
+  .day.other-month:hover{background:#FAFBFC;}
+  .day.empty-day{cursor:default;}
+  .day.today .daynum{background:var(--teal);color:#fff;}
+  .daynum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-size:13px;font-weight:500;}
+  .day.weekend .daynum{color:var(--teal);}
+  .day.other-month .daynum{color:var(--gray-300);}
+
+  .pill{font-size:11px;padding:3px 8px;border-radius:6px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px;}
+  .pill::before{content:"";width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+  .pill.cat-technical{background:var(--cat-tech-bg);color:var(--cat-tech-text);}
+  .pill.cat-technical::before{background:var(--cat-tech-dot);}
+  .pill.cat-mandatory{background:var(--cat-mand-bg);color:var(--cat-mand-text);}
+  .pill.cat-mandatory::before{background:var(--cat-mand-dot);}
+  .pill.cat-language{background:var(--cat-lang-bg);color:var(--cat-lang-text);}
+  .pill.cat-language::before{background:var(--cat-lang-dot);}
+  .pill.cat-soft-skills{background:var(--cat-soft-bg);color:var(--cat-soft-text);}
+  .pill.cat-soft-skills::before{background:var(--cat-soft-dot);}
+  .more-tag{font-size:10px;color:var(--gray-500);padding:0 4px;}
+
+  .legend-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center;}
+  .legend-row .lbl{font-size:12px;color:var(--gray-500);font-weight:500;margin-right:4px;}
+  .legend-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:7px;font-size:12px;font-weight:500;}
+  .legend-chip.cat-technical{background:var(--cat-tech-bg);color:var(--cat-tech-text);}
+  .legend-chip.cat-mandatory{background:var(--cat-mand-bg);color:var(--cat-mand-text);}
+  .legend-chip.cat-language{background:var(--cat-lang-bg);color:var(--cat-lang-text);}
+  .legend-chip.cat-soft-skills{background:var(--cat-soft-bg);color:var(--cat-soft-text);}
+
+  .card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .course-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--gray-200);display:flex;flex-direction:column;transition:.2s;cursor:pointer;}
+  .course-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+  .card-header{padding:8px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;}
+  .card-header.cat-technical{background:var(--cat-tech-dot);}
+  .card-header.cat-mandatory{background:var(--cat-mand-dot);}
+  .card-header.cat-language{background:var(--cat-lang-dot);}
+  .card-header.cat-soft-skills{background:var(--cat-soft-dot);}
+  .card-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-name{font-size:14px;font-weight:600;color:var(--navy);line-height:1.35;margin-bottom:4px;}
+  .card-info{font-size:12px;color:var(--gray-700);display:flex;align-items:flex-start;gap:6px;line-height:1.45;}
+  .card-info .ic{flex-shrink:0;width:14px;text-align:center;color:var(--gray-500);}
+  .card-info a{word-break:break-all;color:var(--teal-dark);text-decoration:none;}
+  .card-info a:hover{text-decoration:underline;}
+  .empty-cards{grid-column:1/-1;text-align:center;padding:30px;color:var(--gray-500);font-size:13px;}
+
+  .modal-backdrop{position:fixed;inset:0;background:rgba(10,37,64,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;}
+  .modal-backdrop.show{display:flex;}
+  .modal{background:#fff;border-radius:16px;width:100%;max-width:620px;box-shadow:var(--shadow-lg);margin:auto;animation:slideIn .25s ease;}
+  @keyframes slideIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+  .modal-head{padding:20px 24px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;gap:12px;}
+  .modal-head h3{font-size:17px;font-weight:600;flex:1;}
+  .modal-close{background:transparent;font-size:24px;color:var(--gray-500);width:32px;height:32px;border-radius:8px;transition:.2s;flex-shrink:0;}
+  .modal-close:hover{background:var(--gray-100);}
+  .modal-body{padding:24px;max-height:calc(100vh - 200px);overflow-y:auto;}
+  .modal-course-item{padding:14px;border:1px solid var(--gray-200);border-radius:10px;margin-bottom:10px;cursor:pointer;transition:.15s;}
+  .modal-course-item:hover{border-color:var(--teal);background:var(--gray-50);}
+  .modal-course-item .name{font-weight:600;font-size:14px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .modal-course-item .meta{font-size:12px;color:var(--gray-500);}
+  .badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;}
+  .badge.cat-technical{background:var(--cat-tech-bg);color:var(--cat-tech-text);}
+  .badge.cat-mandatory{background:var(--cat-mand-bg);color:var(--cat-mand-text);}
+  .badge.cat-language{background:var(--cat-lang-bg);color:var(--cat-lang-text);}
+  .badge.cat-soft-skills{background:var(--cat-soft-bg);color:var(--cat-soft-text);}
+
+  .detail-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-100);font-size:13px;}
+  .detail-row:last-child{border-bottom:none;}
+  .detail-row .lbl{min-width:130px;color:var(--gray-500);font-weight:500;flex-shrink:0;}
+  .detail-row .val{flex:1;color:var(--gray-700);}
+  .detail-row .val a{word-break:break-all;}
+  .format-chip{display:inline-block;background:var(--teal-light);color:var(--teal-dark);padding:3px 10px;border-radius:6px;font-size:11px;font-weight:500;margin:2px 4px 2px 0;}
+
+  footer{text-align:center;padding:20px;color:var(--gray-500);font-size:12px;}
+
+  .empty{text-align:center;padding:36px 20px;color:var(--gray-500);font-size:13px;}
+  .spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--gray-200);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  @media (max-width:1024px){
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:640px){
+    header.hero{padding:28px 16px 24px;}
+    header.hero h1{font-size:22px;}
+    main{padding:0 14px;margin-top:-16px;}
+    .panel{padding:14px;}
+    .day{min-height:74px;padding:5px;}
+    .daynum{width:22px;height:22px;font-size:12px;}
+    .pill{font-size:10px;padding:2px 6px;}
+    .month-nav h2{font-size:17px;min-width:130px;}
+    .cal-head>div{font-size:10px;padding:8px 4px;}
+    .card-grid{grid-template-columns:1fr;}
+    .detail-row{flex-direction:column;gap:2px;}
+    .detail-row .lbl{min-width:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="badge">Coteccons Academy · L&amp;OD</div>
+  <h1>Lịch đào tạo</h1>
+  <p>Kế hoạch các khoá học sắp diễn ra · Bấm vào ngày để xem chi tiết</p>
+</header>
+
+<main>
+  <div class="panel">
+    <div class="toolbar">
+      <div class="month-nav">
+        <button class="nav-btn" id="prevMonth">‹</button>
+        <h2 id="monthLabel">—</h2>
+        <button class="nav-btn" id="nextMonth">›</button>
+      </div>
+    </div>
+    <div class="calendar">
+      <div class="cal-head">
+        <div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div>
+        <div class="weekend">T7</div><div class="weekend">CN</div>
+      </div>
+      <div class="cal-body" id="calBody"></div>
+    </div>
+    <div class="legend-row">
+      <span class="lbl">Ghi chú:</span>
+      <span class="legend-chip cat-mandatory">Mandatory</span>
+      <span class="legend-chip cat-technical">Technical</span>
+      <span class="legend-chip cat-language">Language</span>
+      <span class="legend-chip cat-soft-skills">Soft-skills</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2 class="section-title">Các khoá học trong tháng</h2>
+    <div class="card-grid" id="cardGrid">
+      <div class="empty-cards"><span class="spinner"></span></div>
+    </div>
+  </div>
+</main>
+
+<footer>Cập nhật bởi Phòng L&amp;OD · Coteccons Academy</footer>
+
+<div class="modal-backdrop" id="dayModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="dayModalTitle">—</h3>
+      <button class="modal-close" data-close>×</button>
+    </div>
+    <div class="modal-body" id="dayModalBody"></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="detailModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="detailTitle">—</h3>
+      <button class="modal-close" data-close>×</button>
+    </div>
+    <div class="modal-body" id="detailBody"></div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+/* =============================================================
+   BACKEND ADAPTER LAYER
+   If migrating away from Firebase, ONLY EDIT functions inside
+   this block. All other code calls these api_* functions.
+   ============================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyCl0izQatfWqRqQ4PjeJv242Q2obuaSyXw",
+  authDomain: "ctd-training-calendar.firebaseapp.com",
+  projectId: "ctd-training-calendar",
+  storageBucket: "ctd-training-calendar.firebasestorage.app",
+  messagingSenderId: "12986365110",
+  appId: "1:12986365110:web:61083721f3c60525b7a217"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function api_loadPublicCoursesByMonth(yearMonth){
+  const q = query(collection(db,'courses'),
+    where('months','array-contains', yearMonth),
+    where('visibility','==','public'));
+  const snap = await getDocs(q);
+  return snap.docs.map(d=>({id:d.id,...d.data()}));
+}
+/* ===== END BACKEND ADAPTER LAYER ===== */
+
+const today = new Date();
+let currentYear = today.getFullYear();
+let currentMonth = today.getMonth();
+let monthCourses = [];
+const MONTHS_VI = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+const CAT_LABEL = {technical:'Technical', mandatory:'Mandatory', language:'Language', 'soft-skills':'Soft-skills'};
+const CAT_ORDER = {mandatory:1, technical:2, language:3, 'soft-skills':4};
+
+function pad2(n){ return String(n).padStart(2,'0'); }
+function toISO(y,m,d){ return `${y}-${pad2(m+1)}-${pad2(d)}`; }
+function toYM(y,m){ return `${y}-${pad2(m+1)}`; }
+function parseISO(s){ const [y,m,d]=s.split('-').map(Number); return {y,m:m-1,d}; }
+function esc(s){
+  return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* NEW v3.1 format: every date as dd/mm, year suffix only on the LAST one
+   ["2026-06-30","2026-07-01","2026-08-01"] => "30/06, 01/07, 01/08/2026" */
+function formatDatesGrouped(dates){
+  if(!dates || dates.length===0) return '—';
+  const sorted = dates.slice().sort();
+  const parts = sorted.map((iso,i)=>{
+    const {y,m,d} = parseISO(iso);
+    const dd = pad2(d), mm = pad2(m+1);
+    const isLast = (i===sorted.length-1);
+    return isLast ? `${dd}/${mm}/${y}` : `${dd}/${mm}`;
+  });
+  return parts.join(', ');
+}
+
+document.getElementById('prevMonth').addEventListener('click', ()=>{
+  currentMonth--; if(currentMonth<0){currentMonth=11;currentYear--;}
+  renderMonth();
+});
+document.getElementById('nextMonth').addEventListener('click', ()=>{
+  currentMonth++; if(currentMonth>11){currentMonth=0;currentYear++;}
+  renderMonth();
+});
+
+async function renderMonth(){
+  document.getElementById('monthLabel').textContent = `${MONTHS_VI[currentMonth]} ${currentYear}`;
+  document.getElementById('calBody').innerHTML = '<div class="empty" style="grid-column:1/-1;"><span class="spinner"></span></div>';
+  document.getElementById('cardGrid').innerHTML = '<div class="empty-cards"><span class="spinner"></span></div>';
+  try{
+    monthCourses = await api_loadPublicCoursesByMonth(toYM(currentYear,currentMonth));
+    drawCalendar();
+    drawCards();
+  }catch(e){
+    console.error(e);
+    document.getElementById('calBody').innerHTML = '<div class="empty" style="grid-column:1/-1;">Lỗi tải dữ liệu. Vui lòng thử lại.</div>';
+    document.getElementById('cardGrid').innerHTML = '<div class="empty-cards">Lỗi tải dữ liệu.</div>';
+  }
+}
+
+function drawCalendar(){
+  const firstDay = new Date(currentYear,currentMonth,1);
+  let offset = (firstDay.getDay()+6)%7;
+  const daysInMonth = new Date(currentYear,currentMonth+1,0).getDate();
+  const prevDaysInMonth = new Date(currentYear,currentMonth,0).getDate();
+
+  const byDay = {};
+  monthCourses.forEach(c=>{
+    (c.dates||[]).forEach(iso=>{
+      const {y,m,d} = parseISO(iso);
+      if(y===currentYear && m===currentMonth){
+        (byDay[d] = byDay[d]||[]).push(c);
+      }
+    });
+  });
+
+  let html = '';
+  const totalCells = Math.ceil((offset+daysInMonth)/7)*7;
+  for(let i=0;i<totalCells;i++){
+    const dayCol = i%7;
+    const isWeekend = dayCol>=5;
+    let cls = 'day';
+    if(isWeekend) cls += ' weekend';
+    let dayNum, isOther=false;
+    if(i<offset){ dayNum = prevDaysInMonth - offset + 1 + i; cls+=' other-month'; isOther=true; }
+    else if(i>=offset+daysInMonth){ dayNum = i - offset - daysInMonth + 1; cls+=' other-month'; isOther=true; }
+    else{
+      dayNum = i - offset + 1;
+      const isToday = (dayNum===today.getDate() && currentMonth===today.getMonth() && currentYear===today.getFullYear());
+      if(isToday) cls+=' today';
+    }
+    let inner = `<span class="daynum">${dayNum}</span>`;
+    let list = [];
+    if(!isOther){
+      list = byDay[dayNum]||[];
+      const show = list.slice(0,3);
+      show.forEach(c=>{
+        const label = c.short_name || c.name;
+        const catCls = `cat-${c.category||'technical'}`;
+        inner += `<div class="pill ${catCls}" title="${esc(c.name)}">${esc(label)}</div>`;
+      });
+      if(list.length>3) inner += `<div class="more-tag">+${list.length-3} khác</div>`;
+      if(list.length===0) cls += ' empty-day';
+    }
+    const dataAttr = (!isOther && list.length>0) ? `data-day="${dayNum}"` : '';
+    html += `<div class="${cls}" ${dataAttr}>${inner}</div>`;
+  }
+  document.getElementById('calBody').innerHTML = html;
+  document.querySelectorAll('.day[data-day]').forEach(el=>{
+    el.addEventListener('click', ()=>openDayModal(parseInt(el.dataset.day)));
+  });
+}
+
+function drawCards(){
+  if(monthCourses.length===0){
+    document.getElementById('cardGrid').innerHTML = '<div class="empty-cards">Chưa có khoá học công khai nào trong tháng này.</div>';
+    return;
+  }
+  const sorted = [...monthCourses].sort((a,b)=>{
+    const ca = CAT_ORDER[a.category]||99;
+    const cb = CAT_ORDER[b.category]||99;
+    if(ca!==cb) return ca-cb;
+    const da = (a.dates||['9999'])[0];
+    const db_ = (b.dates||['9999'])[0];
+    return da<db_?-1:da>db_?1:0;
+  });
+  document.getElementById('cardGrid').innerHTML = sorted.map(c=>renderCard(c)).join('');
+  document.querySelectorAll('.course-card[data-id]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const c = monthCourses.find(x=>x.id===el.dataset.id);
+      if(c) openDetail(c);
+    });
+  });
+}
+
+/* v3.1: removed trainer line from card */
+function renderCard(c){
+  const cat = c.category||'technical';
+  const formats = (c.formats||[]).join(' · ');
+  const regHTML = registrationHTML(c, true);
+  return `
+    <div class="course-card" data-id="${c.id}">
+      <div class="card-header cat-${cat}">${CAT_LABEL[cat]||cat}</div>
+      <div class="card-body">
+        <div class="card-name">${esc(c.name)}</div>
+        <div class="card-info"><span class="ic">\uD83D\uDCCD</span><span>${esc(formats)}</span></div>
+        <div class="card-info"><span class="ic">\uD83D\uDC65</span><span>${esc(c.target||'')}</span></div>
+        <div class="card-info"><span class="ic">⏱️</span><span>${c.duration_hours||0} giờ</span></div>
+        <div class="card-info"><span class="ic">\uD83D\uDCC5</span><span>${formatDatesGrouped(c.dates)}</span></div>
+        <div class="card-info"><span class="ic">\uD83D\uDD17</span><span>${regHTML}</span></div>
+      </div>
+    </div>`;
+}
+
+function registrationHTML(c, short=false){
+  switch(c.registration_type){
+    case 'link':
+      if(c.registration_link){
+        return short
+          ? `<a href="${esc(c.registration_link)}" target="_blank">Đăng ký tại link</a>`
+          : `<a href="${esc(c.registration_link)}" target="_blank">${esc(c.registration_link)}</a>`;
+      }
+      return 'Đăng ký tại link (đang cập nhật)';
+    case 'email': return 'Email đăng ký được gửi cho đối tượng tham gia';
+    case 'assigned': return 'Theo danh sách được chỉ định';
+    case 'other': return esc(c.registration_other||'Khác');
+    default: return '—';
+  }
+}
+
+function openDayModal(day){
+  const ymd = toISO(currentYear,currentMonth,day);
+  const list = monthCourses.filter(c=>(c.dates||[]).includes(ymd));
+  list.sort((a,b)=>(CAT_ORDER[a.category]||99)-(CAT_ORDER[b.category]||99));
+  document.getElementById('dayModalTitle').textContent =
+    `Ngày ${day} · ${MONTHS_VI[currentMonth]} ${currentYear} — ${list.length} khoá học`;
+  const body = document.getElementById('dayModalBody');
+  if(list.length===0){
+    body.innerHTML = '<div class="empty">Không có khoá học nào trong ngày này.</div>';
+  }else{
+    body.innerHTML = list.map(c=>`
+      <div class="modal-course-item" data-id="${c.id}">
+        <div class="name">${esc(c.name)} <span class="badge cat-${c.category||'technical'}">${CAT_LABEL[c.category]||''}</span></div>
+        <div class="meta">${(c.formats||[]).map(esc).join(' · ')} &nbsp;·&nbsp; ${c.duration_hours||0} giờ</div>
+      </div>
+    `).join('');
+    body.querySelectorAll('.modal-course-item').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const c = list.find(x=>x.id===el.dataset.id);
+        openDetail(c);
+      });
+    });
+  }
+  document.getElementById('dayModal').classList.add('show');
+}
+
+/* Detail modal STILL shows trainer */
+function openDetail(c){
+  const formats = (c.formats||[]).map(f=>`<span class="format-chip">${esc(f)}</span>`).join('');
+  const trainer = c.trainer_type==='internal'
+    ? `Nội bộ${c.trainer_name?': '+esc(c.trainer_name):''}`
+    : (c.trainer_type==='external' ? `Bên ngoài${c.trainer_name?': '+esc(c.trainer_name):''}` : '—');
+
+  let html = `
+    <div class="detail-row"><div class="lbl">Phân loại</div><div class="val"><span class="badge cat-${c.category||'technical'}">${CAT_LABEL[c.category]||''}</span></div></div>
+    <div class="detail-row"><div class="lbl">Hình thức</div><div class="val">${formats}</div></div>
+    <div class="detail-row"><div class="lbl">Đối tượng</div><div class="val">${esc(c.target||'')}</div></div>
+    <div class="detail-row"><div class="lbl">Giảng viên</div><div class="val">${trainer}</div></div>
+    <div class="detail-row"><div class="lbl">Thời lượng</div><div class="val">${c.duration_hours||0} giờ</div></div>
+    <div class="detail-row"><div class="lbl">Ngày diễn ra</div><div class="val">${formatDatesGrouped(c.dates)}</div></div>
+    <div class="detail-row"><div class="lbl">Cách đăng ký</div><div class="val">${registrationHTML(c,false)}</div></div>
+  `;
+  if(c.requirements){
+    html += `<div class="detail-row"><div class="lbl">Điều kiện</div><div class="val">${esc(c.requirements)}</div></div>`;
+  }
+  document.getElementById('detailTitle').textContent = c.name;
+  document.getElementById('detailBody').innerHTML = html;
+  document.getElementById('detailModal').classList.add('show');
+}
+
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click', closeAllModals));
+document.querySelectorAll('.modal-backdrop').forEach(bd=>{
+  bd.addEventListener('click', e=>{ if(e.target===bd) closeAllModals(); });
+});
+function closeAllModals(){
+  document.querySelectorAll('.modal-backdrop').forEach(m=>m.classList.remove('show'));
+}
+
+renderMonth();
+</script>
+</body>
+</html>
