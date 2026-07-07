@@ -10,8 +10,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   :root{
-    --navy:#0A2540; --navy-2:#143A5C;
-    --teal:#14B8A6; --teal-dark:#0F8C7E; --teal-light:#CCFBF1;
+    --navy:#121f47; --navy-2:#1b51a4;
+    --teal:#00b0ac; --teal-dark:#008f8c; --teal-light:#e0f7f6;
     --gray-50:#F8FAFC; --gray-100:#F1F5F9; --gray-200:#E2E8F0;
     --gray-300:#CBD5E1; --gray-400:#94A3B8; --gray-500:#64748B; --gray-700:#334155;
     --red:#DC2626; --green:#16A34A;
@@ -19,9 +19,9 @@
     --cat-mand-bg:#FED7AA; --cat-mand-text:#9A3412; --cat-mand-dot:#EA580C;
     --cat-lang-bg:#D1FAE5; --cat-lang-text:#065F46; --cat-lang-dot:#10B981;
     --cat-soft-bg:#CFFAFE; --cat-soft-text:#155E75; --cat-soft-dot:#06B6D4;
-    --shadow-sm:0 1px 2px rgba(10,37,64,.06);
-    --shadow:0 4px 16px rgba(10,37,64,.08);
-    --shadow-lg:0 12px 32px rgba(10,37,64,.16);
+    --shadow-sm:0 1px 2px rgba(18,31,71,.06);
+    --shadow:0 4px 16px rgba(18,31,71,.08);
+    --shadow-lg:0 12px 32px rgba(18,31,71,.16);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{font-family:'Lexend Deca',system-ui,sans-serif;color:var(--navy);background:var(--gray-50);}
@@ -29,7 +29,8 @@
   input,select,textarea{font-family:inherit;font-size:14px;}
   header.topbar{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow);position:sticky;top:0;z-index:50;}
   .brand{display:flex;align-items:center;gap:12px;font-weight:600;}
-  .brand .logo{width:32px;height:32px;border-radius:8px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:700;}
+  .brand .logo{width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .brand .logo svg{width:100%;height:100%;display:block;}
   .brand .sub{font-size:11px;color:var(--gray-300);font-weight:300;letter-spacing:1px;text-transform:uppercase;}
   .user-info{display:flex;align-items:center;gap:12px;font-size:13px;}
   .user-info .email{color:var(--gray-300);}
@@ -41,7 +42,7 @@
   .login-card .lead{color:var(--gray-500);font-size:14px;margin-bottom:28px;}
   .login-card label{display:block;font-size:12px;font-weight:500;color:var(--gray-700);margin-bottom:6px;}
   .login-card input{width:100%;padding:12px 14px;border:1px solid var(--gray-200);border-radius:8px;margin-bottom:16px;transition:.2s;}
-  .login-card input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(20,184,166,.15);}
+  .login-card input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,176,172,.15);}
   .btn-primary{background:var(--teal);color:#fff;padding:12px 20px;border-radius:8px;font-weight:500;font-size:14px;width:100%;transition:.2s;}
   .btn-primary:hover{background:var(--teal-dark);}
   .btn-primary:disabled{background:var(--gray-300);cursor:not-allowed;}
@@ -89,7 +90,7 @@
   .pill.cat-soft-skills::before{background:var(--cat-soft-dot);}
   .lock{margin-left:auto;font-size:9px;opacity:.7;}
   .more-tag{font-size:10px;color:var(--gray-500);padding:0 4px;}
-  .modal-backdrop{position:fixed;inset:0;background:rgba(10,37,64,.5);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(18,31,71,.5);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;}
   .modal-backdrop.show{display:flex;}
   .modal{background:#fff;border-radius:16px;width:100%;max-width:720px;box-shadow:var(--shadow-lg);margin:auto;animation:slideIn .25s ease;}
   .modal.sm{max-width:440px;}
@@ -114,7 +115,7 @@
   .form-group input[type=url],
   .form-group input[type=month],
   .form-group textarea{width:100%;padding:10px 12px;border:1px solid var(--gray-200);border-radius:8px;transition:.2s;}
-  .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(20,184,166,.12);}
+  .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,176,172,.12);}
   .checkbox-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
   .check-item,.radio-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--gray-200);border-radius:8px;cursor:pointer;transition:.15s;font-size:13px;}
   .check-item:hover,.radio-item:hover{background:var(--gray-50);}
@@ -207,7 +208,10 @@
 <div id="loginScreen" class="login-wrap">
   <div class="login-card">
     <div class="brand" style="margin-bottom:20px;">
-      <div class="logo" style="background:var(--navy);color:#fff;">C</div>
+      <div class="logo"><svg viewBox="76.21 13.98 432.77 306.53" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="nonzero" fill="#00b0ac" d="M 302.625 255.050781 C 258.863281 255.050781 223.386719 219.015625 223.386719 174.566406 C 223.386719 130.113281 258.863281 94.078125 302.625 94.078125 C 320.792969 94.078125 337.527344 100.292969 350.894531 110.738281 L 381.699219 69.683594 C 359.882812 52.671875 332.582031 42.554688 302.953125 42.554688 C 233.160156 42.554688 176.277344 98.65625 173.609375 168.882812 C 115.960938 223.339844 84.214844 277.796875 107.464844 300.738281 C 119.398438 312.511719 167.664062 305.378906 205.632812 289.164062 C 207.75 288.257812 206.433594 285.394531 204.160156 285.726562 C 173.078125 290.28125 146.371094 286.996094 137.535156 275.132812 C 124.527344 257.675781 139.328125 221.578125 173.640625 180.003906 C 176.710938 249.851562 233.425781 305.523438 302.953125 305.523438 C 332.582031 305.523438 359.878906 295.40625 381.695312 278.394531 L 351.296875 238.078125 C 337.867188 248.714844 320.976562 255.050781 302.625 255.050781 "/>
+        <path fill-rule="nonzero" fill="#00b0ac" d="M 338.082031 217.101562 C 336.75 217.988281 335.351562 216.109375 336.554688 215.050781 C 387.71875 169.902344 452.15625 113.992188 442.734375 70.914062 C 437.523438 47.089844 398.675781 45.324219 378.042969 49.527344 C 374.636719 50.222656 374.554688 47.710938 377.707031 46.242188 C 413.632812 29.496094 469 21.984375 480.898438 41.554688 C 500.980469 74.59375 424.230469 159.546875 338.082031 217.101562 "/>
+      </svg></div>
       <div>
         <div style="font-size:14px;font-weight:600;">Coteccons Academy</div>
         <div class="sub" style="color:var(--gray-500);">Admin · Training Calendar</div>
@@ -227,7 +231,10 @@
 </div>
 <header class="topbar" id="topbar" style="display:none;">
   <div class="brand">
-    <div class="logo">C</div>
+    <div class="logo"><svg viewBox="76.21 13.98 432.77 306.53" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="nonzero" fill="#FFFFFF" d="M 302.625 255.050781 C 258.863281 255.050781 223.386719 219.015625 223.386719 174.566406 C 223.386719 130.113281 258.863281 94.078125 302.625 94.078125 C 320.792969 94.078125 337.527344 100.292969 350.894531 110.738281 L 381.699219 69.683594 C 359.882812 52.671875 332.582031 42.554688 302.953125 42.554688 C 233.160156 42.554688 176.277344 98.65625 173.609375 168.882812 C 115.960938 223.339844 84.214844 277.796875 107.464844 300.738281 C 119.398438 312.511719 167.664062 305.378906 205.632812 289.164062 C 207.75 288.257812 206.433594 285.394531 204.160156 285.726562 C 173.078125 290.28125 146.371094 286.996094 137.535156 275.132812 C 124.527344 257.675781 139.328125 221.578125 173.640625 180.003906 C 176.710938 249.851562 233.425781 305.523438 302.953125 305.523438 C 332.582031 305.523438 359.878906 295.40625 381.695312 278.394531 L 351.296875 238.078125 C 337.867188 248.714844 320.976562 255.050781 302.625 255.050781 "/>
+      <path fill-rule="nonzero" fill="#FFFFFF" d="M 338.082031 217.101562 C 336.75 217.988281 335.351562 216.109375 336.554688 215.050781 C 387.71875 169.902344 452.15625 113.992188 442.734375 70.914062 C 437.523438 47.089844 398.675781 45.324219 378.042969 49.527344 C 374.636719 50.222656 374.554688 47.710938 377.707031 46.242188 C 413.632812 29.496094 469 21.984375 480.898438 41.554688 C 500.980469 74.59375 424.230469 159.546875 338.082031 217.101562 "/>
+    </svg></div>
     <div>
       <div>Coteccons Academy</div>
       <div class="sub">Admin · Training Calendar</div>
@@ -351,6 +358,15 @@
           <div class="def-card">
             <div class="card-label">🔒 Nội bộ</div>
             <div class="card-text">Khoá học chỉ hiển thị trên trang admin của phòng L&amp;OD, ẩn khỏi trang user — dùng cho các khoá nhạy cảm, đang lên kế hoạch, hoặc dành cho đối tượng hạn chế.</div>
+          </div>
+        </div>
+      </div>
+      <div class="def-section">
+        <h3>6. Người phụ trách (PIC)</h3>
+        <div class="def-cards-grid">
+          <div class="def-card" style="grid-column:1/-1;">
+            <div class="card-label">Danh sách thành viên L&amp;OD</div>
+            <div class="card-text">Chọn 1 người phụ trách chính cho mỗi khoá học: Mai Anh, Tuấn Minh, Mỹ Dung, Hoàng Trần, Kim Ngân, Thanh Sang. Nếu người phụ trách không thuộc danh sách này (vd hỗ trợ từ phòng ban khác), chọn <b>Khác</b> và nhập tên. Trường bắt buộc, chỉ hiển thị ở trang Admin (form, day-course card, Excel export) — không hiện ở trang User.</div>
           </div>
         </div>
       </div>
@@ -488,6 +504,21 @@
             <label class="radio-item"><input type="radio" name="visibility" value="internal"/> 🔒 Nội bộ — Chỉ admin xem được</label>
           </div>
         </div>
+        <div class="form-group">
+          <label class="lbl">13. Người phụ trách (PIC) <span class="req">*</span></label>
+          <div class="radio-stack">
+            <label class="radio-item"><input type="radio" name="pic" value="Mai Anh" required/> Mai Anh</label>
+            <label class="radio-item"><input type="radio" name="pic" value="Tuấn Minh"/> Tuấn Minh</label>
+            <label class="radio-item"><input type="radio" name="pic" value="Mỹ Dung"/> Mỹ Dung</label>
+            <label class="radio-item"><input type="radio" name="pic" value="Hoàng Trần"/> Hoàng Trần</label>
+            <label class="radio-item"><input type="radio" name="pic" value="Kim Ngân"/> Kim Ngân</label>
+            <label class="radio-item"><input type="radio" name="pic" value="Thanh Sang"/> Thanh Sang</label>
+            <label class="radio-item"><input type="radio" name="pic" value="other"/> Khác</label>
+            <div class="branching" id="branchPicOther" style="display:none;">
+              <input type="text" name="pic_other" placeholder="Nhập tên người phụ trách..."/>
+            </div>
+          </div>
+        </div>
         <input type="hidden" name="docId"/>
       </div>
       <div class="modal-foot">
@@ -558,9 +589,11 @@ function normalizeCourse(d){
     audience_type: d.audience_type || 'internal',
     audience_detail: d.audience_detail || d.target || '',
     instructor_type: d.instructor_type || d.trainer_type || 'internal',
-    instructor_detail: d.instructor_detail || d.trainer_name || ''
+    instructor_detail: d.instructor_detail || d.trainer_name || '',
+    pic: d.pic || ''
   };
 }
+const PIC_MEMBERS = ['Mai Anh','Tuấn Minh','Mỹ Dung','Hoàng Trần','Kim Ngân','Thanh Sang'];
 
 async function api_signIn(email, pwd){ return signInWithEmailAndPassword(auth, email, pwd); }
 async function api_signOut(){ return signOut(auth); }
@@ -843,6 +876,7 @@ function renderCourseCard(c){
         <b>Thời lượng:</b> ${c.duration_hours||0} giờ &nbsp;·&nbsp; <b>Ngày:</b> ${formatDatesGrouped(c.dates)}<br/>
         <b>Cách đăng ký:</b> ${regText}<br/>
         ${c.requirements?`<b>Điều kiện:</b> ${esc(c.requirements)}<br/>`:''}
+        <b>PIC:</b> ${esc(c.pic||'—')}<br/>
         <span style="color:var(--gray-500);font-size:11px;">Tạo bởi: ${esc(c.created_by||'')}${c.updated_by&&c.updated_by!==c.created_by?` · Sửa cuối: ${esc(c.updated_by)}`:''}</span>
       </div>
       <div class="day-course-actions">
@@ -933,6 +967,7 @@ function openFormModal(courseId){
   document.getElementById('branchAudienceExt').style.display='none';
   document.getElementById('branchInstructorInt').style.display='none';
   document.getElementById('branchInstructorExt').style.display='none';
+  document.getElementById('branchPicOther').style.display='none';
   selectedDates = [];
   miniYear = currentYear;
   miniMonth = currentMonth;
@@ -997,6 +1032,17 @@ function openFormModal(courseId){
       const v = form.querySelector(`input[name=visibility][value="${c.visibility}"]`);
       if(v) v.checked=true;
     }
+    if(c.pic){
+      if(PIC_MEMBERS.includes(c.pic)){
+        const r = form.querySelector(`input[name=pic][value="${c.pic}"]`);
+        if(r) r.checked=true;
+      }else{
+        const r = form.querySelector(`input[name=pic][value="other"]`);
+        if(r) r.checked=true;
+        document.getElementById('branchPicOther').style.display='block';
+        form.pic_other.value = c.pic;
+      }
+    }
   }else{
     document.getElementById('formTitle').textContent='Thêm khoá học';
     form.docId.value = '';
@@ -1029,6 +1075,12 @@ document.querySelectorAll('input[name=instructor_type]').forEach(r=>{
     document.getElementById('branchInstructorExt').style.display = (r.checked && r.value==='external') ? 'block':'none';
     if(r.checked && r.value!=='internal') document.getElementById('branchInstructorInt').style.display='none';
     if(r.checked && r.value!=='external') document.getElementById('branchInstructorExt').style.display='none';
+  });
+});
+document.querySelectorAll('input[name=pic]').forEach(r=>{
+  r.addEventListener('change', ()=>{
+    document.getElementById('branchPicOther').style.display = (r.checked && r.value==='other') ? 'block':'none';
+    if(r.checked && r.value!=='other') document.getElementById('branchPicOther').style.display='none';
   });
 });
 document.querySelectorAll('input[name=category]').forEach(r=>{
@@ -1066,6 +1118,10 @@ document.getElementById('courseForm').addEventListener('submit', async e=>{
   const docId = fd.get('docId');
   const isUnique = await checkCodeUnique(courseCode, docId);
   if(!isUnique){ toast(`Mã khoá học "${courseCode}" đã tồn tại. Vui lòng chọn mã khác.`,'error'); return; }
+  if(!fd.get('pic')){ toast('Vui lòng chọn người phụ trách (PIC)','error'); return; }
+  const picRaw = fd.get('pic');
+  const pic = picRaw==='other' ? (fd.get('pic_other')||'').trim() : picRaw;
+  if(!pic){ toast('Vui lòng nhập tên người phụ trách','error'); return; }
   const sortedDates = [...selectedDates].sort();
   const monthsSet = new Set();
   sortedDates.forEach(iso=>{
@@ -1089,7 +1145,8 @@ document.getElementById('courseForm').addEventListener('submit', async e=>{
     registration_link: fd.get('registration_link')||'',
     registration_other: fd.get('registration_other')||'',
     requirements: (fd.get('requirements')||'').trim(),
-    visibility: fd.get('visibility')
+    visibility: fd.get('visibility'),
+    pic
   };
   const btn = document.getElementById('saveBtn');
   btn.disabled=true; btn.innerHTML='<span class="spinner"></span>';
@@ -1191,6 +1248,7 @@ document.getElementById('btnDoExport').addEventListener('click', async ()=>{
         '10. Cách đăng ký': regValue,
         '11. Điều kiện tham gia': c.requirements||'',
         '12. Phân quyền hiển thị': c.visibility==='public'?'Công khai':'Nội bộ',
+        '13. Người phụ trách (PIC)': c.pic||'',
         'Tạo bởi': c.created_by||'',
         'Ngày tạo': c.created_at?.toDate?c.created_at.toDate().toLocaleString('vi-VN'):'',
         'Sửa cuối bởi': c.updated_by||'',
