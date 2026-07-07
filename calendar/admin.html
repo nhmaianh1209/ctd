@@ -13,7 +13,7 @@
     --navy:#0A2540; --navy-2:#143A5C;
     --teal:#14B8A6; --teal-dark:#0F8C7E; --teal-light:#CCFBF1;
     --gray-50:#F8FAFC; --gray-100:#F1F5F9; --gray-200:#E2E8F0;
-    --gray-300:#CBD5E1; --gray-500:#64748B; --gray-700:#334155;
+    --gray-300:#CBD5E1; --gray-400:#94A3B8; --gray-500:#64748B; --gray-700:#334155;
     --red:#DC2626; --green:#16A34A;
     --cat-tech-bg:#DBEAFE; --cat-tech-text:#1E40AF; --cat-tech-dot:#3B82F6;
     --cat-mand-bg:#FED7AA; --cat-mand-text:#9A3412; --cat-mand-dot:#EA580C;
@@ -27,7 +27,6 @@
   html,body{font-family:'Lexend Deca',system-ui,sans-serif;color:var(--navy);background:var(--gray-50);}
   button{font-family:inherit;cursor:pointer;border:none;}
   input,select,textarea{font-family:inherit;font-size:14px;}
-
   header.topbar{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow);position:sticky;top:0;z-index:50;}
   .brand{display:flex;align-items:center;gap:12px;font-weight:600;}
   .brand .logo{width:32px;height:32px;border-radius:8px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:700;}
@@ -36,7 +35,6 @@
   .user-info .email{color:var(--gray-300);}
   .btn-logout{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:6px;font-size:12px;transition:.2s;}
   .btn-logout:hover{background:rgba(255,255,255,.1);}
-
   .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
   .login-card{background:#fff;border-radius:16px;box-shadow:var(--shadow-lg);padding:40px;width:100%;max-width:420px;}
   .login-card h1{font-size:22px;margin-bottom:8px;}
@@ -48,9 +46,12 @@
   .btn-primary:hover{background:var(--teal-dark);}
   .btn-primary:disabled{background:var(--gray-300);cursor:not-allowed;}
   .err{color:var(--red);font-size:12px;margin-top:8px;min-height:18px;}
-
   main.app{display:none;padding:24px;max-width:1400px;margin:0 auto;}
   main.app.visible{display:block;}
+  .tab-bar{display:flex;gap:8px;background:#fff;padding:6px;border-radius:12px;border:1px solid var(--gray-200);margin-bottom:20px;width:fit-content;box-shadow:var(--shadow-sm);}
+  .tab-bar button{padding:8px 18px;border-radius:8px;font-size:13px;color:var(--gray-500);background:transparent;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:.2s;}
+  .tab-bar button.active{background:var(--navy);color:#fff;}
+  .tab-bar button:hover:not(.active){background:var(--gray-100);color:var(--navy);}
   .toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px;}
   .toolbar-left{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
   .toolbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
@@ -63,11 +64,10 @@
   .filter-pills button.active{background:var(--navy);color:#fff;}
   .btn-export{background:#fff;border:1px solid var(--gray-200);padding:8px 14px;border-radius:8px;font-size:13px;color:var(--navy);display:inline-flex;align-items:center;gap:6px;transition:.2s;}
   .btn-export:hover{background:var(--gray-100);border-color:var(--teal);}
-
   .calendar{background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--gray-200);}
   .cal-head,.cal-body{display:grid;grid-template-columns:repeat(7,1fr);}
-  .cal-head>div{padding:12px 8px;text-align:center;font-size:12px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--gray-200);background:var(--gray-50);}
-  .cal-head>div.weekend{color:var(--teal);}
+  .cal-head>div{padding:12px 8px;text-align:center;font-size:12px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--gray-200);background:var(--gray-50);}
+  .cal-head>div.weekend{color:var(--gray-400);}
   .day{min-height:118px;padding:8px;border-right:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);cursor:pointer;transition:.15s;position:relative;display:flex;flex-direction:column;gap:4px;}
   .day:hover{background:var(--gray-50);}
   .day:nth-child(7n){border-right:none;}
@@ -75,9 +75,8 @@
   .day.other-month:hover{background:#FAFBFC;}
   .day.today .daynum{background:var(--teal);color:#fff;}
   .daynum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-size:13px;font-weight:500;}
-  .day.weekend .daynum{color:var(--teal);}
+  .day.weekend .daynum{color:var(--gray-400);}
   .day.other-month .daynum{color:var(--gray-300);}
-
   .pill{font-size:11px;padding:3px 8px;border-radius:6px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px;}
   .pill::before{content:"";width:5px;height:5px;border-radius:50%;flex-shrink:0;}
   .pill.cat-technical{background:var(--cat-tech-bg);color:var(--cat-tech-text);}
@@ -90,7 +89,6 @@
   .pill.cat-soft-skills::before{background:var(--cat-soft-dot);}
   .lock{margin-left:auto;font-size:9px;opacity:.7;}
   .more-tag{font-size:10px;color:var(--gray-500);padding:0 4px;}
-
   .modal-backdrop{position:fixed;inset:0;background:rgba(10,37,64,.5);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;}
   .modal-backdrop.show{display:flex;}
   .modal{background:#fff;border-radius:16px;width:100%;max-width:720px;box-shadow:var(--shadow-lg);margin:auto;animation:slideIn .25s ease;}
@@ -107,7 +105,6 @@
   .btn-danger{background:#FEE2E2;color:var(--red);padding:10px 18px;border-radius:8px;font-weight:500;font-size:13px;transition:.2s;}
   .btn-danger:hover{background:#FECACA;}
   .btn-sm{padding:6px 12px;font-size:12px;}
-
   .form-group{margin-bottom:18px;}
   .form-group label.lbl{display:block;font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;}
   .form-group .req{color:var(--red);}
@@ -124,34 +121,50 @@
   .check-item input,.radio-item input{margin:0;cursor:pointer;}
   .radio-stack{display:flex;flex-direction:column;gap:8px;}
   .branching{margin-top:8px;padding-left:12px;border-left:2px solid var(--teal);}
-
   .cat-radio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
   .cat-radio{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--gray-200);border-radius:8px;cursor:pointer;font-size:13px;transition:.15s;}
   .cat-radio:hover{background:var(--gray-50);}
   .cat-radio input{margin:0;}
   .cat-radio .swatch{width:14px;height:14px;border-radius:4px;}
-
-  /* ===== COMPACT mini calendar (v3.1) ===== */
+  .code-row{display:flex;gap:8px;align-items:center;}
+  .code-row input{flex:1;}
+  .btn-regen{background:var(--gray-100);border:1px solid var(--gray-200);color:var(--navy);padding:10px 14px;border-radius:8px;font-size:12px;transition:.2s;white-space:nowrap;cursor:pointer;}
+  .btn-regen:hover{background:var(--gray-200);border-color:var(--teal);}
+  .code-badge{display:inline-block;background:var(--navy);color:#fff;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:600;letter-spacing:.5px;}
+  .def-panel{background:transparent;box-shadow:none;border:none;padding:0;}
+  .def-section{margin-bottom:32px;}
+  .def-section:last-child{margin-bottom:0;}
+  .def-section h3{font-size:16px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:10px;color:var(--navy);}
+  .def-section h3::before{content:"";width:4px;height:16px;background:var(--teal);border-radius:2px;}
+  .def-subsection{margin-bottom:14px;padding-left:14px;}
+  .def-subsection .sub-label{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .def-swatch{display:inline-block;width:14px;height:14px;border-radius:4px;flex-shrink:0;}
+  .def-box{background:var(--gray-50);border:1px dashed var(--gray-300);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--gray-500);font-style:italic;min-height:44px;line-height:1.6;}
+  .def-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .def-card{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow-sm);transition:.15s;}
+  .def-card:hover{border-color:var(--teal);box-shadow:var(--shadow);}
+  .def-card .card-label{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .def-card .card-text{font-size:13px;color:var(--gray-700);line-height:1.6;}
+  .def-card .card-text b{color:var(--navy);}
   .mini-cal{border:1px solid var(--gray-200);border-radius:10px;padding:10px;background:#fff;max-width:340px;}
   .mini-cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
   .mini-cal-nav h4{font-size:12px;font-weight:600;color:var(--navy);}
   .mini-cal-nav button{background:var(--gray-100);width:24px;height:24px;border-radius:6px;font-size:12px;color:var(--navy);}
   .mini-cal-nav button:hover{background:var(--gray-200);}
   .mini-cal-head{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:2px;}
-  .mini-cal-head>div{text-align:center;font-size:9px;color:var(--gray-500);font-weight:600;padding:2px 0;text-transform:uppercase;}
-  .mini-cal-head>div.we{color:var(--teal);}
+  .mini-cal-head>div{text-align:center;font-size:9px;color:var(--navy);font-weight:600;padding:2px 0;text-transform:uppercase;}
+  .mini-cal-head>div.we{color:var(--gray-400);}
   .mini-cal-body{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
   .mini-day{height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;transition:.15s;user-select:none;color:var(--navy);background:var(--gray-50);}
   .mini-day:hover{background:var(--gray-200);}
   .mini-day.other{color:var(--gray-300);background:transparent;cursor:default;}
   .mini-day.other:hover{background:transparent;}
-  .mini-day.we:not(.other){color:var(--teal);}
+  .mini-day.we:not(.other){color:var(--gray-400);}
   .mini-day.selected{background:var(--teal)!important;color:#fff!important;}
   .mini-summary{margin-top:10px;font-size:11px;color:var(--gray-500);padding:8px;background:var(--gray-50);border-radius:8px;line-height:1.55;}
   .mini-summary b{color:var(--navy);}
   .mini-summary .month-line{display:block;}
   .mini-summary .clear-btn{float:right;background:transparent;color:var(--red);font-size:10px;text-decoration:underline;cursor:pointer;padding:0;}
-
   .day-course{padding:14px;border:1px solid var(--gray-200);border-radius:10px;margin-bottom:10px;}
   .day-course-head{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
   .day-course-title{font-weight:600;font-size:14px;flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
@@ -164,22 +177,18 @@
   .badge-public{background:var(--teal-light);color:var(--teal-dark);}
   .badge-internal{background:#FEF3C7;color:#92400E;}
   .day-course-actions{display:flex;gap:6px;margin-top:10px;}
-
   .export-option{display:block;padding:14px;border:1px solid var(--gray-200);border-radius:10px;margin-bottom:10px;cursor:pointer;transition:.15s;}
   .export-option:hover{border-color:var(--teal);background:var(--gray-50);}
   .export-option .title{font-weight:600;font-size:14px;margin-bottom:4px;}
   .export-option .desc{font-size:12px;color:var(--gray-500);}
   .export-option .range-inputs{display:none;margin-top:10px;grid-template-columns:1fr 1fr;gap:8px;}
-
   .toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:14px 20px;border-radius:10px;box-shadow:var(--shadow-lg);z-index:200;font-size:13px;animation:slideUp .3s ease;}
   .toast.success{background:var(--green);}
   .toast.error{background:var(--red);}
   @keyframes slideUp{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
-
   .empty{text-align:center;padding:40px 20px;color:var(--gray-500);font-size:14px;}
   .spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--gray-200);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
-
   @media (max-width:768px){
     main.app{padding:14px;}
     .day{min-height:80px;padding:5px;}
@@ -190,11 +199,11 @@
     .modal{margin:10px;}
     .modal-body{padding:16px;}
     .cal-head>div{font-size:10px;padding:8px 4px;}
+    .def-cards-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body>
-
 <div id="loginScreen" class="login-wrap">
   <div class="login-card">
     <div class="brand" style="margin-bottom:20px;">
@@ -216,7 +225,6 @@
     </form>
   </div>
 </div>
-
 <header class="topbar" id="topbar" style="display:none;">
   <div class="brand">
     <div class="logo">C</div>
@@ -230,35 +238,125 @@
     <button class="btn-logout" id="btnLogout">Đăng xuất</button>
   </div>
 </header>
-
+<div id="tabBarWrap" style="display:none;padding:20px 24px 0;max-width:1400px;margin:0 auto;">
+  <div class="tab-bar">
+    <button id="tabCalendar" class="active">📅 Lịch đào tạo</button>
+    <button id="tabDefinition">📖 Các định nghĩa</button>
+  </div>
+</div>
 <main class="app" id="app">
-  <div class="toolbar">
-    <div class="toolbar-left">
-      <div class="month-nav">
-        <button class="nav-btn" id="prevMonth">‹</button>
-        <h2 id="monthLabel">—</h2>
-        <button class="nav-btn" id="nextMonth">›</button>
+  <section id="calendarView">
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <div class="month-nav">
+          <button class="nav-btn" id="prevMonth">‹</button>
+          <h2 id="monthLabel">—</h2>
+          <button class="nav-btn" id="nextMonth">›</button>
+        </div>
+        <div class="filter-pills">
+          <button data-filter="all" class="active">Tất cả</button>
+          <button data-filter="public">🌐 Công khai</button>
+          <button data-filter="internal">🔒 Nội bộ</button>
+        </div>
       </div>
-      <div class="filter-pills">
-        <button data-filter="all" class="active">Tất cả</button>
-        <button data-filter="public">🌐 Công khai</button>
-        <button data-filter="internal">🔒 Nội bộ</button>
+      <div class="toolbar-right">
+        <button class="btn-export" id="btnExport">📊 Export Excel</button>
       </div>
     </div>
-    <div class="toolbar-right">
-      <button class="btn-export" id="btnExport">📊 Export Excel</button>
+    <div class="calendar">
+      <div class="cal-head">
+        <div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div>
+        <div class="weekend">T7</div><div class="weekend">CN</div>
+      </div>
+      <div class="cal-body" id="calBody"></div>
     </div>
-  </div>
-
-  <div class="calendar">
-    <div class="cal-head">
-      <div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div>
-      <div class="weekend">T7</div><div class="weekend">CN</div>
+  </section>
+  <section id="definitionView" style="display:none;">
+    <div class="def-panel">
+      <div class="def-section">
+        <h3>1. Phân loại khoá học</h3>
+        <div class="def-cards-grid">
+          <div class="def-card">
+            <div class="card-label"><span class="def-swatch" style="background:var(--cat-tech-dot)"></span>Technical</div>
+            <div class="card-text">Các khoá đào tạo kỹ năng chuyên môn phục vụ trực tiếp cho công việc (vd chuyên môn xây dựng, cơ điện, quản lý dự án, chuyên môn phòng ban chức năng…).</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label"><span class="def-swatch" style="background:var(--cat-mand-dot)"></span>Mandatory</div>
+            <div class="card-text">Các khoá đào tạo bắt buộc theo quy định pháp luật hoặc chính sách nội bộ Coteccons, tất cả nhân viên trong đối tượng chỉ định phải tham gia đầy đủ (vd ATLĐ, Hội nhập).</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label"><span class="def-swatch" style="background:var(--cat-lang-dot)"></span>Language</div>
+            <div class="card-text">Các khoá đào tạo ngoại ngữ (Tiếng Anh, Tiếng Trung…) chia theo cấp độ (Level 1–4) nhằm nâng cao năng lực giao tiếp với đối tác và khách hàng nước ngoài.</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label"><span class="def-swatch" style="background:var(--cat-soft-dot)"></span>Soft-skills</div>
+            <div class="card-text">Các khoá đào tạo kỹ năng mềm và năng lực lãnh đạo (giao tiếp, quản lý thời gian, tư duy phản biện, coaching, leadership) áp dụng chung cho nhiều vị trí.</div>
+          </div>
+        </div>
+      </div>
+      <div class="def-section">
+        <h3>2. Mã khoá học</h3>
+        <div class="def-cards-grid">
+          <div class="def-card" style="grid-column:1/-1;">
+            <div class="card-label">Logic tạo mã</div>
+            <div class="card-text">Auto-gen theo phân loại: <b>T</b>=Technical, <b>M</b>=Mandatory, <b>L</b>=Language, <b>S</b>=Soft-skills. Format: [Prefix][3 số]. Ví dụ: T001, M001, L001, S001. Số thứ tự liên tục (không reset theo năm). Mã có thể được chỉnh sửa nhưng phải duy nhất trên toàn hệ thống.</div>
+          </div>
+        </div>
+      </div>
+      <div class="def-section">
+        <h3>3. Hình thức</h3>
+        <div class="def-cards-grid">
+          <div class="def-card">
+            <div class="card-label">Online</div>
+            <div class="card-text">Học qua nền tảng họp trực tuyến (MS Teams).</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label">Trực tiếp HCM / HN / ĐN / PQ</div>
+            <div class="card-text">Học tại phòng đào tạo/hội trường ở văn phòng hoặc dự án tương ứng (HCM = TP.HCM, HN = Hà Nội, ĐN = Đà Nẵng, PQ = Phú Quốc).</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label">E-learning</div>
+            <div class="card-text">Học tự động qua nền tảng LMS, học viên tự sắp xếp thời gian hoàn thành trong khung deadline, không có giảng viên trực tiếp.</div>
+          </div>
+        </div>
+      </div>
+      <div class="def-section">
+        <h3>4. Cách đăng ký</h3>
+        <div class="def-cards-grid">
+          <div class="def-card">
+            <div class="card-label">Đăng ký tại link</div>
+            <div class="card-text">Đối tượng tham gia là 1 nhóm đông, được chọn đăng ký/không. Công khai link để tăng tỉ lệ đăng ký.</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label">Email đăng ký gửi cho đối tượng tham gia</div>
+            <div class="card-text">Đối tượng tham gia là 1 nhóm nhỏ, được chọn đăng ký/không. Không công khai link để hạn chế rủi ro.</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label">Theo danh sách được chỉ định</div>
+            <div class="card-text">Đối tượng tham gia là 1 nhóm nhỏ và bắt buộc tham gia. Không công khai link để hạn chế rủi ro.</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label">Khác</div>
+            <div class="card-text">Các trường hợp đặc biệt không thuộc 3 nhóm trên.</div>
+          </div>
+        </div>
+      </div>
+      <div class="def-section">
+        <h3>5. Phân quyền hiển thị</h3>
+        <div class="def-cards-grid">
+          <div class="def-card">
+            <div class="card-label">🌐 Công khai</div>
+            <div class="card-text">Khoá học hiển thị trên trang lịch đào tạo cho toàn bộ nhân viên Coteccons xem được, dùng cho các khoá có tính truyền thông rộng rãi.</div>
+          </div>
+          <div class="def-card">
+            <div class="card-label">🔒 Nội bộ</div>
+            <div class="card-text">Khoá học chỉ hiển thị trên trang admin của phòng L&amp;OD, ẩn khỏi trang user — dùng cho các khoá nhạy cảm, đang lên kế hoạch, hoặc dành cho đối tượng hạn chế.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="cal-body" id="calBody"></div>
-  </div>
+  </section>
 </main>
-
 <div class="modal-backdrop" id="dayModal">
   <div class="modal">
     <div class="modal-head">
@@ -272,7 +370,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal-backdrop" id="formModal">
   <div class="modal">
     <div class="modal-head">
@@ -281,18 +378,15 @@
     </div>
     <form id="courseForm">
       <div class="modal-body">
-
         <div class="form-group">
           <label class="lbl">1. Tên khoá học <span class="req">*</span></label>
-          <input type="text" name="name" required maxlength="200"/>
+          <input type="text" name="course_name" required maxlength="200"/>
         </div>
-
         <div class="form-group">
           <label class="lbl">2. Tên ngắn</label>
-          <input type="text" name="short_name" maxlength="40" placeholder="Hiển thị trong ô lịch nếu tên gốc quá dài"/>
+          <input type="text" name="course_short_name" maxlength="40" placeholder="Hiển thị trong ô lịch nếu tên gốc quá dài"/>
           <div class="hint">Tối đa ~30 ký tự để hiển thị gọn trong calendar.</div>
         </div>
-
         <div class="form-group">
           <label class="lbl">3. Phân loại <span class="req">*</span></label>
           <div class="cat-radio-grid">
@@ -302,9 +396,16 @@
             <label class="cat-radio"><input type="radio" name="category" value="soft-skills"/><span class="swatch" style="background:var(--cat-soft-dot)"></span><span>Soft-skills</span></label>
           </div>
         </div>
-
         <div class="form-group">
-          <label class="lbl">4. Hình thức <span class="req">*</span></label>
+          <label class="lbl">4. Mã khoá học <span class="req">*</span></label>
+          <div class="code-row">
+            <input type="text" name="course_code" required maxlength="20" placeholder="Chọn phân loại để tạo mã tự động"/>
+            <button type="button" class="btn-regen" id="btnRegenCode">🔄 Tạo lại</button>
+          </div>
+          <div class="hint">Auto-gen theo phân loại (T=Technical, M=Mandatory, L=Language, S=Soft-skills). Có thể chỉnh sửa, phải duy nhất.</div>
+        </div>
+        <div class="form-group">
+          <label class="lbl">5. Hình thức <span class="req">*</span></label>
           <div class="checkbox-grid">
             <label class="check-item"><input type="checkbox" name="formats" value="Online"/> Online</label>
             <label class="check-item"><input type="checkbox" name="formats" value="Trực tiếp HCM"/> Trực tiếp HCM</label>
@@ -314,33 +415,38 @@
             <label class="check-item"><input type="checkbox" name="formats" value="E-learning"/> E-learning</label>
           </div>
         </div>
-
         <div class="form-group">
-          <label class="lbl">5. Đối tượng <span class="req">*</span></label>
-          <input type="text" name="target" required placeholder="VD: Trưởng phòng & Phó phòng"/>
-        </div>
-
-        <div class="form-group">
-          <label class="lbl">6. Giảng viên <span class="req">*</span></label>
+          <label class="lbl">6. Đối tượng <span class="req">*</span></label>
           <div class="radio-stack">
-            <label class="radio-item"><input type="radio" name="trainer_type" value="internal" required/> Nội bộ</label>
-            <div class="branching" id="branchTrainerInt" style="display:none;">
-              <input type="text" name="trainer_name_internal" placeholder="Tên giảng viên nội bộ..."/>
+            <label class="radio-item"><input type="radio" name="audience_type" value="internal" required/> Nội bộ</label>
+            <div class="branching" id="branchAudienceInt" style="display:none;">
+              <input type="text" name="audience_detail_internal" placeholder="Nhập chi tiết đối tượng nội bộ..."/>
             </div>
-            <label class="radio-item"><input type="radio" name="trainer_type" value="external"/> Bên ngoài</label>
-            <div class="branching" id="branchTrainerExt" style="display:none;">
-              <input type="text" name="trainer_name_external" placeholder="Tên giảng viên / đối tác bên ngoài..."/>
+            <label class="radio-item"><input type="radio" name="audience_type" value="external"/> Bên ngoài</label>
+            <div class="branching" id="branchAudienceExt" style="display:none;">
+              <input type="text" name="audience_detail_external" placeholder="Nhập chi tiết đối tượng bên ngoài..."/>
             </div>
           </div>
         </div>
-
         <div class="form-group">
-          <label class="lbl">7. Thời lượng (giờ) <span class="req">*</span></label>
+          <label class="lbl">7. Giảng viên <span class="req">*</span></label>
+          <div class="radio-stack">
+            <label class="radio-item"><input type="radio" name="instructor_type" value="internal" required/> Nội bộ</label>
+            <div class="branching" id="branchInstructorInt" style="display:none;">
+              <input type="text" name="instructor_detail_internal" placeholder="Tên giảng viên nội bộ..."/>
+            </div>
+            <label class="radio-item"><input type="radio" name="instructor_type" value="external"/> Bên ngoài</label>
+            <div class="branching" id="branchInstructorExt" style="display:none;">
+              <input type="text" name="instructor_detail_external" placeholder="Tên giảng viên / đối tác bên ngoài..."/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="lbl">8. Thời lượng (giờ) <span class="req">*</span></label>
           <input type="number" name="duration_hours" required min="0" step="0.5"/>
         </div>
-
         <div class="form-group">
-          <label class="lbl">8. Thời gian (chọn ngày diễn ra) <span class="req">*</span></label>
+          <label class="lbl">9. Thời gian (chọn ngày diễn ra) <span class="req">*</span></label>
           <div class="mini-cal">
             <div class="mini-cal-nav">
               <button type="button" id="miniPrev">‹</button>
@@ -356,9 +462,8 @@
           </div>
           <div class="hint">Có thể chuyển tháng và chọn nhiều ngày ở các tháng khác nhau.</div>
         </div>
-
         <div class="form-group">
-          <label class="lbl">9. Cách đăng ký <span class="req">*</span></label>
+          <label class="lbl">10. Cách đăng ký <span class="req">*</span></label>
           <div class="radio-stack">
             <label class="radio-item"><input type="radio" name="registration_type" value="link" required/> Đăng ký tại link</label>
             <div class="branching" id="branchLink" style="display:none;">
@@ -372,22 +477,18 @@
             </div>
           </div>
         </div>
-
         <div class="form-group">
-          <label class="lbl">10. Điều kiện tham gia</label>
+          <label class="lbl">11. Điều kiện tham gia</label>
           <input type="text" name="requirements" placeholder="Để trống nếu không có"/>
         </div>
-
         <div class="form-group">
-          <label class="lbl">11. Phân quyền hiển thị <span class="req">*</span></label>
+          <label class="lbl">12. Phân quyền hiển thị <span class="req">*</span></label>
           <div class="radio-stack">
             <label class="radio-item"><input type="radio" name="visibility" value="public" required/> 🌐 Công khai — Hiển thị trên trang user</label>
             <label class="radio-item"><input type="radio" name="visibility" value="internal"/> 🔒 Nội bộ — Chỉ admin xem được</label>
           </div>
         </div>
-
         <input type="hidden" name="docId"/>
-
       </div>
       <div class="modal-foot">
         <button type="button" class="btn-secondary" data-close>Huỷ</button>
@@ -396,7 +497,6 @@
     </form>
   </div>
 </div>
-
 <div class="modal-backdrop" id="exportModal">
   <div class="modal sm">
     <div class="modal-head">
@@ -427,12 +527,10 @@
     </div>
   </div>
 </div>
-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 import { getFirestore, collection, query, where, getDocs, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
-
 /* =============================================================
    BACKEND ADAPTER LAYER
    If migrating away from Firebase, ONLY EDIT functions inside
@@ -450,19 +548,32 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+/* v3.2 migration adapter: normalize old→new field names */
+function normalizeCourse(d){
+  return {
+    ...d,
+    course_name: d.course_name || d.name || '',
+    course_short_name: d.course_short_name || d.short_name || '',
+    course_code: d.course_code || '',
+    audience_type: d.audience_type || 'internal',
+    audience_detail: d.audience_detail || d.target || '',
+    instructor_type: d.instructor_type || d.trainer_type || 'internal',
+    instructor_detail: d.instructor_detail || d.trainer_name || ''
+  };
+}
+
 async function api_signIn(email, pwd){ return signInWithEmailAndPassword(auth, email, pwd); }
 async function api_signOut(){ return signOut(auth); }
 function api_onAuthChange(cb){ return onAuthStateChanged(auth, cb); }
 function api_currentUserEmail(){ return auth.currentUser ? auth.currentUser.email : null; }
-
 async function api_loadCoursesByMonth(yearMonth){
   const q = query(collection(db,'courses'), where('months','array-contains', yearMonth));
   const snap = await getDocs(q);
-  return snap.docs.map(d=>({id:d.id,...d.data()}));
+  return snap.docs.map(d=>normalizeCourse({id:d.id,...d.data()}));
 }
 async function api_loadAllCourses(){
   const snap = await getDocs(collection(db,'courses'));
-  return snap.docs.map(d=>({id:d.id,...d.data()}));
+  return snap.docs.map(d=>normalizeCourse({id:d.id,...d.data()}));
 }
 async function api_loadCoursesByMonthRange(startYM, endYM){
   const months = listMonthsBetween(startYM, endYM);
@@ -489,7 +600,6 @@ async function api_deleteCourse(id){
   return deleteDoc(doc(db,'courses',id));
 }
 /* ===== END BACKEND ADAPTER LAYER ===== */
-
 const today = new Date();
 let currentYear = today.getFullYear();
 let currentMonth = today.getMonth();
@@ -500,7 +610,7 @@ let selectedDates = [];
 let miniYear = currentYear;
 let miniMonth = currentMonth;
 const MONTHS_VI = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
-
+const CAT_PREFIX = {technical:'T', mandatory:'M', language:'L', 'soft-skills':'S'};
 function pad2(n){ return String(n).padStart(2,'0'); }
 function toISO(y,m,d){ return `${y}-${pad2(m+1)}-${pad2(d)}`; }
 function toYM(y,m){ return `${y}-${pad2(m+1)}`; }
@@ -522,7 +632,6 @@ function formatDatesGrouped(dates){
   });
   return parts.join(', ');
 }
-
 function listMonthsBetween(ymStart, ymEnd){
   const [y1,m1] = ymStart.split('-').map(Number);
   const [y2,m2] = ymEnd.split('-').map(Number);
@@ -534,25 +643,60 @@ function listMonthsBetween(ymStart, ymEnd){
   }
   return out;
 }
-
+async function generateCourseCode(category){
+  if(!category) return '';
+  const prefix = CAT_PREFIX[category];
+  if(!prefix) return '';
+  const all = await api_loadAllCourses();
+  let maxNum = 0;
+  all.forEach(c=>{
+    const code = (c.course_code||'').trim().toUpperCase();
+    if(code.startsWith(prefix)){
+      const numStr = code.slice(prefix.length);
+      const n = parseInt(numStr, 10);
+      if(!isNaN(n) && n > maxNum) maxNum = n;
+    }
+  });
+  return `${prefix}${String(maxNum+1).padStart(3,'0')}`;
+}
+async function checkCodeUnique(code, excludeId){
+  const all = await api_loadAllCourses();
+  const target = (code||'').trim().toUpperCase();
+  return !all.some(c => c.id !== excludeId && (c.course_code||'').trim().toUpperCase() === target);
+}
 const loginScreen = document.getElementById('loginScreen');
 const topbar = document.getElementById('topbar');
 const appEl = document.getElementById('app');
-
+const tabBarWrap = document.getElementById('tabBarWrap');
+const calendarView = document.getElementById('calendarView');
+const definitionView = document.getElementById('definitionView');
 api_onAuthChange(user=>{
   if(user){
     loginScreen.style.display='none';
     topbar.style.display='flex';
+    tabBarWrap.style.display='block';
     appEl.classList.add('visible');
     document.getElementById('userEmail').textContent = user.email;
     renderMonth();
   }else{
     loginScreen.style.display='flex';
     topbar.style.display='none';
+    tabBarWrap.style.display='none';
     appEl.classList.remove('visible');
   }
 });
-
+document.getElementById('tabCalendar').addEventListener('click', ()=>{
+  document.getElementById('tabCalendar').classList.add('active');
+  document.getElementById('tabDefinition').classList.remove('active');
+  calendarView.style.display='block';
+  definitionView.style.display='none';
+});
+document.getElementById('tabDefinition').addEventListener('click', ()=>{
+  document.getElementById('tabDefinition').classList.add('active');
+  document.getElementById('tabCalendar').classList.remove('active');
+  definitionView.style.display='block';
+  calendarView.style.display='none';
+});
 document.getElementById('loginForm').addEventListener('submit', async e=>{
   e.preventDefault();
   const btn = document.getElementById('loginBtn');
@@ -570,7 +714,6 @@ document.getElementById('loginForm').addEventListener('submit', async e=>{
   }
 });
 document.getElementById('btnLogout').addEventListener('click', ()=>api_signOut());
-
 document.getElementById('prevMonth').addEventListener('click', ()=>{
   currentMonth--; if(currentMonth<0){currentMonth=11;currentYear--;}
   renderMonth();
@@ -587,7 +730,6 @@ document.querySelectorAll('.filter-pills button').forEach(b=>{
     drawCalendar();
   });
 });
-
 async function renderMonth(){
   document.getElementById('monthLabel').textContent = `${MONTHS_VI[currentMonth]} ${currentYear}`;
   document.getElementById('calBody').innerHTML = '<div class="empty" style="grid-column:1/-1;"><span class="spinner"></span></div>';
@@ -599,7 +741,6 @@ async function renderMonth(){
     document.getElementById('calBody').innerHTML = '<div class="empty" style="grid-column:1/-1;">Lỗi tải dữ liệu. Refresh lại trang.</div>';
   }
 }
-
 function drawCalendar(){
   const firstDay = new Date(currentYear,currentMonth,1);
   let offset = (firstDay.getDay()+6)%7;
@@ -638,10 +779,10 @@ function drawCalendar(){
       const list = byDay[dayNum]||[];
       const show = list.slice(0,3);
       show.forEach(c=>{
-        const label = c.short_name || c.name;
+        const label = c.course_short_name || c.course_name;
         const catCls = `cat-${c.category||'technical'}`;
         const lock = c.visibility==='internal' ? '<span class="lock">🔒</span>' : '';
-        inner += `<div class="pill ${catCls}" title="${esc(c.name)}">${esc(label)}${lock}</div>`;
+        inner += `<div class="pill ${catCls}" title="${esc(c.course_name)}">${esc(label)}${lock}</div>`;
       });
       if(list.length>3) inner += `<div class="more-tag">+${list.length-3} khác</div>`;
     }
@@ -653,7 +794,6 @@ function drawCalendar(){
     el.addEventListener('click', ()=>openDayModal(parseInt(el.dataset.day)));
   });
 }
-
 function openDayModal(day){
   selectedDay = day;
   const ymd = toISO(currentYear,currentMonth,day);
@@ -672,7 +812,11 @@ function openDayModal(day){
   }
   document.getElementById('dayModal').classList.add('show');
 }
-
+function personText(type, detail){
+  const t = type==='internal' ? 'Nội bộ' : (type==='external' ? 'Bên ngoài' : '');
+  if(!detail) return t || '—';
+  return `${t}: ${esc(detail)}`;
+}
 function renderCourseCard(c){
   const regText = {
     link: `Đăng ký tại link${c.registration_link?': <a href="'+esc(c.registration_link)+'" target="_blank" style="color:var(--teal);">'+esc(c.registration_link)+'</a>':''}`,
@@ -684,18 +828,18 @@ function renderCourseCard(c){
     ? '<span class="badge badge-public">🌐 Công khai</span>'
     : '<span class="badge badge-internal">🔒 Nội bộ</span>';
   const catBadge = `<span class="badge cat-${c.category||'technical'}">${categoryLabel(c.category)}</span>`;
-  const trainer = c.trainer_type==='internal'
-    ? `Nội bộ${c.trainer_name?': '+esc(c.trainer_name):''}`
-    : `Bên ngoài${c.trainer_name?': '+esc(c.trainer_name):''}`;
+  const codeBadge = c.course_code ? `<span class="code-badge">${esc(c.course_code)}</span>` : '';
+  const audience = personText(c.audience_type, c.audience_detail);
+  const instructor = personText(c.instructor_type, c.instructor_detail);
   return `
     <div class="day-course">
       <div class="day-course-head">
-        <div class="day-course-title">${esc(c.name)} ${catBadge} ${visBadge}</div>
+        <div class="day-course-title">${esc(c.course_name)} ${codeBadge} ${catBadge} ${visBadge}</div>
       </div>
       <div class="day-course-meta">
         <b>Hình thức:</b> ${(c.formats||[]).map(esc).join(', ')}<br/>
-        <b>Đối tượng:</b> ${esc(c.target||'')}<br/>
-        <b>Giảng viên:</b> ${trainer}<br/>
+        <b>Đối tượng:</b> ${audience}<br/>
+        <b>Giảng viên:</b> ${instructor}<br/>
         <b>Thời lượng:</b> ${c.duration_hours||0} giờ &nbsp;·&nbsp; <b>Ngày:</b> ${formatDatesGrouped(c.dates)}<br/>
         <b>Cách đăng ký:</b> ${regText}<br/>
         ${c.requirements?`<b>Điều kiện:</b> ${esc(c.requirements)}<br/>`:''}
@@ -707,9 +851,7 @@ function renderCourseCard(c){
       </div>
     </div>`;
 }
-
 document.getElementById('btnAddCourse').addEventListener('click', ()=>openFormModal(null));
-
 function renderMiniCal(){
   document.getElementById('miniLabel').textContent = `${MONTHS_VI[miniMonth]} ${miniYear}`;
   const firstDay = new Date(miniYear, miniMonth, 1);
@@ -782,25 +924,26 @@ document.getElementById('miniNext').addEventListener('click', ()=>{
   miniMonth++; if(miniMonth>11){miniMonth=0;miniYear++;}
   renderMiniCal();
 });
-
 function openFormModal(courseId){
   const form = document.getElementById('courseForm');
   form.reset();
   document.getElementById('branchLink').style.display='none';
   document.getElementById('branchOther').style.display='none';
-  document.getElementById('branchTrainerInt').style.display='none';
-  document.getElementById('branchTrainerExt').style.display='none';
+  document.getElementById('branchAudienceInt').style.display='none';
+  document.getElementById('branchAudienceExt').style.display='none';
+  document.getElementById('branchInstructorInt').style.display='none';
+  document.getElementById('branchInstructorExt').style.display='none';
   selectedDates = [];
   miniYear = currentYear;
   miniMonth = currentMonth;
-
   if(courseId){
     const c = monthCourses.find(x=>x.id===courseId);
     if(!c) return;
     document.getElementById('formTitle').textContent='Sửa khoá học';
     form.docId.value = c.id;
-    form.name.value = c.name||'';
-    form.short_name.value = c.short_name||'';
+    form.course_name.value = c.course_name||'';
+    form.course_short_name.value = c.course_short_name||'';
+    form.course_code.value = c.course_code||'';
     if(c.category){
       const r = form.querySelector(`input[name=category][value="${c.category}"]`);
       if(r) r.checked=true;
@@ -809,16 +952,26 @@ function openFormModal(courseId){
       const cb = form.querySelector(`input[name=formats][value="${f}"]`);
       if(cb) cb.checked=true;
     });
-    form.target.value = c.target||'';
-    if(c.trainer_type){
-      const r = form.querySelector(`input[name=trainer_type][value="${c.trainer_type}"]`);
+    if(c.audience_type){
+      const r = form.querySelector(`input[name=audience_type][value="${c.audience_type}"]`);
       if(r) r.checked=true;
-      if(c.trainer_type==='internal'){
-        document.getElementById('branchTrainerInt').style.display='block';
-        form.trainer_name_internal.value = c.trainer_name||'';
+      if(c.audience_type==='internal'){
+        document.getElementById('branchAudienceInt').style.display='block';
+        form.audience_detail_internal.value = c.audience_detail||'';
       }else{
-        document.getElementById('branchTrainerExt').style.display='block';
-        form.trainer_name_external.value = c.trainer_name||'';
+        document.getElementById('branchAudienceExt').style.display='block';
+        form.audience_detail_external.value = c.audience_detail||'';
+      }
+    }
+    if(c.instructor_type){
+      const r = form.querySelector(`input[name=instructor_type][value="${c.instructor_type}"]`);
+      if(r) r.checked=true;
+      if(c.instructor_type==='internal'){
+        document.getElementById('branchInstructorInt').style.display='block';
+        form.instructor_detail_internal.value = c.instructor_detail||'';
+      }else{
+        document.getElementById('branchInstructorExt').style.display='block';
+        form.instructor_detail_external.value = c.instructor_detail||'';
       }
     }
     form.duration_hours.value = c.duration_hours||'';
@@ -854,7 +1007,6 @@ function openFormModal(courseId){
   updateMiniSummary();
   document.getElementById('formModal').classList.add('show');
 }
-
 document.querySelectorAll('input[name=registration_type]').forEach(r=>{
   r.addEventListener('change', ()=>{
     document.getElementById('branchLink').style.display = (r.checked && r.value==='link') ? 'block':'none';
@@ -863,15 +1015,36 @@ document.querySelectorAll('input[name=registration_type]').forEach(r=>{
     if(r.checked && r.value!=='other') document.getElementById('branchOther').style.display='none';
   });
 });
-document.querySelectorAll('input[name=trainer_type]').forEach(r=>{
+document.querySelectorAll('input[name=audience_type]').forEach(r=>{
   r.addEventListener('change', ()=>{
-    document.getElementById('branchTrainerInt').style.display = (r.checked && r.value==='internal') ? 'block':'none';
-    document.getElementById('branchTrainerExt').style.display = (r.checked && r.value==='external') ? 'block':'none';
-    if(r.checked && r.value!=='internal') document.getElementById('branchTrainerInt').style.display='none';
-    if(r.checked && r.value!=='external') document.getElementById('branchTrainerExt').style.display='none';
+    document.getElementById('branchAudienceInt').style.display = (r.checked && r.value==='internal') ? 'block':'none';
+    document.getElementById('branchAudienceExt').style.display = (r.checked && r.value==='external') ? 'block':'none';
+    if(r.checked && r.value!=='internal') document.getElementById('branchAudienceInt').style.display='none';
+    if(r.checked && r.value!=='external') document.getElementById('branchAudienceExt').style.display='none';
   });
 });
-
+document.querySelectorAll('input[name=instructor_type]').forEach(r=>{
+  r.addEventListener('change', ()=>{
+    document.getElementById('branchInstructorInt').style.display = (r.checked && r.value==='internal') ? 'block':'none';
+    document.getElementById('branchInstructorExt').style.display = (r.checked && r.value==='external') ? 'block':'none';
+    if(r.checked && r.value!=='internal') document.getElementById('branchInstructorInt').style.display='none';
+    if(r.checked && r.value!=='external') document.getElementById('branchInstructorExt').style.display='none';
+  });
+});
+document.querySelectorAll('input[name=category]').forEach(r=>{
+  r.addEventListener('change', async ()=>{
+    const codeInput = document.querySelector('input[name=course_code]');
+    if(!codeInput.value.trim()){
+      codeInput.value = await generateCourseCode(r.value);
+    }
+  });
+});
+document.getElementById('btnRegenCode').addEventListener('click', async ()=>{
+  const cat = document.querySelector('input[name=category]:checked');
+  if(!cat){ toast('Vui lòng chọn phân loại trước','error'); return; }
+  const codeInput = document.querySelector('input[name=course_code]');
+  codeInput.value = await generateCourseCode(cat.value);
+});
 document.getElementById('courseForm').addEventListener('submit', async e=>{
   e.preventDefault();
   const form = e.target;
@@ -880,26 +1053,35 @@ document.getElementById('courseForm').addEventListener('submit', async e=>{
   if(formats.length===0){ toast('Vui lòng chọn ít nhất 1 hình thức','error'); return; }
   if(selectedDates.length===0){ toast('Vui lòng chọn ít nhất 1 ngày','error'); return; }
   if(!fd.get('category')){ toast('Vui lòng chọn phân loại','error'); return; }
-  if(!fd.get('trainer_type')){ toast('Vui lòng chọn giảng viên','error'); return; }
-
-  const trainerType = fd.get('trainer_type');
-  const trainerName = (trainerType==='internal' ? fd.get('trainer_name_internal') : fd.get('trainer_name_external')) || '';
-
+  if(!fd.get('audience_type')){ toast('Vui lòng chọn đối tượng','error'); return; }
+  if(!fd.get('instructor_type')){ toast('Vui lòng chọn giảng viên','error'); return; }
+  const audienceType = fd.get('audience_type');
+  const audienceDetail = ((audienceType==='internal' ? fd.get('audience_detail_internal') : fd.get('audience_detail_external')) || '').trim();
+  if(!audienceDetail){ toast('Vui lòng nhập chi tiết đối tượng','error'); return; }
+  const instructorType = fd.get('instructor_type');
+  const instructorDetail = ((instructorType==='internal' ? fd.get('instructor_detail_internal') : fd.get('instructor_detail_external')) || '').trim();
+  if(!instructorDetail){ toast('Vui lòng nhập tên giảng viên','error'); return; }
+  const courseCode = (fd.get('course_code')||'').trim().toUpperCase();
+  if(!courseCode){ toast('Vui lòng nhập mã khoá học','error'); return; }
+  const docId = fd.get('docId');
+  const isUnique = await checkCodeUnique(courseCode, docId);
+  if(!isUnique){ toast(`Mã khoá học "${courseCode}" đã tồn tại. Vui lòng chọn mã khác.`,'error'); return; }
   const sortedDates = [...selectedDates].sort();
   const monthsSet = new Set();
   sortedDates.forEach(iso=>{
     const {y,m} = parseISO(iso);
     monthsSet.add(`${y}-${pad2(m+1)}`);
   });
-
   const data = {
-    name: fd.get('name').trim(),
-    short_name: (fd.get('short_name')||'').trim(),
+    course_name: fd.get('course_name').trim(),
+    course_short_name: (fd.get('course_short_name')||'').trim(),
+    course_code: courseCode,
     category: fd.get('category'),
     formats,
-    target: fd.get('target').trim(),
-    trainer_type: trainerType,
-    trainer_name: trainerName.trim(),
+    audience_type: audienceType,
+    audience_detail: audienceDetail,
+    instructor_type: instructorType,
+    instructor_detail: instructorDetail,
     duration_hours: parseFloat(fd.get('duration_hours'))||0,
     dates: sortedDates,
     months: [...monthsSet].sort(),
@@ -909,11 +1091,9 @@ document.getElementById('courseForm').addEventListener('submit', async e=>{
     requirements: (fd.get('requirements')||'').trim(),
     visibility: fd.get('visibility')
   };
-
   const btn = document.getElementById('saveBtn');
   btn.disabled=true; btn.innerHTML='<span class="spinner"></span>';
   try{
-    const docId = fd.get('docId');
     if(docId){
       await api_updateCourse(docId, data);
       toast('Đã cập nhật khoá học','success');
@@ -931,7 +1111,6 @@ document.getElementById('courseForm').addEventListener('submit', async e=>{
     btn.disabled=false; btn.textContent='Lưu khoá học';
   }
 });
-
 async function deleteCourse(id){
   if(!confirm('Xoá khoá học này? Hành động không thể hoàn tác.')) return;
   try{
@@ -943,8 +1122,6 @@ async function deleteCourse(id){
     toast('Lỗi xoá: '+ex.message,'error');
   }
 }
-
-/* ===== Export Excel ===== */
 let exportMode = null;
 document.getElementById('btnExport').addEventListener('click', ()=>{
   document.getElementById('exportCurrentDesc').textContent = `${MONTHS_VI[currentMonth]} ${currentYear}`;
@@ -969,7 +1146,6 @@ document.querySelectorAll('.export-option').forEach(opt=>{
     document.getElementById('btnDoExport').style.display='inline-flex';
   });
 });
-
 document.getElementById('btnDoExport').addEventListener('click', async ()=>{
   const btn = document.getElementById('btnDoExport');
   btn.disabled=true; btn.innerHTML='<span class="spinner"></span>';
@@ -997,25 +1173,30 @@ document.getElementById('btnDoExport').addEventListener('click', async ()=>{
       const db = (b.dates||['9999'])[0];
       return da<db?-1:da>db?1:0;
     });
-    const rows = courses.map(c=>({
-      'Tên khoá học': c.name||'',
-      'Tên ngắn': c.short_name||'',
-      'Phân loại': categoryLabel(c.category),
-      'Hình thức': (c.formats||[]).join(', '),
-      'Đối tượng': c.target||'',
-      'Loại giảng viên': c.trainer_type==='internal'?'Nội bộ':c.trainer_type==='external'?'Bên ngoài':'',
-      'Tên giảng viên': c.trainer_name||'',
-      'Thời lượng (giờ)': c.duration_hours||0,
-      'Các ngày': formatDatesGrouped(c.dates),
-      'Cách đăng ký': {link:'Đăng ký tại link',email:'Email gửi cho đối tượng',assigned:'Theo danh sách chỉ định',other:'Khác'}[c.registration_type]||'',
-      'Link / Ghi chú đăng ký': c.registration_link||c.registration_other||'',
-      'Điều kiện tham gia': c.requirements||'',
-      'Phân quyền': c.visibility==='public'?'Công khai':'Nội bộ',
-      'Tạo bởi': c.created_by||'',
-      'Ngày tạo': c.created_at?.toDate?c.created_at.toDate().toLocaleString('vi-VN'):'',
-      'Sửa cuối bởi': c.updated_by||'',
-      'Ngày sửa cuối': c.updated_at?.toDate?c.updated_at.toDate().toLocaleString('vi-VN'):''
-    }));
+    const regLabel = {link:'Đăng ký tại link',email:'Email gửi cho đối tượng',assigned:'Theo danh sách chỉ định',other:'Khác'};
+    const rows = courses.map(c=>{
+      let regValue = regLabel[c.registration_type]||'';
+      if(c.registration_type==='link' && c.registration_link) regValue += ' | ' + c.registration_link;
+      else if(c.registration_type==='other' && c.registration_other) regValue += ' | ' + c.registration_other;
+      return {
+        '1. Tên khoá học': c.course_name||'',
+        '2. Tên ngắn': c.course_short_name||'',
+        '3. Phân loại': categoryLabel(c.category),
+        '4. Mã khoá học': c.course_code||'',
+        '5. Hình thức': (c.formats||[]).join(', '),
+        '6. Đối tượng': (c.audience_type==='internal'?'Nội bộ':'Bên ngoài') + (c.audience_detail?': '+c.audience_detail:''),
+        '7. Giảng viên': (c.instructor_type==='internal'?'Nội bộ':'Bên ngoài') + (c.instructor_detail?': '+c.instructor_detail:''),
+        '8. Thời lượng (giờ)': c.duration_hours||0,
+        '9. Thời gian': formatDatesGrouped(c.dates),
+        '10. Cách đăng ký': regValue,
+        '11. Điều kiện tham gia': c.requirements||'',
+        '12. Phân quyền hiển thị': c.visibility==='public'?'Công khai':'Nội bộ',
+        'Tạo bởi': c.created_by||'',
+        'Ngày tạo': c.created_at?.toDate?c.created_at.toDate().toLocaleString('vi-VN'):'',
+        'Sửa cuối bởi': c.updated_by||'',
+        'Ngày sửa cuối': c.updated_at?.toDate?c.updated_at.toDate().toLocaleString('vi-VN'):''
+      };
+    });
     const ws = XLSX.utils.json_to_sheet(rows);
     const cols = Object.keys(rows[0]);
     ws['!cols'] = cols.map(k=>({wch: Math.min(40, Math.max(k.length, ...rows.map(r=>String(r[k]||'').length))+2)}));
@@ -1031,7 +1212,6 @@ document.getElementById('btnDoExport').addEventListener('click', async ()=>{
     btn.disabled=false; btn.innerHTML='Tải file';
   }
 });
-
 document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click', closeAllModals));
 document.querySelectorAll('.modal-backdrop').forEach(bd=>{
   bd.addEventListener('click', e=>{ if(e.target===bd) closeAllModals(); });
@@ -1039,7 +1219,6 @@ document.querySelectorAll('.modal-backdrop').forEach(bd=>{
 function closeAllModals(){
   document.querySelectorAll('.modal-backdrop').forEach(m=>m.classList.remove('show'));
 }
-
 function toast(msg, type=''){
   const t = document.createElement('div');
   t.className = 'toast ' + type;
