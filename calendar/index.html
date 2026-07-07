@@ -9,17 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0A2540; --navy-2:#143A5C;
-    --teal:#14B8A6; --teal-dark:#0F8C7E; --teal-light:#CCFBF1;
+    --navy:#121f47; --navy-2:#1b51a4;
+    --teal:#00b0ac; --teal-dark:#008f8c; --teal-light:#e0f7f6;
     --gray-50:#F8FAFC; --gray-100:#F1F5F9; --gray-200:#E2E8F0;
     --gray-300:#CBD5E1; --gray-400:#94A3B8; --gray-500:#64748B; --gray-700:#334155;
     --cat-tech-bg:#DBEAFE; --cat-tech-text:#1E40AF; --cat-tech-dot:#3B82F6;
     --cat-mand-bg:#FED7AA; --cat-mand-text:#9A3412; --cat-mand-dot:#EA580C;
     --cat-lang-bg:#D1FAE5; --cat-lang-text:#065F46; --cat-lang-dot:#10B981;
     --cat-soft-bg:#CFFAFE; --cat-soft-text:#155E75; --cat-soft-dot:#06B6D4;
-    --shadow-sm:0 1px 2px rgba(10,37,64,.06);
-    --shadow:0 4px 16px rgba(10,37,64,.08);
-    --shadow-lg:0 12px 32px rgba(10,37,64,.16);
+    --shadow-sm:0 1px 2px rgba(18,31,71,.06);
+    --shadow:0 4px 16px rgba(18,31,71,.08);
+    --shadow-lg:0 12px 32px rgba(18,31,71,.16);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{font-family:'Lexend Deca',system-ui,sans-serif;color:var(--navy);background:var(--gray-50);min-height:100vh;}
@@ -27,10 +27,11 @@
   a{color:var(--teal-dark);}
   header.hero{
     background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);
-    color:#fff;padding:40px 24px 32px;text-align:center;
+    color:#fff;padding:36px 24px 32px;text-align:center;
   }
+  header.hero .hero-logo{width:40px;height:auto;margin:0 auto 14px;display:block;}
   header.hero .badge{
-    display:inline-block;background:rgba(20,184,166,.2);color:var(--teal-light);
+    display:inline-block;background:rgba(0,176,172,.25);color:#ffffff;
     padding:5px 14px;border-radius:20px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:12px;
   }
   header.hero h1{font-size:28px;font-weight:600;margin-bottom:6px;}
@@ -94,7 +95,7 @@
   .card-info a{word-break:break-all;color:var(--teal-dark);text-decoration:none;}
   .card-info a:hover{text-decoration:underline;}
   .empty-cards{grid-column:1/-1;text-align:center;padding:30px;color:var(--gray-500);font-size:13px;}
-  .modal-backdrop{position:fixed;inset:0;background:rgba(10,37,64,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(18,31,71,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;}
   .modal-backdrop.show{display:flex;}
   .modal{background:#fff;border-radius:16px;width:100%;max-width:620px;box-shadow:var(--shadow-lg);margin:auto;animation:slideIn .25s ease;}
   @keyframes slideIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
@@ -143,6 +144,10 @@
 </head>
 <body>
 <header class="hero">
+  <svg class="hero-logo" viewBox="76.21 13.98 432.77 306.53" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="nonzero" fill="#FFFFFF" d="M 302.625 255.050781 C 258.863281 255.050781 223.386719 219.015625 223.386719 174.566406 C 223.386719 130.113281 258.863281 94.078125 302.625 94.078125 C 320.792969 94.078125 337.527344 100.292969 350.894531 110.738281 L 381.699219 69.683594 C 359.882812 52.671875 332.582031 42.554688 302.953125 42.554688 C 233.160156 42.554688 176.277344 98.65625 173.609375 168.882812 C 115.960938 223.339844 84.214844 277.796875 107.464844 300.738281 C 119.398438 312.511719 167.664062 305.378906 205.632812 289.164062 C 207.75 288.257812 206.433594 285.394531 204.160156 285.726562 C 173.078125 290.28125 146.371094 286.996094 137.535156 275.132812 C 124.527344 257.675781 139.328125 221.578125 173.640625 180.003906 C 176.710938 249.851562 233.425781 305.523438 302.953125 305.523438 C 332.582031 305.523438 359.878906 295.40625 381.695312 278.394531 L 351.296875 238.078125 C 337.867188 248.714844 320.976562 255.050781 302.625 255.050781 "/>
+    <path fill-rule="nonzero" fill="#FFFFFF" d="M 338.082031 217.101562 C 336.75 217.988281 335.351562 216.109375 336.554688 215.050781 C 387.71875 169.902344 452.15625 113.992188 442.734375 70.914062 C 437.523438 47.089844 398.675781 45.324219 378.042969 49.527344 C 374.636719 50.222656 374.554688 47.710938 377.707031 46.242188 C 413.632812 29.496094 469 21.984375 480.898438 41.554688 C 500.980469 74.59375 424.230469 159.546875 338.082031 217.101562 "/>
+  </svg>
   <div class="badge">Coteccons Academy · L&amp;OD</div>
   <h1>Lịch đào tạo</h1>
   <p>Kế hoạch các khoá học sắp diễn ra · Bấm vào ngày để xem chi tiết</p>
