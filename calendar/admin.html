@@ -94,6 +94,15 @@
   .modal-backdrop.show{display:flex;}
   .modal{background:#fff;border-radius:16px;width:100%;max-width:720px;box-shadow:var(--shadow-lg);margin:auto;animation:slideIn .25s ease;}
   .modal.sm{max-width:440px;}
+  .modal.lg{max-width:1080px;}
+  .email-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+  .email-toolbar label{font-size:13px;font-weight:500;color:var(--navy);}
+  .email-toolbar input[type=month]{border:1px solid var(--gray-200);border-radius:8px;padding:8px 10px;font-family:'Lexend Deca',sans-serif;font-size:13px;color:var(--navy);}
+  .email-meta{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:14px 16px;margin-bottom:16px;font-size:13px;line-height:1.7;}
+  .email-meta b{color:var(--navy);}
+  .email-preview-wrap{border:1px solid var(--gray-200);border-radius:10px;padding:4px;}
+  .email-preview{padding:20px;font-family:'Lexend Deca',Calibri,Arial,sans-serif;font-weight:300;font-size:12px;color:#222;overflow-x:auto;}
+  .email-empty{padding:40px;text-align:center;color:var(--gray-500);font-size:13px;}
   @keyframes slideIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
   .modal-head{padding:20px 24px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;}
   .modal-head h3{font-size:18px;font-weight:600;}
@@ -268,6 +277,7 @@
       </div>
       <div class="toolbar-right">
         <button class="btn-export" id="btnExport">📊 Export Excel</button>
+        <button class="btn-export" id="btnEmailExport">📧 Email hỗ trợ</button>
       </div>
     </div>
     <div class="calendar">
@@ -555,6 +565,35 @@
     <div class="modal-foot">
       <button class="btn-secondary" data-close>Đóng</button>
       <button class="btn-primary" id="btnDoExport" style="width:auto;display:none;">Tải file</button>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" id="emailExportModal">
+  <div class="modal lg">
+    <div class="modal-head">
+      <h3>📧 Xuất email hỗ trợ tổ chức</h3>
+      <button class="modal-close" data-close>×</button>
+    </div>
+    <div class="modal-body">
+      <div class="email-toolbar">
+        <label for="emailMonth">Tháng cần xuất:</label>
+        <input type="month" id="emailMonth"/>
+        <button class="btn-export" id="btnGenEmail">🔄 Tạo nội dung</button>
+      </div>
+      <div class="email-meta">
+        <div><b>Subject:</b> <span id="emailSubjectPreview">—</span></div>
+        <div><b>To:</b> Hanh Chinh &lt;hanhchinh@coteccons.vn&gt;; BQLTN Coteccons &lt;qltn@coteccons.vn&gt;; Ban An Ninh &lt;bananninh@coteccons.vn&gt;; CTD IT Department &lt;ctc.it.dept@coteccons.vn&gt;</div>
+        <div><b>Cc:</b> Coteccons Academy &lt;cta@coteccons.vn&gt;</div>
+      </div>
+      <div class="email-preview-wrap">
+        <div class="email-preview" id="emailPreviewBody">
+          <div class="email-empty">Chọn tháng rồi bấm "🔄 Tạo nội dung" để xem trước nội dung email.</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-secondary" data-close>Đóng</button>
+      <button class="btn-primary" id="btnCopyEmail" style="width:auto;display:none;">📋 Copy nội dung email</button>
     </div>
   </div>
 </div>
@@ -1284,6 +1323,135 @@ function toast(msg, type=''){
   document.body.appendChild(t);
   setTimeout(()=>t.remove(), 3500);
 }
+
+/* ===== EMAIL HỖ TRỢ TỔ CHỨC (v3.6) ===== */
+const WEEKDAY_VI = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
+function weekdayVI(iso){
+  const {y,m,d} = parseISO(iso);
+  return WEEKDAY_VI[new Date(y,m,d).getDay()];
+}
+function ddmm(iso){
+  const {d,m} = parseISO(iso);
+  return `${pad2(d)}/${pad2(m+1)}`;
+}
+// 1 dòng = 1 (khoá học, ngày) trong tháng được chọn, chỉ khoá có hình thức Online hoặc Trực tiếp HCM
+function buildEmailRows(courses, yearMonth){
+  const rows = [];
+  courses.forEach(c=>{
+    const formats = c.formats||[];
+    const isOnline = formats.includes('Online');
+    const isHCM = formats.includes('Trực tiếp HCM');
+    if(!isOnline && !isHCM) return;
+    (c.dates||[]).filter(iso=>iso.startsWith(yearMonth)).forEach(iso=>{
+      let locHint = '';
+      if(isOnline && !isHCM) locHint = 'Online';
+      else if(isHCM && isOnline) locHint = 'Online & Offline';
+      rows.push({
+        iso,
+        course: esc(c.course_short_name || c.course_name || ''),
+        pic: esc(c.pic || ''),
+        locHint: esc(locHint)
+      });
+    });
+  });
+  rows.sort((a,b)=> a.iso<b.iso?-1: a.iso>b.iso?1:0);
+  return rows;
+}
+function renderEmailBodyHTML(rows, y, m){
+  const monthLabel = `${pad2(m+1)}/${y}`;
+  const FONT = "'Lexend Deca',Calibri,Arial,sans-serif";
+  const td = 'border:1px solid #ccc;padding:8px;font-size:12px;font-weight:300;';
+  const th = `border:1px solid #ccc;padding:8px;background:#121f47;color:#fff;font-size:12px;font-weight:300;`;
+  const blank = `<span style="color:#999;">______</span>`;
+  const tableRowsHTML = rows.length ? rows.map(r=>`
+    <tr>
+      <td style="${td}">${weekdayVI(r.iso)} | ${ddmm(r.iso)}</td>
+      <td style="${td}color:#999;">${blank}</td>
+      <td style="${td}">${r.course}</td>
+      <td style="${td}${r.locHint?'':'color:#999;'}">${r.locHint || blank}</td>
+      <td style="${td}">${r.pic}</td>
+      <td style="${td}color:#999;">${blank}</td>
+      <td style="${td}color:#999;">${blank}</td>
+      <td style="${td}color:#999;">${blank}</td>
+    </tr>`).join('') : `<tr><td colspan="8" style="${td}text-align:center;color:#999;">Không có khoá Online/Trực tiếp HCM nào trong tháng này</td></tr>`;
+  return `
+<div style="font-family:${FONT};font-weight:300;font-size:12px;color:#222;line-height:1.6;">
+  <p>Kính gửi:</p>
+  <p>- Phòng Hành chính<br/>- Ban Quản lý toà nhà, Ban An ninh<br/>- Phòng Công nghệ thông tin</p>
+  <p>Phòng Đào tạo &amp; Phát triển Tổ chức (L&amp;OD) xin thông tin đến các Anh/Chị về kế hoạch triển khai các khoá đào tạo vào tháng ${monthLabel}, đồng thời kính nhờ các phòng ban phối hợp hỗ trợ:</p>
+  <p>- Phòng Hành chính: cho set up như yêu cầu trước ngày sự kiện, chuẩn bị tea break (nếu có) như yêu cầu<br/>
+  - Phòng Công nghệ thông tin: phản hồi về thông tin PIC sẽ hỗ trợ các lớp tương ứng trước ngày sự kiện</p>
+  <p>Thông tin các lớp đào tạo chi tiết:</p>
+  <table style="border-collapse:collapse;width:100%;font-family:${FONT};">
+    <thead>
+      <tr>
+        <th style="${th}">Ngày</th>
+        <th style="${th}">Giờ</th>
+        <th style="${th}">Tên khoá học</th>
+        <th style="${th}">Địa điểm</th>
+        <th style="${th}">PIC</th>
+        <th style="${th}">P.Hành Chính/B.QLTN</th>
+        <th style="${th}">P.CNTT</th>
+        <th style="${th}">BAN</th>
+      </tr>
+    </thead>
+    <tbody>${tableRowsHTML}</tbody>
+  </table>
+  <p>Phòng L&amp;OD rất mong nhận được sự hỗ trợ và phối hợp từ các Anh/Chị để chương trình được diễn ra thuận lợi.</p>
+  <p>Trân trọng cảm ơn.</p>
+</div>`;
+}
+document.getElementById('btnEmailExport').addEventListener('click', ()=>{
+  document.getElementById('emailMonth').value = toYM(currentYear, currentMonth);
+  document.getElementById('emailSubjectPreview').textContent = `Hỗ trợ tổ chức các khóa đào tạo - Tháng ${pad2(currentMonth+1)} năm ${currentYear}`;
+  document.getElementById('emailPreviewBody').innerHTML = '<div class="email-empty">Chọn tháng rồi bấm "🔄 Tạo nội dung" để xem trước nội dung email.</div>';
+  document.getElementById('btnCopyEmail').style.display = 'none';
+  document.getElementById('emailExportModal').classList.add('show');
+});
+document.getElementById('btnGenEmail').addEventListener('click', async ()=>{
+  const ym = document.getElementById('emailMonth').value;
+  if(!ym){ toast('Vui lòng chọn tháng','error'); return; }
+  const btn = document.getElementById('btnGenEmail');
+  btn.disabled = true;
+  try{
+    const [y,m] = ym.split('-').map(Number);
+    const courses = await api_loadCoursesByMonth(ym);
+    const rows = buildEmailRows(courses, ym);
+    document.getElementById('emailSubjectPreview').textContent = `Hỗ trợ tổ chức các khóa đào tạo - Tháng ${pad2(m)} năm ${y}`;
+    document.getElementById('emailPreviewBody').innerHTML = renderEmailBodyHTML(rows, y, m-1);
+    document.getElementById('btnCopyEmail').style.display = rows.length ? 'inline-flex' : 'none';
+    if(rows.length===0) toast('Không có khoá Online/Trực tiếp HCM nào trong tháng này','error');
+  }catch(ex){
+    console.error(ex);
+    toast('Lỗi tạo nội dung: '+ex.message,'error');
+  }finally{
+    btn.disabled = false;
+  }
+});
+document.getElementById('btnCopyEmail').addEventListener('click', async ()=>{
+  const el = document.getElementById('emailPreviewBody');
+  const htmlContent = el.innerHTML;
+  const textContent = el.innerText;
+  try{
+    if(navigator.clipboard && window.ClipboardItem){
+      const blobHTML = new Blob([htmlContent], {type:'text/html'});
+      const blobText = new Blob([textContent], {type:'text/plain'});
+      await navigator.clipboard.write([new ClipboardItem({'text/html':blobHTML,'text/plain':blobText})]);
+    }else{
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      document.execCommand('copy');
+      sel.removeAllRanges();
+    }
+    toast('Đã copy nội dung email — dán trực tiếp vào Outlook (Ctrl+V)','success');
+  }catch(ex){
+    console.error(ex);
+    toast('Không copy được tự động. Vui lòng bôi đen nội dung và Ctrl+C thủ công.','error');
+  }
+});
 </script>
 </body>
 </html>
