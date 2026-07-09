@@ -1,11 +1,11 @@
-# 📘 HANDOFF — CTD Training Calendar v3.6
+# 📘 HANDOFF — CTD Training Calendar v3.7
 
 **Tài liệu bàn giao chính thức** cho hệ thống Lịch đào tạo Coteccons Academy. Phiên bản này tổng hợp toàn bộ kiến thức, schema, cấu hình và hướng dẫn vận hành — **sử dụng độc lập, không cần tham chiếu HANDOFF cũ**.
 
 | | |
 |---|---|
-| **Phiên bản** | v3.6 |
-| **Ngày bàn giao** | 07/07/2026 |
+| **Phiên bản** | v3.7 |
+| **Ngày bàn giao** | 09/07/2026 |
 | **Chủ sở hữu** | Phòng L&OD · Coteccons Academy |
 | **Liên hệ** | cta@coteccons.vn |
 | **Repo** | GitHub Pages (`ctd-training-calendar`) |
@@ -23,6 +23,7 @@
 5. [UI/UX principles](#5-uiux-principles)
 6. [Trang User (index)](#6-trang-user-index)
 7. [Trang Admin](#7-trang-admin)
+7b. [Đăng nhập SSO Microsoft](#7b-đăng-nhập-sso-microsoft-mới-v37)
 8. [Tab "Các định nghĩa"](#8-tab-các-định-nghĩa)
 9. [Excel Export](#9-excel-export)
 9b. [Export Email Hỗ trợ Tổ chức](#9b-export-email-hỗ-trợ-tổ-chức)
@@ -387,7 +388,10 @@ Phân loại • Hình thức • Đối tượng • Giảng viên • Thời l
 
 ### Cấu trúc
 
-- **Login screen** (email + password)
+- **Login screen** — 2 hình thức đăng nhập song song (xem mục 7b):
+  - Nút **"Đăng nhập bằng Microsoft"** (SSO, ưu tiên hiển thị trên cùng)
+  - Đường kẻ "hoặc"
+  - Form email + password (giữ nguyên như cũ)
 - **Topbar** (brand + user email + logout)
 - **Tab bar:** `📅 Lịch đào tạo` | `📖 Các định nghĩa`
 
@@ -421,6 +425,48 @@ Phân loại • Hình thức • Đối tượng • Giảng viên • Thời l
 ### Day-course card admin hiển thị
 
 Tên khoá + badge Mã KH + badge Phân loại + badge Visibility (Công khai/Nội bộ) + full metadata (Hình thức, Đối tượng, Giảng viên, Thời lượng, Ngày, Cách đăng ký, Điều kiện, **PIC**) + audit info + nút Edit/Delete.
+
+---
+
+## 7b. Đăng nhập SSO Microsoft *(mới v3.7)*
+
+### Trạng thái: ⚠️ UI đã hoàn tất — CHỜ IT cấu hình Azure AD để kích hoạt
+
+Đây là tính năng chia 2 phần: **UI (đã xong, phần này)** và **Backend/Azure AD (IT phụ trách, chưa làm)**. Cho đến khi IT hoàn tất cấu hình, nút "Đăng nhập bằng Microsoft" sẽ hiện lỗi *"Đăng nhập Microsoft chưa được kích hoạt (đang chờ IT cấu hình Azure AD)"* khi bấm — đây là hành vi đúng như thiết kế, không phải bug.
+
+### Quyết định thiết kế đã chốt
+
+| Điểm | Quyết định |
+|---|---|
+| Giữ đăng nhập email/password cũ? | ✅ Giữ cả 2 song song — không xoá hình thức cũ |
+| Vị trí nút SSO | Trên cùng (ưu tiên hiển thị), sau đó đường kẻ "hoặc", rồi tới form email/password |
+| Phạm vi tài khoản Microsoft | Single-tenant — chỉ tài khoản `@coteccons.vn` được phép thử đăng nhập |
+| Whitelist admin | Không đổi — vẫn qua Firestore Security Rules (mục 11), áp dụng như nhau cho cả 2 hình thức đăng nhập |
+
+### UI đã build (trong `ctd-admin-v3_7.html`)
+
+- Nút `btn-ms`: nền trắng, viền xám, icon 4 ô vuông màu chuẩn Microsoft (`#F25022` `#7FBA00` `#00A4EF` `#FFB900`), text "Đăng nhập bằng Microsoft"
+- Đường kẻ phân cách `.login-divider` với chữ "hoặc"
+- Xử lý lỗi riêng biệt: user tự đóng popup (im lặng, không báo lỗi) · provider chưa bật ở Firebase Console (báo rõ "chờ IT") · lỗi khác (báo chung, hướng dẫn liên hệ L&OD)
+
+### Code đã sẵn sàng — chỉ cần IT điền config
+
+Hàm `api_signInMicrosoft()` trong Backend Adapter Layer đã dùng `OAuthProvider('microsoft.com')` + `signInWithPopup`, comment sẵn TODO cho IT. Không cần sửa code UI/JS thêm khi IT triển khai xong — chỉ cần đổi 1 dòng.
+
+### Việc IT cần làm (gửi hướng dẫn riêng khi tới lúc)
+
+1. Đăng ký **App registration** trên Azure Portal (Microsoft Entra ID) của Coteccons → lấy `Application (client) ID` + `Client secret` + `Directory (tenant) ID`
+   - Chọn **"Accounts in this organizational directory only"** (Single-tenant) để khớp quyết định giới hạn `@coteccons.vn`
+   - Redirect URI: `https://ctd-training-calendar.firebaseapp.com/__/auth/handler`
+2. Firebase Console → Authentication → Sign-in method → bật provider **Microsoft** → dán Client ID + Client secret
+3. Trong code, thay `tenant: 'common'` bằng Tenant ID thật ở dòng có comment `// TODO IT` trong hàm `api_signInMicrosoft()`
+4. Deploy lại file `admin.html` (đã đổi 1 dòng) lên GitHub Pages
+
+### Rủi ro / lưu ý
+
+- Trước khi IT bật provider ở Firebase Console, nút SSO sẽ luôn báo lỗi "chưa kích hoạt" — **không ảnh hưởng** đến đăng nhập email/password cũ, 2 luồng độc lập nhau
+- Để `tenant: 'common'` tạm thời (chưa có Tenant ID) không gây rủi ro bảo mật vì Firestore whitelist (mục 11) vẫn chặn mọi email ngoài danh sách, kể cả nếu ai đó đăng nhập Microsoft thành công
+- Không cần đổi Firestore Security Rules — rule check `request.auth.token.email`, hoạt động như nhau bất kể provider
 
 ---
 
@@ -838,7 +884,14 @@ Check tại: Firebase Console → Usage tab. Scale L&OD nhỏ → khó vượt 1
 
 ## 15. Lịch sử phiên bản
 
-### v3.6 (CURRENT — 07/07/2026)
+### v3.7 (CURRENT — 09/07/2026)
+
+- ✅ Thêm **UI đăng nhập SSO Microsoft** trên màn login admin — nút "Đăng nhập bằng Microsoft" + đường kẻ "hoặc" + form email/password cũ (xem mục 7b)
+- ✅ Hàm `api_signInMicrosoft()` đã code sẵn (`OAuthProvider('microsoft.com')` + `signInWithPopup`), chỉ chờ IT cấu hình Azure AD App Registration + bật provider trên Firebase Console
+- ⚠️ **Chưa hoạt động thực tế** cho đến khi IT hoàn tất phần backend — đây là bàn giao UI để duyệt trước khi IT triển khai
+- ✅ Không đổi schema Firestore, không đổi Security Rules, `index.html` giữ nguyên
+
+### v3.6 (07/07/2026)
 
 - ✅ Thêm tính năng **Export Email Hỗ trợ Tổ chức** — nút `📧 Email hỗ trợ` cạnh Export Excel (xem mục 9b)
 - ✅ Tự lọc khoá học format `Online`/`Trực tiếp HCM`, tách mỗi ngày học thành 1 dòng, điền sẵn Ngày/Tên khoá/PIC từ database, để trống Giờ/Địa điểm/3 cột yêu cầu phòng ban
@@ -982,9 +1035,9 @@ Khi cần tạo nội dung để copy-paste sang app khác (email client, Word..
 
 | File | Rename khi deploy | Kích thước | Ghi chú |
 |---|---|---|---|
-| `ctd-index-v3_5.html` | `index.html` | ~25 KB | User site (public) — **không đổi ở v3.6** |
-| `ctd-admin-v3_6.html` | `admin.html` | ~80 KB | Admin site (login required) — **đã update ở v3.6** |
-| `HANDOFF-v3_6.md` | — | ~34 KB | Tài liệu này |
+| `ctd-index-v3_5.html` | `index.html` | ~25 KB | User site (public) — **không đổi ở v3.7** |
+| `ctd-admin-v3_7.html` | `admin.html` | ~82 KB | Admin site (login required) — **đã update ở v3.7** (thêm UI SSO Microsoft) |
+| `HANDOFF-v3_7.md` | — | ~37 KB | Tài liệu này |
 
 ### CDN & Dependencies (không có dependency npm)
 
@@ -1015,6 +1068,6 @@ Không cần: npm install · build step · bundler. Mở file HTML trực tiếp
 
 ---
 
-**Cuối tài liệu.** Phiên bản v3.6 — Ngày 07/07/2026.
+**Cuối tài liệu.** Phiên bản v3.7 — Ngày 09/07/2026.
 
 *Tài liệu này nên được cập nhật mỗi khi có thay đổi schema, security rules, hoặc bổ sung tính năng mới.*
