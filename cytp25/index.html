@@ -368,6 +368,26 @@
   .shift-card .stage{font-family:var(--font-mono);font-size:10.5px;color:var(--teal-vibrant);letter-spacing:.06em;margin-bottom:8px;}
   .shift-card h4{color:var(--navy);font-size:1.05rem;margin-bottom:10px;}
   .shift-card p{font-size:.88rem;color:var(--gray-mid);}
+  .info-subhead{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-vibrant);margin-top:16px;margin-bottom:6px;}
+  .info-subhead:first-of-type{margin-top:2px;}
+  .info-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;}
+  .info-list li{font-size:.85rem;color:var(--gray-mid);padding-left:14px;position:relative;line-height:1.4;}
+  .info-list li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--teal-vibrant);}
+  .info-list li b{color:var(--navy);font-weight:600;}
+  .info-list .substatus{font-size:.78rem;color:var(--gray-mid);display:block;margin-top:1px;}
+
+  .mentor-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--gray-light);}
+  .mentor-row:last-child{border-bottom:none;}
+  .mentor-row .mname{color:var(--navy);font-weight:600;font-size:.85rem;flex:1;}
+  .badge-pair{display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0;}
+  .pill{font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:999px;white-space:nowrap;font-weight:600;}
+  .pill.plan-yes{background:rgba(95,209,193,.15);color:var(--teal-vibrant);border:1px solid rgba(95,209,193,.4);}
+  .pill.plan-no{background:rgba(245,186,66,.15);color:#b8830f;border:1px solid rgba(245,186,66,.45);}
+  .pill.part-yes{background:rgba(81,172,112,.12);color:#3d8556;border:1px solid rgba(81,172,112,.3);}
+  .pill.part-no{background:rgba(184,96,84,.1);color:var(--brick);border:1px solid rgba(184,96,84,.3);}
+  .pill-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:.72rem;color:var(--gray-mid);}
+  .pill-legend span{display:inline-flex;align-items:center;gap:5px;}
+  .pill-legend .sw{width:8px;height:8px;border-radius:50%;display:inline-block;}
 
   /* ---------- Trục 3 group winner ---------- */
   .winner-box{
@@ -533,6 +553,13 @@
   </div>
 
   <div class="compare-row reveal">
+    <div class="field-label">Ứng viên đầu phễu</div>
+    <div class="card plan"><span class="tag">Planning</span>Không nêu cụ thể trong concept gốc</div>
+    <div class="vs">→</div>
+    <div class="card actual"><span class="tag">Thực tế</span>~60 ứng viên nộp hồ sơ → 38 học viên chính thức <b>(tỷ lệ convert ~63%)</b></div>
+  </div>
+
+  <div class="compare-row reveal">
     <div class="field-label">Số lượng đầu vào</div>
     <div class="card plan"><span class="tag">Planning</span>35 kỹ sư trẻ tiềm năng</div>
     <div class="vs">≠</div>
@@ -542,12 +569,12 @@
   <div class="compare-row reveal">
     <div class="field-label">Tiêu chí sàng lọc (GPA)</div>
     <div class="card plan"><span class="tag">Planning</span>GPA ≥ 2.5<span style="font-family:var(--font-mono)">/4</span></div>
-    <div class="vs">?</div>
-    <div class="card actual"><span class="tag">Thực tế</span>GPA ≥ 2<span style="font-family:var(--font-mono)">/5</span> <span class="flag-badge" title="Thang điểm ghi nhận khác nhau (4 điểm vs. 5 điểm) — nên xác nhận lại đây có phải cùng một thang quy đổi trước khi đưa vào retro chính thức.">⚑ khác thang điểm</span></div>
+    <div class="vs">↓</div>
+    <div class="card actual"><span class="tag">Thực tế</span>GPA ≥ 2<span style="font-family:var(--font-mono)">/4</span> — cùng thang điểm, đã hạ chuẩn <span class="match-badge">✓ cùng thang /4</span></div>
   </div>
 
-  <div class="callout warn reveal">
-    <strong>Cần xác nhận:</strong> tiêu chí GPA plan ghi theo thang 4, thực tế ghi theo thang 5 — nên rà lại đây có phải cùng một quy đổi hay hai thang khác nhau trước khi kết luận "siết chặt hơn hay lỏng hơn kế hoạch".
+  <div class="callout reveal">
+    <strong>Insight:</strong> cả plan và thực tế đều dùng thang GPA /4 — thực tế hạ ngưỡng từ 2.5 xuống 2 để gom hết ứng viên tiềm năng vào phễu, chấp nhận đầu vào rộng hơn và sàng lọc kỹ hơn ở các vòng sau.
   </div>
 </div></section>
 
@@ -557,31 +584,38 @@
     <span class="sheet-no">BẢN VẼ 02/05</span>
     <span class="sheet-title">Vận hành đào tạo</span>
   </div>
-  <p class="sheet-desc reveal">Nhịp 3 tháng/đợt đúng như thiết kế — nhưng mức độ tham gia lệch rõ giữa CĐ1 và CĐ2.</p>
+  <p class="sheet-desc reveal">Nhịp 3 tháng/đợt đúng như thiết kế — nhưng mức độ tham gia lệch rõ giữa CĐ1 và CĐ2, và Project 2 đã phải kéo dài so với kế hoạch.</p>
 
   <div class="compare-row reveal">
-    <div class="field-label">Nhịp triển khai &amp; địa điểm</div>
+    <div class="field-label">Nhịp chung</div>
     <div class="card plan"><span class="tag">Planning</span>Kick off → Training → Coaching → Showcase, mỗi 3 tháng · Training tại VP Coteccons, Coaching tại Công trường/MS Teams</div>
     <div class="vs">≈</div>
     <div class="card actual"><span class="tag">Thực tế — CĐ1 &amp; CĐ2</span>Đúng nhịp, đúng địa điểm cả 2 đợt <span class="match-badge">✓ khớp plan</span></div>
   </div>
 
   <div class="compare-row reveal">
-    <div class="field-label">Số buổi training / coaching</div>
-    <div class="card plan"><span class="tag">Planning</span>Training 3–6 buổi · Coaching tối thiểu 3 buổi / đợt</div>
-    <div class="vs">≈</div>
-    <div class="card actual"><span class="tag">Thực tế</span>CĐ1: 4 buổi training · CĐ2: 5 buổi training — số buổi đúng khung, yêu cầu coaching giữ nguyên 3 buổi cả 2 đợt</div>
+    <div class="field-label">Tên chuyên đề</div>
+    <div class="card plan"><span class="tag">Planning</span>"Đào tạo theo chuyên đề" (concept không nêu chi tiết)</div>
+    <div class="vs">→</div>
+    <div class="card actual"><span class="tag">Thực tế</span><b>CĐ1:</b> Xây dựng biện pháp thi công (đọc bản vẽ, BPTC XD/MEP, BIM cơ bản) · <b>CĐ2:</b> Tính toán và quản lý chi phí (QS, ngân sách, BOQ, Shopdrawing)</div>
   </div>
 
   <div class="compare-row reveal">
-    <div class="field-label">Nội dung chuyên đề</div>
-    <div class="card plan"><span class="tag">Planning</span>"Đào tạo theo chuyên đề" (concept không nêu chi tiết)</div>
-    <div class="vs">→</div>
-    <div class="card actual"><span class="tag">Thực tế</span>CĐ1: Biện pháp thi công (đọc bản vẽ, BPTC XD/MEP, BIM cơ bản) · CĐ2: Quản lý chi phí (QS, ngân sách, BOQ, Shopdrawing)</div>
+    <div class="field-label">Training</div>
+    <div class="card plan"><span class="tag">Planning</span>3–6 buổi / đợt</div>
+    <div class="vs">≈</div>
+    <div class="card actual"><span class="tag">Thực tế</span>CĐ1: 4 buổi · CĐ2: 5 buổi — số buổi đúng khung kế hoạch <span class="match-badge">✓ khớp plan</span></div>
+  </div>
+
+  <div class="compare-row reveal">
+    <div class="field-label">Coaching</div>
+    <div class="card plan"><span class="tag">Planning</span>Tối thiểu 3 buổi / đợt</div>
+    <div class="vs">≈</div>
+    <div class="card actual"><span class="tag">Thực tế</span>Giữ nguyên 3 buổi cả 2 đợt — đúng số buổi kế hoạch, nhưng attendance sụt mạnh (xem biểu đồ)</div>
   </div>
 
   <div class="chart-wrap reveal">
-    <div class="chart-title">Mức độ tham gia thực tế — CĐ1 → CĐ2</div>
+    <div class="chart-title">Mức độ tham gia thực tế — Training vs. Coaching, CĐ1 → CĐ2</div>
 
     <div class="bar-row">
       <div class="blabel">Training · CĐ1</div>
@@ -622,6 +656,20 @@
   <div class="callout reveal">
     <strong>Nguyên nhân đã xác nhận:</strong> lịch coaching CĐ2 trùng lịch dự án/trường của học viên.
   </div>
+
+  <div class="compare-row reveal">
+    <div class="field-label">Project</div>
+    <div class="card plan"><span class="tag">Planning</span>Project 2 dự kiến hoàn thành tháng 6/2026</div>
+    <div class="vs">≠</div>
+    <div class="card actual"><span class="tag">Thực tế</span>Project 2 kéo dài đến tháng 8/2026 <span class="flag-badge" title="Cần làm rõ nguyên nhân extend ở Bước 2 — Insight/Nguyên nhân/Giải pháp">⚑ +2 tháng so với kế hoạch</span></div>
+  </div>
+
+  <div class="compare-row reveal">
+    <div class="field-label">Showcase</div>
+    <div class="card plan"><span class="tag">Planning</span>Showcase chấm điểm cuối mỗi đợt, có Project Director tham gia</div>
+    <div class="vs">≈</div>
+    <div class="card actual"><span class="tag">Thực tế</span>Showcase 1 đã diễn ra, gắn với CĐ1 — Ban giám khảo có thay đổi nhân sự so với plan (chi tiết tại Phụ lục — Đội ngũ vận hành)</div>
+  </div>
 </div></section>
 
 <!-- TRỤC 3 -->
@@ -642,15 +690,32 @@
   <div class="compare-row reveal">
     <div class="field-label">Điểm tối thiểu / đợt (5/10)</div>
     <div class="card plan"><span class="tag">Planning</span>5/10 mỗi đợt</div>
-    <div class="vs">?</div>
-    <div class="card actual pending"><span class="tag">Cần xác nhận</span>Số học viên dưới ngưỡng ở CĐ1/CĐ2 — chưa có số liệu</div>
+    <div class="vs">≈</div>
+    <div class="card actual"><span class="tag">Thực tế</span>Không có học viên nào dưới ngưỡng — điểm thấp nhất ghi nhận là 5.5/10 <span class="match-badge">✓ khớp plan</span></div>
   </div>
 
   <div class="compare-row reveal">
     <div class="field-label">Phân loại cuối Building (Tier 1/2)</div>
     <div class="card plan"><span class="tag">Planning</span>Tier 1 "Super Star" (Top 5) → Chỉ huy trưởng · Tier 2 "Rising Star" → Trưởng nhóm</div>
-    <div class="vs">?</div>
-    <div class="card actual pending"><span class="tag">Cần xác nhận</span>Chưa có danh sách Tier 1/Tier 2 chính thức</div>
+    <div class="vs">→</div>
+    <div class="card actual pending"><span class="tag">Cần xác nhận</span>Đã có Top 5 tạm thời sau CĐ1 (xem danh sách bên dưới) — Tier 2 và danh sách chính thức cuối Building (sau CĐ2) chưa chốt</div>
+  </div>
+
+  <div class="winner-box reveal" style="margin-bottom:16px;">
+    <div class="content">
+      <div class="winner-badge">🥇 TOP 5 · TẠM THỜI SAU CĐ1</div>
+      <div class="member-chips">
+        <span>Lê Thanh Đạt</span>
+        <span>Lê Duy Hoàng Sơn</span>
+        <span>Nguyễn Minh Phi</span>
+        <span>Trần Minh Đăng</span>
+        <span>Nguyễn Hoàng Thanh Hậu</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout warn reveal">
+    <strong>Issue vận hành:</strong> có 1 trường hợp bài thu cuối kỳ CĐ1 bị thiếu — nguyên nhân do không đối chiếu thông tin học viên tại thời điểm thu bài. Cần đưa vào Bước 2 như một root cause về quy trình thu bài/tracking.
   </div>
 
   <div class="winner-box reveal">
@@ -783,8 +848,13 @@
   <div class="content-shift" style="grid-template-columns:repeat(2,1fr);gap:20px;">
     <div class="shift-card reveal">
       <div class="stage">BAN TỔ CHỨC (BTC)</div>
-      <h4>—</h4>
-      <p class="pending" style="display:block;padding:10px 14px;border-radius:6px;font-size:.85rem;">Cần anh điền: thành viên BTC và vai trò phụ trách (vận hành chung, nội dung, hậu cần...)</p>
+      <ul class="info-list">
+        <li><b>Project Leader:</b> Nguyễn Hoàng Mai Anh — L&amp;OD Team Lead</li>
+        <li><b>Project Supporter CĐ1:</b> Nguyễn Thị Yến Nhi (intern)</li>
+        <li><b>Project Supporter CĐ2:</b> Nguyễn Lê Kim Ngân (intern)</li>
+        <li><b>Advisor:</b> Phạm Thanh Sang — Head of L&amp;OD; Nguyễn Thị Thanh Hương — HRD</li>
+        <li><b>Technical Supporter:</b> Huỳnh Thị Mỹ Dung — Training Manager</li>
+      </ul>
     </div>
 
     <div class="shift-card reveal">
@@ -797,20 +867,64 @@
         <span style="background:rgba(22,49,94,.06);border-color:var(--gray-light);color:var(--navy);">4. Nguyễn Phi Long</span>
         <span style="background:rgba(22,49,94,.06);border-color:var(--gray-light);color:var(--navy);">5. Phạm Hải Đăng</span>
         <span style="background:rgba(22,49,94,.06);border-color:var(--gray-light);color:var(--navy);">6. Phạm Minh Tú</span>
-        <span style="background:rgba(22,49,94,.06);border-color:var(--gray-light);color:var(--navy);">7. Nguyễn Văn Mạnh</span>
+        <span style="background:rgba(22,49,94,.06);border-color:var(--gray-light);color:var(--navy);">7. Nguyễn Văn Mạnh — MEP</span>
       </div>
     </div>
 
     <div class="shift-card reveal">
       <div class="stage">MENTOR</div>
-      <h4>—</h4>
-      <p class="pending" style="display:block;padding:10px 14px;border-radius:6px;font-size:.85rem;">Cần anh điền: danh sách mentor phụ trách coaching theo nhóm/đợt</p>
+      <div class="info-subhead">Project Director — Showcase 1</div>
+
+      <div class="mentor-row">
+        <div class="mname">Dương Trọng Nghĩa</div>
+        <div class="badge-pair"><span class="pill plan-yes">Có trong plan</span><span class="pill part-yes">Đã chấm</span></div>
+      </div>
+      <div class="mentor-row">
+        <div class="mname">Võ Quốc Thanh</div>
+        <div class="badge-pair"><span class="pill plan-no">Mời bổ sung</span><span class="pill part-yes">Đã chấm</span></div>
+      </div>
+      <div class="mentor-row">
+        <div class="mname">Võ Đại Trí</div>
+        <div class="badge-pair"><span class="pill plan-no">Mời bổ sung</span><span class="pill part-yes">Đã chấm</span></div>
+      </div>
+      <div class="mentor-row">
+        <div class="mname">Lê Trí Tường (MEP)</div>
+        <div class="badge-pair"><span class="pill plan-yes">Có trong plan</span><span class="pill part-no">Chưa tham gia</span></div>
+      </div>
+      <div class="mentor-row">
+        <div class="mname">Huỳnh Tấn Mạnh (MEP)</div>
+        <div class="badge-pair"><span class="pill plan-yes">Có trong plan</span><span class="pill part-yes">Đã chấm</span></div>
+      </div>
+      <div class="mentor-row">
+        <div class="mname">Nguyễn Văn Hiếu (MEP)</div>
+        <div class="badge-pair"><span class="pill plan-no">Mời bổ sung</span><span class="pill part-yes">Đã chấm</span></div>
+      </div>
+
+      <div class="pill-legend">
+        <span><i class="sw" style="background:var(--teal-vibrant);"></i>Có trong plan gốc</span>
+        <span><i class="sw" style="background:#b8830f;"></i>Mời bổ sung ngoài plan</span>
+      </div>
+      <div class="callout reveal" style="margin-top:12px;padding:12px 14px;font-size:.8rem;">
+        <strong>Insight:</strong> Kế hoạch ban đầu chỉ có 3 Project Director (1 Xây dựng, 2 MEP). Thực tế Showcase 1 có 5 người tham gia chấm (3 Xây dựng, 2 MEP) — do mời bổ sung 3 người ngoài plan, trong khi 1 người có tên trong plan (Lê Trí Tường, MEP) lại chưa tham gia buổi nào.
+      </div>
+
+      <div class="info-subhead">Phòng ban chức năng</div>
+      <p class="pending" style="display:block;padding:8px 12px;border-radius:6px;font-size:.8rem;margin-bottom:6px;">🔲 CĐ1 — cần anh liệt kê tên trainer</p>
+      <p class="pending" style="display:block;padding:8px 12px;border-radius:6px;font-size:.8rem;">🔲 CĐ2 — cần anh liệt kê tên trainer</p>
     </div>
 
     <div class="shift-card reveal">
       <div class="stage">CASE BUILDER</div>
-      <h4>—</h4>
-      <p class="pending" style="display:block;padding:10px 14px;border-radius:6px;font-size:.85rem;">Cần anh điền: người xây dựng đề bài/case cho từng đợt Project</p>
+      <div class="info-subhead">Project 1</div>
+      <ul class="info-list">
+        <li><b>Xây dựng:</b> Trịnh Minh Tâm — Phó phòng Đấu thầu</li>
+        <li><b>MEP:</b> Hoàng Đình Chương — Chuyên viên phòng Đấu thầu cơ điện</li>
+      </ul>
+      <div class="info-subhead">Project 2</div>
+      <ul class="info-list">
+        <li><b>Xây dựng:</b> Hồ Thiện Ân — Trưởng nhóm phòng Đấu thầu Unicons</li>
+        <li><b>MEP:</b> Đặng Anh Tuấn — Phó phòng Đấu thầu cơ điện</li>
+      </ul>
     </div>
   </div>
  </div>
