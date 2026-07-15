@@ -597,55 +597,63 @@
     </div>
   </div>
 </div>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-import { getFirestore, collection, query, where, getDocs, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+<script>
 /* =============================================================
    BACKEND ADAPTER LAYER
-   If migrating away from Firebase, ONLY EDIT functions inside
-   this block. All other code calls these api_* functions.
+   Auth: local username/password -> JWT (localStorage)
+   ponytail: to enable MSAL, replace api_signIn/Out/onAuthChange
+             and swap api/auth.py verify_token(). All other code unchanged.
    ============================================================= */
-const firebaseConfig = {
-  apiKey: "AIzaSyCl0izQatfWqRqQ4PjeJv242Q2obuaSyXw",
-  authDomain: "ctd-training-calendar.firebaseapp.com",
-  projectId: "ctd-training-calendar",
-  storageBucket: "ctd-training-calendar.firebasestorage.app",
-  messagingSenderId: "12986365110",
-  appId: "1:12986365110:web:61083721f3c60525b7a217"
-};
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-/* v3.2 migration adapter: normalize old→new field names */
-function normalizeCourse(d){
-  return {
-    ...d,
-    course_name: d.course_name || d.name || '',
-    course_short_name: d.course_short_name || d.short_name || '',
-    course_code: d.course_code || '',
-    audience_type: d.audience_type || 'internal',
-    audience_detail: d.audience_detail || d.target || '',
-    instructor_type: d.instructor_type || d.trainer_type || 'internal',
-    instructor_detail: d.instructor_detail || d.trainer_name || '',
-    pic: d.pic || ''
-  };
-}
 const PIC_MEMBERS = ['Mai Anh','Tuấn Minh','Mỹ Dung','Hoàng Trần','Kim Ngân','Thanh Sang'];
 
-async function api_signIn(email, pwd){ return signInWithEmailAndPassword(auth, email, pwd); }
-async function api_signOut(){ return signOut(auth); }
-function api_onAuthChange(cb){ return onAuthStateChanged(auth, cb); }
-function api_currentUserEmail(){ return auth.currentUser ? auth.currentUser.email : null; }
+const TOKEN_KEY = 'ctd_admin_token';
+let _currentUser = null;
+
+function _getToken(){ return localStorage.getItem(TOKEN_KEY); }
+function _authHeaders(){
+  const t = _getToken();
+  return t ? { Authorization: 'Bearer ' + t } : {};
+}
+
+async function api_signIn(username, password){
+  const r = await fetch('/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password })
+  });
+  if(!r.ok) throw new Error('Invalid credentials');
+  const data = await r.json();
+  localStorage.setItem(TOKEN_KEY, data.token);
+  _currentUser = { email: data.email, name: data.name };
+}
+async function api_signOut(){
+  localStorage.removeItem(TOKEN_KEY);
+  _currentUser = null;
+  window.location.reload();
+}
+function api_onAuthChange(cb){
+  const token = _getToken();
+  if(!token){ cb(null); return; }
+  fetch('/api/auth/me', { headers: { Authorization: 'Bearer ' + token } })
+    .then(r => r.ok ? r.json() : null)
+    .then(user => {
+      if(user){ _currentUser = user; cb(user); }
+      else { localStorage.removeItem(TOKEN_KEY); cb(null); }
+    })
+    .catch(() => { localStorage.removeItem(TOKEN_KEY); cb(null); });
+}
+function api_currentUserEmail(){ return _currentUser ? _currentUser.email : null; }
+
+// REST API calls
 async function api_loadCoursesByMonth(yearMonth){
-  const q = query(collection(db,'courses'), where('months','array-contains', yearMonth));
-  const snap = await getDocs(q);
-  return snap.docs.map(d=>normalizeCourse({id:d.id,...d.data()}));
+  const r = await fetch('/api/courses?month=' + encodeURIComponent(yearMonth));
+  if(!r.ok) throw new Error('API ' + r.status);
+  return r.json();
 }
 async function api_loadAllCourses(){
-  const snap = await getDocs(collection(db,'courses'));
-  return snap.docs.map(d=>normalizeCourse({id:d.id,...d.data()}));
+  const r = await fetch('/api/courses');
+  if(!r.ok) throw new Error('API ' + r.status);
+  return r.json();
 }
 async function api_loadCoursesByMonthRange(startYM, endYM){
   const months = listMonthsBetween(startYM, endYM);
@@ -657,19 +665,28 @@ async function api_loadCoursesByMonthRange(startYM, endYM){
   return [...results.values()];
 }
 async function api_createCourse(data){
-  data.created_by = api_currentUserEmail();
-  data.created_at = serverTimestamp();
-  data.updated_by = data.created_by;
-  data.updated_at = serverTimestamp();
-  return addDoc(collection(db,'courses'), data);
+  const r = await fetch('/api/courses', {
+    method: 'POST',
+    headers: Object.assign({ 'Content-Type': 'application/json' }, _authHeaders()),
+    body: JSON.stringify(data)
+  });
+  if(!r.ok) throw new Error('API ' + r.status);
+  return r.json();
 }
 async function api_updateCourse(id, data){
-  data.updated_by = api_currentUserEmail();
-  data.updated_at = serverTimestamp();
-  return updateDoc(doc(db,'courses',id), data);
+  const r = await fetch('/api/courses/' + id, {
+    method: 'PUT',
+    headers: Object.assign({ 'Content-Type': 'application/json' }, _authHeaders()),
+    body: JSON.stringify(data)
+  });
+  if(!r.ok) throw new Error('API ' + r.status);
+  return r.json();
 }
 async function api_deleteCourse(id){
-  return deleteDoc(doc(db,'courses',id));
+  const r = await fetch('/api/courses/' + id, {
+    method: 'DELETE', headers: _authHeaders()
+  });
+  if(!r.ok) throw new Error('API ' + r.status);
 }
 /* ===== END BACKEND ADAPTER LAYER ===== */
 const today = new Date();

@@ -1,0 +1,53 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    # Dev: mount static files for hot-reload (comment out for prod)
+    volumes:
+      - .:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://${DB_USER:-ctd}:${DB_PASSWORD:-ctd}@db:5432/${DB_NAME:-ctd}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-changeme}
+      - JWT_SECRET=${JWT_SECRET:-local-dev-secret-change-me}
+      - TOKEN_TTL_HOURS=${TOKEN_TTL_HOURS:-8}
+    volumes:
+      - ./api:/app   # Dev: hot-reload on code changes
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=${DB_NAME:-ctd}
+      - POSTGRES_USER=${DB_USER:-ctd}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-ctd}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./api/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-ctd}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  pgdata:

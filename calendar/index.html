@@ -202,44 +202,16 @@
     <div class="modal-body" id="detailBody"></div>
   </div>
 </div>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+<script>
 /* =============================================================
    BACKEND ADAPTER LAYER
-   If migrating away from Firebase, ONLY EDIT functions inside
-   this block. All other code calls these api_* functions.
+   Migrated from Firebase → REST API (FastAPI + PostgreSQL)
+   Public calendar: no auth required.
    ============================================================= */
-const firebaseConfig = {
-  apiKey: "AIzaSyCl0izQatfWqRqQ4PjeJv242Q2obuaSyXw",
-  authDomain: "ctd-training-calendar.firebaseapp.com",
-  projectId: "ctd-training-calendar",
-  storageBucket: "ctd-training-calendar.firebasestorage.app",
-  messagingSenderId: "12986365110",
-  appId: "1:12986365110:web:61083721f3c60525b7a217"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-/* v3.2 migration adapter: normalize old→new field names */
-function normalizeCourse(d){
-  return {
-    ...d,
-    course_name: d.course_name || d.name || '',
-    course_short_name: d.course_short_name || d.short_name || '',
-    audience_type: d.audience_type || 'internal',
-    audience_detail: d.audience_detail || d.target || '',
-    instructor_type: d.instructor_type || d.trainer_type || 'internal',
-    instructor_detail: d.instructor_detail || d.trainer_name || ''
-  };
-}
-
 async function api_loadPublicCoursesByMonth(yearMonth){
-  const q = query(collection(db,'courses'),
-    where('months','array-contains', yearMonth),
-    where('visibility','==','public'));
-  const snap = await getDocs(q);
-  return snap.docs.map(d=>normalizeCourse({id:d.id,...d.data()}));
+  const r = await fetch(`/api/courses?month=${encodeURIComponent(yearMonth)}&visibility=public`);
+  if(!r.ok) throw new Error(`API error ${r.status}`);
+  return r.json();
 }
 /* ===== END BACKEND ADAPTER LAYER ===== */
 const today = new Date();
