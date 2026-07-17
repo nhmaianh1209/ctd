@@ -1,11 +1,11 @@
-# 📘 HANDOFF — CTD Training Calendar v3.7
+# 📘 HANDOFF — CTD Training Calendar v3.8
 
 **Tài liệu bàn giao chính thức** cho hệ thống Lịch đào tạo Coteccons Academy. Phiên bản này tổng hợp toàn bộ kiến thức, schema, cấu hình và hướng dẫn vận hành — **sử dụng độc lập, không cần tham chiếu HANDOFF cũ**.
 
 | | |
 |---|---|
-| **Phiên bản** | v3.7 |
-| **Ngày bàn giao** | 09/07/2026 |
+| **Phiên bản** | v3.8 |
+| **Ngày bàn giao** | 17/07/2026 |
 | **Chủ sở hữu** | Phòng L&OD · Coteccons Academy |
 | **Liên hệ** | cta@coteccons.vn |
 | **Repo** | GitHub Pages (`ctd-training-calendar`) |
@@ -21,6 +21,7 @@
 4. [Mã khoá học — Logic auto-gen](#4-mã-khoá-học--logic-auto-gen)
 4b. [Người phụ trách (PIC)](#4b-người-phụ-trách-pic)
 5. [UI/UX principles](#5-uiux-principles)
+5b. [Mobile Responsive Upgrade](#5b-mobile-responsive-upgrade-mới-v38)
 6. [Trang User (index)](#6-trang-user-index)
 7. [Trang Admin](#7-trang-admin)
 7b. [Đăng nhập SSO Microsoft](#7b-đăng-nhập-sso-microsoft-mới-v37)
@@ -340,17 +341,60 @@ Mọi ngày hiển thị dạng `dd/mm`, **chỉ ngày cuối cùng** có suffix
 
 ### Responsiveness
 
+**Từ v3.8:** cả 2 file (`index.html`, `admin.html`) dùng chung 1 bộ breakpoint 3 tầng (trước đó Admin chỉ có 1 breakpoint 768px).
+
 | Breakpoint | Layout |
 |---|---|
-| Desktop ≥1024px | Card grid 4 cột |
-| Tablet 640-1024px | 2 cột |
-| Mobile <640px | 1 cột, calendar cell thu nhỏ |
+| Desktop ≥1024px | Card grid 4 cột (User) · Full layout (Admin) |
+| Tablet 640-1024px | Card grid 2 cột (User) · Calendar/toolbar co giãn, chưa vào mobile mode (Admin) |
+| Mobile <640px | 1 cột, calendar dot indicator, modal full-screen, touch target ≥44px |
+
+Chi tiết đầy đủ xem mục 5b.
+
+---
+
+## 5b. Mobile Responsive Upgrade *(mới v3.8)*
+
+### Bối cảnh
+
+Trước v3.8: `index.html` đã có 2 breakpoint (1024px/640px) nhưng calendar vẫn chật ở màn hình nhỏ. `admin.html` chỉ có **1 breakpoint duy nhất (768px)** — chưa có tầng tablet riêng, form 13 trường + calendar full-CRUD rất khó thao tác trên điện thoại.
+
+### Mục tiêu đã chốt với người dùng
+
+- Admin trên mobile: **vừa xem vừa nhập liệu đều phải tốt như nhau** (không ưu tiên 1 chiều)
+- Calendar: **giữ dạng lưới 7 ngày** (không đổi qua agenda/list view)
+- Mức độ thay đổi: **redesign vừa phải** — đổi cách hiển thị 1 số phần, không đổi cấu trúc tổng thể
+
+### Các thay đổi chính (áp dụng cả 2 file, trừ mục riêng Admin)
+
+| # | Thay đổi | Mô tả |
+|---|---|---|
+| 1 | **Breakpoint 3 tầng đồng bộ** | Desktop ≥1024 / Tablet 640-1024 / Mobile <640 — Admin trước đây thiếu tầng Tablet, đã bổ sung |
+| 2 | **Calendar dot indicator (mobile)** | Dưới 640px, `.pill` trong ô ngày tự thu gọn thành chấm tròn màu category (dùng lại `::before` sẵn có, không cần đổi JS) thay vì pill full-text dễ vỡ chữ. Tap ngày vẫn mở Day Modal xem đầy đủ tên khoá học như cũ |
+| 3 | **Modal full-screen (mobile)** | Dưới 640px, mọi modal (Day/Detail/Form/Export/Email) chuyển từ "floating card" giữa màn hình sang full-screen (`.modal{height:100%;border-radius:0}`), dễ đọc và thao tác hơn trên điện thoại |
+| 4 | **Sticky action bar (Admin form)** | Modal Form 13 trường: `.modal-foot` (nút Lưu/Huỷ) được ghim cố định đáy màn hình bằng flexbox (`.modal>form{display:flex;flex-direction:column}` + `.modal-body{flex:1;overflow-y:auto}`) — không cần cuộn hết form mới lưu được |
+| 5 | **Touch target ≥44px** | Nav button, filter pills, checkbox/radio item, nút Edit/Delete trên day-course card, mini-calendar picker — tăng kích thước vùng bấm cho ngón tay |
+| 6 | **Input font-size 16px (mobile)** | Tránh iOS Safari tự động zoom khi focus vào input/select/textarea |
+| 7 | **Toolbar Admin xếp dọc (mobile)** | Month nav, filter pills (scroll ngang), Export/Email button — xếp dọc full-width thay vì chen chúc 1 hàng |
+| 8 | **Tab bar Admin full-width (mobile)** | 2 tab "Lịch đào tạo"/"Các định nghĩa" chia đều 50/50 chiều ngang |
+
+### Không đổi
+
+- Schema Firestore, Security Rules, Backend Adapter — **không đổi**, đây là bản cập nhật thuần CSS + 1 vài dòng JS nhỏ liên quan layout
+- Desktop layout (≥1024px) — giữ nguyên như v3.7, không có thay đổi trực quan
+- Logic nghiệp vụ (auto-gen mã, validation, export Excel/Email) — không đổi
+
+### Rủi ro / lưu ý khi test
+
+- Cần test thực tế trên điện thoại thật (không chỉ resize browser) vì `env(safe-area-inset-bottom)` (dùng cho notch/home-indicator iPhone) chỉ hoạt động đúng trên thiết bị thật hoặc simulator
+- Dot indicator trong ô lịch không hiện tên khoá học — nếu L&OD thấy khó nhận diện nhanh, có thể cân nhắc thêm tooltip long-press hoặc quay lại pill text ở bản sau
+- Mini-calendar picker (chọn ngày học trong form) vẫn còn khá nhỏ (36px/ô) do giới hạn không gian modal — nếu vẫn khó bấm trên máy cụ thể, có thể tách thành full-screen date picker riêng ở bản sau
 
 ---
 
 ## 6. Trang User (index)
 
-**File:** `ctd-index-v3_5.html` (rename `index.html` khi deploy)
+**File:** `ctd-index-v3_8.html` (rename `index.html` khi deploy)
 
 ### Cấu trúc
 
@@ -384,7 +428,7 @@ Phân loại • Hình thức • Đối tượng • Giảng viên • Thời l
 
 ## 7. Trang Admin
 
-**File:** `ctd-admin-v3_5.html` (rename `admin.html` khi deploy)
+**File:** `ctd-admin-v3_8.html` (rename `admin.html` khi deploy)
 
 ### Cấu trúc
 
@@ -884,7 +928,18 @@ Check tại: Firebase Console → Usage tab. Scale L&OD nhỏ → khó vượt 1
 
 ## 15. Lịch sử phiên bản
 
-### v3.7 (CURRENT — 09/07/2026)
+### v3.8 (CURRENT — 17/07/2026)
+
+- ✅ **Mobile Responsive Upgrade** cho cả `index.html` và `admin.html` (xem mục 5b chi tiết đầy đủ)
+- ✅ Chuẩn hoá breakpoint 3 tầng (Desktop ≥1024 / Tablet 640-1024 / Mobile <640) đồng bộ 2 file — Admin trước đây chỉ có 1 breakpoint 768px
+- ✅ Calendar mobile: pill chuyển thành dot màu category, giữ nguyên dạng lưới 7 ngày (không đổi qua agenda/list view)
+- ✅ Modal full-screen trên mobile (Day/Detail/Form/Export/Email)
+- ✅ Admin Form modal: sticky action bar (nút Lưu/Huỷ luôn hiện, không cần cuộn hết form)
+- ✅ Touch target ≥44px cho nav button, filter pills, checkbox/radio, nút Edit/Delete
+- ✅ Input font-size 16px trên mobile để tránh iOS tự động zoom
+- ✅ Không đổi schema Firestore, Security Rules, Backend Adapter, hay desktop layout (≥1024px)
+
+### v3.7 (09/07/2026)
 
 - ✅ Thêm **UI đăng nhập SSO Microsoft** trên màn login admin — nút "Đăng nhập bằng Microsoft" + đường kẻ "hoặc" + form email/password cũ (xem mục 7b)
 - ✅ Hàm `api_signInMicrosoft()` đã code sẵn (`OAuthProvider('microsoft.com')` + `signInWithPopup`), chỉ chờ IT cấu hình Azure AD App Registration + bật provider trên Firebase Console
@@ -1035,9 +1090,9 @@ Khi cần tạo nội dung để copy-paste sang app khác (email client, Word..
 
 | File | Rename khi deploy | Kích thước | Ghi chú |
 |---|---|---|---|
-| `ctd-index-v3_5.html` | `index.html` | ~25 KB | User site (public) — **không đổi ở v3.7** |
-| `ctd-admin-v3_7.html` | `admin.html` | ~82 KB | Admin site (login required) — **đã update ở v3.7** (thêm UI SSO Microsoft) |
-| `HANDOFF-v3_7.md` | — | ~37 KB | Tài liệu này |
+| `ctd-index-v3_8.html` | `index.html` | ~26 KB | User site (public) — **đã update ở v3.8** (mobile responsive) |
+| `ctd-admin-v3_8.html` | `admin.html` | ~86 KB | Admin site (login required) — **đã update ở v3.8** (mobile responsive) |
+| `HANDOFF-v3_8.md` | — | ~40 KB | Tài liệu này |
 
 ### CDN & Dependencies (không có dependency npm)
 
@@ -1068,6 +1123,6 @@ Không cần: npm install · build step · bundler. Mở file HTML trực tiếp
 
 ---
 
-**Cuối tài liệu.** Phiên bản v3.7 — Ngày 09/07/2026.
+**Cuối tài liệu.** Phiên bản v3.8 — Ngày 17/07/2026.
 
 *Tài liệu này nên được cập nhật mỗi khi có thay đổi schema, security rules, hoặc bổ sung tính năng mới.*
