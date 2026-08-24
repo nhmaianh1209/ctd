@@ -147,6 +147,38 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .lvl-bar-n{font-size:10.5px;font-weight:600;color:#1C2B3A;width:24px;text-align:right;flex-shrink:0}
 .lvl-bar-pct{font-size:10px;color:#6B7A8D;width:34px;text-align:right;flex-shrink:0}
 @media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.grid-main,.grid2,.gap-body{grid-template-columns:1fr}}
+/* ── Employee drill-down (C-boxes) ── */
+.emp-btn-wrap{margin-top:10px}
+.emp-btn{width:100%;padding:9px 12px;border-radius:7px;border:1px solid #B86054;background:#FDF1EE;color:#8B3C30;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:.12s;display:flex;align-items:center;justify-content:center;gap:6px}
+.emp-btn:hover{background:#F9DDD7}
+.emp-btn:disabled{border-color:#D5DFEF;background:#F7FAFD;color:#9AA7B6;cursor:not-allowed}
+.emp-note{margin-top:10px;font-size:11.5px;color:#6B7A8D;font-style:italic}
+.modal-ov{position:fixed;inset:0;background:rgba(22,49,94,.55);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+.modal-ov.show{display:flex}
+.modal{background:#fff;border-radius:12px;max-width:1080px;width:100%;box-shadow:0 20px 60px rgba(22,49,94,.35);overflow:hidden;animation:fadeUp .18s ease}
+.modal-hdr{background:#16315E;padding:16px 22px;display:flex;align-items:center;gap:14px;position:sticky;top:0}
+.modal-key{font-size:22px;font-weight:700}
+.modal-hdr-txt{flex:1}
+.modal-title{font-size:15px;font-weight:600;color:#fff}
+.modal-sub{font-size:11.5px;color:#5FD1C1;margin-top:2px}
+.modal-close{background:rgba(255,255,255,.12);border:none;color:#fff;width:30px;height:30px;border-radius:6px;font-size:18px;cursor:pointer;line-height:1;flex-shrink:0}
+.modal-close:hover{background:rgba(255,255,255,.25)}
+.modal-tools{padding:12px 22px;border-bottom:1px solid #D5DFEF;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.emp-search{flex:1;min-width:180px;padding:8px 12px;border:1px solid #D5DFEF;border-radius:7px;font-size:12.5px;font-family:inherit;color:#1C2B3A}
+.emp-search:focus{outline:none;border-color:#16315E}
+.emp-count{font-size:11.5px;color:#6B7A8D}
+.modal-body{max-height:62vh;overflow:auto;padding:0 6px}
+.emp-table{width:100%;border-collapse:collapse}
+.emp-table th{position:sticky;top:0;background:#F0F4FA;color:#16315E;font-size:10.5px;font-weight:700;padding:9px 12px;text-align:left;letter-spacing:.3px;border-bottom:2px solid #D5DFEF;white-space:nowrap;z-index:2}
+.emp-table td{padding:8px 12px;font-size:12px;border-bottom:1px solid #EEF2F8;color:#1C2B3A;white-space:nowrap}
+.emp-table tr:nth-child(even) td{background:#F7FAFD}
+.emp-table tr:hover td{background:#FDF1EE}
+.rt{display:inline-block;padding:1px 7px;border-radius:4px;font-size:10.5px;font-weight:700;border:1px solid}
+.rt-O{background:#EAF8F1;color:#27773E;border-color:#51AC70}
+.rt-HE{background:#EBF4FD;color:#0C3D8A;border-color:#9DC4ED}
+.rt-E{background:#F0F4FA;color:#42506180;border-color:#D5DFEF}
+.rt-NI{background:#FDF1EE;color:#8B3C30;border-color:#B86054}
+.modal-ftr{padding:10px 22px;border-top:1px solid #D5DFEF;font-size:11px;color:#6B7A8D;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
 </style>
 </head>
 <body>
@@ -317,10 +349,15 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
     <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title">Rating Definitions</div><div class="card-sub">Criteria for Performance and Potential classification</div></div></div>
     <div class="legend-grid">
       <div class="legend-col">
-        <div class="legend-col-title">Performance (last 2 cycles)</div>
-        <div class="legend-row"><div class="legend-dot" style="background:#51AC70"></div><div><div class="legend-key" style="color:#51AC70">High</div><div class="legend-desc">Only HE (Highly Effective) or O (Outstanding) ratings in both of the last 2 performance cycles.</div></div></div>
-        <div class="legend-row"><div class="legend-dot" style="background:#0047BA"></div><div><div class="legend-key" style="color:#0047BA">Medium</div><div class="legend-desc">All other rating combinations — neither exclusively HE/O nor containing at least one NI.</div></div></div>
-        <div class="legend-row"><div class="legend-dot" style="background:#B86054"></div><div><div class="legend-key" style="color:#B86054">Low</div><div class="legend-desc">At least one NI (Needs Improvement) rating in the last 2 performance cycles.</div></div></div>
+        <div class="legend-col-title">Performance</div>
+        <div style="font-size:9.5px;font-weight:700;color:#16315E;letter-spacing:.4px;text-transform:uppercase;margin-bottom:9px">Group 1 · 2 years of data (FY25 + FY26)</div>
+        <div class="legend-row"><div class="legend-dot" style="background:#51AC70"></div><div><div class="legend-key" style="color:#51AC70">High</div><div class="legend-desc">Only HE (Highly Effective) or O (Outstanding) across both cycles — no lower rating in either FY25 or FY26.</div></div></div>
+        <div class="legend-row"><div class="legend-dot" style="background:#B86054"></div><div><div class="legend-key" style="color:#B86054">Low</div><div class="legend-desc">At least one NI (Needs Improvement) in either FY25 or FY26.</div></div></div>
+        <div class="legend-row"><div class="legend-dot" style="background:#0047BA"></div><div><div class="legend-key" style="color:#0047BA">Medium</div><div class="legend-desc">All remaining combinations — neither exclusively HE/O across both years, nor containing any NI.</div></div></div>
+        <div style="font-size:9.5px;font-weight:700;color:#16315E;letter-spacing:.4px;text-transform:uppercase;margin:15px 0 9px;padding-top:12px;border-top:1px solid #D5DFEF">Group 2 · 1 year of data (FY26 only)</div>
+        <div class="legend-row"><div class="legend-dot" style="background:#51AC70"></div><div><div class="legend-key" style="color:#51AC70">High</div><div class="legend-desc">O (Outstanding) in FY26.</div></div></div>
+        <div class="legend-row"><div class="legend-dot" style="background:#B86054"></div><div><div class="legend-key" style="color:#B86054">Low</div><div class="legend-desc">NI (Needs Improvement) in FY26.</div></div></div>
+        <div class="legend-row"><div class="legend-dot" style="background:#0047BA"></div><div><div class="legend-key" style="color:#0047BA">Medium</div><div class="legend-desc">HE (Highly Effective) or E (Effective) in FY26.</div></div></div>
       </div>
       <div class="legend-col">
         <div class="legend-col-title">Potential (3 indicators)</div>
@@ -472,6 +509,73 @@ const GRAND_TOTAL=BUDATA.Overall.n;
 /* Auto-derived so hardcodes never drift when data changes */
 const TOTAL_TARGET=BU_META.reduce((s,b)=>s+b.target,0);
 const HM_MAX=Math.max(...BU_NAMES.flatMap(bu=>BOX_KEYS.map(k=>BUDATA[bu].data[k].n)),1);
+/* ═══════════════ EMPLOYEE DRILL-DOWN (C-boxes) ═══════════════ */
+/* Populated from Excel sheet 3. Each record = one employee. Keyed by box (C1/C2/C3). */
+const EMPLOYEE_DATA={ C1:[], C2:[], C3:[] };
+/* Column order + labels shown in modal. Only fields present in the data are rendered. */
+const EMP_FIELDS=[
+  {key:'code',label:'Code'},
+  {key:'name',label:'Full name'},
+  {key:'bu',label:'BU'},
+  {key:'level',label:'Level'},
+  {key:'position',label:'Position'},
+  {key:'fy25',label:'FY25',rating:true},
+  {key:'fy26',label:'FY26',rating:true},
+  {key:'potential',label:'Potential'},
+  {key:'manager',label:'Line manager'},
+  {key:'note',label:'Note / action'},
+];
+const EMP_LOADED=Object.values(EMPLOYEE_DATA).some(a=>a&&a.length);
+function getEmp(boxKey,buFilter,levelFilter){
+  let list=(EMPLOYEE_DATA[boxKey]||[]).slice();
+  if(buFilter&&buFilter!=='Overall') list=list.filter(e=>e.bu===buFilter);
+  if(levelFilter!=null) list=list.filter(e=>e.level===LEVEL_NAMES[levelFilter]||e.level===levelFilter||String(e.level)===LEVEL_NAMES[levelFilter]);
+  return list;
+}
+function empBtnHTML(key,buFilter,levelFilter){
+  if(BOX_DEF[key].zone.toLowerCase()!=='c') return '';
+  if(!EMP_LOADED) return '<div class="emp-btn-wrap"><button class="emp-btn" disabled>👤 Employee list — data not loaded yet</button></div>';
+  const list=getEmp(key,buFilter,levelFilter);
+  if(!list.length) return '<div class="emp-note">No employee records in this box for the current view.</div>';
+  const bf=buFilter==null?'null':JSON.stringify(buFilter);
+  const lf=levelFilter==null?'null':levelFilter;
+  return `<div class="emp-btn-wrap"><button class="emp-btn" onclick='openEmpModal("${key}",${bf},${lf})'>👤 View ${list.length} employee${list.length>1?'s':''} in ${key} →</button></div>`;
+}
+let EMP_CUR=[];
+function ratingCell(v){ if(v==null||v==='')return '<span style="color:#C0C9D6">—</span>'; const cls={O:'rt-O',HE:'rt-HE',E:'rt-E',NI:'rt-NI'}[v]||''; return cls?`<span class="rt ${cls}">${v}</span>`:v; }
+function openEmpModal(key,buFilter,levelFilter){
+  const list=getEmp(key,buFilter,levelFilter); EMP_CUR=list;
+  const def=BOX_DEF[key], z=def.zone.toLowerCase();
+  document.getElementById('emp-modal-key').textContent=key;
+  document.getElementById('emp-modal-key').style.color=zC(z);
+  document.getElementById('emp-modal-title').textContent=`${def.perf} performance · ${def.pot} potential`;
+  let ctx='Overall'; if(buFilter&&buFilter!=='Overall')ctx=buFilter; if(levelFilter!=null)ctx=LEVEL_NAMES[levelFilter];
+  document.getElementById('emp-modal-sub').textContent=`${key} · ${ctx} · ${list.length} employee${list.length>1?'s':''}`;
+  document.getElementById('emp-ftr-ctx').textContent=`Scope: ${ctx}`;
+  document.getElementById('emp-search').value='';
+  const fields=EMP_FIELDS.filter(f=>list.some(e=>e[f.key]!=null&&e[f.key]!==''));
+  document.getElementById('emp-table').dataset.fields=fields.map(f=>f.key).join(',');
+  renderEmpRows(list,fields);
+  document.getElementById('emp-count').textContent=`${list.length} shown`;
+  document.getElementById('emp-modal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function renderEmpRows(list,fields){
+  const thead='<thead><tr>'+fields.map(f=>`<th>${f.label}</th>`).join('')+'</tr></thead>';
+  const tbody='<tbody>'+(list.length?list.map(e=>'<tr>'+fields.map(f=>{
+    const v=e[f.key]; return '<td>'+(f.rating?ratingCell(v):(v==null||v===''?'<span style="color:#C0C9D6">—</span>':v))+'</td>';
+  }).join('')+'</tr>').join(''):`<tr><td colspan="${fields.length}" style="text-align:center;color:#6B7A8D;padding:20px">No matches</td></tr>`)+'</tbody>';
+  document.getElementById('emp-table').innerHTML=thead+tbody;
+}
+function filterEmp(){
+  const q=document.getElementById('emp-search').value.toLowerCase().trim();
+  const fields=document.getElementById('emp-table').dataset.fields.split(',').map(k=>EMP_FIELDS.find(f=>f.key===k));
+  const list=q?EMP_CUR.filter(e=>Object.values(e).some(v=>String(v).toLowerCase().includes(q))):EMP_CUR;
+  renderEmpRows(list,fields);
+  document.getElementById('emp-count').textContent=`${list.length} shown`;
+}
+function closeEmpModal(){document.getElementById('emp-modal').classList.remove('show');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeEmpModal();});
 
 function buildLevelData(li){
   const d={};
@@ -554,8 +658,9 @@ function renderZoneStrip(stripId, data, total){
 }
 
 /* ═══════════════ DETAIL PANELS ═══════════════ */
-function boxDetailHTML(key, n, pctStr, contextLabel, extraHTML){
+function boxDetailHTML(key, n, pctStr, contextLabel, extraHTML, empCtx){
   const def=BOX_DEF[key], z=def.zone.toLowerCase();
+  const empBtn=empCtx?empBtnHTML(key,empCtx.bu,empCtx.level):'';
   return `<div class="detail-hdr">
     <div class="detail-key" style="color:${zC(z)}">${key}</div>
     <div style="flex:1"><div class="detail-count">${n} <span style="font-size:14px;color:#6B7A8D;font-weight:400">engineers</span></div><div class="detail-pct-txt">${pctStr} of ${contextLabel}</div></div>
@@ -563,7 +668,7 @@ function boxDetailHTML(key, n, pctStr, contextLabel, extraHTML){
   </div>
   <div class="detail-desc"><strong>${def.perf} performance · ${def.pot} potential.</strong> ${def.desc}</div>
   <div class="detail-action"><strong>Recommended action:</strong> ${def.action}</div>
-  ${extraHTML}`;
+  ${empBtn}${extraHTML}`;
 }
 
 function renderOverviewDetail(){
@@ -572,14 +677,14 @@ function renderOverviewDetail(){
   const d=BUDATA.Overall.data[selBox];
   const buBreak=`<div style="font-size:10.5px;color:#6B7A8D;margin:10px 0 6px;font-weight:500">Breakdown by BU</div>
     <div class="bu-breakdown">${BU_NAMES.map(bu=>`<div class="bu-card"><div class="bu-card-name">${bu}</div><div class="bu-card-n">${BUDATA[bu].data[selBox].n}</div><div class="bu-card-pct">${BUDATA[bu].data[selBox].pct}</div></div>`).join('')}</div>`;
-  el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,'Overall',buBreak+levelBarHTML('Overall',selBox));
+  el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,'Overall',buBreak+levelBarHTML('Overall',selBox),{bu:null,level:null});
 }
 
 function renderBUDetail(){
   const el=document.getElementById('bu-detail'); if(!el) return;
   if(!selBox){el.innerHTML='<div class="detail-empty">Click any box to explore details</div>';return;}
   const d=BUDATA[curBU].data[selBox];
-  el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,curBU,levelBarHTML(curBU,selBox));
+  el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,curBU,levelBarHTML(curBU,selBox),{bu:curBU,level:null});
 }
 
 function renderLevelDetail(){
@@ -593,7 +698,7 @@ function renderLevelDetail(){
     buBreak=`<div style="font-size:10.5px;color:#6B7A8D;margin:10px 0 6px;font-weight:500">By BU at ${LEVEL_NAMES[curLevel]}</div>
     <div class="bu-breakdown">${buRows.map(r=>`<div class="bu-card"><div class="bu-card-name">${r.bu}</div><div class="bu-card-n">${r.n}</div><div class="bu-card-pct">${d.n?pct(r.n,d.n):''}</div></div>`).join('')}</div>`;
   }
-  el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,LEVEL_NAMES[curLevel],buBreak);
+  el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,LEVEL_NAMES[curLevel],buBreak,{bu:null,level:curLevel});
 }
 
 function dispatchDetail(context){
@@ -876,5 +981,27 @@ renderOverviewDetail();
 renderHeatmap();
 renderGapCharts();
 </script>
+<!-- EMPLOYEE MODAL (C-box drill-down) -->
+<div class="modal-ov" id="emp-modal" onclick="if(event.target===this)closeEmpModal()">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-hdr">
+      <div class="modal-key" id="emp-modal-key">C1</div>
+      <div class="modal-hdr-txt">
+        <div class="modal-title" id="emp-modal-title">Employee list</div>
+        <div class="modal-sub" id="emp-modal-sub"></div>
+      </div>
+      <button class="modal-close" onclick="closeEmpModal()" aria-label="Close">×</button>
+    </div>
+    <div class="modal-tools">
+      <input class="emp-search" id="emp-search" placeholder="🔍 Search name / code / manager…" oninput="filterEmp()"/>
+      <span class="emp-count" id="emp-count"></span>
+    </div>
+    <div class="modal-body"><table class="emp-table" id="emp-table"></table></div>
+    <div class="modal-ftr">
+      <span>⚠ Confidential — Talent review. Do not distribute.</span>
+      <span id="emp-ftr-ctx"></span>
+    </div>
+  </div>
+</div>
 </body>
 </html>
