@@ -213,7 +213,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
       <div class="card">
         <div class="card-hdr">
           <div class="card-dot"></div>
-          <div><div class="card-title">Overall 9-Box Distribution (n = 1,906)</div><div class="card-sub">Line manager evaluation — First deployment</div></div>
+          <div><div class="card-title" id="overview-dist-title">Overall 9-Box Distribution</div><div class="card-sub">Line manager evaluation — First deployment</div></div>
           <div class="card-badge badge-warn">⚠ Possible rating inflation signal</div>
         </div>
         <div style="padding:18px 20px 10px">
@@ -262,7 +262,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
   <div class="gap-section">
     <div class="gap-hdr">
       <div class="gap-hdr-title">Gap Analysis — Actual Distribution vs. Ideal Distribution</div>
-      <div class="gap-hdr-sub">n = 1,906 assessed engineers · Ideal model: 15% C / 65% B / 20% A</div>
+      <div class="gap-hdr-sub" id="gap-hdr-sub">Ideal model: 15% C / 65% B / 20% A</div>
     </div>
     <div style="padding:12px 20px 0;border-bottom:1px solid #D5DFEF;display:flex;gap:4px">
       <button class="hm-btn sel" id="gap-tab-zone" onclick="switchGapTab('zone')">By Zone</button>
@@ -469,6 +469,9 @@ function deriveBUDATA(){
 }
 const BUDATA=deriveBUDATA();
 const GRAND_TOTAL=BUDATA.Overall.n;
+/* Auto-derived so hardcodes never drift when data changes */
+const TOTAL_TARGET=BU_META.reduce((s,b)=>s+b.target,0);
+const HM_MAX=Math.max(...BU_NAMES.flatMap(bu=>BOX_KEYS.map(k=>BUDATA[bu].data[k].n)),1);
 
 function buildLevelData(li){
   const d={};
@@ -611,7 +614,7 @@ function renderHeatmap(){
     BOX_KEYS.forEach(k=>{
       const n=bd.data[k].n; let val,bg;
       if(hmMode==='count'){
-        const intensity=Math.min(n/345,.95), z=BOX_DEF[k].zone.toLowerCase();
+        const intensity=Math.min(n/HM_MAX,.95), z=BOX_DEF[k].zone.toLowerCase();
         bg=n===0?'#FAFBFD':`${zC(z)}${Math.round(intensity*35+10).toString(16).padStart(2,'0')}`;
         val=n;
       } else if(hmMode==='pct'){
@@ -619,9 +622,9 @@ function renderHeatmap(){
         bg=p===0?'#FAFBFD':`${zC(z)}${Math.round(Math.min(p/.5,.95)*35+10).toString(16).padStart(2,'0')}`;
         val=pct(n,bd.n);
       } else {
-        const diff=((n/bd.n - ovD[k].n/GRAND_TOTAL)*100).toFixed(1);
+        const diff=parseFloat(((n/bd.n - ovD[k].n/GRAND_TOTAL)*100).toFixed(1));
         bg=diff>3?'#D4F2E5':diff<-3?'#F9DDD7':'#FAFBFD';
-        val=(diff>0?'+':'')+diff;
+        val=(diff>0?'+':'')+diff.toFixed(1);
       }
       h+=`<td class="${selBox===k?'hm-sel':''}" style="background:${bg};font-weight:${n>50?'600':'400'}" onclick="hmClick('${k}')">${val}</td>`;
     });
@@ -637,8 +640,8 @@ function renderKPIs(){
   const d=BUDATA.Overall.data, n=GRAND_TOTAL;
   const z=zoneTotals(d);
   document.getElementById('kpi-strip').innerHTML=[
-    {l:'Total engineers',v:'1,999',s:'DS FY25',c:'#16315E'},
-    {l:'Completed',v:n.toLocaleString(),s:pct(n,1999)+' completion rate',c:CA},
+    {l:'Total engineers',v:TOTAL_TARGET.toLocaleString(),s:'DS FY25',c:'#16315E'},
+    {l:'Completed',v:n.toLocaleString(),s:pct(n,TOTAL_TARGET)+' completion rate',c:CA},
     {l:'A-zone',v:z.a.toLocaleString(),s:pct(z.a,n)+' — ideal 20%',c:CA},
     {l:'B-zone',v:z.b.toLocaleString(),s:pct(z.b,n)+' — ideal 65%',c:CB},
     {l:'C-zone',v:z.c.toLocaleString(),s:pct(z.c,n)+' — ideal 15%',c:CC},
@@ -863,6 +866,8 @@ function showTab(name,btn){
 }
 
 /* ═══════════════ INIT ═══════════════ */
+document.getElementById('overview-dist-title').textContent=`Overall 9-Box Distribution (n = ${GRAND_TOTAL.toLocaleString()})`;
+document.getElementById('gap-hdr-sub').textContent=`n = ${GRAND_TOTAL.toLocaleString()} assessed engineers · Ideal model: 15% C / 65% B / 20% A`;
 renderKPIs();
 renderCompletionTable();
 render9Box('nb-overview',BUDATA.Overall.data,'overview');
