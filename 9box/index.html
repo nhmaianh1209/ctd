@@ -27,7 +27,6 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .kpi-sub{font-size:11.5px;color:#6B7A8D}
 .card{background:#fff;border:1px solid #D5DFEF;border-radius:10px;box-shadow:0 1px 10px rgba(22,49,94,.055);overflow:hidden}
 .card-hdr{padding:14px 20px 12px;border-bottom:1px solid #D5DFEF;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.card-dot{width:7px;height:7px;border-radius:50%;background:#5FD1C1;flex-shrink:0}
 .card-title{font-size:14px;font-weight:600;color:#16315E}
 .card-sub{font-size:12px;color:#6B7A8D;margin-top:1px;font-style:italic}
 .card-badge{margin-left:auto;font-size:11px;font-weight:600;padding:3px 10px;border-radius:12px}
@@ -100,13 +99,6 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .bu-btn{padding:7px 18px;border-radius:20px;border:1px solid #D5DFEF;background:#fff;color:#6B7A8D;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .12s;font-family:'Lexend Deca',sans-serif}
 .bu-btn:hover{border-color:#16315E;color:#16315E}
 .bu-btn.sel{background:#16315E;color:#fff;border-color:#16315E}
-.gap-section{background:#fff;border:1px solid #D5DFEF;border-radius:10px;box-shadow:0 1px 10px rgba(22,49,94,.055);overflow:hidden}
-.gap-hdr{padding:14px 20px 12px;border-bottom:1px solid #D5DFEF;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.gap-hdr-title{font-size:14px;font-weight:600;color:#16315E}
-.gap-hdr-sub{font-size:12px;color:#6B7A8D;font-style:italic}
-.gap-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.gap-panel{padding:18px 20px;border-right:1px solid #D5DFEF}
-.gap-panel:last-child{border-right:none}
 .gap-table{width:100%;border-collapse:collapse}
 .gap-table th{font-size:11.5px;font-weight:600;color:#6B7A8D;text-align:center;padding:5px 8px;border-bottom:1px solid #EEF2F8;letter-spacing:.3px}
 .gap-table th:first-child{text-align:left}
@@ -133,6 +125,49 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .nb-ref{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:380px;margin-top:8px}
 .nb-ref-cell{border-radius:5px;padding:9px;font-size:11px;border:1px solid #D5DFEF;line-height:1.4}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+/* ══════════ v1.5 — Rating Definitions rebuild (Performance · Potential · 9-Box) ══════════ */
+.def-card-body{padding:18px 22px 20px}
+.def-intro{font-size:12.5px;color:#42506B;line-height:1.55;margin-bottom:14px}
+/* v1.5 — unified "source material" card: same component for Performance ratings & Potential indicators */
+.def-item-strip{display:grid;gap:10px;margin-bottom:16px}
+.def-item-strip.cols-4{grid-template-columns:repeat(4,1fr)}
+.def-item-strip.cols-3{grid-template-columns:repeat(3,1fr)}
+.def-item{background:#F7FAFD;border:1px solid #D5DFEF;border-radius:8px;padding:11px 13px}
+.def-item-badge{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#5FD1C1;color:#16315E;font-size:11px;font-weight:700;margin-bottom:8px;letter-spacing:.2px}
+.def-item-name{font-size:12.5px;font-weight:600;color:#16315E;line-height:1.35}
+.def-table{width:100%;border-collapse:collapse;margin-top:4px}
+.def-table th{background:#16315E;color:#fff;font-size:11px;font-weight:600;padding:9px 14px;text-align:left;letter-spacing:.3px;vertical-align:top}
+.def-table th .th-sub{display:block;font-size:10px;font-weight:400;color:#9FC9F0;margin-top:2px;letter-spacing:.2px;text-transform:none}
+.def-table td{padding:11px 14px;font-size:12.5px;border-bottom:1px solid #EEF2F8;color:#1C2B3A;line-height:1.5;vertical-align:top}
+.def-table tr:last-child td{border-bottom:none}
+.def-lvl{display:flex;align-items:center;gap:9px;white-space:nowrap}
+.def-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+.def-lvl-name{font-size:13px;font-weight:700}
+.def-lvl-cell{width:130px;border-right:1px solid #EEF2F8;background:#FbFcFE}
+.def-cond code{font-family:'Lexend Deca',sans-serif;font-weight:700;color:#16315E;background:#EEF3FA;border-radius:4px;padding:0 5px;font-size:11.5px}
+.def-count{display:inline-flex;align-items:center;justify-content:center;min-width:30px;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:700;background:#EEF3FA;color:#16315E}
+.def-sec-note{font-size:11.5px;color:#6B7A8D;font-style:italic;margin-top:12px;line-height:1.5}
+/* 9-Box reference — same orientation as the live grid */
+.ref9-wrap{display:flex;gap:8px;align-items:stretch;margin-top:4px}
+.ref9-perf{display:flex;flex-direction:row;width:34px;flex-shrink:0}
+.ref9-perf-txt{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:600;color:#16315E;letter-spacing:.06em;display:flex;align-items:center;justify-content:center;width:16px;text-transform:uppercase}
+.ref9-perf-ticks{display:flex;flex-direction:column;width:18px}
+.ref9-perf-tick{flex:1;display:flex;align-items:center;justify-content:flex-end;font-size:10px;color:#6B7A8D;padding-right:3px}
+.ref9-right{flex:1;display:flex;flex-direction:column;gap:4px}
+.ref9-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:4px}
+.ref9-cell{border-radius:8px;padding:10px 10px 9px;border:1px solid #D5DFEF;position:relative;min-height:72px;display:flex;flex-direction:column}
+.ref9-bar{position:absolute;top:0;left:0;right:0;height:3.5px;border-radius:8px 8px 0 0}
+.ref9-key{font-size:13px;font-weight:700;margin-bottom:3px}
+.ref9-role{font-size:11px;color:#1C2B3A;font-weight:600;line-height:1.3}
+.ref9-act{font-size:10px;color:#6B7A8D;font-style:italic;line-height:1.35;margin-top:auto;padding-top:5px}
+.ref9-perf-ticks-bottom{display:flex;padding-top:2px}
+.ref9-pot-tick{flex:1;text-align:center;font-size:10px;color:#6B7A8D}
+.ref9-pot-label{text-align:center;font-size:11px;font-weight:600;color:#16315E;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+.zone-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid #EEF2F8}
+.zone-legend-item{display:flex;align-items:center;gap:7px;font-size:11.5px;color:#42506B}
+.zone-legend-sw{width:13px;height:13px;border-radius:3px;flex-shrink:0}
+.zone-legend-item strong{color:#16315E}
+@media(max-width:1100px){.def-item-strip.cols-4{grid-template-columns:repeat(2,1fr)}.def-item-strip.cols-3{grid-template-columns:1fr}}
 .grid-main{display:grid;grid-template-columns:1fr 396px;gap:18px;align-items:start}
 .col{display:flex;flex-direction:column;gap:14px}
 .level-selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
@@ -146,7 +181,32 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .lvl-bar-fill{height:100%;border-radius:3px;transition:width .3s ease}
 .lvl-bar-n{font-size:11.5px;font-weight:600;color:#1C2B3A;width:24px;text-align:right;flex-shrink:0}
 .lvl-bar-pct{font-size:11px;color:#6B7A8D;width:34px;text-align:right;flex-shrink:0}
-@media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.grid-main,.grid2,.gap-body{grid-template-columns:1fr}}
+
+/* ══════════ v1.3 — Gap tab: verdict strip + single horizontal chart ══════════ */
+.verdict-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.vc{background:#fff;border:1px solid #D5DFEF;border-radius:9px;padding:13px 16px;box-shadow:0 1px 6px rgba(22,49,94,.04)}
+.vc-lbl{font-size:11px;color:#6B7A8D;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+.vc-val{font-size:27px;font-weight:700;color:#16315E;line-height:1.15;margin:6px 0 3px}
+.vc-sub{font-size:11.5px;color:#6B7A8D;line-height:1.45}
+.gbar-row{display:grid;grid-template-columns:74px 1fr 66px 100px;align-items:center;gap:11px;margin-bottom:8px}
+.gbar-lbl{font-size:12.5px;font-weight:600;color:#1C2B3A}
+.gbar-track{position:relative;height:26px;background:#F4F7FC;border:1px solid #E6ECF5;border-radius:5px}
+.gbar-fill{position:absolute;top:2px;bottom:2px;left:2px;border-radius:4px}
+/* v1.4 — actual bar solid by zone colour; gap is a separate hatched overlay layer */
+.gbar-gap{position:absolute;top:2px;bottom:2px;border-radius:3px;display:flex;align-items:center;justify-content:center;overflow:visible;box-sizing:border-box;z-index:2}
+.gbar-gap.over{border-width:1.5px;border-style:solid}
+.gbar-gap.under{border-width:1.5px;border-style:dashed}
+.gbar-gapnum{font-size:10px;font-weight:700;white-space:nowrap;line-height:1;background:rgba(255,255,255,.9);padding:1px 3px;border-radius:3px}
+.gbar-ideal{position:absolute;top:-4px;bottom:-4px;width:2px;background:#16315E;border-radius:1px}
+.gbar-num{font-size:12.5px;font-weight:700;color:#1C2B3A;text-align:right;line-height:1.15}
+.gbar-num span{display:block;font-size:11px;font-weight:400;color:#6B7A8D}
+.gap-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:#6B7A8D;margin-top:12px;padding-top:10px;border-top:1px solid #EEF2F8;align-items:center}
+.gap-legend i{font-style:normal;display:inline-flex;align-items:center;gap:5px}
+.lg-sw{width:16px;height:11px;border-radius:2px;display:inline-block}
+.chip-over{background:#EBF4FD;color:#0C3D8A;border-color:#0047BA;min-width:88px}
+.chip-under{background:#fff;color:#16315E;border-color:#16315E;border-style:dashed;min-width:88px}
+.gap-hint{font-size:11.5px;color:#6B7A8D;font-style:italic;margin-bottom:12px}
+@media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.grid-main,.grid2{grid-template-columns:1fr}.verdict-strip{grid-template-columns:1fr}}
 /* ── Employee drill-down (C-boxes) ── */
 .emp-btn-wrap{margin-top:10px}
 .emp-btn{width:100%;padding:9px 12px;border-radius:7px;border:1px solid #B86054;background:#FDF1EE;color:#8B3C30;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:.12s;display:flex;align-items:center;justify-content:center;gap:6px}
@@ -216,8 +276,8 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 /* ══════════ v1.2 — layout, hero grouping, progressive disclosure ══════════ */
 /* B6 · reading-order numerals */
-.step-n{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:#16315E;color:#fff;font-size:10.5px;font-weight:700;margin-right:7px;vertical-align:middle;flex-shrink:0}
-.section-label .step-n{background:#6B7A8D}
+.step-n{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#16315E;color:#fff;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;flex-shrink:0}
+.section-label{display:flex;align-items:center}
 /* B5 · the question each tab answers */
 .page-sub{font-size:13px;color:#42506B;margin-bottom:16px;padding-left:11px;border-left:3px solid #5FD1C1;line-height:1.45}
 .hint-ic{font-size:13px;color:#5FD1C1;font-style:normal}
@@ -294,10 +354,10 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
   <div class="hero" id="kpi-strip"></div>
   <div class="grid-main">
     <div class="col">
+      <div class="section-label" id="overview-dist-title"><span class="step-n">1</span>Overall 9-Box Distribution</div>
       <div class="card">
         <div class="card-hdr">
-          <div class="card-dot"></div>
-          <div><div class="card-title" id="overview-dist-title"><span class="step-n">1</span>Overall 9-Box Distribution</div><div class="card-sub">Line manager evaluation — First deployment</div></div>
+          <div><div class="card-sub">Line manager evaluation — First deployment</div></div>
           <div class="card-badge badge-warn">⚠ Possible rating inflation signal</div>
         </div>
         <div style="padding:18px 20px 10px">
@@ -326,16 +386,17 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
       </div>
     </div>
     <div class="col">
+      <div class="section-label"><span class="step-n">3</span>BU × 9-Box Heatmap</div>
       <div class="card">
-        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title"><span class="step-n">3</span>BU × 9-Box Heatmap</div><div class="card-sub">Click any cell → loads it into "Box detail"</div></div></div>
+        <div class="card-hdr"><div><div class="card-sub">Click any cell → loads it into "Box detail"</div></div></div>
         <div style="padding:12px 16px">
           <div class="hm-toggle" id="hm-toggle"></div>
           <div class="heatmap-wrap"><table class="hm-table" id="hm-table"></table></div>
           <div class="click-hint" style="margin-top:8px"><span class="hint-ic">⊕</span> Hover a cell to reveal its value.</div>
         </div>
       </div>
+      <div class="section-label"><span class="step-n">4</span>Completion rate by BU</div>
       <div class="card">
-        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title"><span class="step-n">4</span>Completion rate by BU</div></div></div>
         <table class="ctable">
           <thead><tr><th>BU</th><th>Target</th><th>Completed</th><th>Rate</th></tr></thead>
           <tbody id="completion-tbody"></tbody>
@@ -348,7 +409,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 <!-- BY BU -->
 <div class="page" id="tab-bu">
   <div class="page-sub">Which business units sit differently from the company-wide pattern?</div>
-  <div class="section-label">Select business unit</div>
+  <div class="section-label"><span class="step-n">1</span>Select business unit</div>
   <div class="bu-row" id="bu-selector"></div>
   <div class="grid2" id="bu-content"></div>
 </div>
@@ -356,7 +417,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 <!-- BY LEVEL -->
 <div class="page" id="tab-level">
   <div class="page-sub">How does the distribution shift as seniority rises?</div>
-  <div class="section-label">Select seniority level</div>
+  <div class="section-label"><span class="step-n">1</span>Select seniority level</div>
   <div class="level-selector" id="level-selector"></div>
   <div class="grid2" id="level-content"></div>
 </div>
@@ -364,93 +425,144 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 <!-- GAP ANALYSIS -->
 <div class="page" id="tab-gap">
   <div class="page-sub">How far does the actual distribution sit from the target model?</div>
-  <div class="gap-section">
-    <div class="gap-hdr">
-      <div class="gap-hdr-title">Gap Analysis — Actual Distribution vs. Ideal Distribution</div>
-      <div class="gap-hdr-sub" id="gap-hdr-sub">Ideal model: 15% C / 65% B / 20% A</div>
+  <div class="gap-hint" id="gap-hdr-sub"></div>
+
+  <div class="section-label"><span class="step-n">1</span>Where the gap is</div>
+  <div class="verdict-strip" id="gap-verdict"></div>
+
+  <div class="section-label"><span class="step-n">2</span>Zone gap — actual vs. ideal</div>
+  <div class="card"><div style="padding:18px 20px 14px" id="gap-zone-chart"></div></div>
+
+  <div class="section-label" style="margin-top:18px"><span class="step-n">3</span>Detailed comparison</div>
+  <div class="card"><div style="padding:10px 18px 14px"><table class="gap-table" id="gap-zone-table"></table></div></div>
+
+  <div class="section-label" style="margin-top:18px"><span class="step-n">4</span>Nine-box detail</div>
+  <div class="card"><div style="padding:12px 18px 16px">
+    <button class="link-btn" id="gap-box-btn" onclick="toggleGapBox()">Show all nine boxes ▾</button>
+    <div id="gap-box-wrap" style="display:none;padding-top:12px">
+      <div class="gap-hint">Sorted by size of gap — the box furthest from target sits at the top.</div>
+      <div id="gap-box-chart"></div>
+      <div style="margin-top:16px"><table class="gap-table" id="gap-detail-table"></table></div>
     </div>
-    <div id="gap-panel-zone">
-      <div class="gap-sec-hdr">By zone — A / B / C</div>
-      <div class="gap-body">
-        <div class="gap-panel">
-          <div class="section-label" style="margin-bottom:10px">Actual vs. Ideal (Grouped Bars)</div>
-          <svg id="zone-bar-svg" viewBox="0 0 440 260" style="width:100%;height:auto"></svg>
-          <div style="display:flex;gap:16px;margin-top:8px;font-size:11px;color:#6B7A8D">
-            <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:2px;background:#0047BA;opacity:.75;display:inline-block"></span>Actual</span>
-            <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:2px;background:#16315E;opacity:.3;display:inline-block;border:1px dashed #16315E"></span>Ideal</span>
-          </div>
-        </div>
-        <div class="gap-panel" style="border-right:none">
-          <div class="section-label" style="margin-bottom:10px">Gap to Ideal</div>
-          <svg id="zone-delta-svg" viewBox="0 0 440 260" style="width:100%;height:auto"></svg>
-        </div>
-      </div>
-      <div style="border-top:1px solid #D5DFEF;padding:16px 20px">
-        <div class="section-label" style="margin-bottom:10px">Detailed Comparison</div>
-        <table class="gap-table" id="gap-zone-table"></table>
-      </div>
-    </div>
-    <div id="gap-panel-box">
-      <div class="gap-sec-hdr">By box — all nine</div>
-      <div class="gap-body">
-        <div class="gap-panel">
-          <div class="section-label" style="margin-bottom:10px">Actual vs. Ideal (Grouped Bars)</div>
-          <svg id="grouped-bar-svg" viewBox="0 0 440 260" style="width:100%;height:auto"></svg>
-          <div style="display:flex;gap:16px;margin-top:8px;font-size:11px;color:#6B7A8D">
-            <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:2px;background:#0047BA;opacity:.75;display:inline-block"></span>Actual</span>
-            <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:2px;background:#16315E;opacity:.3;display:inline-block;border:1px dashed #16315E"></span>Ideal</span>
-          </div>
-        </div>
-        <div class="gap-panel" style="border-right:none">
-          <div class="section-label" style="margin-bottom:10px">Gap to Ideal</div>
-          <svg id="delta-bar-svg" viewBox="0 0 440 260" style="width:100%;height:auto"></svg>
-        </div>
-      </div>
-      <div style="border-top:1px solid #D5DFEF;padding:16px 20px">
-        <div class="section-label" style="margin-bottom:10px">Detailed Comparison</div>
-        <table class="gap-table" id="gap-detail-table"></table>
-      </div>
-    </div>
-  </div>
+  </div></div>
 </div>
 
 <!-- LEGEND -->
 <div class="page" id="tab-legend">
-  <div class="page-sub">What exactly do High, Medium and Low mean in this assessment?</div>
+  <div class="page-sub">What exactly do High, Medium and Low mean — and how do the two axes combine into the nine boxes?</div>
+
+  <!-- 1 · PERFORMANCE -->
+  <div class="section-label"><span class="step-n">1</span>Performance</div>
   <div class="card">
-    <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title">Rating Definitions</div><div class="card-sub">Criteria for Performance and Potential classification</div></div></div>
-    <div class="legend-grid">
-      <div class="legend-col">
-        <div class="legend-col-title">Performance</div>
-        <div style="font-size:9.5px;font-weight:700;color:#16315E;letter-spacing:.4px;text-transform:uppercase;margin-bottom:9px">Group 1 · 2 years of data (FY25 + FY26)</div>
-        <div class="legend-row"><div class="legend-dot" style="background:#51AC70"></div><div><div class="legend-key" style="color:#51AC70">High</div><div class="legend-desc">Only HE (Highly Effective) or O (Outstanding) across both cycles — no lower rating in either FY25 or FY26.</div></div></div>
-        <div class="legend-row"><div class="legend-dot" style="background:#B86054"></div><div><div class="legend-key" style="color:#B86054">Low</div><div class="legend-desc">At least one NI (Needs Improvement) in either FY25 or FY26.</div></div></div>
-        <div class="legend-row"><div class="legend-dot" style="background:#0047BA"></div><div><div class="legend-key" style="color:#0047BA">Medium</div><div class="legend-desc">All remaining combinations — neither exclusively HE/O across both years, nor containing any NI.</div></div></div>
-        <div style="font-size:9.5px;font-weight:700;color:#16315E;letter-spacing:.4px;text-transform:uppercase;margin:15px 0 9px;padding-top:12px;border-top:1px solid #D5DFEF">Group 2 · 1 year of data (FY26 only)</div>
-        <div class="legend-row"><div class="legend-dot" style="background:#51AC70"></div><div><div class="legend-key" style="color:#51AC70">High</div><div class="legend-desc">O (Outstanding) in FY26.</div></div></div>
-        <div class="legend-row"><div class="legend-dot" style="background:#B86054"></div><div><div class="legend-key" style="color:#B86054">Low</div><div class="legend-desc">NI (Needs Improvement) in FY26.</div></div></div>
-        <div class="legend-row"><div class="legend-dot" style="background:#0047BA"></div><div><div class="legend-key" style="color:#0047BA">Medium</div><div class="legend-desc">HE (Highly Effective) or E (Effective) in FY26.</div></div></div>
+    <div class="def-card-body">
+      <div class="def-intro">Each engineer is placed on a single <strong>High / Medium / Low</strong> scale. The rule differs by how much appraisal history exists — read across the row to compare both cases.</div>
+      <div class="def-item-strip cols-4">
+        <div class="def-item"><div class="def-item-badge">O</div><div class="def-item-name">Outstanding</div></div>
+        <div class="def-item"><div class="def-item-badge">HE</div><div class="def-item-name">Highly Effective</div></div>
+        <div class="def-item"><div class="def-item-badge">E</div><div class="def-item-name">Effective</div></div>
+        <div class="def-item"><div class="def-item-badge">NI</div><div class="def-item-name">Needs Improvement</div></div>
       </div>
-      <div class="legend-col">
-        <div class="legend-col-title">Potential (3 indicators)</div>
-        <div class="legend-row"><div class="legend-dot" style="background:#51AC70"></div><div><div class="legend-key" style="color:#51AC70">High</div><div class="legend-desc">Demonstrates all 3: strong growth motivation + high engagement + readiness for next-level roles.</div></div></div>
-        <div class="legend-row"><div class="legend-dot" style="background:#0047BA"></div><div><div class="legend-key" style="color:#0047BA">Medium</div><div class="legend-desc">Demonstrates 1–2 indicators, or shows inconsistent potential across evaluation cycles.</div></div></div>
-        <div class="legend-row"><div class="legend-dot" style="background:#B86054"></div><div><div class="legend-key" style="color:#B86054">Low</div><div class="legend-desc">Does not demonstrate any of the 3 potential indicators.</div></div></div>
-      </div>
+      <table class="def-table">
+        <thead><tr>
+          <th style="width:130px">Level</th>
+          <th>Case A — two years of data<span class="th-sub">FY25 + FY26</span></th>
+          <th>Case B — one year of data<span class="th-sub">FY26 only</span></th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="def-lvl-cell"><div class="def-lvl"><span class="def-dot" style="background:#51AC70"></span><span class="def-lvl-name" style="color:#51AC70">High</span></div></td>
+            <td class="def-cond">Only <code>HE</code> or <code>O</code> in both cycles — no lower rating in either year.</td>
+            <td class="def-cond"><code>O</code> in FY26.</td>
+          </tr>
+          <tr>
+            <td class="def-lvl-cell"><div class="def-lvl"><span class="def-dot" style="background:#0047BA"></span><span class="def-lvl-name" style="color:#0047BA">Medium</span></div></td>
+            <td class="def-cond">All remaining combinations — neither exclusively <code>HE</code>/<code>O</code> across both years, nor containing any <code>NI</code>.</td>
+            <td class="def-cond"><code>HE</code> or <code>E</code> in FY26.</td>
+          </tr>
+          <tr>
+            <td class="def-lvl-cell"><div class="def-lvl"><span class="def-dot" style="background:#B86054"></span><span class="def-lvl-name" style="color:#B86054">Low</span></div></td>
+            <td class="def-cond">At least one <code>NI</code> in either FY25 or FY26.</td>
+            <td class="def-cond"><code>NI</code> in FY26.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div style="padding:0 20px 20px">
-      <div class="section-label" style="margin-bottom:10px">9-Box Grid Reference</div>
-      <div style="font-size:11px;color:#6B7A8D;margin-bottom:8px">Rows = Performance (top: High → bottom: Low) · Columns = Potential (left: Low → right: High)</div>
-      <div class="nb-ref">
-        <div class="nb-ref-cell" style="background:#EBF4FD"><strong style="color:#0047BA">B1</strong><br/>High perf · Low pot<br/><em style="font-size:9px;color:#6B7A8D">Diagnose & coach</em></div>
-        <div class="nb-ref-cell" style="background:#EAF8F1"><strong style="color:#51AC70">A3</strong><br/>High perf · Med pot<br/><em style="font-size:9px;color:#6B7A8D">Develop quickly</em></div>
-        <div class="nb-ref-cell" style="background:#EAF8F1"><strong style="color:#51AC70">A1 ★</strong><br/>High perf · High pot<br/><em style="font-size:9px;color:#6B7A8D">Succession candidate</em></div>
-        <div class="nb-ref-cell" style="background:#FDF1EE"><strong style="color:#B86054">C1</strong><br/>Med perf · Low pot<br/><em style="font-size:9px;color:#6B7A8D">Clear expectations</em></div>
-        <div class="nb-ref-cell" style="background:#EBF4FD"><strong style="color:#0047BA">B2</strong><br/>Med perf · Med pot<br/><em style="font-size:9px;color:#6B7A8D">Core workforce</em></div>
-        <div class="nb-ref-cell" style="background:#EAF8F1"><strong style="color:#51AC70">A2</strong><br/>Med perf · High pot<br/><em style="font-size:9px;color:#6B7A8D">Recognize & deepen</em></div>
-        <div class="nb-ref-cell" style="background:#FDF1EE"><strong style="color:#B86054">C3</strong><br/>Low perf · Low pot<br/><em style="font-size:9px;color:#6B7A8D">PIP or exit</em></div>
-        <div class="nb-ref-cell" style="background:#FDF1EE"><strong style="color:#B86054">C2</strong><br/>Low perf · Med pot<br/><em style="font-size:9px;color:#6B7A8D">Manage consistency</em></div>
-        <div class="nb-ref-cell" style="background:#EBF4FD"><strong style="color:#0047BA">B3</strong><br/>Low perf · High pot<br/><em style="font-size:9px;color:#6B7A8D">Specialist · retain</em></div>
+  </div>
+
+  <!-- 2 · POTENTIAL -->
+  <div class="section-label" style="margin-top:20px"><span class="step-n">2</span>Potential</div>
+  <div class="card">
+    <div class="def-card-body">
+      <div class="def-intro">Potential is judged against <strong>three indicators</strong>. The level depends on how many an engineer demonstrates.</div>
+      <div class="def-item-strip cols-3">
+        <div class="def-item"><div class="def-item-badge">1</div><div class="def-item-name">Growth motivation</div></div>
+        <div class="def-item"><div class="def-item-badge">2</div><div class="def-item-name">Engagement</div></div>
+        <div class="def-item"><div class="def-item-badge">3</div><div class="def-item-name">Readiness for next-level roles</div></div>
+      </div>
+      <table class="def-table">
+        <thead><tr>
+          <th style="width:130px">Level</th>
+          <th style="width:150px">Indicators met</th>
+          <th>Definition</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="def-lvl-cell"><div class="def-lvl"><span class="def-dot" style="background:#51AC70"></span><span class="def-lvl-name" style="color:#51AC70">High</span></div></td>
+            <td><span class="def-count">3 / 3</span></td>
+            <td class="def-cond">Demonstrates all three indicators consistently.</td>
+          </tr>
+          <tr>
+            <td class="def-lvl-cell"><div class="def-lvl"><span class="def-dot" style="background:#0047BA"></span><span class="def-lvl-name" style="color:#0047BA">Medium</span></div></td>
+            <td><span class="def-count">1 – 2 / 3</span></td>
+            <td class="def-cond">Demonstrates one or two indicators, or shows them inconsistently across evaluation cycles.</td>
+          </tr>
+          <tr>
+            <td class="def-lvl-cell"><div class="def-lvl"><span class="def-dot" style="background:#B86054"></span><span class="def-lvl-name" style="color:#B86054">Low</span></div></td>
+            <td><span class="def-count">0 / 3</span></td>
+            <td class="def-cond">Does not demonstrate any of the three indicators.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 3 · 9-BOX -->
+  <div class="section-label" style="margin-top:20px"><span class="step-n">3</span>9-Box</div>
+  <div class="card">
+    <div class="def-card-body">
+      <div class="def-intro">Performance (vertical) and Potential (horizontal) combine into nine boxes — laid out here exactly as in the live grid. Colour marks the talent zone; the italic line is the recommended action.</div>
+      <div class="ref9-wrap">
+        <div class="ref9-perf">
+          <div class="ref9-perf-txt">Performance</div>
+          <div class="ref9-perf-ticks">
+            <div class="ref9-perf-tick">High</div>
+            <div class="ref9-perf-tick">Med</div>
+            <div class="ref9-perf-tick">Low</div>
+          </div>
+        </div>
+        <div class="ref9-right">
+          <div class="ref9-grid">
+            <!-- row 1: High performance -->
+            <div class="ref9-cell" style="background:#EBF4FD"><div class="ref9-bar" style="background:#0047BA"></div><div class="ref9-key" style="color:#0047BA">B1</div><div class="ref9-role">High perf · Low pot</div><div class="ref9-act">Diagnose &amp; coach</div></div>
+            <div class="ref9-cell" style="background:#EAF8F1"><div class="ref9-bar" style="background:#51AC70"></div><div class="ref9-key" style="color:#51AC70">A3</div><div class="ref9-role">High perf · Med pot</div><div class="ref9-act">Develop quickly</div></div>
+            <div class="ref9-cell" style="background:#EAF8F1"><div class="ref9-bar" style="background:#51AC70"></div><div class="ref9-key" style="color:#51AC70">A1 ★</div><div class="ref9-role">High perf · High pot</div><div class="ref9-act">Succession candidate</div></div>
+            <!-- row 2: Medium performance -->
+            <div class="ref9-cell" style="background:#FDF1EE"><div class="ref9-bar" style="background:#B86054"></div><div class="ref9-key" style="color:#B86054">C1</div><div class="ref9-role">Med perf · Low pot</div><div class="ref9-act">Clear expectations</div></div>
+            <div class="ref9-cell" style="background:#EBF4FD"><div class="ref9-bar" style="background:#0047BA"></div><div class="ref9-key" style="color:#0047BA">B2</div><div class="ref9-role">Med perf · Med pot</div><div class="ref9-act">Core workforce</div></div>
+            <div class="ref9-cell" style="background:#EAF8F1"><div class="ref9-bar" style="background:#51AC70"></div><div class="ref9-key" style="color:#51AC70">A2</div><div class="ref9-role">Med perf · High pot</div><div class="ref9-act">Recognize &amp; deepen</div></div>
+            <!-- row 3: Low performance -->
+            <div class="ref9-cell" style="background:#FDF1EE"><div class="ref9-bar" style="background:#B86054"></div><div class="ref9-key" style="color:#B86054">C3</div><div class="ref9-role">Low perf · Low pot</div><div class="ref9-act">PIP or exit</div></div>
+            <div class="ref9-cell" style="background:#FDF1EE"><div class="ref9-bar" style="background:#B86054"></div><div class="ref9-key" style="color:#B86054">C2</div><div class="ref9-role">Low perf · Med pot</div><div class="ref9-act">Manage consistency</div></div>
+            <div class="ref9-cell" style="background:#EBF4FD"><div class="ref9-bar" style="background:#0047BA"></div><div class="ref9-key" style="color:#0047BA">B3</div><div class="ref9-role">Low perf · High pot</div><div class="ref9-act">Specialist · retain</div></div>
+          </div>
+          <div class="ref9-perf-ticks-bottom"><div class="ref9-pot-tick">Low</div><div class="ref9-pot-tick">Medium</div><div class="ref9-pot-tick">High</div></div>
+          <div class="ref9-pot-label">Potential →</div>
+        </div>
+      </div>
+      <div class="zone-legend">
+        <div class="zone-legend-item"><span class="zone-legend-sw" style="background:#51AC70"></span><strong>A-zone</strong> — top talent (ideal 20%)</div>
+        <div class="zone-legend-item"><span class="zone-legend-sw" style="background:#0047BA"></span><strong>B-zone</strong> — core workforce (ideal 65%)</div>
+        <div class="zone-legend-item"><span class="zone-legend-sw" style="background:#B86054"></span><strong>C-zone</strong> — needs attention (ideal 15%)</div>
       </div>
     </div>
   </div>
@@ -794,10 +906,10 @@ function renderLevelDetail(){
   const buRows=BU_NAMES.map(bu=>({bu,n:BU_LEVEL[bu][curLevel][selBox]||0})).filter(r=>r.n>0);
   let buBreak='';
   if(buRows.length){
-    buBreak=`<div style="font-size:10.5px;color:#6B7A8D;margin:10px 0 6px;font-weight:500">By BU at ${LEVEL_NAMES[curLevel]}</div>
+    buBreak=`<div style="font-size:10.5px;color:#6B7A8D;margin:10px 0 6px;font-weight:500">By BU at Level ${curLevel+1}</div>
     <div class="bu-breakdown">${buRows.map(r=>`<div class="bu-card"><div class="bu-card-name">${r.bu}</div><div class="bu-card-n">${r.n}</div><div class="bu-card-pct">${d.n?pct(r.n,d.n):''}</div></div>`).join('')}</div>`;
   }
-  el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,LEVEL_NAMES[curLevel],buBreak,{bu:null,level:curLevel});
+  el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,'Level '+(curLevel+1),buBreak,{bu:null,level:curLevel});
 }
 
 function dispatchDetail(context){
@@ -926,10 +1038,12 @@ function renderBUPage(){
   let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${curBU} has only ${t} assessed engineers.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
   cmp+=cmpTableHTML(curBU,bu.data,t);
   document.getElementById('bu-content').innerHTML=`
+    <div>
+    <div class="section-label"><span class="step-n">2</span>Distribution</div>
     <div class="card">
       <div style="background:#16315E;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div>
-          <div style="font-size:21px;font-weight:700;color:#fff"><span class="step-n" style="background:#5FD1C1;color:#16315E">1</span>${curBU}${t<SMALL_N?'<span class="smalln">small sample</span>':''}</div>
+          <div style="font-size:21px;font-weight:700;color:#fff">${curBU}${t<SMALL_N?'<span class="smalln">small sample</span>':''}</div>
           <div style="font-size:12px;color:#5FD1C1;margin-top:2px">n = ${t} engineers</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -952,13 +1066,16 @@ function renderBUPage(){
         <div class="click-hint"><span class="hint-ic">⊕</span> Click any of the 9 boxes above to load its details.</div>
       </div>
     </div>
+    </div>
     <div class="col">
+      <div>
+      <div class="section-label"><span class="step-n">3</span>${curBU} vs. Overall</div>
       <div class="card">
-        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title"><span class="step-n">2</span>${curBU} vs. Overall</div></div></div>
         <div style="padding:12px 16px">${cmp}</div>
       </div>
+      </div>
       <div>
-        <div class="section-label"><span class="step-n">3</span>Box detail</div>
+        <div class="section-label"><span class="step-n">4</span>Box detail</div>
         <div class="detail-panel" id="bu-detail"></div>
       </div>
     </div>`;
@@ -974,13 +1091,16 @@ function renderLevelPage(){
     LEVEL_NAMES.map((ln,li)=>`<button class="level-btn${li===curLevel?' sel':''}" onclick="selectLevel(${li})">${ln}</button>`).join('');
   const ld=buildLevelData(curLevel), t=ld.n, z=zoneTotals(ld.data);
   const ovD=BUDATA.Overall.data;
-  let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${LEVEL_NAMES[curLevel]} has only ${t} assessed engineer${t===1?'':'s'}.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
-  cmp+=cmpTableHTML(LEVEL_NAMES[curLevel],ld.data,t);
+  const lvlFull='Level '+(curLevel+1);
+  let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${lvlFull} has only ${t} assessed engineer${t===1?'':'s'}.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
+  cmp+=cmpTableHTML(lvlFull,ld.data,t);
   document.getElementById('level-content').innerHTML=`
+    <div>
+    <div class="section-label"><span class="step-n">2</span>Distribution</div>
     <div class="card">
       <div style="background:#16315E;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div>
-          <div style="font-size:21px;font-weight:700;color:#fff"><span class="step-n" style="background:#5FD1C1;color:#16315E">1</span>${LEVEL_NAMES[curLevel]}${t<SMALL_N?'<span class="smalln">small sample</span>':''}</div>
+          <div style="font-size:21px;font-weight:700;color:#fff">${lvlFull}${t<SMALL_N?'<span class="smalln">small sample</span>':''}</div>
           <div style="font-size:12px;color:#5FD1C1;margin-top:2px">n = ${t} engineers</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -1003,13 +1123,16 @@ function renderLevelPage(){
         <div class="click-hint"><span class="hint-ic">⊕</span> Click any of the 9 boxes above to load its details.</div>
       </div>
     </div>
+    </div>
     <div class="col">
+      <div>
+      <div class="section-label"><span class="step-n">3</span>${lvlFull} vs. Overall</div>
       <div class="card">
-        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title"><span class="step-n">2</span>${LEVEL_NAMES[curLevel]} vs. Overall</div></div></div>
         <div style="padding:12px 16px">${cmp}</div>
       </div>
+      </div>
       <div>
-        <div class="section-label"><span class="step-n">3</span>Box detail</div>
+        <div class="section-label"><span class="step-n">4</span>Box detail</div>
         <div class="detail-panel" id="level-detail"></div>
       </div>
     </div>`;
@@ -1022,81 +1145,103 @@ function selectLevel(li){curLevel=li;renderLevelPage();} /* B4 — keep the chos
 /* ═══════════════ GAP ANALYSIS ═══════════════ */
 /* C6 — sub-tabs removed in v1.2; both views now stack on one scrollable page */
 
-function drawGroupedBars(svgId, groups){
-  const n=GRAND_TOTAL, maxPct=Math.max(...groups.map(g=>Math.max(g.actualPct,g.idealPct)));
-  const H=180,Y=30,X=55,W=360,gw=W/groups.length,bw=gw*0.32,scale=H/(maxPct*1.15);
-  let s=`<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="3" fill="#F8FAFD" stroke="#D5DFEF" stroke-width=".5"/>`;
-  for(let i=0;i<=4;i++){const y=Y+H-H*(i/4);s+=`<line x1="${X}" y1="${y}" x2="${X+W}" y2="${y}" stroke="#D5DFEF" stroke-dasharray="3,3" stroke-width=".4"/><text x="${X-4}" y="${y+3}" text-anchor="end" font-size="9" fill="#6B7A8D" font-family="Lexend Deca">${(maxPct*1.15*(i/4)).toFixed(0)}%</text>`;}
-  groups.forEach((g,i)=>{
-    const cx=X+gw*i+gw/2, ah=g.actualPct*scale, th=g.idealPct*scale;
-    s+=`<rect x="${cx-bw-1}" y="${Y+H-th}" width="${bw}" height="${th}" rx="2" fill="#16315E" opacity=".2" stroke="#16315E" stroke-width=".5" stroke-dasharray="3,2"/>`;
-    s+=`<rect x="${cx+1}" y="${Y+H-ah}" width="${bw}" height="${ah}" rx="2" fill="${g.color}" opacity=".8"/>`;
-    s+=`<text x="${cx-bw/2-1}" y="${Y+H-th-4}" text-anchor="middle" font-size="7.5" fill="#16315E" font-family="Lexend Deca">${g.idealPct}%</text>`;
-    s+=`<text x="${cx+bw/2+1}" y="${Y+H-ah-4}" text-anchor="middle" font-size="7.5" fill="${g.textC}" font-weight="600" font-family="Lexend Deca">${g.actualPct}%</text>`;
-    s+=`<text x="${cx}" y="${Y+H+14}" text-anchor="middle" font-size="${groups.length>5?8:10}" fill="${g.textC}" font-weight="600" font-family="Lexend Deca">${g.label}</text>`;
-  });
-  document.getElementById(svgId).innerHTML=s;
-}
+let gapBoxOpen=false;
 
-function drawDeltaBars(svgId, groups){
-  const maxGap=Math.max(...groups.map(g=>Math.abs(g.gap)),1);
-  const H=180,Y=30,X=55,W=360,zY=Y+H/2,halfH=H/2-10;
-  let s=`<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="3" fill="#F8FAFD" stroke="#D5DFEF" stroke-width=".5"/>`;
-  s+=`<line x1="${X}" y1="${zY}" x2="${X+W}" y2="${zY}" stroke="#16315E" stroke-width="1"/>`;
-  s+=`<text x="${X-4}" y="${zY+3}" text-anchor="end" font-size="9" fill="#16315E" font-weight="600" font-family="Lexend Deca">0</text>`;
-  s+=`<text x="${X-4}" y="${Y+8}" text-anchor="end" font-size="8" fill="#6B7A8D" font-family="Lexend Deca">+${maxGap}</text>`;
-  s+=`<text x="${X-4}" y="${Y+H}" text-anchor="end" font-size="8" fill="#6B7A8D" font-family="Lexend Deca">−${maxGap}</text>`;
-  const bw=W/groups.length*0.5;
-  groups.forEach((g,i)=>{
-    const cx=X+W/groups.length*i+W/groups.length/2;
-    const barH=Math.abs(g.gap)/maxGap*halfH, isPos=g.gap>=0, y=isPos?zY-barH:zY;
-    s+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${barH}" rx="3" fill="${isPos?CA:CC}" opacity=".8"/>`;
-    s+=`<text x="${cx}" y="${isPos?y-5:y+barH+13}" text-anchor="middle" font-size="8" fill="${isPos?TA:TC}" font-weight="700" font-family="Lexend Deca">${isPos?'+':''}${g.gap}</text>`;
-    s+=`<text x="${cx}" y="${Y+H+14}" text-anchor="middle" font-size="${groups.length>5?8:10}" fill="${g.textC}" font-weight="600" font-family="Lexend Deca">${g.label}</text>`;
+/* direction is encoded by fill vs. dash — never by good/bad colour */
+function gapChip(gap){
+  if(gap>0) return `<span class="chip chip-over">\u2191 ${gap} over</span>`;
+  if(gap<0) return `<span class="chip chip-under">\u2193 ${Math.abs(gap)} under</span>`;
+  return `<span class="chip chip-zero">on target</span>`;
+}
+function gapDir(gap){return gap>0?'over':gap<0?'under':'zero';}
+
+function drawGapRows(elId, groups){
+  const maxPct=Math.max(...groups.map(g=>Math.max(g.actualPct,g.idealPct)))*1.16||1;
+  let h='';
+  groups.forEach(g=>{
+    const aw=Math.max(g.actualPct/maxPct*100,0.6), iw=g.idealPct/maxPct*100;
+    const dir=gapDir(g.gap);
+    /* actual bar is always solid, coloured by zone; the gap is a separate hatched
+       overlay so the actual value is never restyled by the calculation. */
+    let gapLayer='';
+    if(dir!=='zero'){
+      const lo=Math.min(aw,iw), hi=Math.max(aw,iw);
+      const gw=Math.max(hi-lo,0.4);
+      const hatch=`repeating-linear-gradient(45deg, ${g.textC} 0, ${g.textC} 1.6px, transparent 1.6px, transparent 5px)`;
+      const num=(g.gap>0?'+':'\u2212')+Math.abs(g.gap);
+      gapLayer=`<div class="gbar-gap ${dir}" style="left:${lo}%;width:${gw}%;background:${hatch};border-color:${g.textC}" title="${dir==='over'?'Over':'Under'} target by ${Math.abs(g.gap)}"><span class="gbar-gapnum" style="color:${g.textC}">${num}</span></div>`;
+    }
+    h+=`<div class="gbar-row">
+      <div class="gbar-lbl">${g.label}</div>
+      <div class="gbar-track">
+        <div class="gbar-fill" style="width:calc(${aw}% - 4px);background:${g.color}"></div>
+        ${gapLayer}
+        <div class="gbar-ideal" style="left:${iw}%" title="Ideal ${g.idealPct}% (${g.idealN})"></div>
+      </div>
+      <div class="gbar-num">${g.actual}<span>${g.actualPct}%</span></div>
+      <div>${gapChip(g.gap)}</div>
+    </div>`;
   });
-  document.getElementById(svgId).innerHTML=s;
+  h+=`<div class="gap-legend">
+    <i><span class="lg-sw" style="background:${CA};border-radius:2px"></span><span class="lg-sw" style="background:${CB};border-radius:2px"></span><span class="lg-sw" style="background:${CC};border-radius:2px"></span>Bar \u2014 actual, coloured by zone (A / B / C)</i>
+    <i><span class="lg-sw" style="background:repeating-linear-gradient(45deg,#8B3C30 0,#8B3C30 1.6px,transparent 1.6px,transparent 5px);border:1px solid #8B3C30"></span>Hatch \u2014 gap vs. target</i>
+    <i><span class="lg-sw" style="width:2px;background:#16315E;border-radius:1px"></span>Vertical line \u2014 ideal target</i>
+  </div>`;
+  document.getElementById(elId).innerHTML=h;
 }
 
 function gapTableHTML(tableId, groups, labelHeader){
   document.getElementById(tableId).innerHTML=`<thead><tr>
-    <th style="text-align:left">${labelHeader}</th><th>Ideal %</th><th>Ideal n</th><th>Actual %</th><th>Actual n</th><th>Gap (n)</th>
+    <th style="text-align:left">${labelHeader}</th><th>Ideal %</th><th>Ideal n</th><th>Actual %</th><th>Actual n</th><th>vs. target</th>
   </tr></thead><tbody>${groups.map(g=>`<tr>
     <td style="color:${g.textC}">${g.label}</td>
     <td style="color:#6B7A8D">${g.idealPct}%</td><td style="color:#6B7A8D">${g.idealN}</td>
     <td style="font-weight:600">${g.actualPct}%</td><td style="font-weight:600">${g.actual}</td>
-    <td><span class="chip ${g.gap>0?'chip-pos':g.gap<0?'chip-neg':'chip-zero'}">${g.gap>0?'+':''}${g.gap}</span></td>
+    <td>${gapChip(g.gap)}</td>
   </tr>`).join('')}</tbody>`;
+}
+
+/* v1.6 - Plan A: three cards = the three talent zones side by side (A / B / C).
+   Each shows actual share, actual-vs-ideal, and the gap arrow -- one card per
+   zone, no abstraction, so BLD reads the shape of the pyramid directly. */
+function renderVerdict(zoneGroups){
+  const ROLE={'A-zone':'Top talent','B-zone':'Core','C-zone':'Needs attention'};
+  const gapTxt=g=>g.gap>0?`\u2191${g.gap}`:g.gap<0?`\u2193${Math.abs(g.gap)}`:'on target';
+  const card=g=>`<div class="vc"><div class="vc-lbl" style="color:${g.textC}">${g.label.toUpperCase()} \u00b7 ${ROLE[g.label]||''}</div>`+
+    `<div class="vc-val" style="color:${g.textC}">${g.actualPct}%</div>`+
+    `<div class="vc-sub">actual ${g.actual.toLocaleString()} vs ideal ${g.idealPct}% (${gapTxt(g)})</div></div>`;
+  /* keep zone order A -> B -> C, matching the grid and legend everywhere else */
+  document.getElementById('gap-verdict').innerHTML=zoneGroups.map(card).join('');
+}
+
+function toggleGapBox(){
+  gapBoxOpen=!gapBoxOpen;
+  document.getElementById('gap-box-wrap').style.display=gapBoxOpen?'block':'none';
+  document.getElementById('gap-box-btn').textContent=gapBoxOpen?'Hide the nine boxes \u25b4':'Show all nine boxes \u25be';
 }
 
 function renderGapCharts(){
   const n=GRAND_TOTAL, ovD=BUDATA.Overall.data;
-  const boxGroups=[
-    {label:'C3',actual:ovD.C3.n,idealPct:TARGET.C3,color:CC,textC:TC},
-    {label:'C2',actual:ovD.C2.n,idealPct:TARGET.C2,color:CC,textC:TC},
-    {label:'C1',actual:ovD.C1.n,idealPct:TARGET.C1,color:CC,textC:TC},
-    {label:'B3',actual:ovD.B3.n,idealPct:TARGET.B3,color:CB,textC:TB},
-    {label:'B2',actual:ovD.B2.n,idealPct:TARGET.B2,color:CB,textC:TB},
-    {label:'B1',actual:ovD.B1.n,idealPct:TARGET.B1,color:CB,textC:TB},
-    {label:'A3',actual:ovD.A3.n,idealPct:TARGET.A3,color:CA,textC:TA},
-    {label:'A2',actual:ovD.A2.n,idealPct:TARGET.A2,color:CA,textC:TA},
-    {label:'A1',actual:ovD.A1.n,idealPct:TARGET.A1,color:CA,textC:TA},
-  ];
+  const boxGroups=BOX_KEYS.map(k=>({
+    label:k, actual:ovD[k].n, idealPct:TARGET[k],
+    color:k[0]==='A'?CA:k[0]==='B'?CB:CC, textC:k[0]==='A'?TA:k[0]==='B'?TB:TC
+  }));
   const zoneGroups=[
-    {label:'C-zone',actual:ovD.C1.n+ovD.C2.n+ovD.C3.n,idealPct:TARGET.C,color:CC,textC:TC},
-    {label:'B-zone',actual:ovD.B1.n+ovD.B2.n+ovD.B3.n,idealPct:TARGET.B,color:CB,textC:TB},
     {label:'A-zone',actual:ovD.A1.n+ovD.A2.n+ovD.A3.n,idealPct:TARGET.A,color:CA,textC:TA},
+    {label:'B-zone',actual:ovD.B1.n+ovD.B2.n+ovD.B3.n,idealPct:TARGET.B,color:CB,textC:TB},
+    {label:'C-zone',actual:ovD.C1.n+ovD.C2.n+ovD.C3.n,idealPct:TARGET.C,color:CC,textC:TC},
   ];
   [boxGroups,zoneGroups].forEach(groups=>groups.forEach(g=>{
     g.actualPct=parseFloat((g.actual/n*100).toFixed(1));
     g.idealN=Math.round(n*g.idealPct/100);
     g.gap=g.actual-g.idealN;
   }));
-  drawGroupedBars('grouped-bar-svg',boxGroups);
-  drawDeltaBars('delta-bar-svg',boxGroups);
-  gapTableHTML('gap-detail-table',boxGroups,'Box');
-  drawGroupedBars('zone-bar-svg',zoneGroups);
-  drawDeltaBars('zone-delta-svg',zoneGroups);
+  boxGroups.sort((a,b)=>Math.abs(b.gap)-Math.abs(a.gap));
+  renderVerdict(zoneGroups);
+  drawGapRows('gap-zone-chart',zoneGroups);
   gapTableHTML('gap-zone-table',zoneGroups,'Zone');
+  drawGapRows('gap-box-chart',boxGroups);
+  gapTableHTML('gap-detail-table',boxGroups,'Box');
 }
 
 /* ═══════════════ TAB SWITCHING ═══════════════ */
@@ -1114,6 +1259,9 @@ function showTab(name,btn){
 /* B3 — one click back to the opening state, from anywhere */
 function resetView(){
   selBox=DEFAULT_BOX; curBU='Overall'; curLevel=0; hmMode='count'; hmNum=false; cmpOpen=false;
+  gapBoxOpen=false;
+  const gw=document.getElementById('gap-box-wrap'); if(gw) gw.style.display='none';
+  const gb=document.getElementById('gap-box-btn'); if(gb) gb.textContent='Show all nine boxes \u25be';
   showTab('overview',document.querySelectorAll('.tab')[0]);
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1124,7 +1272,7 @@ document.getElementById('topbar-subtitle').textContent=`9-BOX TALENT DASHBOARD �
 selBox=DEFAULT_BOX;   /* B1 — the detail panel is never blank on arrival */
 /* keep the step numeral: textContent would wipe the <span> */
 document.getElementById('overview-dist-title').innerHTML=`<span class="step-n">1</span>Overall 9-Box Distribution (n = ${GRAND_TOTAL.toLocaleString()})`;
-document.getElementById('gap-hdr-sub').textContent=`n = ${GRAND_TOTAL.toLocaleString()} assessed engineers · Ideal model: 15% C / 65% B / 20% A`;
+document.getElementById('gap-hdr-sub').textContent=`n = ${GRAND_TOTAL.toLocaleString()} assessed engineers · Ideal model: 20% A / 65% B / 15% C`;
 renderKPIs();
 renderCompletionTable();
 render9Box('nb-overview',BUDATA.Overall.data,'overview');
