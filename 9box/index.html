@@ -12,9 +12,9 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .topbar-left{display:flex;align-items:center;gap:12px}
 .logo{width:30px;height:30px;background:#5FD1C1;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#16315E;flex-shrink:0}
 .brand{font-size:15px;font-weight:700;color:#fff;letter-spacing:1px}
-.subtitle{font-size:10.5px;color:#5FD1C1;letter-spacing:.5px;margin-top:1px}
+.subtitle{font-size:11.5px;color:#5FD1C1;letter-spacing:.5px;margin-top:1px}
 .tabs{background:#16315E;display:flex;padding:0 32px;border-bottom:1px solid rgba(255,255,255,.1)}
-.tab{padding:11px 22px;font-size:12.5px;font-weight:500;color:rgba(255,255,255,.45);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;transition:color .15s,border-color .15s;letter-spacing:.2px;font-family:'Lexend Deca',sans-serif;background:none;border-top:none;border-left:none;border-right:none}
+.tab{padding:11px 22px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.45);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;transition:color .15s,border-color .15s;letter-spacing:.2px;font-family:'Lexend Deca',sans-serif;background:none;border-top:none;border-left:none;border-right:none}
 .tab:hover{color:rgba(255,255,255,.8)}
 .tab.active{color:#5FD1C1;border-bottom-color:#5FD1C1;font-weight:600}
 .page{display:none;padding:24px 32px;max-width:1440px;margin:0 auto;animation:fadeUp .2s ease}
@@ -22,95 +22,95 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:18px}
 .kpi{background:#fff;border:1px solid #D5DFEF;border-radius:8px;padding:14px 16px;box-shadow:0 1px 6px rgba(22,49,94,.04)}
-.kpi-label{font-size:10px;color:#6B7A8D;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+.kpi-label{font-size:11px;color:#6B7A8D;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
 .kpi-val{font-size:23px;font-weight:700;line-height:1.2;margin:4px 0 2px}
-.kpi-sub{font-size:10.5px;color:#6B7A8D}
+.kpi-sub{font-size:11.5px;color:#6B7A8D}
 .card{background:#fff;border:1px solid #D5DFEF;border-radius:10px;box-shadow:0 1px 10px rgba(22,49,94,.055);overflow:hidden}
 .card-hdr{padding:14px 20px 12px;border-bottom:1px solid #D5DFEF;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .card-dot{width:7px;height:7px;border-radius:50%;background:#5FD1C1;flex-shrink:0}
-.card-title{font-size:13px;font-weight:600;color:#16315E}
-.card-sub{font-size:11px;color:#6B7A8D;margin-top:1px;font-style:italic}
-.card-badge{margin-left:auto;font-size:10px;font-weight:600;padding:3px 10px;border-radius:12px}
+.card-title{font-size:14px;font-weight:600;color:#16315E}
+.card-sub{font-size:12px;color:#6B7A8D;margin-top:1px;font-style:italic}
+.card-badge{margin-left:auto;font-size:11px;font-weight:600;padding:3px 10px;border-radius:12px}
 .badge-warn{background:#FFF8E6;color:#926C00;border:1px solid #F5D76E}
 .badge-low{background:#FDF1EE;color:#8B3C30;border:1px solid #D9A49D}
 .badge-med{background:#EBF4FD;color:#0C3D8A;border:1px solid #9DC4ED}
-.section-label{font-size:10.5px;font-weight:600;color:#6B7A8D;letter-spacing:.6px;text-transform:uppercase;margin-bottom:10px}
+.section-label{font-size:11.5px;font-weight:600;color:#6B7A8D;letter-spacing:.6px;text-transform:uppercase;margin-bottom:10px}
 .nb-outer{display:flex;gap:6px;align-items:stretch}
 .pot-labels{display:flex;flex-direction:row;width:38px;flex-shrink:0}
 .pot-label-txt{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:600;color:#16315E;letter-spacing:.06em;display:flex;align-items:center;justify-content:center;width:18px;padding:0 2px;text-transform:uppercase}
 .pot-ticks{display:flex;flex-direction:column;width:20px}
-.pot-tick{flex:1;display:flex;align-items:center;justify-content:flex-end;font-size:10px;color:#6B7A8D;padding-right:4px}
+.pot-tick{flex:1;display:flex;align-items:center;justify-content:flex-end;font-size:11px;color:#6B7A8D;padding-right:4px}
 .nb-right{flex:1;display:flex;flex-direction:column;gap:4px}
 .nb-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:3px;min-height:252px}
 .nb-cell{background:#fff;border:1px solid #D5DFEF;border-radius:8px;padding:10px 8px 8px;display:flex;flex-direction:column;cursor:pointer;transition:border-color .12s,transform .12s;position:relative;overflow:hidden}
 .nb-cell:hover{transform:scale(1.03);z-index:5;box-shadow:0 4px 16px rgba(22,49,94,.14)}
 .nb-cell.active{border-width:2px}
 .nb-bar{position:absolute;top:0;left:0;right:0;height:3.5px}
-.nb-key{font-size:9.5px;font-weight:700;position:absolute;top:7px;left:8px}
+.nb-key{font-size:11px;font-weight:700;position:absolute;top:7px;left:8px}
 .nb-n{font-size:22px;font-weight:700;color:#1C2B3A;text-align:center;flex:1;display:flex;align-items:center;justify-content:center;padding-top:10px}
-.nb-pct{font-size:10px;color:#6B7A8D;text-align:center;padding-bottom:2px}
+.nb-pct{font-size:11.5px;color:#6B7A8D;text-align:center;padding-bottom:2px}
 .nb-a{background:#EAF8F1}.nb-b{background:#EBF4FD}.nb-c{background:#FDF1EE}
 .nb-a:hover,.nb-a.active{background:#D4F2E5;border-color:#51AC70}
 .nb-b:hover,.nb-b.active{background:#D4E8FA;border-color:#0047BA}
 .nb-c:hover,.nb-c.active{background:#F9DDD7;border-color:#B86054}
 .perf-ticks{display:flex;padding-top:3px}
-.perf-tick{flex:1;text-align:center;font-size:10px;color:#6B7A8D}
+.perf-tick{flex:1;text-align:center;font-size:11px;color:#6B7A8D}
 .perf-label{text-align:center;font-size:11px;font-weight:600;color:#16315E;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
 .zone-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
 .zone-card{border-radius:8px;padding:10px 14px;border:1px solid;display:flex;justify-content:space-between;align-items:center}
-.zone-name{font-size:10.5px;font-weight:600;margin-bottom:2px}
-.zone-pct{font-size:11px}
+.zone-name{font-size:11.5px;font-weight:600;margin-bottom:2px}
+.zone-pct{font-size:12px}
 .zone-n{font-size:22px;font-weight:700}
 .detail-panel{background:#F0F4FA;border:1px solid #D5DFEF;border-radius:8px;padding:14px 16px;min-height:90px}
 .detail-empty{color:#6B7A8D;font-size:12.5px;font-style:italic;display:flex;align-items:center;justify-content:center;height:70px}
 .detail-hdr{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
 .detail-key{font-size:22px;font-weight:700}
 .detail-count{font-size:26px;font-weight:700;color:#1C2B3A}
-.detail-pct-txt{font-size:12px;color:#6B7A8D;margin-top:1px}
-.detail-tag{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:12px;border:1px solid}
-.detail-desc{font-size:12px;color:#6B7A8D;line-height:1.55;border-top:1px solid #D5DFEF;padding-top:8px;margin-top:4px}
-.detail-action{font-size:12px;color:#16315E;line-height:1.55;margin-top:6px;padding:8px 10px;background:#fff;border:1px solid #D5DFEF;border-radius:6px}
+.detail-pct-txt{font-size:12.5px;color:#6B7A8D;margin-top:1px}
+.detail-tag{margin-left:auto;font-size:12px;font-weight:600;padding:4px 12px;border-radius:12px;border:1px solid}
+.detail-desc{font-size:12.5px;color:#6B7A8D;line-height:1.55;border-top:1px solid #D5DFEF;padding-top:8px;margin-top:4px}
+.detail-action{font-size:12.5px;color:#16315E;line-height:1.55;margin-top:6px;padding:8px 10px;background:#fff;border:1px solid #D5DFEF;border-radius:6px}
 .detail-action strong{color:#0047BA}
 .bu-breakdown{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:10px}
 .bu-card{background:#fff;border:1px solid #D5DFEF;border-radius:6px;padding:7px 6px;text-align:center}
-.bu-card-name{font-size:10px;color:#6B7A8D;margin-bottom:2px}
-.bu-card-n{font-size:15px;font-weight:600;color:#1C2B3A}
-.bu-card-pct{font-size:10px;color:#6B7A8D}
+.bu-card-name{font-size:11px;color:#6B7A8D;margin-bottom:2px}
+.bu-card-n{font-size:16px;font-weight:600;color:#1C2B3A}
+.bu-card-pct{font-size:11px;color:#6B7A8D}
 .heatmap-wrap{overflow-x:auto}
 .hm-toggle{display:flex;gap:4px;margin-bottom:10px}
-.hm-btn{padding:5px 14px;border-radius:16px;border:1px solid #D5DFEF;background:#fff;color:#6B7A8D;font-size:11px;font-weight:500;cursor:pointer;font-family:inherit;transition:.12s}
+.hm-btn{padding:6px 15px;border-radius:16px;border:1px solid #D5DFEF;background:#fff;color:#6B7A8D;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:.12s}
 .hm-btn:hover{border-color:#16315E;color:#16315E}
 .hm-btn.sel{background:#16315E;color:#fff;border-color:#16315E}
 .hm-table{width:100%;border-collapse:collapse}
-.hm-table th{background:#16315E;color:#fff;font-size:10px;font-weight:600;padding:7px 6px;text-align:center;letter-spacing:.3px}
+.hm-table th{background:#16315E;color:#fff;font-size:11px;font-weight:600;padding:7px 6px;text-align:center;letter-spacing:.3px}
 .hm-table th:first-child{text-align:left;padding-left:12px}
-.hm-table td{padding:6px 6px;text-align:center;border:1px solid #EEF2F8;font-size:12px;cursor:pointer;transition:background .12s}
+.hm-table td{padding:7px 6px;text-align:center;border:1px solid #EEF2F8;font-size:12.5px;cursor:pointer;transition:background .12s}
 .hm-table td:first-child{text-align:left;padding-left:12px;font-weight:600;cursor:default;background:#F7FAFD !important}
 .hm-table td.hm-sel{outline:2px solid #16315E;outline-offset:-2px;border-radius:2px}
 .ctable{width:100%;border-collapse:collapse}
-.ctable th{background:#16315E;color:#fff;font-size:10px;font-weight:600;padding:8px 14px;text-align:left;letter-spacing:.3px}
+.ctable th{background:#16315E;color:#fff;font-size:11px;font-weight:600;padding:8px 14px;text-align:left;letter-spacing:.3px}
 .ctable th:not(:first-child){text-align:center}
-.ctable td{padding:9px 14px;font-size:12.5px;border-bottom:1px solid #EEF2F8;color:#1C2B3A}
+.ctable td{padding:9px 14px;font-size:13px;border-bottom:1px solid #EEF2F8;color:#1C2B3A}
 .ctable td:not(:first-child){text-align:center}
 .ctable tr:nth-child(even) td{background:#F7FAFD}
 .ctable .total-row td{background:#16315E !important;color:#fff;font-weight:600}
 .c-good{color:#2E8B57;font-weight:700}.c-warn{color:#B86054;font-weight:700}
 .total-row .c-good{color:#5FD1C1}
 .bu-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.bu-btn{padding:6px 18px;border-radius:20px;border:1px solid #D5DFEF;background:#fff;color:#6B7A8D;font-size:12px;font-weight:500;cursor:pointer;transition:all .12s;font-family:'Lexend Deca',sans-serif}
+.bu-btn{padding:7px 18px;border-radius:20px;border:1px solid #D5DFEF;background:#fff;color:#6B7A8D;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .12s;font-family:'Lexend Deca',sans-serif}
 .bu-btn:hover{border-color:#16315E;color:#16315E}
 .bu-btn.sel{background:#16315E;color:#fff;border-color:#16315E}
 .gap-section{background:#fff;border:1px solid #D5DFEF;border-radius:10px;box-shadow:0 1px 10px rgba(22,49,94,.055);overflow:hidden}
 .gap-hdr{padding:14px 20px 12px;border-bottom:1px solid #D5DFEF;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.gap-hdr-title{font-size:13px;font-weight:600;color:#16315E}
-.gap-hdr-sub{font-size:11px;color:#6B7A8D;font-style:italic}
+.gap-hdr-title{font-size:14px;font-weight:600;color:#16315E}
+.gap-hdr-sub{font-size:12px;color:#6B7A8D;font-style:italic}
 .gap-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .gap-panel{padding:18px 20px;border-right:1px solid #D5DFEF}
 .gap-panel:last-child{border-right:none}
 .gap-table{width:100%;border-collapse:collapse}
-.gap-table th{font-size:10.5px;font-weight:600;color:#6B7A8D;text-align:center;padding:5px 8px;border-bottom:1px solid #EEF2F8;letter-spacing:.3px}
+.gap-table th{font-size:11.5px;font-weight:600;color:#6B7A8D;text-align:center;padding:5px 8px;border-bottom:1px solid #EEF2F8;letter-spacing:.3px}
 .gap-table th:first-child{text-align:left}
-.gap-table td{font-size:12.5px;text-align:center;padding:10px 8px;border-bottom:1px solid #EEF2F8;color:#1C2B3A;vertical-align:middle}
+.gap-table td{font-size:13px;text-align:center;padding:10px 8px;border-bottom:1px solid #EEF2F8;color:#1C2B3A;vertical-align:middle}
 .gap-table td:first-child{text-align:left;font-weight:600}
 .gap-table tr:last-child td{border-bottom:none}
 .chip{display:inline-block;padding:3px 11px;border-radius:5px;font-size:12px;font-weight:700;border:1.5px solid;min-width:58px;text-align:center}
@@ -118,34 +118,34 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .chip-neg{background:#FDF1EE;color:#8B3C30;border-color:#B86054}
 .chip-zero{background:#F0F4FA;color:#6B7A8D;border-color:#D5DFEF}
 .cmp-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
-.cmp-table th{font-size:10px;font-weight:600;color:#6B7A8D;text-align:center;padding:5px 6px;border-bottom:1px solid #EEF2F8}
+.cmp-table th{font-size:11px;font-weight:600;color:#6B7A8D;text-align:center;padding:5px 6px;border-bottom:1px solid #EEF2F8}
 .cmp-table th:first-child{text-align:left}
-.cmp-table td{text-align:center;padding:7px 6px;border-bottom:1px solid #EEF2F8;font-size:12px}
+.cmp-table td{text-align:center;padding:8px 6px;border-bottom:1px solid #EEF2F8;font-size:12.5px}
 .cmp-table td:first-child{text-align:left;font-weight:600}
 .legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .legend-col{padding:18px 20px}
 .legend-col:first-child{border-right:1px solid #D5DFEF}
-.legend-col-title{font-size:10px;font-weight:700;color:#6B7A8D;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #D5DFEF}
+.legend-col-title{font-size:11px;font-weight:700;color:#6B7A8D;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #D5DFEF}
 .legend-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
 .legend-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0;margin-top:4px}
 .legend-key{font-size:12px;font-weight:600;line-height:1;margin-bottom:3px}
-.legend-desc{font-size:11.5px;color:#6B7A8D;line-height:1.5}
+.legend-desc{font-size:12px;color:#6B7A8D;line-height:1.5}
 .nb-ref{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:380px;margin-top:8px}
-.nb-ref-cell{border-radius:5px;padding:8px;font-size:10px;border:1px solid #D5DFEF;line-height:1.4}
+.nb-ref-cell{border-radius:5px;padding:9px;font-size:11px;border:1px solid #D5DFEF;line-height:1.4}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.grid-main{display:grid;grid-template-columns:400px 1fr;gap:18px}
+.grid-main{display:grid;grid-template-columns:1fr 396px;gap:18px;align-items:start}
 .col{display:flex;flex-direction:column;gap:14px}
 .level-selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.level-btn{padding:6px 18px;border-radius:20px;border:1px solid #D5DFEF;background:#fff;color:#6B7A8D;font-size:12px;font-weight:500;cursor:pointer;transition:all .12s;font-family:'Lexend Deca',sans-serif}
+.level-btn{padding:7px 18px;border-radius:20px;border:1px solid #D5DFEF;background:#fff;color:#6B7A8D;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .12s;font-family:'Lexend Deca',sans-serif}
 .level-btn:hover{border-color:#16315E;color:#16315E}
 .level-btn.sel{background:#16315E;color:#fff;border-color:#16315E}
 .lvl-bar-wrap{margin-top:10px}
 .lvl-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
-.lvl-bar-label{font-size:10.5px;font-weight:600;color:#6B7A8D;width:22px;flex-shrink:0}
+.lvl-bar-label{font-size:11.5px;font-weight:600;color:#6B7A8D;width:22px;flex-shrink:0}
 .lvl-bar-track{flex:1;background:#EEF2F8;border-radius:3px;height:14px;position:relative;overflow:hidden}
 .lvl-bar-fill{height:100%;border-radius:3px;transition:width .3s ease}
-.lvl-bar-n{font-size:10.5px;font-weight:600;color:#1C2B3A;width:24px;text-align:right;flex-shrink:0}
-.lvl-bar-pct{font-size:10px;color:#6B7A8D;width:34px;text-align:right;flex-shrink:0}
+.lvl-bar-n{font-size:11.5px;font-weight:600;color:#1C2B3A;width:24px;text-align:right;flex-shrink:0}
+.lvl-bar-pct{font-size:11px;color:#6B7A8D;width:34px;text-align:right;flex-shrink:0}
 @media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.grid-main,.grid2,.gap-body{grid-template-columns:1fr}}
 /* ── Employee drill-down (C-boxes) ── */
 .emp-btn-wrap{margin-top:10px}
@@ -179,6 +179,72 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .rt-E{background:#F0F4FA;color:#42506180;border-color:#D5DFEF}
 .rt-NI{background:#FDF1EE;color:#8B3C30;border-color:#B86054}
 .modal-ftr{padding:10px 22px;border-top:1px solid #D5DFEF;font-size:11px;color:#6B7A8D;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+
+/* ══════════ v1.1 — UX / affordance layer ══════════ */
+/* A1 · make clickable things look clickable */
+.nb-cell::after{content:'\2197';position:absolute;top:7px;right:9px;font-size:12px;font-weight:600;color:#6B7A8D;opacity:0;transition:opacity .12s}
+.nb-cell:hover::after{opacity:.7}
+/* A2 · make the selected cell unmistakable */
+.nb-cell.active{border-width:2px;box-shadow:0 0 0 3px rgba(22,49,94,.15),0 5px 18px rgba(22,49,94,.16)}
+.nb-cell.active::after{content:'\25CF';opacity:1;font-size:10px}
+/* A3 · empty cells are not clickable */
+.nb-cell.empty{cursor:default;opacity:.45;background:#FAFBFD !important;border-color:#E6ECF5 !important}
+.nb-cell.empty:hover{transform:none;box-shadow:none;background:#FAFBFD !important;border-color:#E6ECF5 !important}
+.nb-cell.empty::after{display:none}
+/* A1 · heatmap cells */
+.hm-table td:not(:first-child){cursor:pointer}
+.hm-table td:not(:first-child):hover{outline:2px solid #16315E;outline-offset:-2px;filter:brightness(.93)}
+.hm-table td.hm-sel{outline:2.5px solid #16315E;outline-offset:-2px}
+/* A5 · toggle group label */
+.hm-toggle{align-items:center}
+.toggle-lbl{font-size:11.5px;font-weight:600;color:#6B7A8D;margin-right:6px;white-space:nowrap}
+/* B1 · "you are here" banner inside the detail panel */
+.detail-live{display:flex;align-items:center;gap:7px;font-size:12px;color:#0C3D8A;background:#EBF4FD;border:1px solid #9DC4ED;border-radius:6px;padding:6px 11px;margin-bottom:11px}
+/* B2 · active tab far more visible */
+.tab{border-bottom-width:3px}
+.tab.active{background:rgba(95,209,193,.14)}
+/* B3 · reset control */
+.reset-btn{margin-left:auto;align-self:center;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.3);color:#fff;font-family:inherit;font-size:12px;font-weight:500;padding:5px 15px;border-radius:16px;cursor:pointer;transition:.12s;white-space:nowrap}
+.reset-btn:hover{background:rgba(255,255,255,.26);border-color:rgba(255,255,255,.55)}
+/* generic click hint */
+.click-hint{font-size:12px;color:#6B7A8D;font-style:italic;margin-top:10px;display:flex;align-items:center;gap:6px}
+/* C7 · small-sample marker */
+.smalln{display:inline-block;font-size:10.5px;font-weight:600;color:#926C00;background:#FFF8E6;border:1px solid #F5D76E;border-radius:10px;padding:1px 8px;margin-left:7px;vertical-align:middle;white-space:nowrap}
+.smalln-note{font-size:11.5px;color:#926C00;background:#FFF8E6;border:1px solid #F5D76E;border-radius:6px;padding:6px 10px;margin-bottom:8px;line-height:1.45}
+/* A4 · employee-list placeholder */
+.emp-info{margin-top:10px;font-size:12px;color:#6B7A8D;background:#F7FAFD;border:1px dashed #C7D4E6;border-radius:7px;padding:10px 12px;line-height:1.5}
+
+/* ══════════ v1.2 — layout, hero grouping, progressive disclosure ══════════ */
+/* B6 · reading-order numerals */
+.step-n{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:#16315E;color:#fff;font-size:10.5px;font-weight:700;margin-right:7px;vertical-align:middle;flex-shrink:0}
+.section-label .step-n{background:#6B7A8D}
+/* B5 · the question each tab answers */
+.page-sub{font-size:13px;color:#42506B;margin-bottom:16px;padding-left:11px;border-left:3px solid #5FD1C1;line-height:1.45}
+.hint-ic{font-size:13px;color:#5FD1C1;font-style:normal}
+/* C1 · hero split into three labelled groups */
+.hero{display:grid;grid-template-columns:2fr 3fr 1.15fr;gap:14px;margin-bottom:18px}
+.hero-group{background:#fff;border:1px solid #D5DFEF;border-radius:9px;padding:9px 12px 12px;box-shadow:0 1px 6px rgba(22,49,94,.04)}
+.hero-group-lbl{font-size:10px;font-weight:700;color:#6B7A8D;letter-spacing:.7px;text-transform:uppercase;padding-bottom:7px;margin-bottom:9px;border-bottom:1px solid #EEF2F8}
+.hero-cards{display:grid;gap:10px}
+.hero-2{grid-template-columns:repeat(2,1fr)}
+.hero-3{grid-template-columns:repeat(3,1fr)}
+.hero-1{grid-template-columns:1fr}
+.hero-c{min-width:0}
+.hero-c-lbl{font-size:11px;color:#6B7A8D;font-weight:500;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-c-val{font-size:24px;font-weight:700;line-height:1.2;margin:3px 0 2px}
+.hero-c-sub{font-size:11px;color:#6B7A8D;line-height:1.35}
+.hero-group.accent{border-color:#5FD1C1;background:linear-gradient(180deg,#F4FCFA 0%,#fff 55%)}
+/* C2 · heatmap reads as shape first, numbers on demand */
+.hm-v{opacity:0;transition:opacity .12s}
+.hm-table td:hover .hm-v,.hm-table.show-num .hm-v,.hm-table td.hm-sel .hm-v{opacity:1}
+.hm-num-btn{margin-left:auto}
+/* C5 · comparison table collapsed to zones by default */
+.link-btn{background:none;border:none;color:#0047BA;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;padding:7px 0 2px;text-decoration:underline;text-underline-offset:3px}
+.link-btn:hover{color:#16315E}
+.cmp-zone-row td{font-weight:600}
+/* C6 · stacked gap sections */
+.gap-sec-hdr{padding:13px 20px;background:#F7FAFD;border-bottom:1px solid #D5DFEF;border-top:1px solid #D5DFEF;font-size:12px;font-weight:700;color:#16315E;letter-spacing:.5px;text-transform:uppercase}
+@media(max-width:1100px){.hero{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -208,7 +274,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
     <div class="logo">C</div>
     <div>
       <div class="brand">COTECCONS</div>
-      <div class="subtitle">9-BOX TALENT DASHBOARD · ENGINEER WORKFORCE · APR 2026</div>
+      <div class="subtitle" id="topbar-subtitle">9-BOX TALENT DASHBOARD</div>
     </div>
   </div>
 </div>
@@ -219,33 +285,19 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
   <button class="tab" onclick="showTab('level',this)">By Level</button>
   <button class="tab" onclick="showTab('gap',this)">Gap Analysis</button>
   <button class="tab" onclick="showTab('legend',this)">Rating Definitions</button>
+  <button class="reset-btn" onclick="resetView()" title="Return to the default overview">↺  Reset view</button>
 </div>
 
 <!-- OVERVIEW -->
 <div class="page active" id="tab-overview">
-  <div class="kpi-strip" id="kpi-strip"></div>
+  <div class="page-sub">How is the assessed engineer workforce spread across the nine boxes?</div>
+  <div class="hero" id="kpi-strip"></div>
   <div class="grid-main">
-    <div class="col">
-      <div class="card">
-        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title">Completion rate by BU</div></div></div>
-        <table class="ctable">
-          <thead><tr><th>BU</th><th>Target</th><th>Completed</th><th>Rate</th></tr></thead>
-          <tbody id="completion-tbody"></tbody>
-        </table>
-      </div>
-      <div class="card">
-        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title">BU × 9-Box Heatmap</div><div class="card-sub">Click any box to see detail</div></div></div>
-        <div style="padding:12px 16px">
-          <div class="hm-toggle" id="hm-toggle"></div>
-          <div class="heatmap-wrap"><table class="hm-table" id="hm-table"></table></div>
-        </div>
-      </div>
-    </div>
     <div class="col">
       <div class="card">
         <div class="card-hdr">
           <div class="card-dot"></div>
-          <div><div class="card-title" id="overview-dist-title">Overall 9-Box Distribution</div><div class="card-sub">Line manager evaluation — First deployment</div></div>
+          <div><div class="card-title" id="overview-dist-title"><span class="step-n">1</span>Overall 9-Box Distribution</div><div class="card-sub">Line manager evaluation — First deployment</div></div>
           <div class="card-badge badge-warn">⚠ Possible rating inflation signal</div>
         </div>
         <div style="padding:18px 20px 10px">
@@ -265,11 +317,29 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
             </div>
           </div>
           <div class="zone-strip" id="zone-overview"></div>
+          <div class="click-hint"><span class="hint-ic">⊕</span> Click any of the 9 boxes above to load its details below.</div>
         </div>
       </div>
       <div>
-        <div class="section-label">Box detail</div>
-        <div class="detail-panel" id="overview-detail"><div class="detail-empty">Click any box to explore details</div></div>
+        <div class="section-label"><span class="step-n">2</span>Box detail</div>
+        <div class="detail-panel" id="overview-detail"></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title"><span class="step-n">3</span>BU × 9-Box Heatmap</div><div class="card-sub">Click any cell → loads it into "Box detail"</div></div></div>
+        <div style="padding:12px 16px">
+          <div class="hm-toggle" id="hm-toggle"></div>
+          <div class="heatmap-wrap"><table class="hm-table" id="hm-table"></table></div>
+          <div class="click-hint" style="margin-top:8px"><span class="hint-ic">⊕</span> Hover a cell to reveal its value.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title"><span class="step-n">4</span>Completion rate by BU</div></div></div>
+        <table class="ctable">
+          <thead><tr><th>BU</th><th>Target</th><th>Completed</th><th>Rate</th></tr></thead>
+          <tbody id="completion-tbody"></tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -277,6 +347,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- BY BU -->
 <div class="page" id="tab-bu">
+  <div class="page-sub">Which business units sit differently from the company-wide pattern?</div>
   <div class="section-label">Select business unit</div>
   <div class="bu-row" id="bu-selector"></div>
   <div class="grid2" id="bu-content"></div>
@@ -284,6 +355,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- BY LEVEL -->
 <div class="page" id="tab-level">
+  <div class="page-sub">How does the distribution shift as seniority rises?</div>
   <div class="section-label">Select seniority level</div>
   <div class="level-selector" id="level-selector"></div>
   <div class="grid2" id="level-content"></div>
@@ -291,16 +363,14 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- GAP ANALYSIS -->
 <div class="page" id="tab-gap">
+  <div class="page-sub">How far does the actual distribution sit from the target model?</div>
   <div class="gap-section">
     <div class="gap-hdr">
       <div class="gap-hdr-title">Gap Analysis — Actual Distribution vs. Ideal Distribution</div>
       <div class="gap-hdr-sub" id="gap-hdr-sub">Ideal model: 15% C / 65% B / 20% A</div>
     </div>
-    <div style="padding:12px 20px 0;border-bottom:1px solid #D5DFEF;display:flex;gap:4px">
-      <button class="hm-btn sel" id="gap-tab-zone" onclick="switchGapTab('zone')">By Zone</button>
-      <button class="hm-btn" id="gap-tab-box" onclick="switchGapTab('box')">By Box</button>
-    </div>
     <div id="gap-panel-zone">
+      <div class="gap-sec-hdr">By zone — A / B / C</div>
       <div class="gap-body">
         <div class="gap-panel">
           <div class="section-label" style="margin-bottom:10px">Actual vs. Ideal (Grouped Bars)</div>
@@ -320,7 +390,8 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
         <table class="gap-table" id="gap-zone-table"></table>
       </div>
     </div>
-    <div id="gap-panel-box" style="display:none">
+    <div id="gap-panel-box">
+      <div class="gap-sec-hdr">By box — all nine</div>
       <div class="gap-body">
         <div class="gap-panel">
           <div class="section-label" style="margin-bottom:10px">Actual vs. Ideal (Grouped Bars)</div>
@@ -345,6 +416,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- LEGEND -->
 <div class="page" id="tab-legend">
+  <div class="page-sub">What exactly do High, Medium and Low mean in this assessment?</div>
   <div class="card">
     <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title">Rating Definitions</div><div class="card-sub">Criteria for Performance and Potential classification</div></div></div>
     <div class="legend-grid">
@@ -396,6 +468,10 @@ const GMAP=[
   {col:0,row:2,key:'C3',z:'c'},{col:1,row:2,key:'C2',z:'c'},{col:2,row:2,key:'B3',z:'b'},
 ];
 const BOX_KEYS=['B1','A3','A1','C1','B2','A2','C3','C2','B3'];
+/* v1.1 — display config */
+const DATA_PERIOD='APR 2026';      /* ← change here each refresh; topbar reads this */
+const SMALL_N=30;                  /* groups below this size show counts, not percentages */
+const DEFAULT_BOX='A1';            /* box preloaded in the detail panel on open */
 
 const BOX_DEF={
   B1:{pot:'Low',perf:'High',zone:'B',desc:'High performance + Low potential.',action:'Diagnose root cause, coach, check role fit, manager fit, ramp-up issue.'},
@@ -534,12 +610,12 @@ function getEmp(boxKey,buFilter,levelFilter){
 }
 function empBtnHTML(key,buFilter,levelFilter){
   if(BOX_DEF[key].zone.toLowerCase()!=='c') return '';
-  if(!EMP_LOADED) return '<div class="emp-btn-wrap"><button class="emp-btn" disabled>👤 Employee list — data not loaded yet</button></div>';
+  if(!EMP_LOADED) return '<div class="emp-info"><strong>Employee list</strong> — individual records for the C boxes will be added in a later data refresh. Nothing to open yet.</div>';
   const list=getEmp(key,buFilter,levelFilter);
   if(!list.length) return '<div class="emp-note">No employee records in this box for the current view.</div>';
   const bf=buFilter==null?'null':JSON.stringify(buFilter);
   const lf=levelFilter==null?'null':levelFilter;
-  return `<div class="emp-btn-wrap"><button class="emp-btn" onclick='openEmpModal("${key}",${bf},${lf})'>👤 View ${list.length} employee${list.length>1?'s':''} in ${key} →</button></div>`;
+  return `<div class="emp-btn-wrap"><button class="emp-btn" onclick='openEmpModal("${key}",${bf},${lf})'>View ${list.length} employee${list.length>1?'s':''} in ${key} →</button></div>`;
 }
 let EMP_CUR=[];
 function ratingCell(v){ if(v==null||v==='')return '<span style="color:#C0C9D6">—</span>'; const cls={O:'rt-O',HE:'rt-HE',E:'rt-E',NI:'rt-NI'}[v]||''; return cls?`<span class="rt ${cls}">${v}</span>`:v; }
@@ -587,7 +663,7 @@ function buildLevelData(li){
 }
 
 /* ═══════════════ STATE ═══════════════ */
-let curBU='Overall', curLevel=0, selBox=null, hmMode='count';
+let curBU='Overall', curLevel=0, selBox=null, hmMode='count', hmNum=false, cmpOpen=false;
 
 /* ═══════════════ HELPERS ═══════════════ */
 function pct(n,t){return((n/t)*100).toFixed(1)+'%';}
@@ -635,15 +711,37 @@ function levelBarHTML(buKey, boxKey){
 function render9Box(gridId, data, context){
   const g=document.getElementById(gridId); if(!g) return;
   g.innerHTML='';
+  const total=BOX_KEYS.reduce((s,k)=>s+data[k].n,0);
   GMAP.forEach(({col,row,key,z})=>{
     const d=data[key];
+    const empty=d.n===0;
     const el=document.createElement('div');
-    el.className=`nb-cell nb-${z}${selBox===key?' active':''}`;
+    /* A3 — zero-count cells are dimmed and inert, so nobody clicks into nothing */
+    el.className=`nb-cell nb-${z}${selBox===key?' active':''}${empty?' empty':''}`;
     el.style.cssText=`grid-column:${col+1};grid-row:${row+1}`;
-    el.innerHTML=`<div class="nb-bar" style="background:${zC(z)}"></div><div class="nb-key" style="color:${zC(z)}">${key}</div><div class="nb-n">${d.n}</div><div class="nb-pct">${d.pct}</div>`;
-    el.onclick=()=>{selBox=selBox===key?null:key; dispatchDetail(context);};
+    /* C7 — below SMALL_N a percentage misleads, so show the raw share instead */
+    const sub = empty ? '—' : (total<SMALL_N ? `${d.n} of ${total}` : d.pct);
+    el.innerHTML=`<div class="nb-bar" style="background:${zC(z)}"></div><div class="nb-key" style="color:${zC(z)}">${key}</div><div class="nb-n">${d.n}</div><div class="nb-pct">${sub}</div>`;
+    if(!empty){
+      el.title=`${key} — ${BOX_DEF[key].perf} performance · ${BOX_DEF[key].pot} potential. Click for details.`;
+      el.onclick=()=>selectBox(key,context);
+    }
     g.appendChild(el);
   });
+}
+
+/* A2 — v1.0 changed selBox but never repainted the grid, so the highlight never
+   appeared. Repaint grid + detail together, and never deselect down to a blank panel. */
+function selectBox(key,context){
+  selBox=key;
+  if(context==='overview'){
+    render9Box('nb-overview',BUDATA.Overall.data,'overview');
+    renderOverviewDetail(); renderHeatmap();
+  } else if(context==='bu'){
+    render9Box('nb-bu',BUDATA[curBU].data,'bu'); renderBUDetail();
+  } else if(context==='level'){
+    render9Box('nb-level',buildLevelData(curLevel).data,'level'); renderLevelDetail();
+  }
 }
 
 function renderZoneStrip(stripId, data, total){
@@ -661,7 +759,8 @@ function renderZoneStrip(stripId, data, total){
 function boxDetailHTML(key, n, pctStr, contextLabel, extraHTML, empCtx){
   const def=BOX_DEF[key], z=def.zone.toLowerCase();
   const empBtn=empCtx?empBtnHTML(key,empCtx.bu,empCtx.level):'';
-  return `<div class="detail-hdr">
+  return `<div class="detail-live"><span class="hint-ic">◉</span> Now showing box <strong style="margin:0 2px">${key}</strong> — click a different box in the grid to switch.</div>
+  <div class="detail-hdr">
     <div class="detail-key" style="color:${zC(z)}">${key}</div>
     <div style="flex:1"><div class="detail-count">${n} <span style="font-size:14px;color:#6B7A8D;font-weight:400">engineers</span></div><div class="detail-pct-txt">${pctStr} of ${contextLabel}</div></div>
     <div class="detail-tag" style="background:${zF(z)};border-color:${zC(z)};color:${zT(z)}">${z.toUpperCase()}-zone</div>
@@ -673,7 +772,7 @@ function boxDetailHTML(key, n, pctStr, contextLabel, extraHTML, empCtx){
 
 function renderOverviewDetail(){
   const el=document.getElementById('overview-detail'); if(!el) return;
-  if(!selBox){el.innerHTML='<div class="detail-empty">Click any box to explore details</div>';return;}
+  if(!selBox) selBox=DEFAULT_BOX;
   const d=BUDATA.Overall.data[selBox];
   const buBreak=`<div style="font-size:10.5px;color:#6B7A8D;margin:10px 0 6px;font-weight:500">Breakdown by BU</div>
     <div class="bu-breakdown">${BU_NAMES.map(bu=>`<div class="bu-card"><div class="bu-card-name">${bu}</div><div class="bu-card-n">${BUDATA[bu].data[selBox].n}</div><div class="bu-card-pct">${BUDATA[bu].data[selBox].pct}</div></div>`).join('')}</div>`;
@@ -682,14 +781,14 @@ function renderOverviewDetail(){
 
 function renderBUDetail(){
   const el=document.getElementById('bu-detail'); if(!el) return;
-  if(!selBox){el.innerHTML='<div class="detail-empty">Click any box to explore details</div>';return;}
+  if(!selBox) selBox=DEFAULT_BOX;
   const d=BUDATA[curBU].data[selBox];
   el.innerHTML=boxDetailHTML(selBox,d.n,d.pct,curBU,levelBarHTML(curBU,selBox),{bu:curBU,level:null});
 }
 
 function renderLevelDetail(){
   const el=document.getElementById('level-detail'); if(!el) return;
-  if(!selBox){el.innerHTML='<div class="detail-empty">Click any box to explore details</div>';return;}
+  if(!selBox) selBox=DEFAULT_BOX;
   const ld=buildLevelData(curLevel);
   const d=ld.data[selBox];
   const buRows=BU_NAMES.map(bu=>({bu,n:BU_LEVEL[bu][curLevel][selBox]||0})).filter(r=>r.n>0);
@@ -710,48 +809,70 @@ function dispatchDetail(context){
 /* ═══════════════ HEATMAP ═══════════════ */
 function renderHeatmap(){
   document.getElementById('hm-toggle').innerHTML=
-    ['count','pct','gap'].map(m=>`<button class="hm-btn${hmMode===m?' sel':''}" onclick="setHmMode('${m}')">${m==='count'?'Count':m==='pct'?'% of BU':'Gap vs Overall'}</button>`).join('');
+    '<span class="toggle-lbl">Show:</span>'+
+    ['count','pct','gap'].map(m=>`<button class="hm-btn${hmMode===m?' sel':''}" onclick="setHmMode('${m}')">${m==='count'?'Count':m==='pct'?'% of BU':'Gap vs Overall'}</button>`).join('')+
+    `<button class="hm-btn hm-num-btn${hmNum?' sel':''}" onclick="toggleHmNum()" title="Pin all values on screen — useful when projecting">${hmNum?'■':'□'} Values</button>`;
   const ovD=BUDATA.Overall.data;
   let h='<thead><tr><th>BU</th>'+BOX_KEYS.map(k=>{const z=BOX_DEF[k].zone.toLowerCase();return`<th style="color:${z==='a'?FA:z==='b'?FB:FC}">${k}</th>`;}).join('')+'</tr></thead><tbody>';
   BU_NAMES.forEach(bu=>{
     const bd=BUDATA[bu];
-    h+=`<tr><td>${bu}</td>`;
+    h+=`<tr><td>${bu}${bd.n<SMALL_N?`<span class="smalln">n=${bd.n}</span>`:''}</td>`;
     BOX_KEYS.forEach(k=>{
       const n=bd.data[k].n; let val,bg;
       if(hmMode==='count'){
-        const intensity=Math.min(n/HM_MAX,.95), z=BOX_DEF[k].zone.toLowerCase();
-        bg=n===0?'#FAFBFD':`${zC(z)}${Math.round(intensity*35+10).toString(16).padStart(2,'0')}`;
+        /* C2 — stronger ramp: with values hidden, colour has to carry the signal */
+        const intensity=Math.min(n/HM_MAX,1), z=BOX_DEF[k].zone.toLowerCase();
+        bg=n===0?'#FAFBFD':`${zC(z)}${Math.round(Math.pow(intensity,.6)*150+18).toString(16).padStart(2,'0')}`;
         val=n;
       } else if(hmMode==='pct'){
         const p=n/bd.n, z=BOX_DEF[k].zone.toLowerCase();
-        bg=p===0?'#FAFBFD':`${zC(z)}${Math.round(Math.min(p/.5,.95)*35+10).toString(16).padStart(2,'0')}`;
-        val=pct(n,bd.n);
+        bg=p===0?'#FAFBFD':`${zC(z)}${Math.round(Math.pow(Math.min(p/.5,1),.6)*150+18).toString(16).padStart(2,'0')}`;
+        /* C7 — tiny BUs: one person can read as 7%, so show the count instead */
+        val=bd.n<SMALL_N?n:pct(n,bd.n);
       } else {
-        const diff=parseFloat(((n/bd.n - ovD[k].n/GRAND_TOTAL)*100).toFixed(1));
-        bg=diff>3?'#D4F2E5':diff<-3?'#F9DDD7':'#FAFBFD';
-        val=(diff>0?'+':'')+diff.toFixed(1);
+        if(bd.n<SMALL_N){ bg='#FAFBFD'; val='—'; }
+        else{
+          const diff=parseFloat(((n/bd.n - ovD[k].n/GRAND_TOTAL)*100).toFixed(1));
+          bg=diff>3?'#D4F2E5':diff<-3?'#F9DDD7':'#FAFBFD';
+          val=(diff>0?'+':'')+diff.toFixed(1);
+        }
       }
-      h+=`<td class="${selBox===k?'hm-sel':''}" style="background:${bg};font-weight:${n>50?'600':'400'}" onclick="hmClick('${k}')">${val}</td>`;
+      h+=`<td class="${selBox===k?'hm-sel':''}" style="background:${bg};font-weight:${n>50?'600':'400'}" onclick="hmClick('${k}')" title="${bu} · ${k} — ${n} engineer${n===1?'':'s'}"><span class="hm-v">${val}</span></td>`;
     });
     h+='</tr>';
   });
-  document.getElementById('hm-table').innerHTML=h+'</tbody>';
+  const tbl=document.getElementById('hm-table');
+  tbl.innerHTML=h+'</tbody>';
+  tbl.classList.toggle('show-num',hmNum);
 }
 function setHmMode(m){hmMode=m;renderHeatmap();}
-function hmClick(key){selBox=key;renderOverviewDetail();renderHeatmap();}
+function toggleHmNum(){hmNum=!hmNum;renderHeatmap();}
+function hmClick(key){selectBox(key,'overview');}
 
 /* ═══════════════ KPIs ═══════════════ */
+/* C1 — same six figures, but grouped so the eye reads coverage / spread / top talent
+   as three separate ideas instead of one undifferentiated row. */
 function renderKPIs(){
   const d=BUDATA.Overall.data, n=GRAND_TOTAL;
   const z=zoneTotals(d);
-  document.getElementById('kpi-strip').innerHTML=[
-    {l:'Total engineers',v:TOTAL_TARGET.toLocaleString(),s:'DS FY25',c:'#16315E'},
-    {l:'Completed',v:n.toLocaleString(),s:pct(n,TOTAL_TARGET)+' completion rate',c:CA},
-    {l:'A-zone',v:z.a.toLocaleString(),s:pct(z.a,n)+' — ideal 20%',c:CA},
-    {l:'B-zone',v:z.b.toLocaleString(),s:pct(z.b,n)+' — ideal 65%',c:CB},
-    {l:'C-zone',v:z.c.toLocaleString(),s:pct(z.c,n)+' — ideal 15%',c:CC},
-    {l:'Star A1',v:d.A1.n.toLocaleString(),s:pct(d.A1.n,n)+' — ideal 5%',c:CA},
-  ].map(k=>`<div class="kpi"><div class="kpi-label">${k.l}</div><div class="kpi-val" style="color:${k.c}">${k.v}</div><div class="kpi-sub">${k.s}</div></div>`).join('');
+  const card=k=>`<div class="hero-c"><div class="hero-c-lbl">${k.l}</div><div class="hero-c-val" style="color:${k.c}">${k.v}</div><div class="hero-c-sub">${k.s}</div></div>`;
+  const groups=[
+    {lbl:'Assessment coverage', cls:'hero-2', accent:false, cards:[
+      {l:'Total engineers',v:TOTAL_TARGET.toLocaleString(),s:'headcount in scope (DS FY25)',c:'#16315E'},
+      {l:'Assessed',v:n.toLocaleString(),s:pct(n,TOTAL_TARGET)+' completion rate',c:'#16315E'},
+    ]},
+    {lbl:'Distribution by zone', cls:'hero-3', accent:false, cards:[
+      {l:'A-zone',v:z.a.toLocaleString(),s:pct(z.a,n)+' · ideal 20%',c:CA},
+      {l:'B-zone',v:z.b.toLocaleString(),s:pct(z.b,n)+' · ideal 65%',c:CB},
+      {l:'C-zone',v:z.c.toLocaleString(),s:pct(z.c,n)+' · ideal 15%',c:CC},
+    ]},
+    {lbl:'Top talent', cls:'hero-1', accent:true, cards:[
+      {l:'Star · A1',v:d.A1.n.toLocaleString(),s:pct(d.A1.n,n)+' · ideal 5%',c:CA},
+    ]},
+  ];
+  document.getElementById('kpi-strip').innerHTML=groups.map(g=>
+    `<div class="hero-group${g.accent?' accent':''}"><div class="hero-group-lbl">${g.lbl}</div>
+     <div class="hero-cards ${g.cls}">${g.cards.map(card).join('')}</div></div>`).join('');
 }
 
 /* ═══════════════ COMPLETION TABLE ═══════════════ */
@@ -765,25 +886,51 @@ function renderCompletionTable(){
   document.getElementById('completion-tbody').innerHTML=html;
 }
 
+/* ═══════════════ COMPARISON TABLE (C5) ═══════════════ */
+/* v1.0 opened with 27 numbers on screen. Zones answer the question for most
+   readers; the nine-box breakdown is one click away for those who want it. */
+function cmpTableHTML(label, data, total){
+  const ovD=BUDATA.Overall.data;
+  const row=(name,cur,ov,color)=>{
+    const diff=(cur-ov).toFixed(1);
+    return `<tr><td style="color:${color}">${name}</td><td>${cur.toFixed(1)}%</td><td>${ov.toFixed(1)}%</td>
+      <td style="color:${diff>0?CA:diff<0?CC:'#6B7A8D'};font-weight:600">${diff>0?'+':''}${diff}</td></tr>`;
+  };
+  const z=zoneTotals(data), ovZ=zoneTotals(ovD);
+  let h=`<table class="cmp-table"><thead><tr><th>Zone</th><th>${label}</th><th>Overall</th><th>Diff</th></tr></thead><tbody class="cmp-zone-row">`;
+  h+=row('A-zone',z.a/total*100,ovZ.a/GRAND_TOTAL*100,TA);
+  h+=row('B-zone',z.b/total*100,ovZ.b/GRAND_TOTAL*100,TB);
+  h+=row('C-zone',z.c/total*100,ovZ.c/GRAND_TOTAL*100,TC);
+  h+='</tbody></table>';
+  h+=`<button class="link-btn" onclick="toggleCmp()">${cmpOpen?'Hide the nine-box breakdown \u25B4':'Show the nine-box breakdown \u25BE'}</button>`;
+  h+=`<div id="cmp-boxes" style="display:${cmpOpen?'block':'none'}">
+    <table class="cmp-table"><thead><tr><th>Box</th><th>${label}</th><th>Overall</th><th>Diff</th></tr></thead><tbody>`;
+  BOX_KEYS.forEach(k=>{
+    h+=row(k,data[k].n/total*100,ovD[k].n/GRAND_TOTAL*100,zT(BOX_DEF[k].zone.toLowerCase()));
+  });
+  h+='</tbody></table></div>';
+  return h;
+}
+function toggleCmp(){
+  cmpOpen=!cmpOpen;
+  if(document.getElementById('tab-bu').classList.contains('active')) renderBUPage();
+  else renderLevelPage();
+}
+
 /* ═══════════════ BY BU PAGE ═══════════════ */
 function renderBUPage(){
   document.getElementById('bu-selector').innerHTML=
     ['Overall',...BU_NAMES].map(bu=>`<button class="bu-btn${bu===curBU?' sel':''}" onclick="selectBU('${bu}')">${bu}</button>`).join('');
   const bu=BUDATA[curBU], t=bu.n, z=zoneTotals(bu.data);
   const ovD=BUDATA.Overall.data;
-  let cmp='<table class="cmp-table"><thead><tr><th>Box</th><th>'+curBU+'</th><th>Overall</th><th>Diff</th></tr></thead><tbody>';
-  BOX_KEYS.forEach(k=>{
-    const bp=(bu.data[k].n/t*100).toFixed(1), op=(ovD[k].n/GRAND_TOTAL*100).toFixed(1), diff=(bp-op).toFixed(1);
-    const zz=BOX_DEF[k].zone.toLowerCase();
-    cmp+=`<tr><td style="color:${zT(zz)}">${k}</td><td>${bp}%</td><td>${op}%</td><td style="color:${diff>0?CA:diff<0?CC:'#6B7A8D'};font-weight:600">${diff>0?'+':''}${diff}</td></tr>`;
-  });
-  cmp+='</tbody></table>';
+  let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${curBU} has only ${t} assessed engineers.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
+  cmp+=cmpTableHTML(curBU,bu.data,t);
   document.getElementById('bu-content').innerHTML=`
     <div class="card">
       <div style="background:#16315E;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div>
-          <div style="font-size:20px;font-weight:700;color:#fff">${curBU}</div>
-          <div style="font-size:11px;color:#5FD1C1;margin-top:2px">n = ${t} engineers</div>
+          <div style="font-size:21px;font-weight:700;color:#fff"><span class="step-n" style="background:#5FD1C1;color:#16315E">1</span>${curBU}${t<SMALL_N?'<span class="smalln">small sample</span>':''}</div>
+          <div style="font-size:12px;color:#5FD1C1;margin-top:2px">n = ${t} engineers</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           ${['a','b','c'].map(zz=>`<div style="background:${zF(zz)};border:1px solid ${zC(zz)};border-radius:7px;padding:5px 10px;text-align:center">
@@ -802,23 +949,24 @@ function renderBUPage(){
           </div>
         </div>
         <div class="zone-strip" id="zone-bu"></div>
+        <div class="click-hint"><span class="hint-ic">⊕</span> Click any of the 9 boxes above to load its details.</div>
       </div>
     </div>
     <div class="col">
       <div class="card">
-        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title">${curBU} vs. Overall</div></div></div>
+        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title"><span class="step-n">2</span>${curBU} vs. Overall</div></div></div>
         <div style="padding:12px 16px">${cmp}</div>
       </div>
       <div>
-        <div class="section-label">Box detail</div>
-        <div class="detail-panel" id="bu-detail"><div class="detail-empty">Click any box to explore details</div></div>
+        <div class="section-label"><span class="step-n">3</span>Box detail</div>
+        <div class="detail-panel" id="bu-detail"></div>
       </div>
     </div>`;
   render9Box('nb-bu',bu.data,'bu');
   renderZoneStrip('zone-bu',bu.data,t);
   renderBUDetail();
 }
-function selectBU(bu){curBU=bu;selBox=null;renderBUPage();}
+function selectBU(bu){curBU=bu;renderBUPage();}   /* B4 — keep the chosen box across BUs */
 
 /* ═══════════════ BY LEVEL PAGE ═══════════════ */
 function renderLevelPage(){
@@ -826,19 +974,14 @@ function renderLevelPage(){
     LEVEL_NAMES.map((ln,li)=>`<button class="level-btn${li===curLevel?' sel':''}" onclick="selectLevel(${li})">${ln}</button>`).join('');
   const ld=buildLevelData(curLevel), t=ld.n, z=zoneTotals(ld.data);
   const ovD=BUDATA.Overall.data;
-  let cmp='<table class="cmp-table"><thead><tr><th>Box</th><th>'+LEVEL_NAMES[curLevel]+'</th><th>Overall</th><th>Diff</th></tr></thead><tbody>';
-  BOX_KEYS.forEach(k=>{
-    const lp=(ld.data[k].n/t*100).toFixed(1), op=(ovD[k].n/GRAND_TOTAL*100).toFixed(1), diff=(lp-op).toFixed(1);
-    const zz=BOX_DEF[k].zone.toLowerCase();
-    cmp+=`<tr><td style="color:${zT(zz)}">${k}</td><td>${lp}%</td><td>${op}%</td><td style="color:${diff>0?CA:diff<0?CC:'#6B7A8D'};font-weight:600">${diff>0?'+':''}${diff}</td></tr>`;
-  });
-  cmp+='</tbody></table>';
+  let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${LEVEL_NAMES[curLevel]} has only ${t} assessed engineer${t===1?'':'s'}.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
+  cmp+=cmpTableHTML(LEVEL_NAMES[curLevel],ld.data,t);
   document.getElementById('level-content').innerHTML=`
     <div class="card">
       <div style="background:#16315E;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div>
-          <div style="font-size:20px;font-weight:700;color:#fff">${LEVEL_NAMES[curLevel]}</div>
-          <div style="font-size:11px;color:#5FD1C1;margin-top:2px">n = ${t} engineers</div>
+          <div style="font-size:21px;font-weight:700;color:#fff"><span class="step-n" style="background:#5FD1C1;color:#16315E">1</span>${LEVEL_NAMES[curLevel]}${t<SMALL_N?'<span class="smalln">small sample</span>':''}</div>
+          <div style="font-size:12px;color:#5FD1C1;margin-top:2px">n = ${t} engineers</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           ${['a','b','c'].map(zz=>`<div style="background:${zF(zz)};border:1px solid ${zC(zz)};border-radius:7px;padding:5px 10px;text-align:center">
@@ -857,31 +1000,27 @@ function renderLevelPage(){
           </div>
         </div>
         <div class="zone-strip" id="zone-level"></div>
+        <div class="click-hint"><span class="hint-ic">⊕</span> Click any of the 9 boxes above to load its details.</div>
       </div>
     </div>
     <div class="col">
       <div class="card">
-        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title">${LEVEL_NAMES[curLevel]} vs. Overall</div></div></div>
+        <div class="card-hdr"><div class="card-dot"></div><div><div class="card-title"><span class="step-n">2</span>${LEVEL_NAMES[curLevel]} vs. Overall</div></div></div>
         <div style="padding:12px 16px">${cmp}</div>
       </div>
       <div>
-        <div class="section-label">Box detail</div>
-        <div class="detail-panel" id="level-detail"><div class="detail-empty">Click any box to explore details</div></div>
+        <div class="section-label"><span class="step-n">3</span>Box detail</div>
+        <div class="detail-panel" id="level-detail"></div>
       </div>
     </div>`;
   render9Box('nb-level',ld.data,'level');
   renderZoneStrip('zone-level',ld.data,t);
   renderLevelDetail();
 }
-function selectLevel(li){curLevel=li;selBox=null;renderLevelPage();}
+function selectLevel(li){curLevel=li;renderLevelPage();} /* B4 — keep the chosen box across levels */
 
 /* ═══════════════ GAP ANALYSIS ═══════════════ */
-function switchGapTab(tab){
-  document.getElementById('gap-panel-zone').style.display=tab==='zone'?'block':'none';
-  document.getElementById('gap-panel-box').style.display=tab==='box'?'block':'none';
-  document.getElementById('gap-tab-zone').classList.toggle('sel',tab==='zone');
-  document.getElementById('gap-tab-box').classList.toggle('sel',tab==='box');
-}
+/* C6 — sub-tabs removed in v1.2; both views now stack on one scrollable page */
 
 function drawGroupedBars(svgId, groups){
   const n=GRAND_TOTAL, maxPct=Math.max(...groups.map(g=>Math.max(g.actualPct,g.idealPct)));
@@ -966,12 +1105,25 @@ function showTab(name,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
+  /* B4 — every tab repaints from the same shared selBox, so the three views agree */
+  if(name==='overview'){ render9Box('nb-overview',BUDATA.Overall.data,'overview'); renderOverviewDetail(); renderHeatmap(); }
   if(name==='bu') renderBUPage();
   if(name==='level') renderLevelPage();
 }
 
+/* B3 — one click back to the opening state, from anywhere */
+function resetView(){
+  selBox=DEFAULT_BOX; curBU='Overall'; curLevel=0; hmMode='count'; hmNum=false; cmpOpen=false;
+  showTab('overview',document.querySelectorAll('.tab')[0]);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
 /* ═══════════════ INIT ═══════════════ */
-document.getElementById('overview-dist-title').textContent=`Overall 9-Box Distribution (n = ${GRAND_TOTAL.toLocaleString()})`;
+/* D5 — period label lives in one constant now (see DATA_PERIOD above) */
+document.getElementById('topbar-subtitle').textContent=`9-BOX TALENT DASHBOARD · ENGINEER WORKFORCE · ${DATA_PERIOD}`;
+selBox=DEFAULT_BOX;   /* B1 — the detail panel is never blank on arrival */
+/* keep the step numeral: textContent would wipe the <span> */
+document.getElementById('overview-dist-title').innerHTML=`<span class="step-n">1</span>Overall 9-Box Distribution (n = ${GRAND_TOTAL.toLocaleString()})`;
 document.getElementById('gap-hdr-sub').textContent=`n = ${GRAND_TOTAL.toLocaleString()} assessed engineers · Ideal model: 15% C / 65% B / 20% A`;
 renderKPIs();
 renderCompletionTable();
