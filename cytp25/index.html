@@ -567,7 +567,7 @@ function head(k,num,title,cap){
 function view(){
   const c=G(cur),k=K(c);
   let h=`<div class="card"><div class="hero ${k}">
-    <img class="ph ${k}" src="photos/${c.id.toLowerCase()}.jpg" alt=""
+    <img class="ph ${k}" src="photos/${c.id.toLowerCase()}.png" alt=""
       onerror="this.outerHTML='<div class=\\'ph ${k}\\'>${ini(c.name)}</div>'">
     <div class="info">
       <span class="tag ${k}">${c.grp} · ${c.id}</span>
