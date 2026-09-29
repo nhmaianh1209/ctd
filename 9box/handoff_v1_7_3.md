@@ -1,7 +1,7 @@
 ### HANDOFF — 9-Box Talent Dashboard (Coteccons) · v1.7.3
 
 Thay thế bản _handoff v1.7.1_. Tài liệu mô tả trạng thái hiện tại của `9box/index.html`, **những gì đã đổi ở v1.7.2 và v1.7.3**, và việc chuẩn bị cho **v1.8 (dữ liệu SEP 2026)**.
-File hiện hành: `9box/index.html` · Mật khẩu: `236/6` · Kỳ dữ liệu đang hiển thị: **APR 2026** (biến `DATA_PERIOD`) — sẽ đổi sang **SEP 2026** ở v1.8.
+File hiện hành: `9box/index.html` · **Không còn mật khẩu** (đã gỡ ở v1.7.3) · Kỳ dữ liệu đang hiển thị: **APR 2026** (biến `DATA_PERIOD`) — sẽ đổi sang **SEP 2026** ở v1.8.
 
 #### 0. TL;DR cho phiên chat kế tiếp
 - **v1.7.2 (26/08/2026):** viết lại định nghĩa **Potential** ở tab Rating Definitions — 3 tiêu chí **Aspiration / Engagement / Ability** (có dòng mô tả thành phần), ngang quyền và **không bù trừ**; bỏ cách tính theo số tiêu chí đạt (3/3, 1–2/3, 0/3).
@@ -10,6 +10,7 @@ File hiện hành: `9box/index.html` · Mật khẩu: `236/6` · Kỳ dữ liệ
   2. Dọn CSS legend cũ không còn dùng (10 dòng: `.legend-grid`, `.legend-col*`, `.legend-row/dot/key/desc`, `.nb-ref*`).
   3. `.page-narrow` **chốt giữ 960px** sau khi xem ảnh chụp ở 1440px và 1920px (cân, dễ đọc); cột "Case B" trong bảng Performance được cố định `width:200px` để tiêu đề không bị xuống 3 dòng.
   4. `<title>` bỏ "Engineer Workforce" → `9-Box Talent Dashboard — Coteccons` (đồng bộ với header từ v1.7.1).
+  5. **Gỡ mật khẩu đầu vào** — xoá toàn bộ khối `<script>` prompt mật khẩu ở đầu `<body>`; trang mở thẳng vào dashboard.
 - Test: `node --check` sạch, div cân bằng (333/333), chạy Chromium headless không lỗi JS; đã test luồng ⓘ → Back.
 - **Bước kế tiếp:** user sẽ gửi số liệu 9-box **tháng 9/2026** → build v1.8 theo checklist mục 3.
 
@@ -65,7 +66,6 @@ const DEFAULT_BOX='A1';         // ô mở sẵn trong Box detail
 ```
 | Hằng số | Ý nghĩa |
 |---|---|
-| `PASSWORD` | Mật khẩu truy cập, hiện `236/6` |
 | `CA/CB/CC, TA/TB/TC` | Màu fill / màu chữ theo zone A/B/C |
 | `BOX_DEF` | Map mỗi box (A1…C3) → zone, mô tả, action |
 | `BU_META` | Target / Completed từng BU |
@@ -74,7 +74,7 @@ const DEFAULT_BOX='A1';         // ô mở sẵn trong Box detail
 
 #### 5. Ghi chú kỹ thuật (kế thừa v1.7)
 - Logo SVG là vector path thật trích từ `2026-Logo_Coteccons.pdf` (bản trắng + N teal); đổi màu N bằng thuộc tính `fill` của path cuối trong SVG.
-- Mật khẩu `236/6` plaintext trong JS + sessionStorage (`unlock_9box`) — khóa hình thức.
+- Đã gỡ màn hình mật khẩu (`236/6`, prompt + sessionStorage `unlock_9box`) ở v1.7.3 theo yêu cầu user — trang mở thẳng vào dashboard.
 - Font Lexend Deca + palette Coteccons: navy `#16315E`, teal `#5FD1C1`, xanh `#0047BA`, đỏ `#B86054`, xanh lá `#51AC70`.
 - File 1 trang, không phụ thuộc, chạy offline, deploy thẳng SharePoint / GitHub Pages.
 - Chữ "Target" ở tab Gap Analysis (mô hình 20/65/15) khác nghĩa với "Total" ở bảng Completion — giữ nguyên.
@@ -88,6 +88,7 @@ _Không còn hạng mục nào._ Phần in (`@media print`, nút Print / Save as
 - [x] v1.7.3: Dọn CSS legend cũ
 - [x] v1.7.3: Chốt `.page-narrow` 960px, sửa cột Case B
 - [x] v1.7.3: `<title>` bỏ "Engineer Workforce"
+- [x] v1.7.3: Gỡ mật khẩu đầu vào
 - [x] Test: `node --check` sạch, div 333/333, Chromium headless không lỗi JS
 - [ ] v1.8: Nhập số liệu SEP 2026 (chờ user gửi)
 
