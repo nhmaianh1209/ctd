@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CYTP 2025 — Hồ sơ ứng viên</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16315E; --ink:#2A2E35; --mut:#8A929E;
+  --ss:#5FD1C1;        /* SUPER STAR — teal */
+  --ss-d:#2E9E8D;
+  --rs:#C59A6E;        /* RISING STAR — nâu sand */
+  --rs-d:#A47A4E;
+  --green:#51AC70; --brick:#B86054;
+  --line:#E8ECF2; --soft:#F6F8FB;
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Lexend Deca',system-ui,sans-serif;background:#EBEEF4;color:var(--ink);
+  font-size:14.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.shell{max-width:var(--maxw);margin:0 auto}
+
+header{background:linear-gradient(110deg,#16315E 0%,#24497F 100%);color:#fff}
+header .shell{padding:26px 28px}
+header .eyebrow{font-size:11px;letter-spacing:2.6px;text-transform:uppercase;opacity:.62;margin-bottom:7px}
+header h1{font-size:25px;font-weight:300;letter-spacing:.2px}
+header h1 b{font-weight:600}
+header .sub{font-size:13px;opacity:.7;margin-top:6px}
+
+.bar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.bar .shell{padding:12px 28px;display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.bar input,.bar select{font-family:inherit;font-size:13.5px;padding:9px 13px;border:1px solid var(--line);
+  border-radius:8px;background:#fff;color:var(--ink);transition:.15s}
+.bar input{min-width:230px}
+.bar input:focus,.bar select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(22,49,94,.1)}
+.bar .n{margin-left:auto;font-size:13px;color:var(--mut)}
+
+.wrap{display:grid;grid-template-columns:240px 1fr;gap:20px;padding:20px 28px 60px;align-items:start}
+
+/* LEFT */
+.nav{background:#fff;border-radius:14px;overflow:hidden;position:sticky;top:83px;
+  max-height:calc(100vh - 106px);display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(22,49,94,.07)}
+.nav .hd{padding:15px 18px 11px;font-size:10.5px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--mut)}
+.nav .body{overflow-y:auto;padding-bottom:8px}
+.grp{padding:13px 18px 6px;font-size:10.5px;font-weight:600;letter-spacing:1.3px;
+  display:flex;align-items:center;gap:8px}
+.grp.ss{color:var(--ss-d)} .grp.rs{color:var(--rs-d)}
+.grp:after{content:"";flex:1;height:1px;background:var(--line)}
+.it{padding:9px 18px;cursor:pointer;display:flex;align-items:baseline;gap:9px;
+  border-left:3px solid transparent;transition:.14s}
+.it:hover{background:var(--soft)}
+.it.on.ss{background:#EDFBF8;border-left-color:var(--ss)}
+.it.on.rs{background:#FBF5EE;border-left-color:var(--rs)}
+.it .cd{font-size:10.5px;color:var(--mut);font-weight:500;letter-spacing:.5px;flex:0 0 34px}
+.it .nm{font-size:13.5px;line-height:1.35}
+.it.on .nm{font-weight:500;color:var(--navy)}
+.it.on.ss .cd{color:var(--ss-d)} .it.on.rs .cd{color:var(--rs-d)}
+
+/* CARDS */
+.stack{display:flex;flex-direction:column;gap:20px}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(22,49,94,.07)}
+
+.hero{display:flex;gap:26px;padding:28px 30px}
+.hero.ss{border-top:4px solid var(--ss)} .hero.rs{border-top:4px solid var(--rs)}
+.ph{width:132px;height:174px;border-radius:12px;object-fit:cover;flex:0 0 132px;
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;
+  font-weight:300;letter-spacing:2px}
+.ph.ss{background:linear-gradient(150deg,#5FD1C1,#2E9E8D)}
+.ph.rs{background:linear-gradient(150deg,#C59A6E,#A47A4E)}
+.hero .info{flex:1;min-width:250px}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:1.6px;padding:5px 13px;
+  border-radius:20px;margin-bottom:11px}
+.tag.ss{background:var(--ss);color:#0E3B35}
+.tag.rs{background:var(--rs);color:#4A3520}
+.hero h2{font-size:27px;font-weight:500;color:var(--navy);line-height:1.15;letter-spacing:-.2px}
+.hero .line{font-size:13.5px;color:var(--mut);margin-top:6px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 22px;margin-top:20px}
+.facts div b{display:block;font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
+  color:var(--mut);font-weight:600;margin-bottom:2px}
+.facts div span{font-size:13.5px}
+.vbtn{display:inline-flex;align-items:center;gap:7px;margin-top:17px;color:#fff;
+  text-decoration:none;font-size:13px;padding:9px 17px;border-radius:8px;transition:.15s;background:var(--navy)}
+.vbtn:hover{background:#24497F}
+.vbtn.off{background:#E8ECF2;color:#A2AAB6;pointer-events:none}
+
+/* section card head */
+.chd{display:flex;align-items:center;gap:14px;padding:18px 30px;border-bottom:1px solid var(--line)}
+.chd .num{width:32px;height:32px;border-radius:9px;color:#fff;font-size:14px;font-weight:500;
+  display:flex;align-items:center;justify-content:center;flex:0 0 32px}
+.chd.ss .num{background:var(--ss-d)} .chd.rs .num{background:var(--rs-d)}
+.chd h3{font-size:15.5px;font-weight:600;color:var(--navy);letter-spacing:.1px}
+.chd .cap{font-size:12px;color:var(--mut);margin-top:1px}
+.cbody{padding:24px 30px 28px}
+
+.lbl{font-size:10.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--mut);margin-bottom:10px}
+.lbl:not(:first-child){margin-top:26px}
+
+/* NV */
+.nvs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nv{border:1px solid var(--line);border-radius:11px;padding:15px 18px}
+.nv .t{font-size:10px;font-weight:600;letter-spacing:1.3px;margin-bottom:7px}
+.nv.ss .t{color:var(--ss-d)} .nv.rs .t{color:var(--rs-d)}
+.nv .p{font-size:16px;font-weight:500;color:var(--navy);line-height:1.3}
+.nv .r{font-size:13px;color:var(--mut);margin-top:3px}
+.nv.e{background:var(--soft);border-style:dashed}
+.nv.e .t{color:#B9C0C9!important}
+.nv.e .p{font-size:13.5px;font-weight:400;color:#AAB2BC}
+
+/* share cards */
+.res{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rc{border:1px solid var(--line);border-radius:11px;padding:16px 18px;background:#fff}
+.rc .t{font-size:10.5px;font-weight:600;letter-spacing:1.1px;text-transform:uppercase;margin-bottom:7px}
+.rc.s{border-top:3px solid var(--green)}.rc.s .t{color:var(--green)}
+.rc.w{border-top:3px solid var(--brick)}.rc.w .t{color:var(--brick)}
+.rc.c{border-top:3px solid var(--navy)}.rc.c .t{color:var(--navy)}
+.rc.k{border-top:3px solid var(--mut)}.rc.k .t{color:var(--mut)}
+.rc p{font-size:13.5px}
+.full{grid-column:1/-1}
+.quote{border-left:3px solid var(--line);padding:2px 0 2px 16px;font-size:13.5px;color:#4A515B}
+.note{border-left:3px solid var(--brick);background:#FDF9F8;padding:14px 18px;
+  border-radius:0 9px 9px 0;font-size:13.5px}
+.mod{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mod .b{background:var(--soft);border-radius:11px;padding:15px 18px}
+.mod .b .h{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.mod ol{margin-left:17px;font-size:13px;color:#4A515B}
+.mod ol li{margin-bottom:3px}
+
+/* scores */
+.sc{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.row{display:flex;align-items:center;gap:13px;padding:6px 0;font-size:13.5px}
+.row .nm2{flex:1}
+.tr{width:96px;height:5px;background:#EDF0F5;border-radius:3px;overflow:hidden;flex:0 0 96px}
+.fl{height:100%;border-radius:3px;background:var(--navy)}
+.vl{width:40px;text-align:right;font-size:12.5px;color:var(--navy);font-weight:500;flex:0 0 40px}
+.dts{display:flex;gap:4px}
+.dt{width:9px;height:9px;border-radius:50%;background:#E6EAF0}
+.dt.f.ss{background:var(--ss-d)} .dt.f.rs{background:var(--rs-d)}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+.pl{background:var(--soft);border-radius:9px;padding:9px 15px;font-size:13px}
+.pl b{color:var(--navy);font-weight:500}
+ul.ex{list-style:none;font-size:13.5px}
+ul.ex li{padding-left:16px;position:relative;margin-bottom:5px}
+ul.ex li:before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--mut)}
+.empty{color:#AAB2BC;font-style:italic;font-size:13.5px}
+@media(max-width:1000px){.wrap{grid-template-columns:1fr;padding:16px}
+  .nav{position:static;max-height:320px}
+  .res,.nvs,.sc,.mod{grid-template-columns:1fr}
+  .hero{flex-wrap:wrap}header .shell,.bar .shell{padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body>
+
+<header><div class="shell">
+  <div class="eyebrow">Coteccons Young Talent Program 2025</div>
+  <h1>Hồ sơ <b>Ứng viên</b></h1>
+  <div class="sub">Super Star &amp; Rising Star — nguyện vọng, kết quả đào tạo và năng lực</div>
+</div></header>
+
+<div class="bar"><div class="shell">
+  <input id="q" placeholder="Tìm theo tên hoặc mã số…" oninput="draw()">
+  <select id="fg" onchange="draw()"><option value="">Tất cả nhóm</option><option>SUPER STAR</option><option>RISING STAR</option></select>
+  <select id="ff" onchange="draw()"><option value="">Tất cả mảng</option><option>Xây dựng</option><option>Cơ điện</option></select>
+  <div class="n"><b id="cnt">27</b> ứng viên</div>
+</div></div>
+
+<div class="shell"><div class="wrap">
+  <nav class="nav"><div class="hd">Danh sách</div><div class="body" id="list"></div></nav>
+  <main class="stack" id="card"></main>
+</div></div>
+
+<script>
+/* =======================================================================
+   VIDEO SUPER STAR — dán link vào trường  video:""  của 6 bạn SS01..SS06
+   Nguồn: OneDrive › [CYTP2025] Project Allocation › Super Star Video Profile
+   Cách lấy: chuột phải file video › Share › Copy link › dán vào giữa 2 dấu ""
+   ======================================================================= */
+const DAOTAO={
+ cd1:["Đọc bản vẽ thi công","Biện pháp thi công cơ bản","Tính toán Biện pháp thi công","BIM cơ bản"],
+ cd2:["Tổng quan về nghề QS và Khối lượng","Tính toán và xây dựng ngân sách dự án (Báo cáo tài chính dự án)"]};
+
+const C=[
+{id:"SS01",grp:"SUPER STAR",name:"Ngô Đức Lưu",dob:2004,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Dân dụng và Công nghiệp",
+ onboard:"21/10/2026",
+ video:"",   /* ← SS01 Ngô Đức Lưu */
+ nv1:{p:"Sân bay Long Thành",r:"Quantity Surveyor (QS)"},nv2:null,
+ exp:["Kỹ sư bóc tách khối lượng (Bộ phận QS) – Central (Tháng 6 – 8/25)","Làm việc tại Sân bay Long Thành – CTD"],
+ bgk:"Điềm đạm, có tính gắn bó cao. Sẵn sàng đi xa (nhưng hạn chế đi nước ngoài do gia đình neo người, Chị bị khuyết tật). Tỉ mỉ, cẩn thận; tinh thần học hỏi cao và chủ động nâng cao chuyên môn. Có tinh thần trách nhiệm và mức độ cam kết cao trong công việc, với công ty.",
+ gpa:"3.3/4.0",eng:"TOEIC 780",cog:72,v:49,l:43,n:91,
+ r31:{Communication:3,"Problem Solving":3,Teamwork:3,"Leadership potential":3},
+ r32:{"Định hướng nghề":3,"Động lực":2,"Sự phù hợp với nghề":2,"Cam kết chương trình":3},
+ peer:"Đức Lưu tham gia đầy đủ các cuộc họp nhóm, hoàn thành công việc được giao. Chịu nhận công việc. Hỗ trợ nhóm tính toán công tác đất.",
+ str:"Nhiệt huyết, khả năng thích nghi nhanh với môi trường mới và luôn giữ tinh thần trước áp lực công việc.",
+ weak:"Đôi khi còn e ngại khi đưa ra ý kiến phản biện hoặc đóng góp quan điểm trong các cuộc thảo luận.",
+ career:"Phát triển trở thành một Kỹ sư QS chuyên nghiệp, có năng lực kiểm soát chi phí, dòng tiền và phân tích hiệu quả tài chính dự án. Đồng thời mong muốn được đồng hành cùng 1 anh Mentor/GĐDA giàu kinh nghiệm để học hỏi và phát triển bản thân.",
+ wish:"Tiếp tục được làm việc tại Dự án Sân bay Long Thành – Nhà để xe, cùng tập thể nỗ lực đưa dự án về đích đúng tiến độ và đạt được mục tiêu đề ra.",
+ commit:"Theo đuổi tinh thần ownership cao, đề cao tính minh bạch và trung thực trong từng con số. Luôn nhiệt huyết, sẵn sàng cống hiến hết mình, đồng hành cùng đồng đội và trở thành một mắt xích vững chắc đóng góp vào thành công chung của dự án và Coteccons."},
+
+{id:"SS02",grp:"SUPER STAR",name:"Trần Đức Vỹ",dob:2002,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Cấp thoát nước",
+ onboard:"21/10/2026",
+ video:"",   /* ← SS02 Trần Đức Vỹ */
+ nv1:{p:"LEGO",r:"Giám sát Thi công"},nv2:{p:"Dự án ở HCM và khu vực lân cận",r:"Quantity Surveyor (QS)"},
+ exp:["Kỹ sư Hạ Tầng – CTCP IDECO Việt Nam (6/2024 – 9/2024)","Kỹ sư Cấp Thoát Nước – CTCP Ktest (5/2025 – 10/2025)"],
+ bgk:"Giao tiếp thực tế không tốt lắm. Teamwork rất tốt, potential leader. Học lâu do nợ tiếng Anh. Creative, think out of the box. Chuyên ngành Cấp thoát nước (Cơ sở hạ tầng). Phù hợp với mảng hạ tầng, cấp thoát nước hạ tầng. Định hướng có thể làm QA/QC/Giám sát thi công. Có kinh nghiệm đi làm. Chuyên môn khá tốt, strong kỹ thuật. Có thể ứng tuyển đi làm ngay.",
+ gpa:"3.03/4.0",eng:"TOEIC 500",cog:85,v:80,l:51,n:89,
+ r31:{Communication:4,"Problem Solving":4,Teamwork:3,"Leadership potential":3},
+ r32:{"Định hướng nghề":4,"Động lực":4,"Sự phù hợp với nghề":4,"Cam kết chương trình":3},
+ peer:"Vỹ đã nỗ lực hoàn thành vai trò của mình, chủ động tìm hiểu thêm kiến thức về kiểm tra chất lượng cũng như quản lý. Bạn chủ động hoàn thành công việc đúng hạn, tham gia đầy đủ các buổi họp và tích cực đóng góp ý kiến thẳng thắn trong quá trình thực hiện Project.",
+ str:"Có khả năng giao tiếp và làm việc đội nhóm.",
+ weak:"Chỉ làm việc trên những con số, chưa có kinh nghiệm thực tế.",
+ career:"Mong muốn có mentor hoặc đội nhóm giàu kinh nghiệm đồng hành, hướng dẫn để phát triển chuyên môn và định hướng nghề nghiệp rõ ràng hơn. Mong muốn làm Kỹ sư hiện trường và Kỹ sư QS.",
+ wish:"Các dự án khác nhau của Coteccons để học hỏi, trải nghiệm thực tế, nâng cao kỹ năng và phát triển.",
+ commit:"Nhiệt huyết, không ngại khó và sẵn sàng bước ra khỏi vùng an toàn để học hỏi, phát triển. Với niềm tin vào thuyết nhân quả, cố gắng làm việc bằng sự kiên trì, trách nhiệm, nỗ lực để tạo ra kết quả tốt nhất."},
+
+{id:"SS03",grp:"SUPER STAR",name:"Bùi Minh Quân",dob:2004,sex:"Nam",field:"Cơ điện",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Điện - Điện tử",major:"Điện tử - Viễn thông",
+ onboard:"21/10/2026",
+ video:"",   /* ← SS03 Bùi Minh Quân */
+ nv1:{p:"APEC Phú Quốc",r:"Quantity Surveyor (QS)"},nv2:{p:"LEGO",r:"Shopdrawing"},
+ exp:["Thực tập tại Đấu thầu Cơ điện – CTD (15/6 – 15/9/26)"],
+ bgk:"Chịu khó, quê ở Bình Định, willing làm xa nhà. Ngại cạnh tranh ở những công ty như Viettel và cũng không thấy có cơ hội ở đây.",
+ gpa:"2.5/4.0",eng:"TOEIC 920",cog:64,v:28,l:64,n:82,
+ r31:{Communication:2,"Problem Solving":2,Teamwork:2,"Leadership potential":1},
+ r32:{"Định hướng nghề":3,"Động lực":3,"Sự phù hợp với nghề":4,"Cam kết chương trình":4},
+ peer:"Quân là thành viên năng nổ, tích cực, hoàn thành công việc được giao. Phối hợp với nhóm tốt để hoàn thành Project.",
+ str:"Ham học hỏi, luôn tò mò và chủ động tìm hiểu sâu bản chất các vấn đề để hiểu rõ hơn về dự án và công việc.",
+ weak:"Kinh nghiệm thực tế tại công trường còn hạn chế do chưa có nhiều cơ hội va chạm và trải nghiệm.",
+ career:"Phát triển theo hướng Kỹ sư QS, theo đuổi sự chính xác, minh bạch và trung thực trong từng con số, góp phần tạo nên hiệu quả cho dự án.",
+ wish:"",
+ commit:"Luôn nghiêm túc học hỏi, không ngừng hoàn thiện bản thân và sẵn sàng cống hiến năng lực, trí tuệ để đóng góp vào thành công của các dự án của Coteccons."},
+
+{id:"SS04",grp:"SUPER STAR",name:"Lê Duy Hoàng Sơn",dob:2004,sex:"Nam",field:"Cơ điện",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Điện - Điện tử",major:"Kỹ thuật Điều khiển và Tự động hóa",
+ onboard:"01/05/2027",
+ video:"",   /* ← SS04 Lê Duy Hoàng Sơn */
+ nv1:null,nv2:null,
+ exp:["Thực tập tại F2 Bình Dương – CTD (8/6 – 23/8/26)"],
+ bgk:"Tự tin giao tiếp, khả năng teamwork tốt. Biết về ngành và hình dung về ngành do có người thân làm nhà thầu phụ của Coteccons. Willing đi làm xa, chịu cực được (nhưng hợp làm VP hơn). Thích shopdrawing, thiết kế.",
+ gpa:"3.29/4.0",eng:"—",cog:37,v:51,l:90,n:3,
+ r31:{Communication:4,"Problem Solving":3,Teamwork:4,"Leadership potential":3},
+ r32:{"Định hướng nghề":4,"Động lực":3,"Sự phù hợp với nghề":4,"Cam kết chương trình":4},
+ peer:"Sơn là thành viên năng nổ, tích cực tham gia hoạt động nhóm và luôn sẵn sàng hỗ trợ mọi người. Bạn phối hợp tốt với các thành viên, góp phần hoàn thành Project đúng tiến độ.",
+ str:"Chăm chỉ, có trách nhiệm, chủ động học hỏi và luôn nỗ lực hoàn thành công việc với kết quả tốt nhất. Tiếp thu nhanh, biết vận dụng kiến thức vào thực tế.",
+ weak:"Kinh nghiệm thực tế tại công trường còn hạn chế, đặc biệt trong việc xử lý tình huống kỹ thuật phức tạp. Đôi khi còn thận trọng khi ra quyết định.",
+ career:"Mong muốn tiếp tục làm việc tại công trường, tham gia nhiều dự án và vị trí khác nhau để tích lũy kinh nghiệm, mở rộng kiến thức và từng bước đảm nhận những trách nhiệm cao hơn.",
+ wish:"Ưu tiên các dự án ở giai đoạn đầu hoặc giai đoạn kết cấu để hiểu toàn diện vòng đời dự án. Đồng thời mong muốn tìm hiểu sâu hơn về các hệ thống điện, điều khiển và tự động hóa trong công trình.",
+ commit:"Luôn giữ vững tinh thần chủ động, cầu tiến và trách nhiệm; sẵn sàng bắt đầu từ những công việc nền tảng, không ngừng học hỏi và nỗ lực đóng góp cho thành công của dự án."},
+
+{id:"SS05",grp:"SUPER STAR",name:"Dương Hoàng Minh Anh",dob:2004,sex:"Nữ",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Quản lý Xây dựng dân dụng",
+ onboard:"20/06/2027",
+ video:"",   /* ← SS05 Dương Hoàng Minh Anh */
+ nv1:null,nv2:null,
+ exp:["Thực tập tại APEC Phú Quốc – CTD (1/6 – 1/8/26)"],
+ bgk:"Ba mẹ kỹ sư. Tư duy tốt, tiếng Anh tốt, có nền tảng kiến thức tốt. Giao tiếp tốt. Hạn chế: ngành học về quản lý nên kỹ thuật hạn chế. Đánh giá tốt, phù hợp QS, QA/QC, Tender, CCM.",
+ gpa:"2.9/4.0",eng:"—",cog:96,v:95,l:99,n:24,
+ r31:{Communication:2,"Problem Solving":3,Teamwork:2,"Leadership potential":2},
+ r32:{"Định hướng nghề":4,"Động lực":4,"Sự phù hợp với nghề":3,"Cam kết chương trình":4},
+ peer:"Minh Anh là thành viên chăm chỉ, nhiệt tình và có tinh thần trách nhiệm cao. Bạn tham gia đầy đủ các buổi họp, chủ động nhận việc, biết lắng nghe, thảo luận và hoàn thành tốt công việc được giao đúng hạn, dù phải cân bằng với lịch thực tập.",
+ str:"Học hỏi nhanh, thích nghi tốt với môi trường mới và luôn sẵn sàng đón nhận những thử thách để phát triển bản thân.",
+ weak:"Đôi khi còn có xu hướng làm việc độc lập và quá tập trung vào chi tiết, dẫn đến một số khó khăn trong việc tối ưu thời gian và nguồn lực.",
+ career:"Mong muốn trở thành một Kỹ sư thực chiến tại các dự án trọng điểm, trực tiếp tham gia công tác quản lý dự án và phát triển trong môi trường chuyên nghiệp. Đồng thời học hỏi tư duy quản trị, kỹ năng lãnh đạo đội ngũ và cách xử lý tình huống thực tế tại công trường.",
+ wish:"Được tham gia các dự án có quy mô lớn, có cơ hội tiếp cận sâu với công tác điều hành, quản lý và vận hành dự án để tích lũy kinh nghiệm thực tiễn.",
+ commit:"Luôn tuân thủ tuyệt đối quy trình làm việc, các chuẩn mực an toàn và giá trị cốt lõi của Coteccons. Luôn sẵn sàng nhận nhiệm vụ, làm việc hết mình vì mục tiêu chung và đóng góp tích cực cho tập thể."},
+
+{id:"SS06",grp:"SUPER STAR",name:"Nguyễn Trí Thành",dob:2005,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Dân dụng và Công nghiệp",
+ onboard:"25/11/2027",
+ video:"",   /* ← SS06 Nguyễn Trí Thành */
+ nv1:null,nv2:null,
+ exp:["Thực tập tại Celadon Tân Phú – UNC (10/6 – 20/8)"],
+ bgk:"Chưa có sự quyết tâm, đam mê, chưa có định hướng rõ ràng. Chưa có sự tìm hiểu về các vị trí làm việc. Tóm lại not OK, chỉ phù hợp với các môi trường công ty nhỏ. Phù hợp thiên hướng gia đình, không thể đi xa. Đã đăng ký thực tập CTD 2026. Cho thêm cơ hội nếu có.",
+ gpa:"2.7/4.0",eng:"TOEIC 540",cog:41,v:5,l:93,n:52,
+ r31:{Communication:2,"Problem Solving":1,Teamwork:3,"Leadership potential":1},
+ r32:{"Định hướng nghề":2,"Động lực":3,"Sự phù hợp với nghề":2,"Cam kết chương trình":2},
+ peer:"Thành là thành viên nhiệt huyết, chủ động trong công việc và tích cực hỗ trợ các thành viên trong nhóm. Bạn luôn tham gia đóng góp vào Project, chủ động sắp xếp lịch họp và phối hợp cùng nhóm để hoàn thành công việc.",
+ str:"Chịu áp lực tốt, tự tin, giao tiếp tốt; Tiếng Anh chuyên ngành khá, có khả năng giao tiếp với các bên liên quan; biết ứng dụng AI và công nghệ hỗ trợ tính toán.",
+ weak:"Đôi khi quá tỉ mỉ, cẩn thận khiến tiến độ thực hiện công việc chưa đạt được như kế hoạch.",
+ career:"Phát triển theo hướng Kỹ sư hiện trường, hướng tới trở thành Chỉ huy trưởng, có năng lực quản lý tài chính, nhân lực và thiết bị.",
+ wish:"Các dự án nhà cao tầng tại Việt Nam hoặc nước ngoài, áp dụng quy trình quản lý dự án quốc tế và công nghệ xây dựng hiện đại.",
+ commit:"Cống hiến, học hỏi, gắn bó, nỗ lực hoàn thành và vượt KPI, không ngừng học hỏi từ các kỹ sư của CTD và đồng hành lâu dài cùng công ty."},
+
+{id:"RS01",grp:"RISING STAR",name:"Phạm Nguyễn Anh Đô",dob:2002,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Dân dụng và Công nghiệp",
+ onboard:"21/10/2026",video:"",
+ nv1:{p:"LEGO",r:"Shopdrawing"},nv2:{p:"Sân bay Gia Bình",r:"Shopdrawing"},
+ exp:["Nhân viên Shop Drawing – CTD (26/05/2025 – 14/08/2025)"],
+ bgk:"Hiền, rụt rè. Sẵn sàng đi công tác, đi nước ngoài. Mức độ cam kết cao trong công việc, với công ty. Chịu khó cải thiện điểm còn yếu.",
+ gpa:"2.6/4.0",eng:"—",cog:97,v:89,l:94,n:88,
+ r31:{Communication:3,"Problem Solving":3,Teamwork:3,"Leadership potential":2},
+ r32:{"Định hướng nghề":3,"Động lực":3,"Sự phù hợp với nghề":3,"Cam kết chương trình":3},
+ peer:"Đô làm phần lớn các công tác tính toán kỹ thuật của nhóm, các sản phẩm mang giá trị cao. Đô nắm lý thuyết tốt nên giúp nhóm xử lý được nhiều khuất mắc kỹ thuật, khối lượng công việc đảm nhận lớn và hoàn thành tốt và đúng thời hạn các công việc được giao.",
+ str:"Tỉ mỉ, kiên nhẫn, có khả năng đào sâu chi tiết và đảm bảo độ chính xác trong hồ sơ, bản vẽ và khối lượng.",
+ weak:"Tốc độ xử lý công việc chưa tối ưu trong giai đoạn đầu do cần rà soát, đối chiếu kỹ lưỡng; cần tiếp tục học hỏi để nhanh chóng thích nghi và làm việc độc lập.",
+ career:"Phát triển trong khối kỹ thuật văn phòng Ban Chỉ huy, theo hướng Shopdrawing, QS, QA/QC hoặc biện pháp thi công.",
+ wish:"Các dự án có quy mô lớn, yêu cầu kỹ thuật cao như công trình cao tầng và nhà xưởng công nghiệp hiện đại tại Coteccons.",
+ commit:"Cầu thị, chính xác, trách nhiệm, chủ động học hỏi và thích ứng nhanh; đảm bảo sự cẩn trọng, chuẩn xác trong hồ sơ, khối lượng và bản vẽ; tuân thủ kỷ luật, an toàn và chủ động phối hợp cùng tập thể để hoàn thành tốt công việc."},
+
+{id:"RS02",grp:"RISING STAR",name:"Phạm Bảo Duy",dob:2004,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Dân dụng và Công nghiệp",
+ onboard:"21/10/2026",video:"",
+ nv1:{p:"LEGO",r:"Giám sát Thi công"},nv2:{p:"APEC Phú Quốc",r:"Giám sát Thi công"},
+ exp:[],bgk:"",gpa:"",eng:"",cog:null,v:null,l:null,n:18,partial:true,
+ r31:{Communication:4,"Problem Solving":4,Teamwork:3,"Leadership potential":3},
+ r32:{"Định hướng nghề":4,"Động lực":4,"Sự phù hợp với nghề":3,"Cam kết chương trình":4},
+ peer:"Duy là thành viên tích cực, chủ động kết nối và hỗ trợ các thành viên trong nhóm. Bạn nắm được kiến thức tổng quan, đóng góp nhiều ý tưởng, hoàn thành tốt phần bình đồ bằng Revit đem về điểm cộng cho nhóm và luôn chủ động hoàn thành công việc đúng hạn, đảm bảo chất lượng nhóm yêu cầu.",
+ str:"Có năng lực triển khai biện pháp thi công, bóc khối lượng và lập tiến độ, thành thạo Revit, CAD, MS Project và cơ bản Plaxis 3D.",
+ weak:"Chưa nắm rõ được hết những vấn đề thực tế tại công trường.",
+ career:"Phát triển từ Kỹ sư giám sát xây dựng → Kỹ sư chủ trì biện pháp → Chỉ huy trưởng/Giám đốc dự án, đồng thời có thể mở rộng theo hướng BIM tại công trường.",
+ wish:"Các dự án quy mô lớn, kết cấu phức tạp hoặc có tầng hầm tại CTD, ưu tiên môi trường công trường để tích lũy kinh nghiệm thực tế.",
+ commit:"Cam kết dấn thân, kỷ luật và đóng góp: Chủ động học hỏi, không ngại khó và sẵn sàng nhận trách nhiệm; tuân thủ nghiêm ngặt các tiêu chuẩn về an toàn, chất lượng và quy trình thi công."},
+
+{id:"RS03",grp:"RISING STAR",name:"Bùi Vĩnh Khang",dob:2004,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Dân dụng và Công nghiệp",
+ onboard:"21/10/2026",video:"",nv1:null,nv2:null,none:true},
+
+{id:"RS04",grp:"RISING STAR",name:"Nguyễn Quốc Anh",dob:2004,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Quản lý Xây dựng",
+ onboard:"21/10/2026",video:"",
+ nv1:{p:"LEGO",r:"Quantity Surveyor (QS)"},nv2:{p:"APEC Phú Quốc",r:"Quantity Surveyor (QS)"},none:true},
+
+{id:"RS05",grp:"RISING STAR",name:"Mai Phạm Hoàng Phú",dob:2003,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Công trình Xây dựng Dân dụng và Công nghiệp",
+ onboard:"21/10/2026",video:"",
+ nv1:{p:"METROPOLE 1-14",r:"QAQC Engineer"},nv2:null,
+ exp:["Giám sát xây dựng – CTD (6 – 8/24)","QAQC XD tại Metropole 1-14 _ Phần hầm và công tác chính (từ tháng 4 – nay)"],
+ bgk:"Giao tiếp chưa tự tin, chưa logic, còn ấp úng. Mục tiêu: tinh thần tốt. Phù hợp hiện trường. Chưa rành về kỹ thuật. Học thêm về QLXD-QS.",
+ gpa:"2.8/4.0",eng:"TOEIC Reading & Listening 685",cog:32,v:5,l:85,n:35,
+ r31:{Communication:2,"Problem Solving":2,Teamwork:2,"Leadership potential":2},
+ r32:{"Định hướng nghề":3,"Động lực":3,"Sự phù hợp với nghề":3,"Cam kết chương trình":3},
+ peer:"Phú có tinh thần trách nhiệm, nhiệt tình và sẵn sàng nhận việc. Bạn tham gia họp đầy đủ, tuy nhiên cần chủ động cập nhật tiến độ, phối hợp tốt hơn với các thành viên và đảm bảo hoàn thành công việc đúng hạn, đầy đủ.",
+ str:"Thành thạo Excel và tin học ứng dụng trong quản lý hồ sơ QA/QC, có khả năng ứng dụng AI vào công việc.",
+ weak:"Cần cải thiện tính chủ động trong lập kế hoạch, nhận diện rủi ro và cải thiện kỹ năng giao tiếp, đàm phán, phối hợp với các bên liên quan.",
+ career:"Phát triển chuyên sâu theo hướng Kỹ sư QA/QC, sau đó định hướng chuyển sang Kỹ sư QS, tận dụng kinh nghiệm thực tế hiện trường để nâng cao năng lực quản lý khối lượng và chi phí.",
+ wish:"Các dự án có quy mô lớn, yêu cầu kỹ thuật và tiến độ cao, như công trình cao tầng, tổ hợp công nghiệp quốc tế và công trình xanh đạt chuẩn LEED tại CTD.",
+ commit:"Đổi mới, phát triển, kỷ luật, chủ động ứng dụng công nghệ, Excel và AI để nâng cao hiệu suất; không ngừng phát triển từ QA/QC đến QS, đồng thời luôn đặt chất lượng, kỷ luật kỹ thuật và uy tín CTD lên hàng đầu."},
+
+{id:"RS06",grp:"RISING STAR",name:"Nguyễn Phương Kiệt",dob:2003,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Kỹ thuật Xây dựng",
+ onboard:"21/10/2026",video:"",
+ nv1:{p:"LEGO",r:"Giám sát Thi công"},nv2:{p:"Đường sắt tốc độ cao Hà Nội - Quảng Ninh",r:"Quantity Surveyor (QS)"},none:true},
+
+{id:"RS07",grp:"RISING STAR",name:"Hứa Tôn Hào",dob:2003,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Khoa học Ứng dụng",major:"Cơ kỹ thuật",
+ onboard:"21/10/2026",video:"",
+ nv1:{p:"CELADON CAMPUS",r:"Shopdrawing Engineer"},nv2:null,
+ exp:[],bgk:"",gpa:"",eng:"",cog:null,v:null,l:85,n:80,partial:true,
+ r31:{Communication:4,"Problem Solving":3,Teamwork:4,"Leadership potential":4},
+ r32:{"Định hướng nghề":3,"Động lực":4,"Sự phù hợp với nghề":4,"Cam kết chương trình":4},
+ peer:"Hào có tinh thần tham gia làm việc nhóm tốt. Có khả năng gắn kết các thành viên trong nhóm với nhau. Làm việc nhóm đôi khi trình bày còn lan man.",
+ str:"Cẩn thận, tỉ mỉ, tư duy định lượng, chú trọng làm đúng ngay từ đầu, có khả năng phân tích và kiểm soát vấn đề dựa trên các tiêu chí đo lường rõ ràng.",
+ weak:"Sự cẩn thận đôi khi khiến tốc độ xử lý và ra quyết định còn chậm; cần cân bằng giữa độ chính xác và hiệu suất công việc.",
+ career:"Phát triển chuyên môn toàn diện ở vị trí Shopdrawing, bao gồm cả kết cấu và hoàn thiện.",
+ wish:"Các dự án có cấu kiện đặc biệt, dự án theo mô hình Design & Build và các dự án đầu tư công của quốc gia, nhằm tích lũy thêm kinh nghiệm thực tế.",
+ commit:"Chính xác, phát triển, đóng góp, chủ động tiếp thu kiến thức và kinh nghiệm từ các anh chị đi trước để nâng cao chuyên môn; hoàn thành tốt trách nhiệm được giao và không ngừng gia tăng giá trị đóng góp cho sự phát triển của Coteccons."},
+
+{id:"RS08",grp:"RISING STAR",name:"Nguyễn Tấn Thuận",dob:2004,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Dân dụng và Công nghiệp",
+ onboard:"21/10/2026",video:"",
+ nv1:{p:"APEC Phú Quốc",r:"Giám sát Thi công"},nv2:{p:"Nhà hát Opera Hà Nội",r:"Giám sát Thi công"},none:true},
+
+{id:"RS09",grp:"RISING STAR",name:"Trần Khánh Đoan",dob:2004,sex:"Nữ",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Dân dụng và Công nghiệp",
+ onboard:"01/11/2026",video:"",
+ nv1:{p:"LEGO",r:"Quantity Surveyor (QS)"},nv2:{p:"LEGO",r:"Giám sát Thi công"},
+ exp:["Thực tập part time – CTCP Xây dựng CENTRAL (04/04/2025)","QC – CTCP Xây dựng CENTRAL (02/06/2025)"],
+ bgk:"Sẵn sàng đi công tác tỉnh, nước ngoài. Mức độ cam kết trong công việc, với công ty. Thích môi trường mới.",
+ gpa:"2.6/4.0",eng:"—",cog:97,v:89,l:94,n:88,
+ r31:{Communication:3,"Problem Solving":3,Teamwork:3,"Leadership potential":2},
+ r32:{"Định hướng nghề":3,"Động lực":3,"Sự phù hợp với nghề":3,"Cam kết chương trình":3},
+ peer:"Đoan tham gia đầy đủ và có thái độ phối hợp tốt, nhưng còn trễ hạn một vài lần và phạm một số lỗi chưa đồng bộ.",
+ str:"Chủ động, cầu tiến, cẩn thận, có trách nhiệm, sử dụng tốt AutoCAD, ETABS, SAP2000, SAFE và các công cụ tin học văn phòng.",
+ weak:"Dành nhiều thời gian kiểm tra và cân nhắc trước khi quyết định; cần cải thiện khả năng xác định ưu tiên và ra quyết định nhanh.",
+ career:"Phát triển theo hướng QS, đồng thời tìm hiểu thêm về QC để xây dựng góc nhìn toàn diện về khối lượng, chi phí và chất lượng dự án.",
+ wish:"Các dự án của Coteccons đang trong giai đoạn thi công phần ngầm hoặc phần kết cấu, để có cơ hội tích lũy kinh nghiệm thực tế.",
+ commit:"Châm ngôn “Không bao giờ hết việc, chỉ sợ không có việc mà làm”. Giữ vững tinh thần nhiệt huyết với nghề, kiên trì trong công việc và có trách nhiệm với những nhiệm vụ được giao, đồng hành cùng Coteccons trong chặng đường tiếp theo."},
+
+{id:"RS10",grp:"RISING STAR",name:"Nguyễn Hoàng Minh Phú",dob:2003,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Kỹ thuật Xây dựng",
+ onboard:"08/01/2027",video:"",nv1:null,nv2:null,partial:true,
+ exp:["Giám sát tại Công ty Bách Khoa (BKEC)","Thẩm định chất lượng công trình tại Công ty Bách Khoa (BKEC)"],
+ bgk:"Nhà SG, kinh nghiệm biết đi phỏng vấn, cọ sát. Thích đi làm xa, không bất cập. Ấn tượng quy mô công ty lớn, đẹp.",
+ gpa:"2.47/4.0",eng:"—",cog:8,v:79,l:5,n:7,
+ r31:{Communication:3,"Problem Solving":3,Teamwork:3,"Leadership potential":3},
+ r32:{"Định hướng nghề":3,"Động lực":3,"Sự phù hợp với nghề":3,"Cam kết chương trình":3},
+ peer:"Có tham gia nhưng chưa nhiệt huyết.",
+ str:"Giờ giấc linh hoạt, không cố định giờ ngủ nghỉ, chịu khó.",
+ weak:"Những vấn đề không hiểu thường sẽ mất thời gian để tìm kiếm xác nhận vấn đề một cách đúng nhất.",
+ career:"",wish:"",commit:""},
+
+{id:"RS11",grp:"RISING STAR",name:"Đinh Nhật Khánh",dob:2004,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Kỹ thuật Xây dựng",
+ onboard:"01/03/2027",video:"",nv1:null,nv2:null,partial:true,
+ exp:["Thực tập tại APEC Phú Quốc CTD (10/6/26 – 10/8/26)"],
+ bgk:"Có tham gia CLB, nhiệt tình. Giao tiếp tốt, sẵn sàng trải nghiệm. Mong muốn đi môi trường nước ngoài. Tinh thần tốt. Tháng 12/2026 ra trường.",
+ gpa:"2.74/4.0",eng:"IELTS 6.0",cog:73,v:22,l:93,n:68,
+ r31:{Communication:4,"Problem Solving":3,Teamwork:3,"Leadership potential":3},
+ r32:{"Định hướng nghề":4,"Động lực":4,"Sự phù hợp với nghề":4,"Cam kết chương trình":4},
+ peer:"Khánh tham gia đầy đủ các cuộc họp của nhóm, tuy nhiên đôi lúc có trễ, nhưng vẫn đảm bảo được đầu ra theo yêu cầu của nhóm.",
+ str:"Chủ động, có tổ chức và kỷ luật; tinh thần học hỏi tốt, thích nghi nhanh và chịu được áp lực công việc.",
+ weak:"Kinh nghiệm thực tế còn hạn chế; đôi khi có thể bỏ sót các đầu việc nhỏ, cần cải thiện thói quen ghi chú và kiểm tra công việc.",
+ career:"Phát triển trong lĩnh vực thi công và kỹ thuật xây dựng, theo hướng Kỹ sư hiện trường kết hợp QS, xây dựng nền tảng về kỹ thuật, quản lý chất lượng, khối lượng và chi phí.",
+ wish:"",commit:""},
+
+{id:"RS12",grp:"RISING STAR",name:"Lê Minh Phú",dob:2003,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Kỹ thuật Xây dựng",
+ onboard:"01/03/2027",video:"",nv1:null,nv2:null,partial:true,
+ exp:[],bgk:"",gpa:"",eng:"",cog:null,v:null,l:null,n:null,
+ r31:{Teamwork:3,"Leadership potential":2},
+ r32:{"Định hướng nghề":4,"Động lực":4,"Sự phù hợp với nghề":4,"Cam kết chương trình":2},
+ peer:"Phú có khả năng định hướng công việc và tích cực đóng góp ý kiến cho nhóm. Tuy nhiên, bạn cần theo sát tiến độ và bám sát yêu cầu đề bài hơn để đảm bảo định hướng phù hợp và công việc được hoàn thành đúng yêu cầu.",
+ str:"Bóc tách khối lượng chi tiết, nắm bắt BPTC; thích nghi tốt, ứng dụng tốt SAP2000, ETABS, CAD, Excel; tỉ mỉ và kiên quyết với tiêu chuẩn chất lượng, an toàn.",
+ weak:"Cần cải thiện xử lý tình huống phát sinh, đàm phán và điều phối công việc giữa các đội thầu phụ, tổ đội công nhân trên công trường.",
+ career:"Phát triển theo hướng Giám sát/QA-QC/QS, xây dựng năng lực toàn diện về chất lượng, khối lượng, chi phí và tiến độ, hướng tới vị trí Trưởng nhóm Kỹ thuật/QS và Chỉ huy phó Công trình.",
+ wish:"Các đại dự án cao tầng, tổ hợp phức hợp hoặc nhà xưởng công nghiệp quy mô lớn của CTD, có yêu cầu cao về kỹ thuật và tiến độ.",
+ commit:"Chính xác, kỷ luật, xông pha, giữ vững tính trung thực và minh bạch trong QA/QC/QS, sẵn sàng lăn xả tại công trường, tuân thủ nghiêm ngặt an toàn và chất lượng, đồng thời không ngừng học hỏi và gắn bó lâu dài cùng Coteccons."},
+
+{id:"RS13",grp:"RISING STAR",name:"Trần Minh Đăng",dob:2005,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Quản lý Xây dựng",
+ onboard:"21/03/2027",video:"",nv1:null,nv2:null,
+ exp:["Thực tập tại phòng Đấu thầu – CTD (1/6 – 26/7)"],
+ bgk:"Phù hợp giám sát hiện trường. Mong muốn phát triển & định hướng mảng quản lý hợp đồng (FIDIC). Giao tiếp tự tin, nhưng còn hơi lý thuyết.",
+ gpa:"3.31/4.0",eng:"—",cog:9,v:31,l:10,n:17,
+ r31:{Communication:4,"Problem Solving":3,Teamwork:4,"Leadership potential":3},
+ r32:{"Định hướng nghề":3,"Động lực":4,"Sự phù hợp với nghề":4,"Cam kết chương trình":4},
+ peer:"Đăng là thành viên năng nổ, nhiệt huyết và có tinh thần trách nhiệm cao. Bạn phối hợp tốt với các thành viên, tư duy tốt, chủ động nhận việc và hoàn thành tốt công việc được giao.",
+ str:"Đọc bản vẽ, Bóc tách khối lượng, Dự toán, Tiếng Anh chuyên ngành, Teamwork, Giao tiếp & Trình bày tốt.",
+ weak:"Thiếu kinh nghiệm công trường thực tế. Hạn chế về biện pháp thi công. Chưa có nhiều trải nghiệm QA/QC.",
+ career:"QS tại công trình · Cost Management · Contract Management.",
+ wish:"Dự án Quốc tế hoặc có hợp tác với Quốc tế; có quy mô lớn và yêu cầu cao về quản lý chi phí, khối lượng và hợp đồng.",
+ commit:"Hoàn thành tốt nhiệm vụ được giao."},
+
+{id:"RS14",grp:"RISING STAR",name:"Trần Thị Tuyết Mai",dob:2004,sex:"Nữ",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Quản lý Xây dựng",
+ onboard:"01/06/2027",video:"",nv1:null,nv2:null,
+ exp:["Thực tập tại APEC Phú Quốc – CTD (1/6 – 1/8/26)"],
+ bgk:"Quê Bình Định. Dượng làm xây dựng → định hướng cho vào xây dựng, thích đi đây đi đó. Thích làm QA/QC và planning, làm tiến độ. Khó khăn về thể lực đối với nữ. Sẵn sàng đi làm xa. Hòa đồng, thích giao tiếp. Chưa hiểu sâu về chương trình sau khi tốt nghiệp. Yếu tố chọn công việc: môi trường tốt, công việc đúng sở thích.",
+ gpa:"2.73/4.0",eng:"—",cog:76,v:85,l:5,n:98,
+ r31:{Communication:3,"Problem Solving":3,Teamwork:4,"Leadership potential":3},
+ r32:{"Định hướng nghề":4,"Động lực":3,"Sự phù hợp với nghề":3,"Cam kết chương trình":4},
+ peer:"Đôi lúc có vắng những buổi họp team. Chủ động học hỏi, nhờ giúp đỡ và ý kiến từ nhóm tuy còn khó khăn về mặt chuyên môn. Dù thực tập nhưng vẫn chăm chỉ để hoàn thành công việc.",
+ str:"Giao tiếp tốt, tỉ mỉ, cẩn thận, có khả năng Tiếng Anh và nền tảng kiến thức từ trường học và giai đoạn Building.",
+ weak:"Cần củng cố và nâng cao kiến thức chuyên môn kỹ thuật, đặc biệt qua trải nghiệm thực tế.",
+ career:"Phát triển theo hướng Chuyên viên QS, đồng thời nâng cao kiến thức về BIM và kỹ thuật thi công.",
+ wish:"Các dự án quy mô vừa đến lớn, tạo cơ hội tích lũy kinh nghiệm và đóng góp vào dự án.",
+ commit:"Chủ động học hỏi, năng nổ, trách nhiệm, không ngừng trau dồi chuyên môn, tích cực trong công việc và nỗ lực hoàn thành tốt mọi nhiệm vụ được giao."},
+
+{id:"RS15",grp:"RISING STAR",name:"Phạm Thế Hiển",dob:2004,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Kỹ thuật Xây dựng",
+ onboard:"01/06/2027",video:"",nv1:null,nv2:null,exp:[],
+ bgk:"Đam mê sáng tạo. Cậu và anh đang làm kỹ sư cầu đường. Sở thích làm thi công hơn thiết kế, không thích tù túng, thích làm hiện trường. Thích công tác ở nước ngoài, sẵn sàng đi xa theo tính chất dự án. Định hướng 1 cty khác để cọ sát. Thích trải nghiệm, thích giao lưu tiếp xúc, sẵn sàng chịu áp lực, không ngại khổ. Đã từng ở xa nhà, năng lượng, cố gắng nhiều khi xa nhà. Thực tập 2 ngày ở Emeral 68. Có tư duy, đam mê ngành, muốn học thạc sĩ, thích làm CTD vì danh tiếng.",
+ gpa:"2.73/4.0",eng:"IELTS 5.5",cog:96,v:30,l:99,n:83,
+ r31:{Communication:4,"Problem Solving":3,Teamwork:3,"Leadership potential":4},
+ r32:{"Định hướng nghề":4,"Động lực":4,"Sự phù hợp với nghề":4,"Cam kết chương trình":4},
+ peer:"Hiển có tinh thần làm việc nhóm, hoàn thành công việc, có đóng góp ý kiến cho Project của nhóm, nhưng kiến thức chưa vững và đầu ra công việc chưa tốt và đầy đủ.",
+ str:"Không ngại khó, ngại cực và học hỏi mọi người trên bất kỳ phương diện nào.",
+ weak:"Nóng vội, hấp tấp.",
+ career:"Phát triển chuyên môn và kỹ năng thực chiến thông qua quá trình làm việc và học hỏi.",
+ wish:"",
+ commit:"Tinh thần chịu cực chịu khó, làm việc năng động sáng tạo, tạo mối liên hệ hòa đồng kết nối với đồng nghiệp."},
+
+{id:"RS16",grp:"RISING STAR",name:"Nguyễn Minh Cường",dob:2004,sex:"Nam",field:"Cơ điện",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Điện - Điện tử",major:"Song ngành Kỹ thuật Điện tử - Viễn thông - Kỹ thuật Điện",
+ onboard:"01/07/2027",video:"",nv1:null,nv2:null,
+ exp:["Thực tập tại F2 Bình Dương – CTD (15/06 – 15/08/26)"],
+ bgk:"Hết môn tầm tháng 05/2026. Chín chắn. Có plan phát triển bản thân.",
+ gpa:"2.8/4.0",eng:"TOEIC 810",cog:97,v:95,l:92,n:76,
+ r31:{Communication:4,"Problem Solving":3,Teamwork:3,"Leadership potential":4},
+ r32:{"Định hướng nghề":3,"Động lực":4,"Sự phù hợp với nghề":3,"Cam kết chương trình":4},
+ peer:"Cường là một nhóm trưởng tốt, biết phân chia công việc hợp lý và luôn sẵn sàng giải đáp thắc mắc, hỗ trợ các thành viên. Bạn góp phần giúp nhóm hoàn thành Project đúng tiến độ.",
+ str:"Tư duy hệ thống, nhạy bén với kỹ thuật điện và khả năng liên kết bản vẽ – tiêu chuẩn – chi phí.",
+ weak:"Cần tích lũy thêm kinh nghiệm thực địa, đặc biệt trong điều phối và xử lý tình huống với thầu phụ.",
+ career:"Phát triển chuyên sâu trong MEP, hướng tới quản lý các hệ thống điện và kỹ thuật phức tạp, từng bước nâng cao năng lực quản lý tiến độ, hợp đồng và ngân sách dự án.",
+ wish:"Các dự án công nghiệp nặng, nhà máy FDI quy mô lớn hoặc hạ tầng kỹ thuật phức tạp như Data Center, nơi có yêu cầu cao về tiêu chuẩn kỹ thuật và hệ thống MEP.",
+ commit:"Chuẩn xác, chủ động, trách nhiệm đến cùng, chủ động giải quyết vấn đề, đề xuất sáng kiến cải tiến kỹ thuật và theo sát công việc từ hồ sơ, thi công đến nghiệm thu, đảm bảo tiến độ, chất lượng, chi phí và uy tín dự án."},
+
+{id:"RS17",grp:"RISING STAR",name:"Nguyễn Đình Trung Nguyên",dob:2005,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Dân dụng và Công nghiệp",
+ onboard:"01/08/2027",video:"",nv1:null,nv2:null,partial:true,
+ exp:["Thực tập tại Celadon Tân Phú – UNC (6/6 – 15/8/26)"],
+ bgk:"Giao tiếp chững chạc. Biết lắng nghe nhiều hơn. Động lực làm việc, học tập cao. Quê Lâm Đồng. Có nắm bắt, quan tâm đến CTD.",
+ gpa:"3/4.0",eng:"TOEIC 560",cog:60,v:11,l:89,n:68,
+ r31:{Communication:2,"Problem Solving":3,Teamwork:2,"Leadership potential":2},
+ r32:{"Định hướng nghề":4,"Động lực":4,"Sự phù hợp với nghề":4,"Cam kết chương trình":4},
+ peer:"Nguyên chưa biết nhiều để thực hiện tính toán nhưng tinh thần tham gia đóng góp tích cực, chủ động học hỏi.",
+ str:"Có khả năng phối hợp làm việc nhóm và khả năng thích nghi tốt. Làm việc có kế hoạch, thẳng thắn, tỉ mỉ.",
+ weak:"Giao tiếp khá kém.",
+ career:"Hướng tới vị trí Shopdrawing, biện pháp thi công, tích lũy kinh nghiệm chuyên môn và thực tế từ dự án.",
+ wish:"Các dự án có yêu cầu cao về nguyên lý kỹ thuật, được học hỏi thêm kinh nghiệm làm việc và kinh nghiệm thực tế từ các anh chị tại dự án.",
+ commit:""},
+
+{id:"RS18",grp:"RISING STAR",name:"Trần Thiên Phúc",dob:2005,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng",
+ onboard:"15/08/2027",video:"",nv1:null,nv2:null,none:true},
+
+{id:"RS19",grp:"RISING STAR",name:"Phạm Đăng Khoa",dob:2005,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng Công trình Dân dụng",
+ onboard:"21/10/2027",video:"",nv1:null,nv2:null,
+ exp:["Thực tập tại APEC Phú Quốc CTD (10/6/26 – 10/8/26)"],
+ bgk:"Giao tiếp gây thiện cảm, tươi → Phù hợp các vị trí tương tác nhiều (QS,…).",
+ gpa:"2.1/4.0",eng:"—",cog:90,v:71,l:91,n:75,
+ r31:{Communication:3,"Problem Solving":3,Teamwork:3,"Leadership potential":3},
+ r32:{"Định hướng nghề":3,"Động lực":4,"Sự phù hợp với nghề":4,"Cam kết chương trình":4},
+ peer:"Khoa làm việc tốt, có sự chuẩn bị và chủ động hoàn thành công việc trước deadline. Tuy nhiên, bạn cần chú trọng hơn đến sự chỉn chu trong cách trình bày kết quả.",
+ str:"Chịu áp lực tốt, chủ động, khả năng xử lý vấn đề, phân bổ và hướng dẫn công việc rõ ràng.",
+ weak:"Có xu hướng ôm đồm công việc, cần cải thiện khả năng ủy quyền và tin tưởng giao việc cho đồng đội.",
+ career:"Phát triển theo hướng Kỹ sư Global, chuyên sâu về Biện pháp thi công, Shopdrawing và công tác Hiện trường.",
+ wish:"Các dự án FDI quy mô lớn tại Coteccons, có tiêu chuẩn kỹ thuật khắt khe và cơ hội ứng dụng các giải pháp công nghệ mới vào thực tế hiện trường.",
+ commit:"Chủ động, kỷ luật, trách nhiệm, luôn chủ động học hỏi, không ngại thử thách; tuân thủ kỷ luật và an toàn tại dự án; bám sát mục tiêu chung, đặt lợi ích và tiến độ của tập thể lên hàng đầu."},
+
+{id:"RS20",grp:"RISING STAR",name:"Đỗ Thanh Tuyền",dob:2005,sex:"Nữ",field:"Xây dựng",
+ school:"ĐH Bách Khoa - ĐHQG TP.HCM",fac:"Kỹ thuật Xây dựng",major:"Kỹ thuật Xây dựng",
+ onboard:"21/10/2027",video:"",nv1:null,nv2:null,none:true},
+
+{id:"RS21",grp:"RISING STAR",name:"Lê Vũ Quang Phú",dob:2003,sex:"Nam",field:"Xây dựng",
+ school:"ĐH Quốc Tế - ĐHQG TP.HCM",fac:"Kỹ thuật và Quản lý Xây dựng",major:"Quản lý Xây dựng",
+ onboard:"21/10/2027",video:"",nv1:null,nv2:null,none:true}
+];
+
+let cur=C[0].id;
+const el=i=>document.getElementById(i);
+const es=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ini=n=>n.split(" ").slice(-2).map(w=>w[0]).join("").toUpperCase();
+const G=i=>C.find(x=>x.id===i);
+const K=c=>c.grp==="SUPER STAR"?"ss":"rs";
+
+function draw(){
+  const q=el("q").value.toLowerCase().trim(),fg=el("fg").value,ff=el("ff").value;
+  const rows=C.filter(c=>(!q||c.name.toLowerCase().includes(q)||c.id.toLowerCase().includes(q))
+    &&(!fg||c.grp===fg)&&(!ff||c.field===ff));
+  let h="",last="";
+  rows.forEach(c=>{
+    const k=K(c);
+    if(c.grp!==last){h+=`<div class="grp ${k}">${c.grp}</div>`;last=c.grp}
+    h+=`<div class="it ${k} ${c.id===cur?"on":""}" onclick="pick('${c.id}')">
+      <span class="cd">${c.id}</span><span class="nm">${es(c.name)}</span></div>`;
+  });
+  el("list").innerHTML=h||`<div style="padding:22px;text-align:center;color:#AAB2BC">Không có kết quả</div>`;
+  el("cnt").textContent=rows.length;
+  view();
+}
+function pick(i){cur=i;draw();window.scrollTo({top:0,behavior:"smooth"})}
+
+function barRow(lb,v){
+  if(v==null)return `<div class="row"><span class="nm2">${lb}</span><div class="tr"></div><span class="vl" style="color:#C3C9D2">—</span></div>`;
+  return `<div class="row"><span class="nm2">${lb}</span>
+    <div class="tr"><div class="fl" style="width:${v}%"></div></div><span class="vl">${v}</span></div>`;
+}
+function dotRow(lb,v,k){
+  let d="";for(let i=1;i<=4;i++)d+=`<span class="dt ${i<=v?"f "+k:""}"></span>`;
+  return `<div class="row"><span class="nm2">${lb}</span><span class="dts">${d}</span></div>`;
+}
+function nvc(t,nv,k){
+  return nv?`<div class="nv ${k}"><div class="t">${t}</div><div class="p">${es(nv.p)}</div><div class="r">${es(nv.r)}</div></div>`
+   :`<div class="nv ${k} e"><div class="t">${t}</div><div class="p">Chưa đăng ký nguyện vọng</div></div>`;
+}
+function rc(cls,title,body){return body?`<div class="rc ${cls}"><div class="t">${title}</div><p>${es(body)}</p></div>`:""}
+function head(k,num,title,cap){
+  return `<div class="chd ${k}"><span class="num">${num}</span>
+    <div><h3>${title}</h3>${cap?`<div class="cap">${cap}</div>`:""}</div></div>`;
+}
+
+function view(){
+  const c=G(cur),k=K(c);
+  let h=`<div class="card"><div class="hero ${k}">
+    <img class="ph ${k}" src="photos/${c.id.toLowerCase()}.jpg" alt=""
+      onerror="this.outerHTML='<div class=\\'ph ${k}\\'>${ini(c.name)}</div>'">
+    <div class="info">
+      <span class="tag ${k}">${c.grp} · ${c.id}</span>
+      <h2>${es(c.name)}</h2>
+      <div class="line">${c.dob} · ${c.sex} · ${c.field}</div>
+      <div class="facts">
+        <div><b>Trường</b><span>${es(c.school)}</span></div>
+        <div><b>Khoa</b><span>${es(c.fac)}</span></div>
+        <div><b>Ngành học</b><span>${es(c.major)}</span></div>
+        <div><b>Thời gian onboard</b><span>${c.onboard}</span></div>
+      </div>
+      ${c.grp==="SUPER STAR"?(c.video
+        ?`<a class="vbtn" href="${c.video}" target="_blank" rel="noopener">▶ Xem video giới thiệu</a>`
+        :`<span class="vbtn off">▶ Video giới thiệu — chưa có link</span>`):""}
+    </div></div></div>`;
+
+  /* (1) NGUYỆN VỌNG + CHIA SẺ CỦA YOUNG TALENT */
+  h+=`<div class="card">${head(k,"1","Nguyện vọng","Nguyện vọng dự án &amp; chia sẻ của chính ứng viên")}
+    <div class="cbody">
+      <div class="lbl">Nguyện vọng dự án</div>
+      <div class="nvs">${nvc("NGUYỆN VỌNG 1",c.nv1,k)}${nvc("NGUYỆN VỌNG 2",c.nv2,k)}</div>`;
+  if(c.none){
+    h+=`<div class="lbl">Chia sẻ của Young Talent</div>
+      <p class="empty">Chưa có nội dung slide của ứng viên này trong file Candidate Profile.pptx.</p>
+      </div></div>`;
+    el("card").innerHTML=h;return;
+  }
+  h+=`<div class="lbl">Chia sẻ của Young Talent</div>
+      <div class="res">
+        ${rc("s","Điểm mạnh",c.str)}
+        ${rc("w","Điểm cần cải thiện",c.weak)}
+        ${rc("c","Định hướng nghề nghiệp",c.career)}
+        ${rc("k","Mong muốn làm việc",c.wish)}
+        ${c.commit?`<div class="rc c full"><div class="t">Cam kết</div><p>${es(c.commit)}</p></div>`:""}
+      </div>
+    </div></div>`;
+
+  /* (2) THÔNG TIN ĐÀO TẠO */
+  h+=`<div class="card">${head(k,"2","Thông tin Đào tạo","Đánh giá từ nhóm &amp; nội dung chương trình")}
+    <div class="cbody">
+      <div class="lbl">Peer assessment</div>
+      ${c.peer?`<div class="quote">${es(c.peer)}</div>`:`<p class="empty">Không có thông tin.</p>`}
+      <div class="lbl">Nội dung được đào tạo</div>
+      <div class="mod">
+        <div class="b"><div class="h">Chuyên đề 1</div><ol>${DAOTAO.cd1.map(x=>`<li>${x}</li>`).join("")}</ol></div>
+        <div class="b"><div class="h">Chuyên đề 2</div><ol>${DAOTAO.cd2.map(x=>`<li>${x}</li>`).join("")}</ol></div>
+      </div>
+    </div></div>`;
+
+  /* (3) THÔNG TIN TUYỂN DỤNG */
+  h+=`<div class="card">${head(k,"3","Thông tin Tuyển dụng","Kinh nghiệm, nhận định Hội đồng &amp; kết quả đánh giá")}
+    <div class="cbody">
+      <div class="lbl">Kinh nghiệm làm việc</div>
+      ${c.exp&&c.exp.length?`<ul class="ex">${c.exp.map(e=>`<li>${es(e)}</li>`).join("")}</ul>`
+        :`<p class="empty">Không có thông tin trên hồ sơ.</p>`}
+      ${c.bgk?`<div class="lbl">Ghi chú V3.2 từ BGK</div><div class="note">${es(c.bgk)}</div>`:""}
+      <div class="lbl">Kết quả đánh giá</div>
+      <div class="pills"><span class="pl">Thành tích học tập <b>${es(c.gpa)||"—"}</b></span>
+        <span class="pl">Tiếng Anh <b>${es(c.eng)||"—"}</b></span></div>
+      <div class="sc" style="margin-top:16px"><div>
+        ${barRow("V2. Cognitive Overall",c.cog)}${barRow("V2. Verbal Reasoning",c.v)}
+        ${barRow("V2. Logical reasoning",c.l)}${barRow("V2. Numerical reasoning",c.n)}
+      </div><div>
+        ${Object.entries(c.r31).map(([a,b])=>dotRow("V3.1 "+a,b,k)).join("")}
+        ${Object.entries(c.r32).map(([a,b])=>dotRow("V3.2 "+a,b,k)).join("")}
+      </div></div>
+      ${c.partial?`<p class="empty" style="margin-top:16px">Một số mục chưa trích xuất đầy đủ từ file Candidate Profile.pptx.</p>`:""}
+    </div></div>`;
+  el("card").innerHTML=h;
+}
+draw();
+</script>
+</body>
+</html>
