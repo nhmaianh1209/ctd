@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>9-Box Talent Dashboard — Coteccons Engineer Workforce</title>
+<title>9-Box Talent Dashboard — Coteccons</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -119,16 +119,6 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .cmp-table th:first-child{text-align:left}
 .cmp-table td{text-align:center;padding:8px 6px;border-bottom:1px solid #EEF2F8;font-size:12.5px}
 .cmp-table td:first-child{text-align:left;font-weight:600}
-.legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.legend-col{padding:18px 20px}
-.legend-col:first-child{border-right:1px solid #D5DFEF}
-.legend-col-title{font-size:11px;font-weight:700;color:#6B7A8D;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #D5DFEF}
-.legend-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
-.legend-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0;margin-top:4px}
-.legend-key{font-size:12px;font-weight:600;line-height:1;margin-bottom:3px}
-.legend-desc{font-size:12px;color:#6B7A8D;line-height:1.5}
-.nb-ref{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:380px;margin-top:8px}
-.nb-ref-cell{border-radius:5px;padding:9px;font-size:11px;border:1px solid #D5DFEF;line-height:1.4}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 /* ══════════ v1.5 — Rating Definitions rebuild (Performance · Potential · 9-Box) ══════════ */
 .def-card-body{padding:18px 22px 20px}
@@ -286,6 +276,10 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .section-label{display:flex;align-items:center}
 /* B5 · the question each tab answers */
 .page-sub{font-size:13px;color:#42506B;margin-bottom:16px;padding-left:11px;border-left:3px solid #5FD1C1;line-height:1.45}
+.def-link{display:inline-flex;align-items:center;gap:4px;margin-left:10px;font-size:12px;font-weight:600;color:#0047BA;text-decoration:none;white-space:nowrap}
+.def-link:hover{text-decoration:underline}
+.def-back{display:inline-block;margin-bottom:10px;font-size:12px;font-weight:600;color:#0047BA;text-decoration:none}
+.def-back:hover{text-decoration:underline}
 .hint-ic{font-size:13px;color:#5FD1C1;font-style:normal}
 /* C1 · hero split into three labelled groups */
 .hero{display:grid;grid-template-columns:2fr 3fr 1.15fr;gap:14px;margin-bottom:18px}
@@ -354,7 +348,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- OVERVIEW -->
 <div class="page active" id="tab-overview">
-  <div class="page-sub">How is the assessed engineer workforce spread across the nine boxes?</div>
+  <div class="page-sub">How is the assessed engineer workforce spread across the nine boxes? <a class="def-link" href="#" onclick="openDefs(event)" title="Open Rating Definitions">ⓘ How ratings are defined</a></div>
   <div class="hero" id="kpi-strip"></div>
   <div class="grid-main">
     <div class="col">
@@ -412,7 +406,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- BY BU -->
 <div class="page" id="tab-bu">
-  <div class="page-sub">Which business units sit differently from the company-wide pattern?</div>
+  <div class="page-sub">Which business units sit differently from the company-wide pattern? <a class="def-link" href="#" onclick="openDefs(event)" title="Open Rating Definitions">ⓘ How ratings are defined</a></div>
   <div class="section-label"><span class="step-n">1</span>Select business unit</div>
   <div class="bu-row" id="bu-selector"></div>
   <div class="grid2" id="bu-content"></div>
@@ -420,7 +414,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- BY LEVEL -->
 <div class="page" id="tab-level">
-  <div class="page-sub">How does the distribution shift as seniority rises?</div>
+  <div class="page-sub">How does the distribution shift as seniority rises? <a class="def-link" href="#" onclick="openDefs(event)" title="Open Rating Definitions">ⓘ How ratings are defined</a></div>
   <div class="section-label"><span class="step-n">1</span>Select seniority level</div>
   <div class="level-selector" id="level-selector"></div>
   <div class="grid2" id="level-content"></div>
@@ -428,7 +422,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- GAP ANALYSIS -->
 <div class="page page-narrow" id="tab-gap">
-  <div class="page-sub">How far does the actual distribution sit from the target model?</div>
+  <div class="page-sub">How far does the actual distribution sit from the target model? <a class="def-link" href="#" onclick="openDefs(event)" title="Open Rating Definitions">ⓘ How ratings are defined</a></div>
   <div class="gap-hint" id="gap-hdr-sub"></div>
 
   <div class="section-label"><span class="step-n">1</span>Where the gap is</div>
@@ -453,6 +447,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- LEGEND -->
 <div class="page page-narrow" id="tab-legend">
+  <a class="def-back" id="def-back" href="#" onclick="closeDefs(event)" style="display:none">← Back</a>
   <div class="page-sub">What exactly do High, Medium and Low mean — and how do the two axes combine into the nine boxes?</div>
 
   <!-- 1 · PERFORMANCE -->
@@ -470,7 +465,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
         <thead><tr>
           <th style="width:130px">Level</th>
           <th>Case A — two years of data<span class="th-sub">FY25 + FY26</span></th>
-          <th>Case B — one year of data<span class="th-sub">FY26 only</span></th>
+          <th style="width:200px">Case B — one year of data<span class="th-sub">FY26 only</span></th>
         </tr></thead>
         <tbody>
           <tr>
@@ -1250,10 +1245,32 @@ function showTab(name,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
+  if(name!=='legend'){ defReturn=null; const b=document.getElementById('def-back'); if(b) b.style.display='none'; }
   /* B4 — every tab repaints from the same shared selBox, so the three views agree */
   if(name==='overview'){ render9Box('nb-overview',BUDATA.Overall.data,'overview'); renderOverviewDetail(); renderHeatmap(); }
   if(name==='bu') renderBUPage();
   if(name==='level') renderLevelPage();
+}
+
+/* v1.7.3 — ⓘ link on every data tab jumps to Rating Definitions; "Back" returns to where the reader was */
+let defReturn=null;
+function openDefs(e){
+  if(e) e.preventDefault();
+  const tabs=[...document.querySelectorAll('.tab')];
+  const cur=tabs.findIndex(t=>t.classList.contains('active'));
+  defReturn={idx:cur,name:['overview','bu','level','gap','legend'][cur],y:window.scrollY};
+  showTab('legend',tabs[4]);
+  const b=document.getElementById('def-back');
+  b.textContent='\u2190 Back to '+tabs[cur].textContent.trim();
+  b.style.display='inline-block';
+  window.scrollTo({top:0});
+}
+function closeDefs(e){
+  if(e) e.preventDefault();
+  if(!defReturn) return;
+  const r=defReturn; defReturn=null;
+  showTab(r.name,document.querySelectorAll('.tab')[r.idx]);
+  window.scrollTo({top:r.y});
 }
 
 /* B3 — one click back to the opening state, from anywhere */
