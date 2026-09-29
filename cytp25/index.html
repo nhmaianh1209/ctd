@@ -81,7 +81,10 @@ footer .cf span:before{content:" · "}
 .tag.ss{background:var(--ss);color:#0E3B35}
 .tag.rs{background:var(--rs);color:#fff}
 .hero h2{font-size:27px;font-weight:500;color:var(--navy);line-height:1.15;letter-spacing:-.2px}
-.hero .line{font-size:13.5px;color:var(--mut);margin-top:6px}
+.hero .line{font-size:13.5px;color:var(--mut);margin-top:8px;display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.fld{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border-radius:7px;
+  padding:5px 12px;font-size:14px;font-weight:600;letter-spacing:.2px}
+.fld b{font-size:9.5px;font-weight:500;letter-spacing:1.4px;text-transform:uppercase;opacity:.7}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 22px;margin-top:20px}
 .facts div b{display:block;font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
   color:var(--mut);font-weight:600;margin-bottom:2px}
@@ -90,6 +93,9 @@ footer .cf span:before{content:" · "}
   text-decoration:none;font-size:13px;padding:9px 17px;border-radius:8px;transition:.15s;background:var(--navy)}
 .vbtn:hover{background:#24497F}
 .vbtn.off{background:#E8ECF2;color:#A2AAB6;pointer-events:none}
+.vrow{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;margin-top:17px}
+.vrow .vbtn{margin-top:0}
+.vnote{font-size:12px;color:var(--mut);font-style:italic}
 
 /* section card head */
 .chd{display:flex;align-items:center;gap:14px;padding:18px 30px;border-bottom:1px solid var(--line)}
@@ -124,6 +130,7 @@ footer .cf span:before{content:" · "}
 .rc.c{border-top:3px solid var(--navy)}.rc.c .t{color:var(--navy)}
 .rc.k{border-top:3px solid var(--mut)}.rc.k .t{color:var(--mut)}
 .rc p{font-size:13.5px}
+.rc p+p{margin-top:8px}
 .full{grid-column:1/-1}
 .quote{border-left:3px solid var(--line);padding:2px 0 2px 16px;font-size:13.5px;color:#4A515B}
 .note{border-left:3px solid var(--brick);background:#FDF9F8;padding:14px 18px;
@@ -247,7 +254,7 @@ const C=[
  str:"Ham học hỏi, luôn tò mò và chủ động tìm hiểu sâu bản chất các vấn đề để hiểu rõ hơn về dự án và công việc.",
  weak:"Kinh nghiệm thực tế tại công trường còn hạn chế do chưa có nhiều cơ hội va chạm và trải nghiệm.",
  career:"Phát triển theo hướng Kỹ sư QS, theo đuổi sự chính xác, minh bạch và trung thực trong từng con số, góp phần tạo nên hiệu quả cho dự án.",
- wish:"Không trình bày trong video",
+ wish:"",
  commit:"Luôn nghiêm túc học hỏi, không ngừng hoàn thiện bản thân và sẵn sàng cống hiến năng lực, trí tuệ để đóng góp vào thành công của các dự án của Coteccons."},
 
 {id:"SS04",grp:"SUPER STAR",name:"Lê Duy Hoàng Sơn",dob:2004,sex:"Nam",field:"Cơ điện",
@@ -696,6 +703,11 @@ function nvc(t,nv,k){
   return nv?`<div class="nv ${k}"><div class="t">${t}</div><div class="p">${es(nv.p)}</div><div class="r">${es(nv.r)}</div></div>`
    :`<div class="nv ${k} e"><div class="t">${t}</div><div class="p">Chưa đăng ký nguyện vọng</div></div>`;
 }
+/* Định hướng nghề nghiệp = career + mong muốn làm việc (nếu có) */
+function career(c){
+  const ps=[c.career,c.wish].filter(t=>t&&!/^không trình bày/i.test(t.trim()));
+  return ps.length?`<div class="rc c full"><div class="t">Định hướng nghề nghiệp</div>${ps.map(t=>`<p>${es(t)}</p>`).join("")}</div>`:"";
+}
 function rc(cls,title,body){return body?`<div class="rc ${cls}"><div class="t">${title}</div><p>${es(body)}</p></div>`:""}
 function head(k,num,title,cap){
   return `<div class="chd ${k}"><span class="num">${num}</span>
@@ -710,7 +722,7 @@ function view(){
     <div class="info">
       <span class="tag ${k}">${c.grp} · ${c.id}</span>
       <h2>${es(c.name)}</h2>
-      <div class="line">${c.dob} · ${c.sex} · ${c.field}</div>
+      <div class="line"><span class="fld"><b>Mảng</b>${es(c.field)}</span><span>${c.dob} · ${c.sex}</span></div>
       <div class="facts">
         <div><b>Trường</b><span>${es(c.school)}</span></div>
         <div><b>Khoa</b><span>${es(c.fac)}</span></div>
@@ -718,8 +730,9 @@ function view(){
         <div><b>Thời gian onboard</b><span>${c.onboard}</span></div>
       </div>
       ${c.grp==="SUPER STAR"?(c.video
-        ?`<a class="vbtn" href="${c.video}" target="_blank" rel="noopener">▶ Xem video giới thiệu</a>`
-        :`<span class="vbtn off">▶ Video giới thiệu — chưa có link</span>`):""}
+        ?`<div class="vrow"><a class="vbtn" href="${c.video}" target="_blank" rel="noopener">▶ Xem video giới thiệu</a>
+            <span class="vnote">Xem tốt nhất trên máy tính, trình duyệt Microsoft Edge</span></div>`
+        :`<div class="vrow"><span class="vbtn off">▶ Video giới thiệu — chưa có link</span></div>`):""}
     </div></div></div>`;
 
   /* (1) NGUYỆN VỌNG + CHIA SẺ CỦA YOUNG TALENT */
@@ -737,8 +750,7 @@ function view(){
       <div class="res">
         ${rc("s","Điểm mạnh",c.str)}
         ${rc("w","Điểm cần cải thiện",c.weak)}
-        ${rc("c","Định hướng nghề nghiệp",c.career)}
-        ${rc("k","Mong muốn làm việc",c.wish)}
+        ${career(c)}
         ${c.commit?`<div class="rc c full"><div class="t">Cam kết</div><p>${es(c.commit)}</p></div>`:""}
       </div>
     </div></div>`;
