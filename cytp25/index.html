@@ -98,6 +98,10 @@ footer .cf span:before{content:" · "}
 .facts div b{display:block;font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
   color:var(--mut);font-weight:600;margin-bottom:2px}
 .facts div span{font-size:13.5px}
+.hx{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.hx>b{display:block;font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
+  color:var(--mut);font-weight:600;margin-bottom:6px}
+.hx ul.ex li:last-child{margin-bottom:0}
 .vbtn{display:inline-flex;align-items:center;gap:7px;margin-top:17px;color:#fff;
   text-decoration:none;font-size:13px;padding:9px 17px;border-radius:8px;transition:.15s;background:var(--navy)}
 .vbtn:hover{background:#24497F}
@@ -740,6 +744,8 @@ function view(){
         <div><b>Ngành học</b><span>${es(c.major)}</span></div>
         <div><b>Thời gian onboard</b><span>${c.onboard}</span></div>
       </div>
+      ${c.exp&&c.exp.length?`<div class="hx"><b>Kinh nghiệm làm việc</b>
+        <ul class="ex">${c.exp.map(e=>`<li>${es(e)}</li>`).join("")}</ul></div>`:""}
       ${c.grp==="SUPER STAR"?(c.video
         ?`<div class="vrow"><a class="vbtn" href="${c.video}" target="_blank" rel="noopener">▶ Xem video giới thiệu</a>
             <span class="vnote">Xem tốt nhất trên máy tính, trình duyệt Microsoft Edge</span></div>`
@@ -779,11 +785,8 @@ function view(){
     </div></div>`;
 
   /* (3) THÔNG TIN TUYỂN DỤNG */
-  h+=`<div class="card">${head(k,"3","Thông tin Tuyển dụng","Kinh nghiệm, nhận định Hội đồng &amp; kết quả đánh giá")}
+  h+=`<div class="card">${head(k,"3","Thông tin Tuyển dụng","Nhận định Hội đồng &amp; kết quả đánh giá")}
     <div class="cbody">
-      <div class="lbl">Kinh nghiệm làm việc</div>
-      ${c.exp&&c.exp.length?`<ul class="ex">${c.exp.map(e=>`<li>${es(e)}</li>`).join("")}</ul>`
-        :`<p class="empty">Không có thông tin trên hồ sơ.</p>`}
       ${c.bgk?`<div class="lbl">Ghi chú V3.2 từ BGK</div><div class="note">${es(c.bgk)}</div>`:""}
       <div class="lbl">Kết quả đánh giá</div>
       <div class="pills"><span class="pl">Thành tích học tập <b>${es(c.gpa)||"—"}</b></span>
