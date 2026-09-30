@@ -11,6 +11,9 @@ Nguồn số liệu: `FY26 - 9Box - Masterfile HRBP 28.08 update.xlsx`, sheet **
   - **Danh sách nhân viên C1/C2/C3 đã nhập** (192 / 38 / 20 = 250 người): Họ tên, Chức danh, Dự án/Phòng ban, BU, Level. Bấm "View N employees in Cx" ở Box detail.
   - Giao diện: "engineer(s)" → "employee(s)"; bỏ badge "⚠ Possible rating inflation signal"; card-sub đổi thành "Line manager evaluation — HRBP calibrated"; nguồn headcount "(HRBP masterfile, 28 Aug)"; ô chia theo BU trong Box detail chuyển sang 7 cột.
   - Có **11 người lệch** giữa cột 9Box và tổ hợp Performance × Potential 26. Dashboard dùng **cột 9Box** theo chỉ đạo user; danh sách ở mục 3 để HRBP rà lại.
+- **v1.8.1 (30/09/2026): so sánh 2 kỳ.** Khôi phục bản APR 2026 thành `9box/apr-2026.html` (lấy từ commit `bb4ac76`, tức bản v1.7.3 đã gỡ mật khẩu và vẫn giữ số liệu APR). Cả 2 trang có nút **Period** ở góc phải topbar: kỳ đang xem tô teal, bấm kỳ còn lại sẽ mở ở **tab mới** để đặt cạnh nhau. Tiêu đề tab trình duyệt ghi rõ kỳ (`9-Box · APR 2026` / `9-Box · SEP 2026`).
+  - ⚠️ Hai kỳ **khác phạm vi**: APR là 1.906 kỹ sư / 6 BU, SEP là 3.365 nhân sự toàn công ty / 7 khối. So sánh tỷ lệ % theo zone thì được, còn so số tuyệt đối thì không tương đương. Nhãn nút Period có ghi phạm vi và n.
+  - `apr-2026.html` là **bản đóng băng**, không sửa tiếp. Kỳ sau: copy `index.html` hiện tại thành `sep-2026.html`, nhập dữ liệu mới vào `index.html`, rồi thêm nút kỳ mới vào `.period-switch` của cả 3 file.
 - **v1.7.3:** nút ⓘ Rating Definitions ở mọi tab + nút Back; dọn CSS legend cũ; chốt `.page-narrow` 960px; `<title>` mới; **gỡ mật khẩu**.
 - **v1.7.2:** định nghĩa Potential mới (Aspiration / Engagement / Ability, không bù trừ).
 - Test: `node --check` sạch, div cân bằng (332/332), Chromium headless không lỗi JS; đã kiểm tra 5 tab, 7 khối, modal danh sách nhân viên.
@@ -94,6 +97,7 @@ Phần in (`@media print`, nút Print) đã **loại khỏi phạm vi** theo yê
 - [x] v1.8: Nhập danh sách nhân viên C1/C2/C3 (250 người)
 - [x] v1.8: engineer → employee, bỏ badge inflation, sửa card-sub + nguồn headcount
 - [x] Test: `node --check` sạch, div 332/332, Chromium headless không lỗi JS
+- [x] v1.8.1: Trang APR 2026 riêng + nút Period mở tab mới để so sánh
 - [ ] HRBP rà 11 trường hợp lệch
 
 _Cập nhật: 29/09/2026 · Coteccons Academy (L&OD / CTA) · v1.7.3 → v1.8 (đã build)_

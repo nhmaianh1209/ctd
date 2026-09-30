@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>9-Box · SEP 2026 — Coteccons</title>
+<title>9-Box · APR 2026 — Coteccons</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -82,7 +82,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .detail-desc{font-size:12.5px;color:#6B7A8D;line-height:1.55;border-top:1px solid #D5DFEF;padding-top:8px;margin-top:4px}
 .detail-action{font-size:12.5px;color:#16315E;line-height:1.55;margin-top:6px;padding:8px 10px;background:#fff;border:1px solid #D5DFEF;border-radius:6px}
 .detail-action strong{color:#0047BA}
-.bu-breakdown{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:10px}
+.bu-breakdown{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:10px}
 .bu-card{background:#fff;border:1px solid #D5DFEF;border-radius:6px;padding:7px 6px;text-align:center}
 .bu-card-name{font-size:11px;color:#6B7A8D;margin-bottom:2px}
 .bu-card-n{font-size:16px;font-weight:600;color:#1C2B3A}
@@ -321,7 +321,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
     <div class="topbar-divider"></div>
     <div class="subtitle" id="topbar-subtitle">9-BOX TALENT DASHBOARD</div>
   </div>
-  <div class="period-switch"><span class="period-switch-lbl">Period</span><a class="period-btn" href="apr-2026.html" target="_blank" rel="noopener" title="Open APR 2026 in a new tab to compare">APR 2026 ↗<span>Engineers · n=1,906</span></a><span class="period-btn cur" title="Currently viewing">SEP 2026<span>All staff · n=3,365</span></span></div>
+  <div class="period-switch"><span class="period-switch-lbl">Period</span><span class="period-btn cur" title="Currently viewing">APR 2026<span>Engineers · n=1,906</span></span><a class="period-btn" href="index.html" target="_blank" rel="noopener" title="Open SEP 2026 in a new tab to compare">SEP 2026 ↗<span>All staff · n=3,365</span></a></div>
 </div>
 
 <div class="tabs" role="tablist">
@@ -335,14 +335,15 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 
 <!-- OVERVIEW -->
 <div class="page active" id="tab-overview">
-  <div class="page-sub">How is the assessed workforce spread across the nine boxes? <a class="def-link" href="#" onclick="openDefs(event)" title="Open Rating Definitions">ⓘ How ratings are defined</a></div>
+  <div class="page-sub">How is the assessed engineer workforce spread across the nine boxes? <a class="def-link" href="#" onclick="openDefs(event)" title="Open Rating Definitions">ⓘ How ratings are defined</a></div>
   <div class="hero" id="kpi-strip"></div>
   <div class="grid-main">
     <div class="col">
       <div class="section-label" id="overview-dist-title"><span class="step-n">1</span>Overall 9-Box Distribution</div>
       <div class="card">
         <div class="card-hdr">
-          <div><div class="card-sub">Line manager evaluation — HRBP calibrated</div></div>
+          <div><div class="card-sub">Line manager evaluation — First deployment</div></div>
+          <div class="card-badge badge-warn">⚠ Possible rating inflation signal</div>
         </div>
         <div style="padding:18px 20px 10px">
           <div class="nb-outer">
@@ -440,7 +441,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
   <div class="section-label"><span class="step-n">1</span>Performance</div>
   <div class="card">
     <div class="def-card-body">
-      <div class="def-intro">Each employee is placed on a single <strong>High / Medium / Low</strong> scale. The rule differs by how much appraisal history exists — read across the row to compare both cases.</div>
+      <div class="def-intro">Each engineer is placed on a single <strong>High / Medium / Low</strong> scale. The rule differs by how much appraisal history exists — read across the row to compare both cases.</div>
       <div class="def-item-strip cols-4">
         <div class="def-item"><div class="def-item-badge">O</div><div class="def-item-name">Outstanding</div></div>
         <div class="def-item"><div class="def-item-badge">HE</div><div class="def-item-name">Highly Effective</div></div>
@@ -562,7 +563,7 @@ const GMAP=[
 ];
 const BOX_KEYS=['B1','A3','A1','C1','B2','A2','C3','C2','B3'];
 /* v1.1 — display config */
-const DATA_PERIOD='SEP 2026';      /* ← change here each refresh; topbar reads this */
+const DATA_PERIOD='APR 2026';      /* ← change here each refresh; topbar reads this */
 const SMALL_N=30;                  /* groups below this size show counts, not percentages */
 const DEFAULT_BOX='A1';            /* box preloaded in the detail panel on open */
 
@@ -581,85 +582,74 @@ const BOX_DEF={
 /* ═══════════════ BU × LEVEL × BOX DATA ═══════════════ */
 const BU_LEVEL={
   BU1:{
-    0:{A1:0,A2:1,A3:1,B1:0,B2:29,B3:0,C1:2,C2:0,C3:4},
-    1:{A1:4,A2:6,A3:2,B1:0,B2:95,B3:0,C1:2,C2:0,C3:5},
-    2:{A1:3,A2:12,A3:1,B1:0,B2:75,B3:0,C1:3,C2:1,C3:1},
-    3:{A1:20,A2:14,A3:3,B1:0,B2:61,B3:0,C1:1,C2:0,C3:0},
-    4:{A1:6,A2:2,A3:2,B1:0,B2:11,B3:0,C1:1,C2:0,C3:0},
-    5:{A1:4,A2:1,A3:0,B1:0,B2:9,B3:0,C1:1,C2:0,C3:0},
-    6:{A1:1,A2:0,A3:0,B1:0,B2:6,B3:0,C1:0,C2:0,C3:0},
+    0:{A1:0,A2:1,A3:1,B1:0,B2:11,B3:0,C1:1,C2:1,C3:0},
+    1:{A1:15,A2:37,A3:7,B1:0,B2:88,B3:0,C1:9,C2:0,C3:0},
+    2:{A1:14,A2:45,A3:6,B1:0,B2:94,B3:0,C1:4,C2:1,C3:1},
+    3:{A1:59,A2:34,A3:15,B1:0,B2:60,B3:0,C1:3,C2:0,C3:0},
+    4:{A1:16,A2:6,A3:11,B1:0,B2:5,B3:0,C1:0,C2:0,C3:0},
+    5:{A1:15,A2:2,A3:10,B1:0,B2:2,B3:0,C1:0,C2:0,C3:0},
+    6:{A1:0,A2:1,A3:1,B1:0,B2:2,B3:0,C1:0,C2:0,C3:0},
     7:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
   },
   BU2:{
-    0:{A1:0,A2:1,A3:5,B1:1,B2:149,B3:0,C1:29,C2:4,C3:2},
-    1:{A1:0,A2:9,A3:6,B1:0,B2:374,B3:1,C1:31,C2:5,C3:2},
-    2:{A1:7,A2:12,A3:33,B1:2,B2:337,B3:0,C1:32,C2:6,C3:1},
-    3:{A1:12,A2:15,A3:97,B1:1,B2:139,B3:0,C1:11,C2:2,C3:1},
-    4:{A1:6,A2:6,A3:60,B1:2,B2:34,B3:0,C1:3,C2:0,C3:0},
-    5:{A1:0,A2:3,A3:30,B1:0,B2:25,B3:0,C1:1,C2:0,C3:0},
-    6:{A1:2,A2:2,A3:2,B1:0,B2:4,B3:0,C1:0,C2:0,C3:0},
-    7:{A1:0,A2:0,A3:0,B1:0,B2:1,B3:0,C1:0,C2:0,C3:0},
+    0:{A1:1,A2:2,A3:7,B1:0,B2:25,B3:0,C1:6,C2:2,C3:3},
+    1:{A1:10,A2:8,A3:17,B1:2,B2:72,B3:0,C1:11,C2:4,C3:2},
+    2:{A1:28,A2:18,A3:38,B1:7,B2:167,B3:0,C1:18,C2:8,C3:2},
+    3:{A1:96,A2:38,A3:41,B1:2,B2:67,B3:0,C1:5,C2:0,C3:0},
+    4:{A1:54,A2:8,A3:15,B1:1,B2:4,B3:0,C1:0,C2:0,C3:0},
+    5:{A1:18,A2:8,A3:8,B1:0,B2:9,B3:0,C1:1,C2:0,C3:0},
+    6:{A1:2,A2:5,A3:1,B1:0,B2:1,B3:0,C1:0,C2:0,C3:0},
+    7:{A1:0,A2:1,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
   },
   BU3:{
-    0:{A1:0,A2:1,A3:4,B1:0,B2:53,B3:0,C1:11,C2:0,C3:0},
-    1:{A1:5,A2:19,A3:1,B1:0,B2:147,B3:0,C1:12,C2:2,C3:0},
-    2:{A1:11,A2:22,A3:15,B1:0,B2:136,B3:0,C1:4,C2:2,C3:0},
-    3:{A1:10,A2:21,A3:15,B1:0,B2:40,B3:0,C1:4,C2:1,C3:0},
-    4:{A1:10,A2:8,A3:11,B1:0,B2:15,B3:0,C1:1,C2:1,C3:0},
-    5:{A1:6,A2:12,A3:3,B1:0,B2:10,B3:0,C1:0,C2:0,C3:0},
-    6:{A1:0,A2:2,A3:0,B1:0,B2:3,B3:1,C1:0,C2:1,C3:1},
-    7:{A1:0,A2:0,A3:1,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
-  },
-  BU4:{
-    0:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:1,C3:0},
-    1:{A1:0,A2:0,A3:1,B1:0,B2:16,B3:0,C1:5,C2:1,C3:0},
-    2:{A1:0,A2:0,A3:0,B1:0,B2:12,B3:0,C1:0,C2:0,C3:0},
-    3:{A1:1,A2:7,A3:2,B1:0,B2:8,B3:0,C1:1,C2:0,C3:0},
-    4:{A1:0,A2:1,A3:1,B1:0,B2:11,B3:0,C1:0,C2:0,C3:0},
-    5:{A1:0,A2:0,A3:0,B1:0,B2:3,B3:0,C1:0,C2:0,C3:0},
+    0:{A1:0,A2:1,A3:2,B1:0,B2:27,B3:0,C1:6,C2:0,C3:0},
+    1:{A1:1,A2:13,A3:5,B1:1,B2:27,B3:0,C1:6,C2:0,C3:1},
+    2:{A1:17,A2:46,A3:10,B1:2,B2:57,B3:0,C1:8,C2:1,C3:0},
+    3:{A1:25,A2:42,A3:18,B1:1,B2:19,B3:0,C1:1,C2:0,C3:0},
+    4:{A1:12,A2:6,A3:3,B1:1,B2:5,B3:0,C1:0,C2:1,C3:0},
+    5:{A1:6,A2:12,A3:1,B1:0,B2:10,B3:1,C1:1,C2:1,C3:0},
     6:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
     7:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
   },
+  BU4:{
+    0:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    1:{A1:0,A2:0,A3:0,B1:0,B2:1,B3:0,C1:0,C2:1,C3:0},
+    2:{A1:0,A2:1,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    3:{A1:0,A2:2,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    4:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    5:{A1:4,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    6:{A1:1,A2:3,A3:1,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    7:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+  },
   BU5:{
-    0:{A1:1,A2:0,A3:1,B1:1,B2:0,B3:0,C1:0,C2:1,C3:0},
-    1:{A1:0,A2:2,A3:0,B1:0,B2:5,B3:0,C1:0,C2:0,C3:0},
-    2:{A1:4,A2:5,A3:2,B1:0,B2:18,B3:0,C1:0,C2:0,C3:0},
-    3:{A1:1,A2:8,A3:0,B1:2,B2:25,B3:0,C1:2,C2:0,C3:0},
-    4:{A1:0,A2:1,A3:4,B1:1,B2:13,B3:0,C1:0,C2:0,C3:0},
-    5:{A1:0,A2:0,A3:1,B1:1,B2:6,B3:0,C1:0,C2:0,C3:0},
+    0:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    1:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    2:{A1:4,A2:5,A3:0,B1:0,B2:3,B3:0,C1:0,C2:0,C3:0},
+    3:{A1:4,A2:5,A3:0,B1:0,B2:3,B3:0,C1:0,C2:0,C3:0},
+    4:{A1:1,A2:2,A3:0,B1:0,B2:1,B3:0,C1:0,C2:0,C3:0},
+    5:{A1:1,A2:1,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
     6:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
     7:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
   },
   BU6:{
-    0:{A1:0,A2:1,A3:3,B1:0,B2:32,B3:0,C1:5,C2:4,C3:1},
-    1:{A1:1,A2:18,A3:1,B1:1,B2:125,B3:0,C1:7,C2:2,C3:0},
-    2:{A1:4,A2:19,A3:5,B1:0,B2:88,B3:0,C1:3,C2:0,C3:0},
-    3:{A1:17,A2:16,A3:10,B1:0,B2:62,B3:0,C1:0,C2:0,C3:0},
-    4:{A1:12,A2:12,A3:7,B1:0,B2:14,B3:0,C1:1,C2:0,C3:0},
-    5:{A1:8,A2:6,A3:1,B1:0,B2:8,B3:1,C1:1,C2:1,C3:0},
-    6:{A1:0,A2:0,A3:1,B1:0,B2:2,B3:0,C1:0,C2:0,C3:0},
-    7:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:1,C3:0},
-  },
-  "Back Office":{
-    0:{A1:0,A2:0,A3:1,B1:0,B2:17,B3:0,C1:0,C2:0,C3:0},
-    1:{A1:0,A2:4,A3:0,B1:0,B2:13,B3:0,C1:1,C2:0,C3:0},
-    2:{A1:3,A2:6,A3:6,B1:0,B2:16,B3:0,C1:4,C2:0,C3:0},
-    3:{A1:5,A2:4,A3:6,B1:3,B2:31,B3:0,C1:8,C2:1,C3:1},
-    4:{A1:1,A2:0,A3:3,B1:0,B2:13,B3:0,C1:3,C2:1,C3:0},
-    5:{A1:0,A2:1,A3:3,B1:0,B2:10,B3:0,C1:2,C2:0,C3:1},
+    0:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
+    1:{A1:2,A2:0,A3:0,B1:0,B2:11,B3:0,C1:0,C2:1,C3:0},
+    2:{A1:1,A2:2,A3:0,B1:0,B2:4,B3:0,C1:0,C2:0,C3:0},
+    3:{A1:3,A2:3,A3:1,B1:0,B2:5,B3:0,C1:0,C2:0,C3:0},
+    4:{A1:3,A2:1,A3:0,B1:0,B2:2,B3:0,C1:0,C2:0,C3:0},
+    5:{A1:2,A2:1,A3:2,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
     6:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
     7:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
   },
 };
 
 const BU_META=[
-  {id:'BU1',target:437,completed:390},
-  {id:'BU2',target:1510,completed:1508},
-  {id:'BU3',target:622,completed:622},
-  {id:'BU4',target:72,completed:71},
-  {id:'BU5',target:110,completed:105},
-  {id:'BU6',target:501,completed:501},
-  {id:'Back Office',target:185,completed:168},
+  {id:'BU1',target:606,completed:578},
+  {id:'BU2',target:879,completed:843},
+  {id:'BU3',target:416,completed:397},
+  {id:'BU4',target:14,completed:14},
+  {id:'BU5',target:34,completed:30},
+  {id:'BU6',target:50,completed:44},
 ];
 const BU_NAMES=BU_META.map(b=>b.id);
 const LEVEL_NAMES=['L1','L2','L3','L4','L5','L6','L7','L8'];
@@ -691,272 +681,14 @@ const TOTAL_TARGET=BU_META.reduce((s,b)=>s+b.target,0);
 const HM_MAX=Math.max(...BU_NAMES.flatMap(bu=>BOX_KEYS.map(k=>BUDATA[bu].data[k].n)),1);
 /* ═══════════════ EMPLOYEE DRILL-DOWN (C-boxes) ═══════════════ */
 /* Populated from Excel sheet 3. Each record = one employee. Keyed by box (C1/C2/C3). */
-const EMPLOYEE_DATA={
-  C1:[
-    {"name": "Nguyễn Trần Minh Triệu", "position": "Junior Site Security Executive", "dept": "CTD|NHÀ XE SÂN BAY LONG THÀNH", "bu": "BU1", "level": "L1"},
-    {"name": "Ngô Thị Hiền", "position": "MEP QAQC Engineer", "dept": "CTD|NGUYỄN KIM|MEP", "bu": "BU1", "level": "L1"},
-    {"name": "Bùi Quốc Thịnh", "position": "Construction Engineer", "dept": "CTD|THE ONE WORLD_CSA 2", "bu": "BU1", "level": "L2"},
-    {"name": "Nguyễn Đình Tường", "position": "QS Engineer", "dept": "CTD|KHU DU LỊCH SINH THÁI NAM Ô_VĂN PHÒNG", "bu": "BU1", "level": "L2"},
-    {"name": "Hoàng Như Thành", "position": "MEP QS Engineer", "dept": "CTD|NGUYỄN KIM|MEP", "bu": "BU1", "level": "L3"},
-    {"name": "Nguyễn Lê Mạnh Tuấn", "position": "QAQC Engineer", "dept": "CTD|KHU DU LỊCH SINH THÁI NAM Ô_VĂN PHÒNG", "bu": "BU1", "level": "L3"},
-    {"name": "Nguyễn Ngọc Trung", "position": "Construction Engineer", "dept": "CTD|KCN HỐ NAI 2 – GIAI ĐOẠN 1", "bu": "BU1", "level": "L3"},
-    {"name": "Mã Nhất Quí", "position": "Senior Construction Engineer", "dept": "CTD|PANDORA", "bu": "BU1", "level": "L4"},
-    {"name": "Lê Viết Hưng", "position": "Deputy Project Manager", "dept": "CTD|IXORA 2 HỒ TRÀM|GÓI THẦU 07.2", "bu": "BU1", "level": "L5"},
-    {"name": "Đoàn Xuân Phước", "position": "Acting Project Manager", "dept": "BU1|CSA|PROJECT DIRECTOR 02", "bu": "BU1", "level": "L6"},
-    {"name": "Bùi Đức Tuế", "position": "Junior Site Security Executive", "dept": "CTD|SUN HÀ NAM|PHÂN KHU 1|PK3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Chu Đình Quý", "position": "Warehouse Supervisor", "dept": "CTD|MIK CỔ LOA|HH3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Hồ Thị Hồng Nhi (On Leave)", "position": "QS Engineer", "dept": "CTD|OLALANI RIVERSIDE TOWERS ĐÀ NẴNG", "bu": "BU2", "level": "L1"},
-    {"name": "Lê Huỳnh Đức", "position": "Shopdrawing Engineer", "dept": "CTD|ECOPARK VINH|HH2_CSA", "bu": "BU2", "level": "L1"},
-    {"name": "Lê Thị Phương Anh", "position": "Project Administrator", "dept": "CTD|58 TÂY HỒ 4A & 4B|MEP", "bu": "BU2", "level": "L1"},
-    {"name": "Lê Trung Kiên", "position": "Junior Site Security Executive", "dept": "CTD|VINFAST VŨNG ÁNG", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Bá Hiếu", "position": "Junior Site Security Executive", "dept": "CTD|VINHOMES STAR CITY THANH HÓA_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Bình Minh", "position": "Construction Engineer", "dept": "CTD|THE LAKE SIDE|PHẦN THÂN_THÁP Z34", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Huy Hoàng", "position": "Construction Engineer", "dept": "CTD|ĐẢO ÂM NHẠC_NHÀ PHỤ TRỢ", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Ngọc Rỹ", "position": "Warehouse Supervisor", "dept": "CTD|SUN HÀ NAM|BIỆT THỰ PK2_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Thanh Thúy", "position": "Project Administrator", "dept": "CTD|MASTERISE ĐẠI AN", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Thị Khuyên", "position": "QAQC Engineer", "dept": "CTD|VỊNH TRUNG TÂM CÁT BÀ_KHU GH", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Thị Kim Ngân", "position": "Project Administrator", "dept": "CTD|OLALANI RIVERSIDE TOWERS ĐÀ NẴNG|MEP", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Thị Ngọc", "position": "Project Administrator", "dept": "CTD|VINHOMES STAR CITY THANH HÓA_VĂN PHÒNG", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Tấn Long", "position": "Safety Engineer", "dept": "CTD|BÀ NÀ HILLS|PHẦN THÂN_HIỆN TRƯỜNG 1", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Văn Sự", "position": "Junior Site Security Executive", "dept": "CTD|ĐẢO ÂM NHẠC_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Văn Đương", "position": "Senior Security Executive", "dept": "CTD|VINWONDER MỸ LÂM TUYÊN QUANG", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Đăng Quân", "position": "Junior Site Security Executive", "dept": "CTD|SUN HÀ NAM|KĐT BẮC CHÂU GIANG 2_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Nguyễn Đức Lương", "position": "Junior Site Security Executive", "dept": "CTD|THE LAKE SIDE|PHẦN THÂN", "bu": "BU2", "level": "L1"},
-    {"name": "Phạm Mạnh Đỉnh", "position": "MEP Engineer", "dept": "CTD|THE LAKE SIDE|B6-CT01|MEP", "bu": "BU2", "level": "L1"},
-    {"name": "Trương Công Thịnh", "position": "Junior Site Security Executive", "dept": "CTD|THE LAKE SIDE|PHẦN THÂN", "bu": "BU2", "level": "L1"},
-    {"name": "Trần Kim Luyện", "position": "Warehouse Keeper", "dept": "CTD|SUN HÀ NAM|KĐT BẮC CHÂU GIANG 2_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Trần Văn Dương", "position": "Junior Site Security Executive", "dept": "CTD|VINWONDER MỸ LÂM TUYÊN QUANG", "bu": "BU2", "level": "L1"},
-    {"name": "Trần Văn Lâm", "position": "Junior Site Security Executive", "dept": "CTD|VINHOMES SMART CITY|VINSCHOOL|C3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Trịnh Minh Dương", "position": "Construction Engineer", "dept": "CTD|MIK CỔ LOA|HH3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Vũ Thị Huyền Trang", "position": "Project Nurse", "dept": "CTD|VỊNH TRUNG TÂM CÁT BÀ_KHU GH", "bu": "BU2", "level": "L1"},
-    {"name": "Vũ Văn Thinh", "position": "Junior Site Security Executive", "dept": "CTD|MASTERISE ĐẠI AN", "bu": "BU2", "level": "L1"},
-    {"name": "Vũ Đức Hữu", "position": "Warehouse Keeper", "dept": "CTD|SÂN VẬN ĐỘNG PVF HƯNG YÊN", "bu": "BU2", "level": "L1"},
-    {"name": "Đỗ Xuân Thi", "position": "Construction Engineer", "dept": "CTD|VINHOMES STAR CITY THANH HÓA_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Biện Thi Vĩ", "position": "Construction Engineer", "dept": "CTD|BÀ NÀ HILLS|PHẦN THÂN", "bu": "BU2", "level": "L2"},
-    {"name": "Chu Anh Tuấn", "position": "Construction Engineer", "dept": "CTD|VINHOMES OCEAN PARK GIA LÂM|NHÀ XE CCTP06_HIỆN TRƯỜNG", "bu": "BU2", "level": "L2"},
-    {"name": "Dương Văn Phố", "position": "MEP Engineer", "dept": "CTD|CÁT BÀ|HH3 & CLUBHOUSE|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Hoàng Ngọc Minh", "position": "MEP Engineer", "dept": "CTD|MASTERISE ĐẠI AN|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Lã Diễm Quỳnh (On Leave)", "position": "Project Administrator", "dept": "CTD|VINHOMES OCEAN PARK GIA LÂM|NHÀ XE CCTP06_VĂN PHÒNG", "bu": "BU2", "level": "L2"},
-    {"name": "Lê Minh Hải", "position": "Construction Engineer", "dept": "CTD|MASTERISE ĐẠI AN", "bu": "BU2", "level": "L2"},
-    {"name": "Lê Tuấn Anh", "position": "MEP QAQC Engineer", "dept": "CTD|THE LAKE SIDE|B6-CT01|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Mai Đức Dương", "position": "MEP QS Engineer", "dept": "CTD|CÁT BÀ|HH3 & CLUBHOUSE|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Đình Tiến", "position": "Construction Engineer", "dept": "CTD|ECOPARK VINH|HH2_CSA", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Anh Tuấn", "position": "Construction Engineer", "dept": "CTD|THE LAKE SIDE|PHẦN THÂN_THÁP U38", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Hữu Huỳnh", "position": "Construction Engineer", "dept": "CTD|MIK TÂY MỖ|THI CÔNG HOÀN THIỆN_HIỆN TRƯỜNG", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Kim Hưng", "position": "Construction Engineer", "dept": "CTD|VINWONDER MỸ LÂM TUYÊN QUANG_HIỆN TRƯỜNG", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Mai Danh", "position": "Construction Engineer", "dept": "CTD|SÂN VẬN ĐỘNG PVF HƯNG YÊN", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Nam Trinh", "position": "QS Engineer", "dept": "CTD|BÃI ĐẤT ĐỎ|S2-S3_VĂN PHÒNG", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Quang Khánh", "position": "Construction Engineer", "dept": "CTD|VINHOMES OCEAN PARK GIA LÂM|NHÀ XE CCTP06_HIỆN TRƯỜNG", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Quốc Khánh", "position": "MEP Engineer", "dept": "CTD|THE LAKE SIDE|B6-CT01|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Thanh Toàn", "position": "MEP Engineer", "dept": "CTD|BÃI ĐẤT ĐỎ S4|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Thế Hoàng Thông", "position": "Construction Engineer", "dept": "CTD|SÂN BAY PHÚ QUỐC", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Thị Cẩm Trúc", "position": "QS Engineer", "dept": "CTD|BÃI ĐẤT ĐỎ|S2-S3_VĂN PHÒNG", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Văn Trường", "position": "MEP Engineer", "dept": "CTD|CÁT BÀ|HH3 & CLUBHOUSE|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Ngô Thị Thu Thủy", "position": "Project Administrator", "dept": "CTD|SUN HÀ NAM|BIỆT THỰ PK2_VĂN PHÒNG", "bu": "BU2", "level": "L2"},
-    {"name": "Phạm Ngọc Đông", "position": "Construction Engineer", "dept": "CTD|BÃI ĐẤT ĐỎ|S2-S3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L2"},
-    {"name": "Trần Ngô Cẩm Viên", "position": "Construction Engineer", "dept": "CTD|SÂN BAY PHÚ QUỐC", "bu": "BU2", "level": "L2"},
-    {"name": "Tạ Văn Hải", "position": "MEP Engineer", "dept": "CTD|MASLIGHT TOWER", "bu": "BU2", "level": "L2"},
-    {"name": "Võ Đình Trọng", "position": "QS Engineer", "dept": "CTD|SỐ 2 LÊ THẠCH", "bu": "BU2", "level": "L2"},
-    {"name": "Đinh Công Duy", "position": "QAQC Engineer", "dept": "CTD|VINHOMES SMART CITY|VINSCHOOL|C3_VĂN PHÒNG", "bu": "BU2", "level": "L2"},
-    {"name": "Đoàn Văn Khởi", "position": "Equipment Engineer", "dept": "CTD|MIK CỔ LOA|HH3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L2"},
-    {"name": "Đào Ngọc Mai", "position": "QS Engineer", "dept": "CTD|ĐẢO ÂM NHẠC_VĂN PHÒNG", "bu": "BU2", "level": "L2"},
-    {"name": "Đỗ Hoàng Khoa", "position": "Construction Engineer", "dept": "CTD|CÁT BÀ|HH4_HIỆN TRƯỜNG", "bu": "BU2", "level": "L2"},
-    {"name": "Đỗ Hồng Ngọc", "position": "MEP QAQC Engineer", "dept": "CTD|58 TÂY HỒ 4A & 4B|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Đỗ Minh Sáng", "position": "Shopdrawing Engineer", "dept": "CTD|NHÀ KHÁCH HỒ TÂY_VĂN PHÒNG", "bu": "BU2", "level": "L2"},
-    {"name": "Bùi Tá Tuấn", "position": "Safety Engineer", "dept": "CTD|CÁT BÀ|HH3 & CLUBHOUSE", "bu": "BU2", "level": "L3"},
-    {"name": "Dương Thanh Thúy", "position": "QAQC Engineer", "dept": "CTD|BÃI ĐẤT ĐỎ|S2-S3_VĂN PHÒNG", "bu": "BU2", "level": "L3"},
-    {"name": "Hoàng Nhật Anh", "position": "MEP Engineer", "dept": "CTD|MIK TÂY MỖ|PHÂN KHU V|MEP", "bu": "BU2", "level": "L3"},
-    {"name": "Hoàng Thị Thu Hằng", "position": "QS Engineer", "dept": "CTD|NHÀ KHÁCH HỒ TÂY", "bu": "BU2", "level": "L3"},
-    {"name": "Hoàng Tuấn Anh", "position": "MEP QS Engineer", "dept": "CTD|SUN HÀ NAM|MEP", "bu": "BU2", "level": "L3"},
-    {"name": "Hoàng Đình Trưởng", "position": "QAQC Engineer", "dept": "CTD|VINHOMES OCEAN PARK GIA LÂM|NHÀ XE CCTP06_VĂN PHÒNG", "bu": "BU2", "level": "L3"},
-    {"name": "Lê Hữu Tài", "position": "Construction Engineer", "dept": "CTD|SÂN VẬN ĐỘNG PVF HƯNG YÊN", "bu": "BU2", "level": "L3"},
-    {"name": "Lê Thạc Lợi", "position": "Construction Engineer", "dept": "CTD|HSR|HÀ NỘI QUẢNG NINH", "bu": "BU2", "level": "L3"},
-    {"name": "Lê Việt Hưng", "position": "MEP Engineer", "dept": "CTD|JADE SQUARE|MEP", "bu": "BU2", "level": "L3"},
-    {"name": "Lê Đình Quang", "position": "Construction Engineer", "dept": "CTD|THE LAKE SIDE|PHẦN THÂN_THÁP U38", "bu": "BU2", "level": "L3"},
-    {"name": "Lý Mai Lương", "position": "Construction Engineer", "dept": "CTD|VINFAST 3", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Hoàng Lân", "position": "Construction Engineer", "dept": "CTD|MIK CỔ LOA|HH3", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Lê Quân", "position": "Shopdrawing Engineer", "dept": "CTD|VINWONDER MỸ LÂM TUYÊN QUANG", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Mạnh Dần", "position": "QAQC Engineer", "dept": "CTD|NHÀ KHÁCH HỒ TÂY", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Mạnh Sơn", "position": "MEP Engineer", "dept": "CTD|MIK TÂY MỖ|PHÂN KHU V|MEP", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Phi Hữu", "position": "MEP Engineer", "dept": "CTD|VINHOMES STAR CITY THANH HÓA_HIỆN TRƯỜNG", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Tử Trung", "position": "QS Engineer", "dept": "CTD|MASTERISE ĐẠI AN", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Văn Hoạt", "position": "MEP Engineer", "dept": "CTD|MASTERISE ĐẠI AN|MEP", "bu": "BU2", "level": "L3"},
-    {"name": "Ngô Thị Mai Hương", "position": "QAQC Engineer", "dept": "CTD|ECOPARK VINH|HH2_CSA", "bu": "BU2", "level": "L3"},
-    {"name": "Phan Thị Thu Thủy (On Leave)", "position": "Project Administrator", "dept": "CTD|COSMO ĐÀ NẴNG|PHẦN THÂN", "bu": "BU2", "level": "L3"},
-    {"name": "Phạm Bảo Thắng", "position": "MEP Engineer", "dept": "CTD|MIK TÂY MỖ|PHÂN KHU V|MEP", "bu": "BU2", "level": "L3"},
-    {"name": "Phạm Quốc Trịnh", "position": "QS Engineer", "dept": "CTD|BÀ NÀ HILLS|PHẦN THÂN_VĂN PHÒNG", "bu": "BU2", "level": "L3"},
-    {"name": "Phạm Tuân", "position": "Shopdrawing Engineer", "dept": "CTD|THE LAKE SIDE|PHẦN THÂN_VĂN PHÒNG", "bu": "BU2", "level": "L3"},
-    {"name": "Trương Thanh Nam", "position": "Construction Engineer", "dept": "CTD|VINHOMES STAR CITY THANH HÓA_HIỆN TRƯỜNG", "bu": "BU2", "level": "L3"},
-    {"name": "Trần Văn Thành", "position": "MEP Engineer", "dept": "CTD|SUN HÀ NAM|MEP", "bu": "BU2", "level": "L3"},
-    {"name": "Võ Minh Triều (On Leave)", "position": "Construction Engineer", "dept": "CTD|SÂN BAY PHÚ QUỐC", "bu": "BU2", "level": "L3"},
-    {"name": "Vũ Hồng Chưởng", "position": "MEP Engineer", "dept": "CTD|MIK TÂY MỖ|PHÂN KHU V|MEP", "bu": "BU2", "level": "L3"},
-    {"name": "Vũ Văn Mạnh", "position": "Construction Engineer", "dept": "CTD|SUN HÀ NAM|BIỆT THỰ PK2_HIỆN TRƯỜNG", "bu": "BU2", "level": "L3"},
-    {"name": "Đinh Long Vũ", "position": "Construction Engineer", "dept": "CTD|GOLDEN CROWN HẢI PHÒNG_HIỆN TRƯỜNG", "bu": "BU2", "level": "L3"},
-    {"name": "Đoàn Minh Thọ", "position": "QAQC Engineer", "dept": "CTD|NHÀ HÁT VINHOMES CẦN GIỜ_VĂN PHÒNG", "bu": "BU2", "level": "L3"},
-    {"name": "Đào Văn Giang", "position": "QAQC Engineer", "dept": "CTD|SUN HÀ NAM|PHÂN KHU 1|PK3_VĂN PHÒNG", "bu": "BU2", "level": "L3"},
-    {"name": "Đặng Quốc Bảo", "position": "QS Engineer", "dept": "CTD|ECOPARK VINH|HH2_CSA", "bu": "BU2", "level": "L3"},
-    {"name": "Lê Bá Chiến", "position": "Senior MEP Engineer", "dept": "CTD|MIK TÂY MỖ|PHÂN KHU V|MEP", "bu": "BU2", "level": "L4"},
-    {"name": "Lê Công Trường", "position": "Senior MEP Engineer", "dept": "CTD|THE LAKE SIDE|B6-CT01|MEP", "bu": "BU2", "level": "L4"},
-    {"name": "Lê Hoàng Tuấn", "position": "QAQC Lead", "dept": "CTD|ĐẢO ÂM NHẠC_VĂN PHÒNG", "bu": "BU2", "level": "L4"},
-    {"name": "Lê Minh Đức", "position": "Senior Construction Engineer", "dept": "CTD|VINHOMES OCEAN PARK GIA LÂM|NHÀ XE CCTP06_HIỆN TRƯỜNG", "bu": "BU2", "level": "L4"},
-    {"name": "Lê Quốc Dũng", "position": "Senior Construction Engineer", "dept": "CTD|HSR|CẦU CẦN GIỜ", "bu": "BU2", "level": "L4"},
-    {"name": "Nguyễn Bá Châu", "position": "Acting Deputy MEP Project Manager", "dept": "CTD|BÃI ĐẤT ĐỎ S4|MEP", "bu": "BU2", "level": "L4"},
-    {"name": "Nguyễn Công Đại", "position": "Senior Shopdrawing Engineer", "dept": "CTD|VINHOMES STAR CITY THANH HÓA_VĂN PHÒNG", "bu": "BU2", "level": "L4"},
-    {"name": "Nguyễn Minh Hoàng", "position": "Senior Construction Engineer", "dept": "CTD|HSR|CẦU CẦN GIỜ", "bu": "BU2", "level": "L4"},
-    {"name": "Nguyễn Văn Hùng", "position": "Senior Construction Engineer", "dept": "CTD|MASTERISE ĐẠI AN", "bu": "BU2", "level": "L4"},
-    {"name": "Đậu Xuân Anh", "position": "QS Lead", "dept": "CTD|SUN HÀ NAM|PHÂN KHU 1|PK3_VĂN PHÒNG", "bu": "BU2", "level": "L4"},
-    {"name": "Đỗ Duy Nam", "position": "Senior Construction Engineer", "dept": "CTD|SUN HÀ NAM|04 BLOCK CAO TẦNG_CC3", "bu": "BU2", "level": "L4"},
-    {"name": "Nguyễn Hải Hưng", "position": "Acting Project Manager", "dept": "CTD|HSR|CẦU CẦN GIỜ", "bu": "BU2", "level": "L5"},
-    {"name": "Trần Hồng Quân", "position": "Deputy MEP Project Manager", "dept": "CTD|THE LAKE SIDE|B6-CT01|MEP", "bu": "BU2", "level": "L5"},
-    {"name": "Trần Văn Nam", "position": "Deputy MEP Project Manager", "dept": "CTD|MASTERISE ĐẠI AN|MEP", "bu": "BU2", "level": "L5"},
-    {"name": "Nguyễn Thành Tấn", "position": "Project Manager", "dept": "BU2|CSA|PROJECT DIRECTOR 13", "bu": "BU2", "level": "L6"},
-    {"name": "Bách Văn Lâm", "position": "Safety Engineer", "dept": "UNC|VINHOMES STAR CITY THANH HÓA", "bu": "BU3", "level": "L1"},
-    {"name": "Lý Thanh Duy", "position": "Warehouse Supervisor", "dept": "UNC|EMERALD 68_HIỆN TRƯỜNG", "bu": "BU3", "level": "L1"},
-    {"name": "Nguyễn Hoài Thu", "position": "Senior Security Executive", "dept": "UNC|BÃI TRÀO - HÒN THƠM BLOCK A.3", "bu": "BU3", "level": "L1"},
-    {"name": "Nguyễn Hoài Thu", "position": "Project Administrator", "dept": "UNC|EVERLAND - VÂN ĐỒN A&B_VĂN PHÒNG", "bu": "BU3", "level": "L1"},
-    {"name": "Nguyễn Hữu Dũng", "position": "Senior Security Executive", "dept": "UNC|SUN CENTRO TOWN", "bu": "BU3", "level": "L1"},
-    {"name": "Nguyễn Văn Huân", "position": "Senior Security Executive", "dept": "UNC|VINHOMES STAR CITY THANH HÓA", "bu": "BU3", "level": "L1"},
-    {"name": "Nguyễn Yến Tuyết", "position": "Interpreter", "dept": "UNC|XINGYU", "bu": "BU3", "level": "L1"},
-    {"name": "Quách Thị Nhung", "position": "QAQC Engineer", "dept": "UNC|PVF HƯNG YÊN", "bu": "BU3", "level": "L1"},
-    {"name": "Trần Văn Hải", "position": "Site Security Executive", "dept": "UNC|E2_HÀ NỘI_HIỆN TRƯỜNG", "bu": "BU3", "level": "L1"},
-    {"name": "Vũ Đan Thư", "position": "Project Nurse", "dept": "UNC|SUN CENTRO TOWN", "bu": "BU3", "level": "L1"},
-    {"name": "Đặng Ngọc Văn", "position": "Site Security Executive", "dept": "UNC|EVERLAND - VÂN ĐỒN C&D", "bu": "BU3", "level": "L1"},
-    {"name": "Bùi Thị Trang", "position": "Project Administrator", "dept": "UNC|SUN CENTRO TOWN", "bu": "BU3", "level": "L2"},
-    {"name": "Dương Công Nghĩa", "position": "MEP Engineer", "dept": "UNC|CHAMPARAMA RESORT & SPA|MEP_HIỆN TRƯỜNG", "bu": "BU3", "level": "L2"},
-    {"name": "Huỳnh Thị Thái Dương", "position": "Project Administrator", "dept": "UNC|LÀNG TÂY - HÒN THƠM|MEP", "bu": "BU3", "level": "L2"},
-    {"name": "Lương Đức Minh", "position": "Construction Engineer", "dept": "UNC|EVERLAND - VÂN ĐỒN C&D", "bu": "BU3", "level": "L2"},
-    {"name": "Nguyễn Bá Phú", "position": "Construction Engineer", "dept": "UNC|SÂN BAY PHÚ QUỐC_HIỆN TRƯỜNG 1", "bu": "BU3", "level": "L2"},
-    {"name": "Nguyễn Thanh Phong", "position": "Construction Engineer", "dept": "UNC|CHAMPARAMA RESORT & SPA_HIỆN  TRƯỜNG", "bu": "BU3", "level": "L2"},
-    {"name": "Nguyễn Thị Kim Thoa", "position": "Project Administrator", "dept": "UNC|SÂN BAY PHÚ QUỐC_VĂN PHÒNG", "bu": "BU3", "level": "L2"},
-    {"name": "Nguyễn Thị Như Quỳnh", "position": "QAQC Engineer", "dept": "UNC|VĂN LANG SKYLAKE - THÂN", "bu": "BU3", "level": "L2"},
-    {"name": "Nguyễn Thị Thanh Thủy", "position": "Project Administrator", "dept": "UNC|BV ĐA KHOA HƯNG HÀ", "bu": "BU3", "level": "L2"},
-    {"name": "Phạm Thu Hương", "position": "Project Nurse", "dept": "UNC|EVERLAND - VÂN ĐỒN A&B_HIỆN TRƯỜNG", "bu": "BU3", "level": "L2"},
-    {"name": "Trương Trung Lập", "position": "Construction Engineer", "dept": "UNC|SÂN BAY PHÚ QUỐC_HIỆN TRƯỜNG 2", "bu": "BU3", "level": "L2"},
-    {"name": "Võ Vân Anh", "position": "QS Engineer", "dept": "UNC|GLOBAL CITY|LV1", "bu": "BU3", "level": "L2"},
-    {"name": "Kiều Quang Din", "position": "Safety Engineer", "dept": "UNC|EMERALD 68", "bu": "BU3", "level": "L3"},
-    {"name": "Ngô Gia Đạt", "position": "MEP Engineer", "dept": "UNC|LÀNG TÂY - HÒN THƠM|MEP", "bu": "BU3", "level": "L3"},
-    {"name": "Phan Văn Đoàn", "position": "Construction Engineer", "dept": "UNC|SUN CENTRO TOWN_HIỆN TRƯỜNG", "bu": "BU3", "level": "L3"},
-    {"name": "Vũ Hải Hà", "position": "Construction Engineer", "dept": "UNC|MARINA HẠ LONG 2", "bu": "BU3", "level": "L3"},
-    {"name": "Nguyễn Hữu Tuấn", "position": "Senior QS Engineer", "dept": "UNC|CAO XÀ LÁ", "bu": "BU3", "level": "L4"},
-    {"name": "Nguyễn Đình Tải", "position": "Senior Construction Engineer", "dept": "UNC|F2-CONDOMINIUM BÌNH DƯƠNG_HIỆN TRƯỜNG 2", "bu": "BU3", "level": "L4"},
-    {"name": "Phạm Việt Quang", "position": "Senior Construction Engineer", "dept": "UNC|VINHOMES STAR CITY THANH HÓA_THÁP Z", "bu": "BU3", "level": "L4"},
-    {"name": "Vũ Thế Trình (On Leave)", "position": "Senior Safety Executive", "dept": "UNC|CAO XÀ LÁ", "bu": "BU3", "level": "L4"},
-    {"name": "Phan Văn Hảo", "position": "Deputy MEP Project Manager", "dept": "UNC|LÀNG TÂY - HÒN THƠM|MEP", "bu": "BU3", "level": "L5"},
-    {"name": "Cao Thị Trà My", "position": "MEP Tender Executive", "dept": "UNC MEP TENDERING & ENGINEERING", "bu": "BU4", "level": "L2"},
-    {"name": "Lê Quang Khải", "position": "MEP BIM Executive", "dept": "BIM & DIGITAL ENGINEERING", "bu": "BU4", "level": "L2"},
-    {"name": "Lê Đình Thương", "position": "MEP Tender Executive", "dept": "UNC MEP TENDERING & ENGINEERING", "bu": "BU4", "level": "L2"},
-    {"name": "Nguyễn Chí Nam", "position": "MEP Tender Executive", "dept": "UNC MEP TENDERING & ENGINEERING", "bu": "BU4", "level": "L2"},
-    {"name": "Nguyễn Minh Nhựt", "position": "MEP Tender Executive", "dept": "UNC MEP TENDERING & ENGINEERING", "bu": "BU4", "level": "L2"},
-    {"name": "Tăng Thị Kim Dung", "position": "Senior Architectural Design Management Executive", "dept": "DESIGN DEVELOPMENT", "bu": "BU4", "level": "L4"},
-    {"name": "Phạm Quang Trung", "position": "Senior Safety Executive", "dept": "HSE|HSE DIRECTOR", "bu": "BU5", "level": "L4"},
-    {"name": "Võ Xuân Toán", "position": "Senior Safety Executive", "dept": "HSE|HSE DIRECTOR", "bu": "BU5", "level": "L4"},
-    {"name": "Hoàng Huy Khánh", "position": "Warehouse Keeper", "dept": "CTD|GLOBAL CITY|CT7|PHẦN THÂN_HIỆN TRƯỜNG", "bu": "BU6", "level": "L1"},
-    {"name": "Nguyễn Thanh Trí", "position": "Construction Engineer", "dept": "CTD|GLOBAL CITY|LV1 THẤP TẦNG_HIỆN TRƯỜNG", "bu": "BU6", "level": "L1"},
-    {"name": "Trần Văn Dơn", "position": "Junior Site Security Executive", "dept": "CTD|METROPOLE 1-14|PHẦN HẦM VÀ CÔNG TÁC CHÍNH", "bu": "BU6", "level": "L1"},
-    {"name": "Vũ Văn Trưởng", "position": "Junior Site Security Executive", "dept": "CTD|NOXH1, NOXH2, NOXH3 XUÂN ĐỈNH_HIỆN TRƯỜNG", "bu": "BU6", "level": "L1"},
-    {"name": "Đào Thanh Điền", "position": "Junior Site Security Executive", "dept": "CTD|EATON PARK|GIAI ĐOẠN 2", "bu": "BU6", "level": "L1"},
-    {"name": "Huỳnh Lê Bảo Châu", "position": "Tender Executive", "dept": "UNICONS TENDERING|HEAD OF TENDER", "bu": "BU6", "level": "L2"},
-    {"name": "Nguyễn Minh Bảo Châu (On Leave)", "position": "Tender Executive", "dept": "UNICONS TENDERING|HEAD OF TENDER", "bu": "BU6", "level": "L2"},
-    {"name": "Nguyễn Minh Tân", "position": "Equipment Engineer", "dept": "CTD|METROPOLE 1-14|PHẦN HẦM VÀ CÔNG TÁC CHÍNH", "bu": "BU6", "level": "L2"},
-    {"name": "Nguyễn Ngọc Lâm", "position": "Construction Engineer", "dept": "CTD|GLOBAL CITY|CT7|PHẦN THÂN_HIỆN TRƯỜNG", "bu": "BU6", "level": "L2"},
-    {"name": "Nguyễn Thế Mạnh", "position": "MEP Shopdrawing Engineer", "dept": "CTD|GLOBAL CITY|CT7|PHẦN THÂN|MEP", "bu": "BU6", "level": "L2"},
-    {"name": "Trần Tấn Phát", "position": "Construction Engineer", "dept": "CTD|NOXH1, NOXH2, NOXH3 XUÂN ĐỈNH_VĂN PHÒNG", "bu": "BU6", "level": "L2"},
-    {"name": "Vương Hữu Hiệp", "position": "Safety Engineer", "dept": "CTD|GLOBAL CITY|CT5_HIỆN TRƯỜNG", "bu": "BU6", "level": "L2"},
-    {"name": "Huỳnh Văn Cường", "position": "Safety Engineer", "dept": "CTD|GLOBAL CITY|CT 8, CT9", "bu": "BU6", "level": "L3"},
-    {"name": "Lâm Văn Nghĩa", "position": "QAQC Engineer", "dept": "CTD|GLOBAL CITY|LV1 THẤP TẦNG_VĂN PHÒNG", "bu": "BU6", "level": "L3"},
-    {"name": "Nguyễn Trường Giang", "position": "MEP Engineer", "dept": "CTD|SIX SENSES SÀI GÒN RIVER", "bu": "BU6", "level": "L3"},
-    {"name": "Võ Văn Sơn", "position": "Acting Deputy Project Manager", "dept": "CTD|WEST LAKE|CẢI TẠO TẦNG HẦM", "bu": "BU6", "level": "L5"},
-    {"name": "Nguyễn Quang Hải", "position": "Deputy Project Manager", "dept": "CTD|NOXH1, NOXH2, NOXH3 XUÂN ĐỈNH", "bu": "BU6", "level": "L6"},
-    {"name": "Nguyễn Lê Duy Hưng", "position": "Application Executive", "dept": "DATA & ARTIFICIAL INTELLIGENCE (DATA & AI)", "bu": "Back Office", "level": "L2"},
-    {"name": "Hoàng Ngọc Trường", "position": "Senior Operations & User Support Executive", "dept": "INFRASTRUCTURE & OPERATIONS (I&O)", "bu": "Back Office", "level": "L3"},
-    {"name": "Huỳnh Thị Kim Nga", "position": "Construction Procurement Executive", "dept": "CONSTRUCTION MATERIALS PROCUREMENT", "bu": "Back Office", "level": "L3"},
-    {"name": "Nguyễn Thụy Bích Trâm", "position": "Marcoms Executive", "dept": "MARKETING & COMMUNICATIONS (MARCOMS)", "bu": "Back Office", "level": "L3"},
-    {"name": "Trần Văn Hậu", "position": "Senior Application Development Executive", "dept": "SMART CONSTRUCTION SOLUTIONS", "bu": "Back Office", "level": "L3"},
-    {"name": "Mạc Thoại Dung", "position": "Administration Lead", "dept": "GENERAL ADMINISTRATION", "bu": "Back Office", "level": "L4"},
-    {"name": "Nguyễn Tùng", "position": "Senior Procurement Executive", "dept": "CHINA PROCUREMENT", "bu": "Back Office", "level": "L4"},
-    {"name": "Phạm Thị Liễu", "position": "Senior Procurement Executive", "dept": "CONSTRUCTION MATERIALS PROCUREMENT", "bu": "Back Office", "level": "L4"},
-    {"name": "Trần Đăng Khoa", "position": "Senior Construction Procurement Executive", "dept": "CIVIL SUBCONTRACTING", "bu": "Back Office", "level": "L4"},
-    {"name": "Vũ Mạnh Toàn", "position": "Senior Sales Executive (Materials)", "dept": "CTD MATERIALS|SUPPLY CHAIN DIRECTOR (MATERIALS)", "bu": "Back Office", "level": "L4"},
-    {"name": "Vũ Đông Nam", "position": "Senior Construction Procurement Executive", "dept": "CIVIL SUBCONTRACTING", "bu": "Back Office", "level": "L4"},
-    {"name": "Đinh Ngọc Quỳnh Anh", "position": "Senior C&B Executive", "dept": "TOTAL REWARDS OPERATION", "bu": "Back Office", "level": "L4"},
-    {"name": "Đỗ Thái Thanh Trúc", "position": "Senior Procurement Executive", "dept": "CONSTRUCTION MATERIALS PROCUREMENT", "bu": "Back Office", "level": "L4"},
-    {"name": "Nguyễn Công Thiện", "position": "Senior Operations & User Support Executive", "dept": "INFRASTRUCTURE & OPERATIONS (I&O)", "bu": "Back Office", "level": "L5"},
-    {"name": "Nguyễn Thành Vương", "position": "Head of Information Management Systems", "dept": "ENTERPRISE APPLICATIONS (EA)", "bu": "Back Office", "level": "L5"},
-    {"name": "Nguyễn Thị Liên Anh", "position": "Deputy Business Development Manager (Materials)", "dept": "CIVIL SUBCONTRACTING", "bu": "Back Office", "level": "L5"},
-    {"name": "Nguyễn Khắc Quang", "position": "Construction Procurement Manager", "dept": "CIVIL SUBCONTRACTING", "bu": "Back Office", "level": "L6"},
-    {"name": "Trần Trí Cương", "position": "Operation Improvement Manager", "dept": "CHAIRMAN OFFICE|CHAIRMAN", "bu": "Back Office", "level": "L6"},
-  ],
-  C2:[
-    {"name": "Nguyễn Văn Hảo", "position": "Construction Engineer", "dept": "CTD|IXORA 2 HỒ TRÀM|GÓI THẦU 07.2_VĂN PHÒNG", "bu": "BU1", "level": "L3"},
-    {"name": "Nguyễn Hoàng Anh Tuấn", "position": "Construction Engineer", "dept": "CTD|MASTERISE ĐẠI AN", "bu": "BU2", "level": "L1"},
-    {"name": "Ngô Văn Cảnh", "position": "Junior Site Security Executive", "dept": "CTD|WESTLAKE RESIDENTIAL|XÂY DỰNG_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
-    {"name": "Trần Hữu Quang", "position": "Construction Engineer", "dept": "CTD|BÀ NÀ HILLS|PHẦN THÂN_THIẾT BỊ", "bu": "BU2", "level": "L1"},
-    {"name": "Vũ Văn Thông", "position": "MEP Engineer", "dept": "CTD|JADE SQUARE|MEP", "bu": "BU2", "level": "L1"},
-    {"name": "Bùi Nguyễn Nhật Trường", "position": "MEP Engineer", "dept": "CTD|CÁT BÀ|HH3 & CLUBHOUSE|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Khổng Thiên Lý", "position": "Project Administrator", "dept": "CTD|MASTERISE ĐẠI AN|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Quang Trường", "position": "Construction Engineer", "dept": "CTD|MASTERISE ĐẠI AN", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Trọng Khánh", "position": "Construction Engineer", "dept": "CTD|ECOPARK VINH|CAO TẦNG", "bu": "BU2", "level": "L2"},
-    {"name": "Phan Tấn Trung", "position": "Construction Engineer", "dept": "CTD|BWID SCC2 BÌNH DƯƠNG_XƯỞNG J", "bu": "BU2", "level": "L2"},
-    {"name": "Huỳnh Văn Ý", "position": "QAQC Engineer", "dept": "CTD|SÂN BAY PHÚ QUỐC", "bu": "BU2", "level": "L3"},
-    {"name": "Lê Quang Hiệp", "position": "QAQC Engineer", "dept": "CTD|SUN HÀ NAM|KĐT BẮC CHÂU GIANG 2_VĂN PHÒNG", "bu": "BU2", "level": "L3"},
-    {"name": "Mai Văn Tình", "position": "Equipment Engineer", "dept": "CTD|BÀ NÀ HILLS|PHẦN THÂN_THIẾT BỊ", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Duy Chinh", "position": "Construction Engineer", "dept": "CTD|SUN HÀ NAM|PHÂN KHU 1|PK3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Văn Thuận", "position": "QAQC Engineer", "dept": "CTD|OLALANI RIVERSIDE TOWERS ĐÀ NẴNG", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Văn Trường", "position": "MEP Engineer", "dept": "CTD|SUN HÀ NAM|KĐT BẮC CHÂU GIANG 2_HIỆN TRƯỜNG", "bu": "BU2", "level": "L3"},
-    {"name": "Nguyễn Văn Trường (On Leave)", "position": "Acting Deputy Project Manager", "dept": "CTD|OLALANI RIVERSIDE TOWERS ĐÀ NẴNG", "bu": "BU2", "level": "L4"},
-    {"name": "Vũ Quyết Thắng", "position": "Acting Deputy Project Manager", "dept": "CTD|VINHOMES STAR CITY THANH HÓA_HIỆN TRƯỜNG", "bu": "BU2", "level": "L4"},
-    {"name": "Nguyễn Ngọc Hiền", "position": "MEP Engineer", "dept": "UNC|APEC-CASINO|MEP_HIỆN TRƯỜNG", "bu": "BU3", "level": "L2"},
-    {"name": "Phạm Minh Đức", "position": "QS Engineer", "dept": "UNC|HÒA QUÝ_A3-3; A3-4", "bu": "BU3", "level": "L2"},
-    {"name": "Hà Hoài Vương", "position": "Shopdrawing Engineer", "dept": "UNC|APEC-CASINO_QAQC & DWG", "bu": "BU3", "level": "L3"},
-    {"name": "Vũ Quốc Tịch", "position": "QS Engineer", "dept": "UNC|APEC-CASINO_VĂN PHÒNG", "bu": "BU3", "level": "L3"},
-    {"name": "Trương Ngọc Thắng (On Leave)", "position": "Senior Construction Engineer", "dept": "UNC|F2-CONDOMINIUM BÌNH DƯƠNG", "bu": "BU3", "level": "L4"},
-    {"name": "Hồ Tấn Phước", "position": "Acting Project Manager", "dept": "UNC|VINHOMES STAR CITY THANH HÓA", "bu": "BU3", "level": "L5"},
-    {"name": "Hồ Văn Nhất Linh", "position": "Project Director", "dept": "UNICONS|D.CEO", "bu": "BU3", "level": "L7"},
-    {"name": "Võ Lê Hoàng Khang", "position": "Safety Engineer", "dept": "CTD|VIETTEL-DATA CENTER TT1", "bu": "BU4", "level": "L1"},
-    {"name": "Cao Huỳnh Anh Hiếu", "position": "MEP Tender Executive", "dept": "UNC MEP TENDERING & ENGINEERING", "bu": "BU4", "level": "L2"},
-    {"name": "Trần Đình Bá", "position": "MEP Engineer", "dept": "CTD GLOBAL|COORDINATOR", "bu": "BU5", "level": "L1"},
-    {"name": "Lê Hoàng Duy", "position": "Warehouse Keeper", "dept": "CTD|METROPOLE 1-14|PHẦN HẦM VÀ CÔNG TÁC CHÍNH", "bu": "BU6", "level": "L1"},
-    {"name": "Lê Tống Tiến Đạt", "position": "Construction Engineer", "dept": "CTD|GLOBAL CITY|CT5_HIỆN TRƯỜNG", "bu": "BU6", "level": "L1"},
-    {"name": "Nguyễn Thị Thúy Nhung", "position": "Safety Engineer", "dept": "CTD|GLOBAL CITY|LV1 THẤP TẦNG_VĂN PHÒNG", "bu": "BU6", "level": "L1"},
-    {"name": "Vũ Văn Thịnh", "position": "Junior Site Security Executive", "dept": "CTD|SÂN BAY QUỐC TẾ GIA BÌNH|ATC_HIỆN TRƯỜNG 2", "bu": "BU6", "level": "L1"},
-    {"name": "Nguyễn Hồ Nam", "position": "MEP Engineer", "dept": "CTD|NOXH1, NOXH2, NOXH3 XUÂN ĐỈNH_HIỆN TRƯỜNG", "bu": "BU6", "level": "L2"},
-    {"name": "Nguyễn Hồng Chi", "position": "BIM Engineer", "dept": "CTD|SÂN BAY QUỐC TẾ GIA BÌNH|ATC_VĂN PHÒNG", "bu": "BU6", "level": "L2"},
-    {"name": "Nguyễn Văn Biểu (On Leave)", "position": "Project Manager", "dept": "CTD|SÂN BAY QUỐC TẾ GIA BÌNH|ATC", "bu": "BU6", "level": "L6"},
-    {"name": "Nguyễn Thế Phú", "position": "Managing Director", "dept": "BUSINESS UNIT 6|D.CEO", "bu": "BU6", "level": "L8"},
-    {"name": "Trần Thị Bạch Linh", "position": "Senior ESG Implementation Executive", "dept": "ESG & SUSTAINABILITY", "bu": "Back Office", "level": "L4"},
-    {"name": "Lê Thị Thu Thủy", "position": "Talent Acquisition Lead", "dept": "TALENT ACQUISITION", "bu": "Back Office", "level": "L5"},
-  ],
-  C3:[
-    {"name": "Hoàng Tấn Đại", "position": "Driver", "dept": "CTD|NHÀ GA HÀNG HÓA SÂN BAY LONG THÀNH", "bu": "BU1", "level": "L1"},
-    {"name": "Kha Thành Đạt", "position": "Safety Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L1"},
-    {"name": "Lê Minh Đức", "position": "Safety Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L1"},
-    {"name": "Nguyễn Văn Lợi", "position": "Warehouse Keeper", "dept": "CTD|NOXH HÒA PHÚ|786 CĂN THẤP TẦNG", "bu": "BU1", "level": "L1"},
-    {"name": "Lê Quốc Khang", "position": "Construction Engineer", "dept": "CTD|VỊNH ĐẦM PHÚ QUỐC", "bu": "BU1", "level": "L2"},
-    {"name": "Lê Văn Hùng", "position": "Construction Engineer", "dept": "CTD|THE ONE WORLD_CSA 1", "bu": "BU1", "level": "L2"},
-    {"name": "Nguyễn Quốc Anh", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
-    {"name": "Đinh Văn Khiêm", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
-    {"name": "Đặng Tuấn Cường", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
-    {"name": "Lương Minh Vương", "position": "QS Engineer", "dept": "CTD|ĐẠI HỌC QUỐC GIA TP.HCM", "bu": "BU1", "level": "L3"},
-    {"name": "Chu Sỹ Hùng", "position": "Construction Engineer", "dept": "CTD|SÂN VẬN ĐỘNG PVF HƯNG YÊN", "bu": "BU2", "level": "L1"},
-    {"name": "Tào Hoài Nam", "position": "QAQC Engineer", "dept": "CTD|SỐ 2 LÊ THẠCH", "bu": "BU2", "level": "L1"},
-    {"name": "Bùi Minh Hải", "position": "MEP Engineer", "dept": "CTD|THE LAKE SIDE|B6-CT01|MEP", "bu": "BU2", "level": "L2"},
-    {"name": "Nguyễn Chí Nguyên", "position": "Construction Engineer", "dept": "CTD|ECOPARK VINH", "bu": "BU2", "level": "L2"},
-    {"name": "Hồ Hoàng Nam", "position": "Construction Engineer", "dept": "CTD|BÃI ĐẤT ĐỎ|S2-S3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L3"},
-    {"name": "Võ Văn Hữu", "position": "Senior Construction Engineer", "dept": "CTD|NHÀ HÁT VINHOMES CẦN GIỜ_VĂN PHÒNG", "bu": "BU2", "level": "L4"},
-    {"name": "Vương Minh Hùng", "position": "Project Director", "dept": "UNICONS|D.CEO", "bu": "BU3", "level": "L7"},
-    {"name": "Hà Duy Phương", "position": "Site Security Executive", "dept": "CTD|PARAGON ĐẠI PHƯỚC|GĐ1", "bu": "BU6", "level": "L1"},
-    {"name": "Nguyễn Thị Hồng Thắm", "position": "Procurement Executive", "dept": "CHINA PROCUREMENT", "bu": "Back Office", "level": "L4"},
-    {"name": "Nguyễn Hồng Phúc", "position": "Brand Strategy Manager", "dept": "CHAIRMAN OFFICE|CHAIRMAN", "bu": "Back Office", "level": "L6"},
-  ],
-};
+const EMPLOYEE_DATA={ C1:[], C2:[], C3:[] };
 /* Column order + labels shown in modal. Only fields present in the data are rendered. */
 const EMP_FIELDS=[
   {key:'code',label:'Code'},
   {key:'name',label:'Full name'},
-  {key:'position',label:'Position'},
-  {key:'dept',label:'Project / Department'},
   {key:'bu',label:'BU'},
   {key:'level',label:'Level'},
+  {key:'position',label:'Position'},
   {key:'fy25',label:'FY25',rating:true},
   {key:'fy26',label:'FY26',rating:true},
   {key:'potential',label:'Potential'},
@@ -1046,7 +778,7 @@ function levelBarHTML(buKey, boxKey){
   const z=BOX_DEF[boxKey].zone.toLowerCase();
   const color=zC(z);
   const total=buKey==='Overall'?BUDATA.Overall.data[boxKey].n:BUDATA[buKey].data[boxKey].n;
-  if(!total) return `<div style="font-size:11px;color:#6B7A8D;font-style:italic;margin-top:8px">No employees in this box for ${buKey}.</div>`;
+  if(!total) return `<div style="font-size:11px;color:#6B7A8D;font-style:italic;margin-top:8px">No engineers in this box for ${buKey}.</div>`;
   const counts=LEVEL_NAMES.map((_,li)=>{
     let n=0;
     if(buKey==='Overall') BU_NAMES.forEach(bu=>{n+=BU_LEVEL[bu][li][boxKey]||0;});
@@ -1124,7 +856,7 @@ function boxDetailHTML(key, n, pctStr, contextLabel, extraHTML, empCtx){
   return `<div class="detail-live"><span class="hint-ic">◉</span> Now showing box <strong style="margin:0 2px">${key}</strong> — click a different box in the grid to switch.</div>
   <div class="detail-hdr">
     <div class="detail-key" style="color:${zC(z)}">${key}</div>
-    <div style="flex:1"><div class="detail-count">${n} <span style="font-size:14px;color:#6B7A8D;font-weight:400">employees</span></div><div class="detail-pct-txt">${pctStr} of ${contextLabel}</div></div>
+    <div style="flex:1"><div class="detail-count">${n} <span style="font-size:14px;color:#6B7A8D;font-weight:400">engineers</span></div><div class="detail-pct-txt">${pctStr} of ${contextLabel}</div></div>
     <div class="detail-tag" style="background:${zF(z)};border-color:${zC(z)};color:${zT(z)}">${z.toUpperCase()}-zone</div>
   </div>
   <div class="detail-desc"><strong>${def.perf} performance · ${def.pot} potential.</strong> ${def.desc}</div>
@@ -1199,7 +931,7 @@ function renderHeatmap(){
           val=(diff>0?'+':'')+diff.toFixed(1);
         }
       }
-      h+=`<td class="${selBox===k?'hm-sel':''}" style="background:${bg};font-weight:${n>50?'600':'400'}" onclick="hmClick('${k}')" title="${bu} · ${k} — ${n} employee${n===1?'':'s'}"><span class="hm-v">${val}</span></td>`;
+      h+=`<td class="${selBox===k?'hm-sel':''}" style="background:${bg};font-weight:${n>50?'600':'400'}" onclick="hmClick('${k}')" title="${bu} · ${k} — ${n} engineer${n===1?'':'s'}"><span class="hm-v">${val}</span></td>`;
     });
     h+='</tr>';
   });
@@ -1220,7 +952,7 @@ function renderKPIs(){
   const card=k=>`<div class="hero-c"><div class="hero-c-lbl">${k.l}</div><div class="hero-c-val" style="color:${k.c}">${k.v}</div><div class="hero-c-sub">${k.s}</div></div>`;
   const groups=[
     {lbl:'Assessment coverage', cls:'hero-2', accent:false, cards:[
-      {l:'Total',v:TOTAL_TARGET.toLocaleString(),s:'headcount in scope (HRBP masterfile, 28 Aug)',c:'#16315E'},
+      {l:'Total',v:TOTAL_TARGET.toLocaleString(),s:'headcount in scope (DS FY25)',c:'#16315E'},
       {l:'Completed',v:n.toLocaleString(),s:pct(n,TOTAL_TARGET)+' completion rate',c:'#16315E'},
     ]},
     {lbl:'Distribution by zone', cls:'hero-3', accent:false, cards:[
@@ -1285,7 +1017,7 @@ function renderBUPage(){
     ['Overall',...BU_NAMES].map(bu=>`<button class="bu-btn${bu===curBU?' sel':''}" onclick="selectBU('${bu}')">${bu}</button>`).join('');
   const bu=BUDATA[curBU], t=bu.n, z=zoneTotals(bu.data);
   const ovD=BUDATA.Overall.data;
-  let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${curBU} has only ${t} assessed employees.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
+  let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${curBU} has only ${t} assessed engineers.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
   cmp+=cmpTableHTML(curBU,bu.data,t);
   document.getElementById('bu-content').innerHTML=`
     <div>
@@ -1294,7 +1026,7 @@ function renderBUPage(){
       <div style="background:#16315E;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div>
           <div style="font-size:21px;font-weight:700;color:#fff">${curBU}${t<SMALL_N?'<span class="smalln">small sample</span>':''}</div>
-          <div style="font-size:12px;color:#5FD1C1;margin-top:2px">n = ${t} employees</div>
+          <div style="font-size:12px;color:#5FD1C1;margin-top:2px">n = ${t} engineers</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           ${['a','b','c'].map(zz=>`<div style="background:${zF(zz)};border:1px solid ${zC(zz)};border-radius:7px;padding:5px 10px;text-align:center">
@@ -1342,7 +1074,7 @@ function renderLevelPage(){
   const ld=buildLevelData(curLevel), t=ld.n, z=zoneTotals(ld.data);
   const ovD=BUDATA.Overall.data;
   const lvlFull='Level '+(curLevel+1);
-  let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${lvlFull} has only ${t} assessed employee${t===1?'':'s'}.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
+  let cmp = t<SMALL_N ? `<div class="smalln-note">⚠ <strong>${lvlFull} has only ${t} assessed engineer${t===1?'':'s'}.</strong> Percentages below move sharply with a single person — read the counts, not the shares.</div>` : '';
   cmp+=cmpTableHTML(lvlFull,ld.data,t);
   document.getElementById('level-content').innerHTML=`
     <div>
@@ -1351,7 +1083,7 @@ function renderLevelPage(){
       <div style="background:#16315E;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div>
           <div style="font-size:21px;font-weight:700;color:#fff">${lvlFull}${t<SMALL_N?'<span class="smalln">small sample</span>':''}</div>
-          <div style="font-size:12px;color:#5FD1C1;margin-top:2px">n = ${t} employees</div>
+          <div style="font-size:12px;color:#5FD1C1;margin-top:2px">n = ${t} engineers</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           ${['a','b','c'].map(zz=>`<div style="background:${zF(zz)};border:1px solid ${zC(zz)};border-radius:7px;padding:5px 10px;text-align:center">
@@ -1544,7 +1276,7 @@ document.getElementById('topbar-subtitle').textContent=`9-BOX TALENT DASHBOARD �
 selBox=DEFAULT_BOX;   /* B1 — the detail panel is never blank on arrival */
 /* keep the step numeral: textContent would wipe the <span> */
 document.getElementById('overview-dist-title').innerHTML=`<span class="step-n">1</span>Overall 9-Box Distribution (n = ${GRAND_TOTAL.toLocaleString()})`;
-document.getElementById('gap-hdr-sub').textContent=`n = ${GRAND_TOTAL.toLocaleString()} assessed employees · Ideal model: 20% A / 65% B / 15% C`;
+document.getElementById('gap-hdr-sub').textContent=`n = ${GRAND_TOTAL.toLocaleString()} assessed engineers · Ideal model: 20% A / 65% B / 15% C`;
 renderKPIs();
 renderCompletionTable();
 render9Box('nb-overview',BUDATA.Overall.data,'overview');
@@ -1565,7 +1297,7 @@ renderGapCharts();
       <button class="modal-close" onclick="closeEmpModal()" aria-label="Close">×</button>
     </div>
     <div class="modal-tools">
-      <input class="emp-search" id="emp-search" placeholder="🔍 Search name / position / department…" oninput="filterEmp()"/>
+      <input class="emp-search" id="emp-search" placeholder="🔍 Search name / code / manager…" oninput="filterEmp()"/>
       <span class="emp-count" id="emp-count"></span>
     </div>
     <div class="modal-body"><table class="emp-table" id="emp-table"></table></div>
