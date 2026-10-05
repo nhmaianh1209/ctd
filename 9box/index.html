@@ -321,7 +321,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
     <div class="topbar-divider"></div>
     <div class="subtitle" id="topbar-subtitle">9-BOX TALENT DASHBOARD</div>
   </div>
-  <div class="period-switch"><span class="period-switch-lbl">Period</span><a class="period-btn" href="apr-2026.html" target="_blank" rel="noopener" title="Open APR 2026 in a new tab to compare">APR 2026 ↗<span>Engineers · n=1,906</span></a><span class="period-btn cur" title="Currently viewing">SEP 2026<span>All staff · n=3,365</span></span></div>
+  <div class="period-switch"><span class="period-switch-lbl">Period</span><a class="period-btn" href="apr-2026.html" target="_blank" rel="noopener" title="Open APR 2026 in a new tab to compare">APR 2026 ↗<span>Engineers · n=1,906</span></a><span class="period-btn cur" title="Currently viewing">SEP 2026<span>All staff · n=3,411</span></span></div>
 </div>
 
 <div class="tabs" role="tablist">
@@ -581,12 +581,12 @@ const BOX_DEF={
 /* ═══════════════ BU × LEVEL × BOX DATA ═══════════════ */
 const BU_LEVEL={
   BU1:{
-    0:{A1:0,A2:1,A3:1,B1:0,B2:29,B3:0,C1:2,C2:0,C3:4},
-    1:{A1:4,A2:6,A3:2,B1:0,B2:95,B3:0,C1:2,C2:0,C3:5},
-    2:{A1:3,A2:12,A3:1,B1:0,B2:75,B3:0,C1:3,C2:1,C3:1},
-    3:{A1:20,A2:14,A3:3,B1:0,B2:61,B3:0,C1:1,C2:0,C3:0},
-    4:{A1:6,A2:2,A3:2,B1:0,B2:11,B3:0,C1:1,C2:0,C3:0},
-    5:{A1:4,A2:1,A3:0,B1:0,B2:9,B3:0,C1:1,C2:0,C3:0},
+    0:{A1:0,A2:1,A3:1,B1:0,B2:34,B3:0,C1:4,C2:0,C3:2},
+    1:{A1:4,A2:6,A3:2,B1:0,B2:107,B3:0,C1:6,C2:0,C3:7},
+    2:{A1:3,A2:12,A3:2,B1:0,B2:79,B3:0,C1:5,C2:2,C3:1},
+    3:{A1:20,A2:14,A3:5,B1:0,B2:65,B3:0,C1:3,C2:0,C3:1},
+    4:{A1:8,A2:2,A3:1,B1:0,B2:13,B3:0,C1:1,C2:0,C3:0},
+    5:{A1:5,A2:1,A3:0,B1:0,B2:11,B3:0,C1:1,C2:0,C3:0},
     6:{A1:1,A2:0,A3:0,B1:0,B2:6,B3:0,C1:0,C2:0,C3:0},
     7:{A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0},
   },
@@ -653,7 +653,7 @@ const BU_LEVEL={
 };
 
 const BU_META=[
-  {id:'BU1',target:437,completed:390},
+  {id:'BU1',target:437,completed:436},
   {id:'BU2',target:1510,completed:1508},
   {id:'BU3',target:622,completed:622},
   {id:'BU4',target:72,completed:71},
@@ -693,14 +693,24 @@ const HM_MAX=Math.max(...BU_NAMES.flatMap(bu=>BOX_KEYS.map(k=>BUDATA[bu].data[k]
 /* Populated from Excel sheet 3. Each record = one employee. Keyed by box (C1/C2/C3). */
 const EMPLOYEE_DATA={
   C1:[
+    {"name": "Kha Thành Đạt", "position": "Safety Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L1"},
+    {"name": "Lê Minh Đức", "position": "Safety Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L1"},
     {"name": "Nguyễn Trần Minh Triệu", "position": "Junior Site Security Executive", "dept": "CTD|NHÀ XE SÂN BAY LONG THÀNH", "bu": "BU1", "level": "L1"},
     {"name": "Ngô Thị Hiền", "position": "MEP QAQC Engineer", "dept": "CTD|NGUYỄN KIM|MEP", "bu": "BU1", "level": "L1"},
     {"name": "Bùi Quốc Thịnh", "position": "Construction Engineer", "dept": "CTD|THE ONE WORLD_CSA 2", "bu": "BU1", "level": "L2"},
+    {"name": "Nguyễn Quốc Anh", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
+    {"name": "Nguyễn Thị Kim Yến", "position": "Shopdrawing Engineer", "dept": "CTD|NHÀ GA HÀNG HÓA SÂN BAY LONG THÀNH", "bu": "BU1", "level": "L2"},
+    {"name": "Nguyễn Xuân Quang", "position": "Shopdrawing Engineer", "dept": "CTD|NHÀ GA HÀNG HÓA SÂN BAY LONG THÀNH", "bu": "BU1", "level": "L2"},
     {"name": "Nguyễn Đình Tường", "position": "QS Engineer", "dept": "CTD|KHU DU LỊCH SINH THÁI NAM Ô_VĂN PHÒNG", "bu": "BU1", "level": "L2"},
+    {"name": "Đặng Tuấn Cường", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
     {"name": "Hoàng Như Thành", "position": "MEP QS Engineer", "dept": "CTD|NGUYỄN KIM|MEP", "bu": "BU1", "level": "L3"},
     {"name": "Nguyễn Lê Mạnh Tuấn", "position": "QAQC Engineer", "dept": "CTD|KHU DU LỊCH SINH THÁI NAM Ô_VĂN PHÒNG", "bu": "BU1", "level": "L3"},
     {"name": "Nguyễn Ngọc Trung", "position": "Construction Engineer", "dept": "CTD|KCN HỐ NAI 2 – GIAI ĐOẠN 1", "bu": "BU1", "level": "L3"},
+    {"name": "Nguyễn Thanh Hải", "position": "Construction Engineer", "dept": "CTD|RIVIERA POINT 1C", "bu": "BU1", "level": "L3"},
+    {"name": "Nguyễn Trọng Tín", "position": "QS Engineer", "dept": "CTD|NHÀ GA HÀNG HÓA SÂN BAY LONG THÀNH", "bu": "BU1", "level": "L3"},
     {"name": "Mã Nhất Quí", "position": "Senior Construction Engineer", "dept": "CTD|PANDORA", "bu": "BU1", "level": "L4"},
+    {"name": "Nguyễn Văn Tuấn", "position": "Senior QS Engineer", "dept": "CTD|THE ONE WORLD", "bu": "BU1", "level": "L4"},
+    {"name": "Võ Việt Trung", "position": "Senior Safety Engineer", "dept": "CTD|ĐẠI HỌC QUỐC GIA TP.HCM", "bu": "BU1", "level": "L4"},
     {"name": "Lê Viết Hưng", "position": "Deputy Project Manager", "dept": "CTD|IXORA 2 HỒ TRÀM|GÓI THẦU 07.2", "bu": "BU1", "level": "L5"},
     {"name": "Đoàn Xuân Phước", "position": "Acting Project Manager", "dept": "BU1|CSA|PROJECT DIRECTOR 02", "bu": "BU1", "level": "L6"},
     {"name": "Bùi Đức Tuế", "position": "Junior Site Security Executive", "dept": "CTD|SUN HÀ NAM|PHÂN KHU 1|PK3_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
@@ -887,6 +897,7 @@ const EMPLOYEE_DATA={
     {"name": "Trần Trí Cương", "position": "Operation Improvement Manager", "dept": "CHAIRMAN OFFICE|CHAIRMAN", "bu": "Back Office", "level": "L6"},
   ],
   C2:[
+    {"name": "Mai Ngọc Tới", "position": "Construction Engineer", "dept": "CTD|NOXH HÒA PHÚ|786 CĂN THẤP TẦNG_HIỆN TRƯỜNG 1", "bu": "BU1", "level": "L3"},
     {"name": "Nguyễn Văn Hảo", "position": "Construction Engineer", "dept": "CTD|IXORA 2 HỒ TRÀM|GÓI THẦU 07.2_VĂN PHÒNG", "bu": "BU1", "level": "L3"},
     {"name": "Nguyễn Hoàng Anh Tuấn", "position": "Construction Engineer", "dept": "CTD|MASTERISE ĐẠI AN", "bu": "BU2", "level": "L1"},
     {"name": "Ngô Văn Cảnh", "position": "Junior Site Security Executive", "dept": "CTD|WESTLAKE RESIDENTIAL|XÂY DỰNG_HIỆN TRƯỜNG", "bu": "BU2", "level": "L1"},
@@ -928,15 +939,16 @@ const EMPLOYEE_DATA={
   ],
   C3:[
     {"name": "Hoàng Tấn Đại", "position": "Driver", "dept": "CTD|NHÀ GA HÀNG HÓA SÂN BAY LONG THÀNH", "bu": "BU1", "level": "L1"},
-    {"name": "Kha Thành Đạt", "position": "Safety Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L1"},
-    {"name": "Lê Minh Đức", "position": "Safety Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L1"},
     {"name": "Nguyễn Văn Lợi", "position": "Warehouse Keeper", "dept": "CTD|NOXH HÒA PHÚ|786 CĂN THẤP TẦNG", "bu": "BU1", "level": "L1"},
     {"name": "Lê Quốc Khang", "position": "Construction Engineer", "dept": "CTD|VỊNH ĐẦM PHÚ QUỐC", "bu": "BU1", "level": "L2"},
     {"name": "Lê Văn Hùng", "position": "Construction Engineer", "dept": "CTD|THE ONE WORLD_CSA 1", "bu": "BU1", "level": "L2"},
-    {"name": "Nguyễn Quốc Anh", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
+    {"name": "Nguyễn Tấn Đạt", "position": "Equipment Engineer", "dept": "CTD|ĐẠI HỌC QUỐC GIA TP.HCM", "bu": "BU1", "level": "L2"},
+    {"name": "Phan Đại Dương", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
+    {"name": "Phạm Quang Sáng", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
     {"name": "Đinh Văn Khiêm", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
-    {"name": "Đặng Tuấn Cường", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
+    {"name": "Đặng Văn Lượng", "position": "Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L2"},
     {"name": "Lương Minh Vương", "position": "QS Engineer", "dept": "CTD|ĐẠI HỌC QUỐC GIA TP.HCM", "bu": "BU1", "level": "L3"},
+    {"name": "Nguyễn Minh Tâm", "position": "Senior Construction Engineer", "dept": "CTD|SYCAMORE B9, B10", "bu": "BU1", "level": "L4"},
     {"name": "Chu Sỹ Hùng", "position": "Construction Engineer", "dept": "CTD|SÂN VẬN ĐỘNG PVF HƯNG YÊN", "bu": "BU2", "level": "L1"},
     {"name": "Tào Hoài Nam", "position": "QAQC Engineer", "dept": "CTD|SỐ 2 LÊ THẠCH", "bu": "BU2", "level": "L1"},
     {"name": "Bùi Minh Hải", "position": "MEP Engineer", "dept": "CTD|THE LAKE SIDE|B6-CT01|MEP", "bu": "BU2", "level": "L2"},
@@ -1220,7 +1232,7 @@ function renderKPIs(){
   const card=k=>`<div class="hero-c"><div class="hero-c-lbl">${k.l}</div><div class="hero-c-val" style="color:${k.c}">${k.v}</div><div class="hero-c-sub">${k.s}</div></div>`;
   const groups=[
     {lbl:'Assessment coverage', cls:'hero-2', accent:false, cards:[
-      {l:'Total',v:TOTAL_TARGET.toLocaleString(),s:'headcount in scope (HRBP masterfile, 28 Aug)',c:'#16315E'},
+      {l:'Total',v:TOTAL_TARGET.toLocaleString(),s:'headcount in scope (HRBP masterfile 28 Aug; BU1 updated)',c:'#16315E'},
       {l:'Completed',v:n.toLocaleString(),s:pct(n,TOTAL_TARGET)+' completion rate',c:'#16315E'},
     ]},
     {lbl:'Distribution by zone', cls:'hero-3', accent:false, cards:[
