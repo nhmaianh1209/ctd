@@ -1,4 +1,4 @@
-### APPROACH — 9-Box "A & C Focus" view (v1.9) · ĐÃ BUILD (preview, chưa merge)
+### APPROACH — 9-Box "A & C Focus" view (v1.9) · ĐÃ BUILD v1.9.2 (preview, chưa merge)
 
 Nhánh: `claude/9box-ac-focus` (tách từ `main` @ `ed40572`, dashboard v1.8.2, SEP 2026).
 
@@ -74,3 +74,13 @@ Nhận xét:
 2. **Thứ tự lát:** theo chiều kim đồng hồ từ **L8 → L7 → L6 → L5 → L4**, cuối cùng là **L1–L3** màu xám. Bảng chú giải theo cùng thứ tự.
 3. **Pie bằng nhau:** cả 6 pie cùng kích thước bằng pie A3 trước đây (bán kính 92px). Bỏ thang √n.
 4. **Header từng ô:** chỉ còn mã ô, tên ô và **con số tổng in to** bên phải (vd A1 = 168). Bỏ dòng "employees · at L4+ (%)".
+
+#### 7. Chỉnh sửa v1.9.2 theo feedback user (08/10/2026)
+1. **Chuyển thành tab** "A & C Focus" trong `index.html`, đặt giữa Gap Analysis và Rating Definitions. **Đã xoá** `focus.html` và `tools/build_focus.py`. Tab đọc trực tiếp `BU_LEVEL` / `BU_NAMES`, nên **không cần bước build riêng** khi cập nhật số liệu.
+2. **Bỏ các dòng thừa:** câu hỏi đầu trang, dòng tóm tắt "at L4+ / A-zone at L4+ / C-zone at L4+", và ghi chú cuối trang.
+3. **Con số tổng mỗi ô có thêm tỉ lệ** so với tổng số người đã đánh giá trong view đang xem. Ví dụ Company-wide: A1 168 = 4,9% of total (3.411). Chọn BU thì mẫu số là số người đã đánh giá của BU đó.
+4. Kỹ thuật:
+   - Toàn bộ code của tab nằm trong một IIFE `renderACFocus`. Class CSS có tiền tố `acf-` để không đụng các tab cũ.
+   - `openDefs()` đã sửa chỉ số tab (Rating Definitions giờ là tab thứ 6).
+   - `resetView()` đưa bộ lọc của tab về Company-wide.
+5. Ghi chú: trên màn hình 390px, trang chính vốn đã tràn ngang do thanh topbar và thanh tab, tình trạng này có từ trước. Tab mới tự xuống 1 cột.
