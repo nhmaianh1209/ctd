@@ -268,6 +268,9 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 .tab.active{background:rgba(95,209,193,.14)}
 /* B3 · reset control */
 .reset-btn{margin-left:auto;align-self:center;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.3);color:#fff;font-family:inherit;font-size:12px;font-weight:500;padding:5px 15px;border-radius:16px;cursor:pointer;transition:.12s;white-space:nowrap}
+.focus-link{margin-left:auto;align-self:center;color:#5FD1C1;font-size:12.5px;font-weight:600;text-decoration:none;padding:5px 14px;border-radius:16px;border:1px solid rgba(95,209,193,.55);white-space:nowrap}
+.focus-link:hover{background:rgba(95,209,193,.14)}
+.focus-link + .reset-btn{margin-left:10px}
 .reset-btn:hover{background:rgba(255,255,255,.26);border-color:rgba(255,255,255,.55)}
 /* generic click hint */
 .click-hint{font-size:12px;color:#6B7A8D;font-style:italic;margin-top:10px;display:flex;align-items:center;gap:6px}
@@ -330,6 +333,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
   <button class="tab" onclick="showTab('level',this)">By Level</button>
   <button class="tab" onclick="showTab('gap',this)">Gap Analysis</button>
   <button class="tab" onclick="showTab('legend',this)">Rating Definitions</button>
+  <a class="focus-link" href="focus.html" title="Open the A &amp; C focus view (levels L4+)">A &amp; C Focus →</a>
   <button class="reset-btn" onclick="resetView()" title="Return to the default overview">↺  Reset view</button>
 </div>
 

@@ -1,4 +1,4 @@
-### APPROACH — 9-Box "A & C Focus" view (v1.9) · CHƯA BUILD
+### APPROACH — 9-Box "A & C Focus" view (v1.9) · ĐÃ BUILD (preview, chưa merge)
 
 Nhánh: `claude/9box-ac-focus` (tách từ `main` @ `ed40572`, dashboard v1.8.2, SEP 2026).
 
@@ -58,3 +58,13 @@ Nhận xét:
 3. Có cần bộ lọc theo BU không?
 4. Có nhập danh sách tên cho A1/A2/A3 ở L4+ (khoảng 531 người) để làm danh sách promote không?
 5. % hiển thị chính là % trong ô (đề xuất), hay % trên tổng số người của level?
+
+#### 5. Quyết định của user (08/10/2026) và cách đã build
+- **Trang riêng** `9box/focus.html`, không làm tab. Dashboard chính có nút **"A & C Focus →"** trên thanh tab; trang Focus có nút **"← Full 9-Box dashboard"** để quay lại.
+- **Thang pie chung** cho cả 6 ô (bán kính ∝ √n theo ô lớn nhất trong view đang xem).
+- **Có bộ lọc BU**, mặc định là **Company-wide**.
+- **Chưa làm danh sách tên nhóm A.** Trang Focus không chứa tên người nào.
+- % chính là **% trong ô**. Tooltip khi rê chuột có thêm % trên tổng số người cùng level.
+- Màu level L4→L8 là ramp xanh dương ordinal `#86b6ef → #5598e7 → #2a78d6 → #1c5cab → #104281`, đã qua validator dataviz (`--ordinal`, light). L1–L3 dùng xám `#D9DFE8`.
+- **Dữ liệu:** `focus.html` nhúng một bản sao `BU_LEVEL` và `BU_META` lấy từ `index.html`. Sau mỗi lần cập nhật số liệu `index.html`, **chạy lại** `python3 9box/tools/build_focus.py` để sinh lại `focus.html`.
+- Test: `node --check` sạch, Chromium headless không lỗi JS; tổng từng ô khớp tab Overview; không tràn ngang ở 390px.
