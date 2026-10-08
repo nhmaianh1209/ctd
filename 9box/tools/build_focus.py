@@ -15,7 +15,7 @@ html=r'''<!DOCTYPE html>
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap');
 :root{--navy:#16315E;--teal:#5FD1C1;--ink:#1C2B3A;--ink2:#42506B;--muted:#6B7A8D;--line:#D5DFEF;--bg:#F0F4FA;--card:#fff;
   --a:#51AC70;--a-ink:#2E7A4A;--a-bg:#EEF8F1;--c:#B86054;--c-ink:#8B3C30;--c-bg:#FDF1EE;
-  --l4:#86b6ef;--l5:#5598e7;--l6:#2a78d6;--l7:#1c5cab;--l8:#104281;--lo:#D9DFE8}
+  --lo:#D9DFE8}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:var(--bg);color:var(--ink)}
 .topbar{background:var(--navy);padding:0 32px;height:54px;display:flex;align-items:center;position:sticky;top:0;z-index:100;border-bottom:2.5px solid var(--teal)}
@@ -37,11 +37,10 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:var(-
 .scope-line strong{color:var(--ink)}
 .zone-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:26px}
 .bcard{background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 1px 10px rgba(22,49,94,.055);overflow:hidden;display:flex;flex-direction:column}
-.bcard-hdr{padding:14px 18px 10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-top:4px solid var(--zc)}
+.bcard-hdr{padding:14px 18px 12px;display:flex;align-items:center;gap:10px;border-top:4px solid var(--zc)}
 .bcard-key{font-size:22px;font-weight:700;color:var(--zink)}
 .bcard-name{font-size:12.5px;font-weight:600;color:var(--ink)}
-.bcard-n{width:100%;font-size:12px;color:var(--muted)}
-.bcard-n strong{color:var(--ink);font-weight:700}
+.bcard-total{margin-left:auto;font-size:30px;font-weight:700;line-height:1;color:var(--zink);font-variant-numeric:tabular-nums}
 .action{margin:0 18px 6px;padding:9px 12px;border-radius:7px;background:var(--zbg);border:1px solid var(--zc);font-size:12px;line-height:1.45;color:var(--ink2)}
 .action b{color:var(--zink);font-weight:700;margin-right:4px}
 .bcard-body{display:flex;align-items:center;gap:16px;padding:12px 18px 18px;flex:1}
@@ -95,7 +94,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:var(-
   <div class="section-label"><span class="step-n">3</span>C-zone · performance risk</div>
   <div class="zone-row" id="row-c"></div>
 
-  <div class="note">Pie area is proportional to headcount, on one shared scale across all six boxes in the current view. Slices L4–L8 are highlighted; L1–L3 are grouped in grey. Percentages in the legend are shares of the box; hover a slice for its share of the whole level.</div>
+  <div class="note">Slices run clockwise from L8 down to L4, then L1–L3 grouped in grey. All pies are drawn at the same size — read the headcount from the number in each card. Percentages in the legend are shares of the box; hover a slice for its share of the whole level.</div>
 </div>
 
 <div class="site-footer">
@@ -117,14 +116,15 @@ const BOXES={
   C3:{zone:'c',name:'Low performance · Low potential',tag:'PIP or manage out',action:'Performance improvement plan, or manage out.'},
 };
 /* slices in drawing order: L4..L8 highlighted, then L1–L3 grouped */
+/* ordinal ramps L4 (light) -> L8 (dark), validated with the dataviz validator (--ordinal, light) */
+const RAMP={a:['#72C08A','#55AA72','#3F9660','#2C7A4A','#1C5C35'], c:['#E58E82','#D06C5F','#B5503F','#93392B','#71271C']};
+const DARK_TXT='#1C2B3A';
 const SLICES=[
-  {key:'L4',lv:[3],color:'var(--l4)',hex:'#86b6ef',txt:'#16315E'},
-  {key:'L5',lv:[4],color:'var(--l5)',hex:'#5598e7',txt:'#fff'},
-  {key:'L6',lv:[5],color:'var(--l6)',hex:'#2a78d6',txt:'#fff'},
-  {key:'L7',lv:[6],color:'var(--l7)',hex:'#1c5cab',txt:'#fff'},
-  {key:'L8',lv:[7],color:'var(--l8)',hex:'#104281',txt:'#fff'},
-  {key:'L1–L3',lv:[0,1,2],color:'var(--lo)',hex:'#D9DFE8',txt:'#42506B',lo:true},
+  {key:'L8',lv:[7],step:4},{key:'L7',lv:[6],step:3},{key:'L6',lv:[5],step:2},{key:'L5',lv:[4],step:1},{key:'L4',lv:[3],step:0},
+  {key:'L1–L3',lv:[0,1,2],lo:true},
 ];
+const sliceHex=(s,z)=>s.lo?'#D9DFE8':RAMP[z][s.step];
+const sliceTxt=s=>s.lo?'#42506B':(s.step<=1?DARK_TXT:'#fff');
 const R_MAX=92, R_MIN_LABEL=34, MIN_LABEL_ANGLE=0.42;
 const UNITS=BU_META.map(b=>b.id);
 let curBU='Overall';
@@ -164,12 +164,11 @@ function renderCard(key,lv,lvTotal,rFor){
   const card=el('div',{class:'bcard',style:`--zc:var(--${z});--zink:var(--${z}-ink);--zbg:var(--${z}-bg)`});
   const hdr=el('div',{class:'bcard-hdr'},card);
   el('span',{class:'bcard-key',text:key},hdr); el('span',{class:'bcard-name',text:b.name},hdr);
-  const n=el('div',{class:'bcard-n'},hdr);
-  n.innerHTML=total?`<strong>${fmt(total)}</strong> employees · <strong>${fmt(senior)}</strong> at L4+ (${pct(senior,total)})`:'No employees in this view';
+  el('span',{class:'bcard-total',title:`${fmt(total)} employees in ${key}`,'aria-label':`${fmt(total)} employees`,text:fmt(total)},hdr);
   const act=el('div',{class:'action'},card); el('b',{text:b.tag+' —'},act); act.appendChild(document.createTextNode(' '+b.action));
   const body=el('div',{class:'bcard-body'},card);
   const box=el('div',{class:'pie-box',style:`width:${R_MAX*2+4}px;height:${R_MAX*2+4}px`},body);
-  const rows=SLICES.map(s=>({...s,n:s.lv.reduce((a,i)=>a+lv[i],0),lvN:s.lv.reduce((a,i)=>a+lvTotal[i],0)}));
+  const rows=SLICES.map(s=>({...s,hex:sliceHex(s,z),txt:sliceTxt(s),n:s.lv.reduce((a,i)=>a+lv[i],0),lvN:s.lv.reduce((a,i)=>a+lvTotal[i],0)}));
   if(!total){ const svg=el('svg',{width:R_MAX*2+4,height:R_MAX*2+4,viewBox:`0 0 ${R_MAX*2+4} ${R_MAX*2+4}`,'aria-hidden':'true'},box);
     el('circle',{cx:R_MAX+2,cy:R_MAX+2,r:24,fill:'none',stroke:'#C7D4E6','stroke-dasharray':'4 4'},svg); }
   else{
@@ -198,9 +197,7 @@ function hl(card,k,on){card.querySelectorAll('.legend tr').forEach(tr=>tr.classL
 
 function render(){
   const {out,lvTotal}=boxCounts(curBU);
-  const totals=Object.fromEntries(Object.keys(out).map(k=>[k,out[k].reduce((s,v)=>s+v,0)]));
-  const maxN=Math.max(1,...Object.values(totals));
-  const rFor=n=>R_MAX*Math.sqrt(n/maxN);
+  const rFor=()=>R_MAX;   /* v1.9.1 — all pies the same size */
   ['a','c'].forEach(z=>{const row=document.getElementById('row-'+z); row.innerHTML='';
     Object.keys(BOXES).filter(k=>BOXES[k].zone===z).forEach(k=>row.appendChild(renderCard(k,out[k],lvTotal,rFor)));});
   const assessed=lvTotal.reduce((s,v)=>s+v,0), senior=lvTotal.slice(3).reduce((s,v)=>s+v,0);

@@ -68,3 +68,9 @@ Nhận xét:
 - Màu level L4→L8 là ramp xanh dương ordinal `#86b6ef → #5598e7 → #2a78d6 → #1c5cab → #104281`, đã qua validator dataviz (`--ordinal`, light). L1–L3 dùng xám `#D9DFE8`.
 - **Dữ liệu:** `focus.html` nhúng một bản sao `BU_LEVEL` và `BU_META` lấy từ `index.html`. Sau mỗi lần cập nhật số liệu `index.html`, **chạy lại** `python3 9box/tools/build_focus.py` để sinh lại `focus.html`.
 - Test: `node --check` sạch, Chromium headless không lỗi JS; tổng từng ô khớp tab Overview; không tràn ngang ở 390px.
+
+#### 6. Chỉnh sửa v1.9.1 theo feedback user (08/10/2026)
+1. **Màu theo zone:** nhóm A dùng ramp xanh lá `#72C08A → #55AA72 → #3F9660 → #2C7A4A → #1C5C35` (L4 → L8), nhóm C dùng ramp đỏ `#E58E82 → #D06C5F → #B5503F → #93392B → #71271C`. Cả 2 ramp đã qua validator (`--ordinal`, light). L1–L3 vẫn xám `#D9DFE8`.
+2. **Thứ tự lát:** theo chiều kim đồng hồ từ **L8 → L7 → L6 → L5 → L4**, cuối cùng là **L1–L3** màu xám. Bảng chú giải theo cùng thứ tự.
+3. **Pie bằng nhau:** cả 6 pie cùng kích thước bằng pie A3 trước đây (bán kính 92px). Bỏ thang √n.
+4. **Header từng ô:** chỉ còn mã ô, tên ô và **con số tổng in to** bên phải (vd A1 = 168). Bỏ dòng "employees · at L4+ (%)".
