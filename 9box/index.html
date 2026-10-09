@@ -312,6 +312,38 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
 /* C6 · stacked gap sections */
 .gap-sec-hdr{padding:13px 20px;background:#F7FAFD;border-bottom:1px solid #D5DFEF;border-top:1px solid #D5DFEF;font-size:12px;font-weight:700;color:#16315E;letter-spacing:.5px;text-transform:uppercase}
 @media(max-width:1100px){.hero{grid-template-columns:1fr}}
+/* ══════════ v1.9 — A & C Focus tab ══════════ */
+.acf-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.acf-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:26px}
+.acf-card{background:#fff;border:1px solid #D5DFEF;border-radius:10px;box-shadow:0 1px 10px rgba(22,49,94,.055);overflow:hidden;display:flex;flex-direction:column}
+.acf-hdr{padding:14px 18px 12px;display:flex;align-items:center;gap:10px;border-top:4px solid var(--zc)}
+.acf-key{font-size:22px;font-weight:700;color:var(--zink)}
+.acf-name{font-size:12.5px;font-weight:600;color:#1C2B3A}
+.acf-tot{margin-left:auto;text-align:right;line-height:1}
+.acf-tot-n{display:block;font-size:30px;font-weight:700;color:var(--zink);font-variant-numeric:tabular-nums}
+.acf-tot-p{display:block;font-size:12px;font-weight:600;color:#6B7A8D;margin-top:4px;font-variant-numeric:tabular-nums}
+.acf-action{margin:0 18px 6px;padding:9px 12px;border-radius:7px;background:var(--zbg);border:1px solid var(--zc);font-size:12px;line-height:1.45;color:#42506B}
+.acf-action b{color:var(--zink);font-weight:700;margin-right:4px}
+.acf-body{display:flex;align-items:center;gap:16px;padding:12px 18px 18px;flex:1}
+.acf-pie{flex:0 0 auto}
+.acf-pie svg{display:block;overflow:visible}
+.acf-slice{cursor:pointer;transition:opacity .12s}
+.acf-svg:hover .acf-slice{opacity:.55}
+.acf-svg:hover .acf-slice:hover,.acf-slice:focus{opacity:1;outline:none}
+.acf-lbl{pointer-events:none;font-size:11px;font-weight:600}
+.acf-legend{flex:1;min-width:0;border-collapse:collapse;font-size:12px}
+.acf-legend td{padding:4px;border-bottom:1px solid #EEF2F8;white-space:nowrap}
+.acf-legend td.n{text-align:right;font-variant-numeric:tabular-nums;color:#1C2B3A;font-weight:600}
+.acf-legend td.p{text-align:right;font-variant-numeric:tabular-nums;color:#6B7A8D;width:44px}
+.acf-legend tr.lo td,.acf-legend tr.lo td.n{color:#6B7A8D;font-weight:500}
+.acf-legend tr.tot td{border-bottom:none;border-top:1.5px solid #D5DFEF;font-weight:700;color:#1C2B3A}
+.acf-legend tr.hl td{background:#F3F7FD}
+.acf-sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+.acf-tip{position:fixed;z-index:300;pointer-events:none;background:#fff;border:1px solid #D5DFEF;border-radius:7px;box-shadow:0 4px 18px rgba(22,49,94,.16);padding:8px 11px;font-size:12px;line-height:1.5;color:#42506B;opacity:0;transition:opacity .1s;max-width:260px}
+.acf-tip .tv{font-size:15px;font-weight:700;color:#1C2B3A}
+.acf-tip .tk{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:6px;vertical-align:3px}
+@media(max-width:1180px){.acf-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.acf-row{grid-template-columns:1fr}.acf-body{flex-direction:column;align-items:stretch}.acf-legend{width:100%}}
 </style>
 </head>
 <body>
@@ -329,6 +361,7 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
   <button class="tab" onclick="showTab('bu',this)">By Business Unit</button>
   <button class="tab" onclick="showTab('level',this)">By Level</button>
   <button class="tab" onclick="showTab('gap',this)">Gap Analysis</button>
+  <button class="tab" onclick="showTab('focus',this)">A &amp; C Focus</button>
   <button class="tab" onclick="showTab('legend',this)">Rating Definitions</button>
   <button class="reset-btn" onclick="resetView()" title="Return to the default overview">↺  Reset view</button>
 </div>
@@ -430,6 +463,17 @@ html,body{min-height:100vh;font-family:'Lexend Deca',sans-serif;background:#F0F4
     </div>
   </div></div>
 </div>
+
+<!-- A & C FOCUS (v1.9) -->
+<div class="page" id="tab-focus">
+  <div class="section-label"><span class="step-n">1</span>Select business unit</div>
+  <div class="acf-filters" id="acf-filter" role="group" aria-label="Business unit filter"></div>
+  <div class="section-label"><span class="step-n">2</span>A-zone · talent pipeline</div>
+  <div class="acf-row" id="acf-row-a"></div>
+  <div class="section-label"><span class="step-n">3</span>C-zone · performance risk</div>
+  <div class="acf-row" id="acf-row-c"></div>
+</div>
+<div class="acf-tip" id="acf-tip" role="tooltip"></div>
 
 <!-- LEGEND -->
 <div class="page page-narrow" id="tab-legend">
@@ -1517,6 +1561,7 @@ function showTab(name,btn){
   if(name==='overview'){ render9Box('nb-overview',BUDATA.Overall.data,'overview'); renderOverviewDetail(); renderHeatmap(); }
   if(name==='bu') renderBUPage();
   if(name==='level') renderLevelPage();
+  if(name==='focus') renderACFocus();
 }
 
 /* v1.7.3 — ⓘ link on every data tab jumps to Rating Definitions; "Back" returns to where the reader was */
@@ -1525,8 +1570,8 @@ function openDefs(e){
   if(e) e.preventDefault();
   const tabs=[...document.querySelectorAll('.tab')];
   const cur=tabs.findIndex(t=>t.classList.contains('active'));
-  defReturn={idx:cur,name:['overview','bu','level','gap','legend'][cur],y:window.scrollY};
-  showTab('legend',tabs[4]);
+  defReturn={idx:cur,name:['overview','bu','level','gap','focus','legend'][cur],y:window.scrollY};
+  showTab('legend',tabs[5]);
   const b=document.getElementById('def-back');
   b.textContent='\u2190 Back to '+tabs[cur].textContent.trim();
   b.style.display='inline-block';
@@ -1540,10 +1585,88 @@ function closeDefs(e){
   window.scrollTo({top:r.y});
 }
 
+
+/* ═══════════════ v1.9 — A & C FOCUS TAB ═══════════════
+   One pie per A/C box: slices L8→L4 (zone ramp), then L1–L3 grouped in grey.
+   Reads BU_LEVEL / BU_META, so it follows every data refresh automatically. */
+let acfBU='Overall';
+const renderACFocus=(()=>{
+  const BOXES={
+    A1:{z:'a',name:'High performance · High potential',tag:'Ready now',action:'Promotable at any point within the next 12 months.'},
+    A2:{z:'a',name:'Medium performance · High potential',tag:'Ready later',action:'Ready for the next role in 2–3 years.'},
+    A3:{z:'a',name:'High performance · Medium potential',tag:'Ready later',action:'Ready for the next role in 2–3 years.'},
+    C1:{z:'c',name:'Medium performance · Low potential',tag:'Improvement plan',action:'Needs a structured improvement plan.'},
+    C2:{z:'c',name:'Low performance · Medium potential',tag:'Improvement plan',action:'Needs a structured improvement plan.'},
+    C3:{z:'c',name:'Low performance · Low potential',tag:'PIP or manage out',action:'Performance improvement plan, or manage out.'},
+  };
+  const ZONE={a:{c:'#51AC70',ink:'#2E7A4A',bg:'#EEF8F1'},c:{c:'#B86054',ink:'#8B3C30',bg:'#FDF1EE'}};
+  /* ordinal ramps L4 (light) → L8 (dark); validated with the dataviz validator (--ordinal, light) */
+  const RAMP={a:['#72C08A','#55AA72','#3F9660','#2C7A4A','#1C5C35'],c:['#E58E82','#D06C5F','#B5503F','#93392B','#71271C']};
+  const SLICES=[{key:'L8',lv:[7],step:4},{key:'L7',lv:[6],step:3},{key:'L6',lv:[5],step:2},{key:'L5',lv:[4],step:1},{key:'L4',lv:[3],step:0},{key:'L1–L3',lv:[0,1,2],lo:true}];
+  const R=92, SZ=R*2+4, MIN_ANGLE=0.42;
+  const f=n=>n.toLocaleString('en-US'), p=(a,b)=>b?Math.round(a/b*100)+'%':'—', p1=(a,b)=>b?(a/b*100).toFixed(1)+'%':'—';
+  const NS='http://www.w3.org/2000/svg';
+  const el=(tag,attrs,parent,svg)=>{const e=svg?document.createElementNS(NS,tag):document.createElement(tag);
+    for(const a in attrs){if(a==='text')e.textContent=attrs[a];else e.setAttribute(a,attrs[a]);} if(parent)parent.appendChild(e); return e;};
+  const arc=(c,r,a0,a1)=>{if(a1-a0>=Math.PI*2-1e-6) return `M ${c} ${c-r} A ${r} ${r} 0 1 1 ${c-0.01} ${c-r} Z`;
+    return `M ${c} ${c} L ${c+r*Math.sin(a0)} ${c-r*Math.cos(a0)} A ${r} ${r} 0 ${a1-a0>Math.PI?1:0} 1 ${c+r*Math.sin(a1)} ${c-r*Math.cos(a1)} Z`;};
+  const tip=()=>document.getElementById('acf-tip');
+  const move=ev=>{const t=tip(),r=ev.target.getBoundingClientRect(),x=ev.clientX??r.right,y=ev.clientY??r.top;
+    let l=x+14,tp=y+14; if(l+t.offsetWidth>innerWidth-8)l=x-t.offsetWidth-14; if(tp+t.offsetHeight>innerHeight-8)tp=y-t.offsetHeight-14; t.style.left=l+'px';t.style.top=tp+'px';};
+  const show=(ev,html)=>{const t=tip();t.innerHTML=html;t.style.opacity=1;move(ev);};
+  const hide=()=>{tip().style.opacity=0;};
+  function counts(bu){
+    const units=bu==='Overall'?BU_NAMES:[bu], out={}, lvTotal=Array(8).fill(0);
+    Object.keys(BOXES).forEach(k=>out[k]=Array(8).fill(0));
+    units.forEach(u=>{for(let i=0;i<8;i++){const row=BU_LEVEL[u][i]; for(const k in row){lvTotal[i]+=row[k]; if(out[k]) out[k][i]+=row[k];}}});
+    return {out,lvTotal,assessed:lvTotal.reduce((s,v)=>s+v,0)};
+  }
+  function card(key,lv,lvTotal,assessed){
+    const b=BOXES[key], zc=ZONE[b.z], total=lv.reduce((s,v)=>s+v,0);
+    const c=el('div',{class:'acf-card',style:`--zc:${zc.c};--zink:${zc.ink};--zbg:${zc.bg}`});
+    const h=el('div',{class:'acf-hdr'},c);
+    el('span',{class:'acf-key',text:key},h); el('span',{class:'acf-name',text:b.name},h);
+    const t=el('div',{class:'acf-tot',title:`${f(total)} of ${f(assessed)} assessed in this view`},h);
+    el('span',{class:'acf-tot-n',text:f(total)},t); el('span',{class:'acf-tot-p',text:`${p1(total,assessed)} of total`},t);
+    const a=el('div',{class:'acf-action'},c); el('b',{text:b.tag+' —'},a); a.appendChild(document.createTextNode(' '+b.action));
+    const body=el('div',{class:'acf-body'},c), pie=el('div',{class:'acf-pie',style:`width:${SZ}px;height:${SZ}px`},body);
+    const rows=SLICES.map(s=>({...s,hex:s.lo?'#D9DFE8':RAMP[b.z][s.step],txt:s.lo?'#42506B':(s.step<=1?'#1C2B3A':'#fff'),
+      n:s.lv.reduce((x,i)=>x+lv[i],0),lvN:s.lv.reduce((x,i)=>x+lvTotal[i],0)}));
+    const svg=el('svg',{class:'acf-svg',width:SZ,height:SZ,viewBox:`0 0 ${SZ} ${SZ}`,role:'img','aria-label':`${key}: ${total} employees`},pie,true);
+    const C=R+2;
+    if(!total) el('circle',{cx:C,cy:C,r:R,fill:'none',stroke:'#C7D4E6','stroke-dasharray':'4 4'},svg,true);
+    let a0=0;
+    rows.forEach(s=>{ if(!s.n) return; const a1=a0+s.n/total*Math.PI*2;
+      const path=el('path',{class:'acf-slice',d:arc(C,R,a0,a1),fill:s.hex,stroke:'#fff','stroke-width':2,'stroke-linejoin':'round',tabindex:0,'aria-label':`${s.key}: ${s.n}`},svg,true);
+      const html=`<div><span class="tk" style="background:${s.hex}"></span>${key} · ${s.key}</div><div class="tv">${f(s.n)} employee${s.n===1?'':'s'}</div><div>${p(s.n,total)} of ${key}</div><div>${p(s.n,s.lvN)} of all ${s.key} assessed (${f(s.lvN)})</div>`;
+      const on=ev=>{show(ev,html);hl(c,s.key,true);}, off=()=>{hide();hl(c,s.key,false);};
+      path.addEventListener('pointerenter',on); path.addEventListener('pointermove',move); path.addEventListener('pointerleave',off);
+      path.addEventListener('focus',on); path.addEventListener('blur',off);
+      if(a1-a0>=MIN_ANGLE){const m=(a0+a1)/2,lr=R*0.64; el('text',{class:'acf-lbl',x:C+lr*Math.sin(m),y:C-lr*Math.cos(m)+4,'text-anchor':'middle',fill:s.txt,text:p(s.n,total)},svg,true);}
+      a0=a1; });
+    const tb=el('tbody',{},el('table',{class:'acf-legend'},body));
+    rows.forEach(s=>{const tr=el('tr',{class:s.lo?'lo':'','data-k':s.key},tb), td=el('td',{},tr);
+      el('span',{class:'acf-sw',style:`background:${s.hex}`},td); td.appendChild(document.createTextNode(s.key));
+      el('td',{class:'n',text:f(s.n)},tr); el('td',{class:'p',text:total?p(s.n,total):'—'},tr);});
+    const tr=el('tr',{class:'tot'},tb); el('td',{text:'Total'},tr); el('td',{class:'n',text:f(total)},tr); el('td',{class:'p',text:total?'100%':'—'},tr);
+    return c;
+  }
+  function hl(c,k,on){c.querySelectorAll('.acf-legend tr').forEach(tr=>tr.classList.toggle('hl',on&&tr.dataset.k===k));}
+  return function render(){
+    const fl=document.getElementById('acf-filter');
+    if(!fl.children.length) ['Overall',...BU_NAMES].forEach(u=>{const b=el('button',{class:'bu-btn',type:'button','data-bu':u,text:u==='Overall'?'Company-wide':u},fl);
+      b.addEventListener('click',()=>{acfBU=u;render();});});
+    fl.querySelectorAll('.bu-btn').forEach(b=>{const on=b.dataset.bu===acfBU;b.classList.toggle('sel',on);b.setAttribute('aria-pressed',on);});
+    const {out,lvTotal,assessed}=counts(acfBU);
+    ['a','c'].forEach(z=>{const row=document.getElementById('acf-row-'+z); row.innerHTML='';
+      Object.keys(BOXES).filter(k=>BOXES[k].z===z).forEach(k=>row.appendChild(card(k,out[k],lvTotal,assessed)));});
+  };
+})();
+
 /* B3 — one click back to the opening state, from anywhere */
 function resetView(){
   selBox=DEFAULT_BOX; curBU='Overall'; curLevel=0; hmMode='count'; hmNum=false; cmpOpen=false;
-  gapBoxOpen=false;
+  gapBoxOpen=false; acfBU='Overall';
   const gw=document.getElementById('gap-box-wrap'); if(gw) gw.style.display='none';
   const gb=document.getElementById('gap-box-btn'); if(gb) gb.textContent='Show all nine boxes \u25be';
   showTab('overview',document.querySelectorAll('.tab')[0]);
